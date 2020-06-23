@@ -7,7 +7,7 @@ import {
   Dimensions,
 } from "react-native";
 
-function welcome() {
+export default function Welcome({ navigation }) {
   return (
     <View style={styles.start}>
       <TouchableOpacity>
@@ -17,7 +17,7 @@ function welcome() {
         <TouchableOpacity>
           <Text style={styles.homeButtom}></Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.push("Chat")}>
           <Text style={styles.chatButton}></Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: windowW / 2 - 16,
     marginVertical: 22,
-    borderColor: "#ACDAFF",
+    borderColor: "FFF",
     borderWidth: 1,
     borderRadius: 5,
     width: 32,
@@ -97,5 +97,3 @@ const styles = StyleSheet.create({
     borderRadius: 2.5,
   },
 });
-
-export default welcome;
