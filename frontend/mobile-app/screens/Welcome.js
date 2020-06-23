@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import BottomTray from "../components/bottomTray";
 
-export default function Welcome({ navigation }) {
+export default function Welcome(props) {
   return (
     <View style={styles.start}>
       <TouchableOpacity>
@@ -18,7 +18,7 @@ export default function Welcome({ navigation }) {
         />
       </TouchableOpacity>
       <View>
-        <BottomTray />
+        <BottomTray navigation={props.navigation} />
       </View>
     </View>
   );

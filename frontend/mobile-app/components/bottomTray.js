@@ -8,23 +8,23 @@ import {
   Image,
 } from "react-native";
 
-export default function BottomTray() {
+export default function BottomTray(props) {
   return (
     <>
       <View style={styles.bottomView}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => props.navigation.push("Welcome")}>
           <Image
             style={styles.homeButtom}
             source={require("../images/homeButton.png")}
           />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => props.navigation.push("Chat")}>
           <Image
             style={styles.chatButton}
             source={require("../images/chatButton.png")}
           />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => props.navigation.push("Resources")}>
           <Image
             style={styles.resourceButton}
             source={require("../images/resourceButton.png")}

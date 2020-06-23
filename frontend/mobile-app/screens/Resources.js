@@ -2,11 +2,11 @@ import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import BottomTray from "../components/bottomTray";
 
-export default function Chat(props) {
+export default function Resources(props) {
   return (
     <View style={styles.home}>
       <View style={styles.profile}>
-        <Text>This is a chat screen</Text>
+        <Text>This is a resource screen</Text>
       </View>
 
       <View>
