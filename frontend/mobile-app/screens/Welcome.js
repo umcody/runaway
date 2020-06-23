@@ -5,23 +5,36 @@ import {
   View,
   TouchableOpacity,
   Dimensions,
+  Image,
 } from "react-native";
 
 function welcome() {
   return (
     <View style={styles.start}>
       <TouchableOpacity>
-        <Text style={styles.profile}></Text>
+        <Image
+          style={styles.profile}
+          source={require("../images/profileButton.png")}
+        />
       </TouchableOpacity>
       <View style={styles.bottomView}>
         <TouchableOpacity>
-          <Text style={styles.homeButtom}></Text>
+          <Image
+            style={styles.homeButtom}
+            source={require("../images/homeButton.png")}
+          />
         </TouchableOpacity>
         <TouchableOpacity>
-          <Text style={styles.chatButton}></Text>
+          <Image
+            style={styles.chatButton}
+            source={require("../images/chatButton.png")}
+          />
         </TouchableOpacity>
         <TouchableOpacity>
-          <Text style={styles.resourceButton}></Text>
+          <Image
+            style={styles.resourceButton}
+            source={require("../images/resourceButton.png")}
+          />
         </TouchableOpacity>
       </View>
       <View style={styles.homeIndicator}></View>
@@ -39,46 +52,30 @@ const styles = StyleSheet.create({
   profile: {
     position: "absolute",
     left: 30,
-    marginVertical: 55,
-    borderColor: "#ACDAFF",
-    borderWidth: 1,
-    borderRadius: 5,
+    top: 55,
     width: 32,
     height: 32,
-    borderWidth: 3,
   },
   homeButtom: {
     position: "absolute",
     left: 53,
-    marginVertical: 22,
-    borderColor: "#ACDAFF",
-    borderWidth: 1,
-    borderRadius: 5,
+    top: 22,
     width: 32,
     height: 32,
-    borderWidth: 3,
   },
   chatButton: {
     position: "absolute",
     left: windowW / 2 - 16,
-    marginVertical: 22,
-    borderColor: "#ACDAFF",
-    borderWidth: 1,
-    borderRadius: 5,
+    top: 22,
     width: 32,
     height: 32,
-    borderWidth: 3,
   },
   resourceButton: {
     position: "absolute",
     left: windowW - 53 - 32,
-    marginVertical: 22,
-    borderColor: "#ACDAFF",
-    borderWidth: 1,
-    borderRadius: 5,
+    top: 22,
     width: 32,
     height: 32,
-    borderWidth: 3,
   },
   bottomView: {
     position: "absolute",
