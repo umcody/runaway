@@ -1,14 +1,51 @@
 import React, { useState, useCallback, useEffect } from 'react'
-import { GiftedChat,InputToolbar,Send} from 'react-native-gifted-chat'
+import { GiftedChat,InputToolbar,Send, Composer,Bubble} from 'react-native-gifted-chat'
 import { StyleSheet, TextInput, View,Image } from 'react-native';
 
 export default function ChatScreen() {
 
+  function renderBubble(props){
+    return (
+      <Bubble
+        {...props}
+        textStyle={{
+          left: {
+            color: 'white',
+          },
+          right: {
+            color: '#2E5F85',
+          },
+        }}
+        wrapperStyle={{
+          left: {
+            backgroundColor: '#2E5F85',
+            
+            borderTopLeftRadius: 30,
+            borderTopRightRadius: 30,
+            borderBottomRightRadius:30,
+            borderBottomLeftRadius:0,
+            padding:10,
+            marginBottom:5
+          },
+          right: {
+            backgroundColor: '#E3F1FC',
+            
+            padding:10,
+            borderTopLeftRadius: 30,
+            borderTopRightRadius: 30,
+            borderBottomRightRadius:0,
+            borderBottomLeftRadius:30,
+            marginBottom:5
+          },
+        }}
+      />
+    );
+  }
    function renderSend(props){
     return (
         <Send {...props}>
           <View style={styles.sendingContainer}>
-            <Image source={require('./assets/SendMessageButton.png')} style={{height:40,width:40}} />
+            <Image source={require('../assets/SendMessageButton.png')} style={{height:35,width:35}} />
           </View>
         </Send>
       );
@@ -37,7 +74,7 @@ export default function ChatScreen() {
         user: {
           _id: 2,
           name: 'React Native',
-          avatar: './assets/exampleAvatar.png',
+          avatar: '.assets/ExampleAvatar.png',
         },
       },
     ])
@@ -52,13 +89,24 @@ export default function ChatScreen() {
       messages={messages}
       onSend={messages => onSend(messages)}
       renderInputToolbar={props => customInputToolbar(props)}
+      placeholder="New Message"
+      placeholderTextColor = "#2E5F85"
       textInputStyle={styles.composer}
       user={{
         _id: 1,
       }}
       alwaysShowSend={true}
       showUserAvatar={true}
+      showAvatarForEveryMessage={true}
       renderSend={renderSend}
+      listViewProps={{
+        style: {
+          backgroundColor: 'white',
+        },
+      }}
+      renderBubble={renderBubble}
+      
+      
     />
   )
 }
@@ -68,11 +116,13 @@ const styles = StyleSheet.create({
         borderRadius:30,
         borderWidth:5,
         borderColor:'#E3F1FC',
-        height:40
+        height:40,
+        width:20,
+        
     },
     sendingContainer: {
         justifyContent: 'center',
-        paddingTop:15,
+        paddingTop:7,
         alignItems: 'flex-start',
         
       },
