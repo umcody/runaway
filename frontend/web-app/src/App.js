@@ -1,24 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
+import BlogEditor from './Components/Blog/blogEditor';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h2 style = {{"color":"#ACD1E9"}}>RunAway</h2>
+      <link rel="stylesheet" href="//cdn.quilljs.com/1.2.6/quill.snow.css"></link>
+      <BlogEditor/>
     </div>
   );
 }
