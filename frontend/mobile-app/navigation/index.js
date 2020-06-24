@@ -15,6 +15,7 @@ export default function myStack() {
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
+          gestureDirection: "horizontal",
         }}
       >
         <Stack.Screen name="Welcome" component={Welcome} />
