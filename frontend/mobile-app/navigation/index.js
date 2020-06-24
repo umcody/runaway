@@ -73,7 +73,7 @@ export default function myStack() {
               <MaterialCommunityIcons
                 name="home-outline"
                 color={color}
-                size={42}
+                size={30}
               />
             ),
           }}
@@ -87,7 +87,7 @@ export default function myStack() {
               <MaterialIcons
                 name="chat-bubble-outline"
                 color={color}
-                size={35}
+                size={26}
               />
             ),
           }}
@@ -98,7 +98,7 @@ export default function myStack() {
           options={{
             tabBarLabel: "Chat",
             tabBarIcon: ({ color }) => (
-              <Feather name="book-open" color={color} size={35} />
+              <Feather name="book-open" color={color} size={26} />
             ),
           }}
         />
