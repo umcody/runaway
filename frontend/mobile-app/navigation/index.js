@@ -73,7 +73,7 @@ export default function myStack() {
               <MaterialCommunityIcons
                 name="home-outline"
                 color={color}
-                size={30}
+                size={26}
               />
             ),
           }}
