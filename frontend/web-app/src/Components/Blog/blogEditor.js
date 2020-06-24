@@ -30,6 +30,7 @@ class BlogEditor extends React.Component{
     render(){
         return(
             <div>
+                <input></input>
                  <ReactQuill 
                   value={this.state.blogContent}
                   onChange={this.handleChange} 
