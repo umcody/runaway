@@ -12,19 +12,19 @@ export default function BottomTray(props) {
   return (
     <>
       <View style={styles.bottomView}>
-        <TouchableOpacity onPress={() => props.navigation.push("Welcome")}>
+        <TouchableOpacity onPress={() => props.navigation.goto("Welcome")}>
           <Image
             style={styles.homeButtom}
             source={require("../images/homeButton.png")}
           />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => props.navigation.push("Chat")}>
+        <TouchableOpacity onPress={() => props.navigation.goto("Chat")}>
           <Image
             style={styles.chatButton}
             source={require("../images/chatButton.png")}
           />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => props.navigation.push("Resources")}>
+        <TouchableOpacity onPress={() => props.navigation.goto("Resources")}>
           <Image
             style={styles.resourceButton}
             source={require("../images/resourceButton.png")}
