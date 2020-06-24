@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, FlatList } from "react-native";
 import BottomTray from "../components/bottomTray";
 
 export default function Media(props) {
@@ -25,7 +25,7 @@ export default function Media(props) {
   const MediaDisplay = ({ title }) => {
     return (
       <View>
-        <Text style={styles.posts}>{title}</Text>
+        <Text style={styles.mediaPosts}>{title}</Text>
       </View>
     );
   };
@@ -42,6 +42,8 @@ export default function Media(props) {
 const styles = StyleSheet.create({
   posts: {
     padding: 7,
-    fontSize: 45,
+    fontSize: 20,
+    paddingTop: 30,
+    alignItems: "center",
   },
 });

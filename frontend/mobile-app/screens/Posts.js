@@ -29,5 +29,7 @@ const styles = StyleSheet.create({
   posts: {
     padding: 7,
     fontSize: 20,
+    paddingTop: 30,
+    alignItems: "center",
   },
 });
