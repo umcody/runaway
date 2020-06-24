@@ -1,9 +1,21 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import { GiftedChat,InputToolbar,Send, Composer,Bubble} from 'react-native-gifted-chat'
-import { StyleSheet, TextInput, View,Image } from 'react-native';
+import { StyleSheet, TextInput, View,Image,TouchableOpacity } from 'react-native';
 
-export default function ChatScreen() {
+export default function ChatScreen({navigation}) {
 
+  navigation.setOptions({
+    headerRight: () => (
+      <TouchableOpacity style= {{paddingRight:25}} onPress={()=>navigation.navigate('Resources')}>
+        <Image source={require('../assets/ProResources.png')}/>
+      </TouchableOpacity>
+    ),
+    headerLeft: () => (
+      <TouchableOpacity style= {{paddingLeft:25}}>
+        <Image source={require('../assets/ExitChat.png')}/>
+      </TouchableOpacity>
+    ),
+  })
   function renderBubble(props){
     return (
       <Bubble
@@ -45,7 +57,7 @@ export default function ChatScreen() {
     return (
         <Send {...props}>
           <View style={styles.sendingContainer}>
-            <Image source={require('../assets/SendMessageButton.png')} style={{height:35,width:35}} />
+            <Image source={require('../assets/SendMessageButton.png')} />
           </View>
         </Send>
       );
@@ -76,6 +88,20 @@ export default function ChatScreen() {
           name: 'React Native',
           avatar: '.assets/ExampleAvatar.png',
         },
+        quickReplies: {
+          type: 'radio', // or 'checkbox',
+          keepIt: true,
+          values: [
+            {
+              title: 'I would like advice.',
+              value: 'yes',
+            },
+            {
+              title: 'I would love to have a listener.',
+              value: 'no',
+            },
+          ],
+        },
       },
     ])
   }, [])
@@ -84,9 +110,12 @@ export default function ChatScreen() {
     setMessages(previousMessages => GiftedChat.append(previousMessages, messages))
   }, [])
 
+
+
   return (
     <GiftedChat
       messages={messages}
+      quickReply={messages.quickReplies}
       onSend={messages => onSend(messages)}
       renderInputToolbar={props => customInputToolbar(props)}
       placeholder="New Message"
@@ -96,7 +125,6 @@ export default function ChatScreen() {
         _id: 1,
       }}
       alwaysShowSend={true}
-      showUserAvatar={true}
       showAvatarForEveryMessage={true}
       renderSend={renderSend}
       listViewProps={{
@@ -116,8 +144,6 @@ const styles = StyleSheet.create({
         borderRadius:30,
         borderWidth:5,
         borderColor:'#E3F1FC',
-        height:40,
-        width:20,
         
     },
     sendingContainer: {

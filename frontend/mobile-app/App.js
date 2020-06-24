@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View,TouchableOpacity, Image } from "react-native";
 import ChatScreen from "./screens/ChatScreen";
 import Resources from "./screens/Resources";
 import { NavigationContainer } from '@react-navigation/native';
@@ -26,8 +26,9 @@ export default function App() {
           color: '#2E5F85'
 
         },
+        
       }} />
-      <Stack.Screen name="Notifications" component={Resources} />
+      <Stack.Screen name="Resources" component={Resources} />
     
     </Stack.Navigator>
     </NavigationContainer>
