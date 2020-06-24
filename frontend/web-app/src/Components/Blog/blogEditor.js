@@ -24,10 +24,7 @@ class BlogEditor extends React.Component{
     handleClick(event){
         console.log(this.state.blogContent);
         //POST METHOD
-        const data = { 
-            data: this.state.blogContent
-        }
-        axios.post("/api/volunteer/blog/post", { data });
+        axios.post("/api/volunteer/blog/post", { data : this.state.blogContent});
     }
 
     render(){
