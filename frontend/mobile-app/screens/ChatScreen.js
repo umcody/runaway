@@ -70,13 +70,17 @@ export default function ChatScreen({navigation}) {
               containerStyle ={{
                   paddingBottom:10,
                   backgroundColor:'#fff',
-              }}/>
+                  alignItems: 'center',
+                  justifyContent:'flex-end',
+                  borderTopColor:'#E3F1FC'
+              }}
+              primaryStyle={{width:330,}}/>
          
       )
   }
 
   const [messages, setMessages] = useState([]);
-
+  const [text, setText] = useState('');
   useEffect(() => {
     setMessages([
       {
@@ -88,7 +92,7 @@ export default function ChatScreen({navigation}) {
           name: 'React Native',
           avatar: require('../assets/ExampleAvatar.png'),
         },
-        /*quickReplies: {
+        quickReplies: {
           type: 'radio', // or 'checkbox',
           keepIt: true,
           values: [
@@ -101,7 +105,7 @@ export default function ChatScreen({navigation}) {
               value: 'no',
             },
           ],
-        },*/
+        },
       },
     ])
   }, [])
@@ -111,21 +115,32 @@ export default function ChatScreen({navigation}) {
   }, [])
 
 
+  const onQuickReply =(quickReply)=> {
+   setText(quickReply.values.title)
+  }
+
 
   return (
     <GiftedChat
+      text={text}
+      onInputTextChanged={setText}
       messages={messages}
       quickReply={messages.quickReplies}
       onSend={messages => onSend(messages)}
+      onQuickReply={quickReply => onQuickReply(quickReply)}
       renderInputToolbar={props => customInputToolbar(props)}
       placeholder="New Message"
       placeholderTextColor = "#2E5F85"
       textInputStyle={styles.composer}
+      messagesContainerStyle={{
+        paddingBottom:15,
+        backgroundColor:'#fff'
+      }}
       user={{
         _id: 1,
       }}
       alwaysShowSend={true}
-      showAvatarForEveryMessage={true}
+      
       renderSend={renderSend}
       listViewProps={{
         style: {
@@ -141,7 +156,6 @@ export default function ChatScreen({navigation}) {
           left: {
             display:'none' ,}
         }}
-      
       
     />
   )

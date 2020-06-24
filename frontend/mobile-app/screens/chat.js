@@ -12,17 +12,6 @@ import { StyleSheet, Text, View, Button, TouchableOpacity, Image } from 'react-n
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 function ChatScreen({ navigation }) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>

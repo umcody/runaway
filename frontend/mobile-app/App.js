@@ -24,9 +24,12 @@ export default function App() {
           lineHeight: 28,
           textAlign: 'center',
           color: '#2E5F85',
-          borderBottomWidth:0,
-
         },
+        headerStyle:{
+          borderBottomWidth:0,
+          shadowColor: 'transparent',
+          backgroundColor: '#fff'
+        }
         
       }} />
       <Stack.Screen name="Resources" component={EmergencyHotlinesScreen} />
