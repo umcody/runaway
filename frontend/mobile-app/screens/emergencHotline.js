@@ -5,32 +5,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 /* the above changes allow us to use navigation in our app so
 we can connect the different pages of the chat feautre*/
 
-import terminateButton from './assets/terminateChat.png'
+/*import terminateButton from './assets/terminateChat.png'*/
 
 import React from 'react';
 import { StyleSheet, Text, View, Button, TouchableOpacity, Image } from 'react-native';
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function EmergencyHotlinesScreen({ navigation }) {
+export default function EmergencyHotlinesScreen({ navigation }) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
        
@@ -97,7 +79,7 @@ const styles = StyleSheet.create({
     emergencyText: {
       color: 'white',
       fontSize: 24,
-      fontFamily: 'Roboto',
+      fontFamily: 'System',
       textAlign: 'center',
       fontWeight: 'bold',
       fontStyle: 'normal',

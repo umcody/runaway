@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View,TouchableOpacity, Image } from "react-native";
 import ChatScreen from "./screens/ChatScreen";
-import Resources from "./screens/Resources";
+import EmergencyHotlinesScreen from "./screens/emergencHotline";
 import { NavigationContainer } from '@react-navigation/native';
 
 import { createStackNavigator } from '@react-navigation/stack';
@@ -17,18 +17,19 @@ export default function App() {
       options={{
         title: 'Chat',
         headerTitleStyle: {
-          fontFamily: 'Arial',
+          fontFamily: 'System',
           fontStyle: 'normal',
           fontWeight: 'normal',
           fontSize: 24,
           lineHeight: 28,
           textAlign: 'center',
-          color: '#2E5F85'
+          color: '#2E5F85',
+          borderBottomWidth:0,
 
         },
         
       }} />
-      <Stack.Screen name="Resources" component={Resources} />
+      <Stack.Screen name="Resources" component={EmergencyHotlinesScreen} />
     
     </Stack.Navigator>
     </NavigationContainer>

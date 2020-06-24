@@ -134,7 +134,13 @@ export default function ChatScreen({navigation}) {
         },
       }}
       renderBubble={renderBubble}
-      
+      timeTextStyle={{
+        right: {
+          display:'none' ,
+          },
+          left: {
+            display:'none' ,}
+        }}
       
       
     />
