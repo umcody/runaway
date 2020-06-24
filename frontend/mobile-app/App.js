@@ -1,8 +1,7 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
 
-import MyStack from "./Navigation/index";
+import Navigation from "./navigation/index";
 
 export default function App() {
-  return <MyStack />;
+  return <Navigation />;
 }
