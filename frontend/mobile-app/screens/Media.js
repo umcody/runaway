@@ -7,6 +7,12 @@ export default function Media(props) {
     { title: "media1", id: 1 },
     { title: "media2", id: 2 },
     { title: "media3", id: 3 },
+    { title: "media4", id: 4 },
+    { title: "media5", id: 5 },
+    { title: "media6", id: 6 },
+    { title: "media7", id: 7 },
+    { title: "media8", id: 8 },
+    { title: "media9", id: 9 },
   ];
   const MediaDisplay = ({ title }) => {
     return (
