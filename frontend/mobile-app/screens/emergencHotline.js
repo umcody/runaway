@@ -13,8 +13,16 @@ import { StyleSheet, Text, View, Button, TouchableOpacity, Image } from 'react-n
 
 
 export default function EmergencyHotlinesScreen({ navigation }) {
+
+  navigation.setOptions({
+    headerLeft: () => (
+      <TouchableOpacity style= {{paddingLeft:25}} onPress={()=>navigation.goBack()}>
+        <Image source={require('../assets/Vector.png')}/>
+      </TouchableOpacity>
+    ),
+  })
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',backgroundColor:"#fff" }}>
        
   
   
@@ -72,7 +80,7 @@ const styles = StyleSheet.create({
       borderRadius: 30,
       width: 335,
       margin: 20,
-      height: 200,
+      height: 150,
       justifyContent: 'center',
     
     },
