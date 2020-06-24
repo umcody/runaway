@@ -35,7 +35,7 @@ class BlogEditor extends React.Component{
                   value={this.state.blogContent}
                   onChange={this.handleChange} 
                   />
-                  <a onClick = {this.handleClick}>SUBMIT</a>
+                  <div onClick = {this.handleClick}>SUBMIT</div>
             </div>
         )
     }
