@@ -21,7 +21,16 @@ const BottomTab = createMaterialBottomTabNavigator();
 
 const HomeTab = createMaterialTopTabNavigator();
 
-const HomeStackScreen = () => {
+const HomeStack = createStackNavigator();
+
+const FeedScreen = () => {
+  return (
+    <HomeStack.Navigator>
+      <HomeStack.Screen name="Feed" component={HomeTabScreen} />
+    </HomeStack.Navigator>
+  );
+};
+const HomeTabScreen = () => {
   return (
     <HomeTab.Navigator>
       <HomeTab.Screen
@@ -56,10 +65,10 @@ export default function myStack() {
         activeColor="#2E5F85"
       >
         <BottomTab.Screen
-          name="Home"
-          component={HomeStackScreen}
+          name="Feed"
+          component={FeedScreen}
           options={{
-            tabBarLabel: "Home",
+            tabBarLabel: "Feed",
             tabBarIcon: ({ color }) => (
               <MaterialCommunityIcons
                 name="home-outline"
