@@ -135,7 +135,6 @@ export default function myStack() {
   );
 }
 
-<<<<<<< HEAD
 const windowW = Dimensions.get("window").width;
 const windowH = Dimensions.get("window").height;
 
@@ -153,16 +152,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: 15,
     top: 25,
-=======
-const styles = StyleSheet.create({
-  home: {
-    flex: 1,
-    backgroundColor: "#FFFFFF",
-  },
-  profile: {
-    left: 30,
-    top: 55,
->>>>>>> 1c5d385095682c541cdf315cdcdfa43c1ff0d670
     width: 32,
     height: 32,
   },
