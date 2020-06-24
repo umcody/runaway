@@ -23,7 +23,11 @@ const HomeStack = createStackNavigator();
 const FeedScreen = () => {
   return (
     <HomeStack.Navigator>
-      <HomeStack.Screen name="Feed" component={HomeTabScreen} />
+      <HomeStack.Screen
+        name="Feed"
+        component={HomeTabScreen}
+        options={{ headerAlign: center }}
+      />
     </HomeStack.Navigator>
   );
 };
