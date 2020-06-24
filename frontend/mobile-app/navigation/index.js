@@ -1,26 +1,99 @@
 import React from "react";
+import {
+  MaterialCommunityIcons,
+  MaterialIcons,
+  Feather,
+} from "@expo/vector-icons";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import Welcome from "../screens/Welcome";
 import Chat from "../screens/Chat";
 import Resources from "../screens/Resources";
+import Posts from "../screens/Posts";
+import Media from "../screens/Media";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
-const Stack = createStackNavigator();
+const BottomTab = createMaterialBottomTabNavigator();
 
+const HomeTab = createMaterialTopTabNavigator();
+
+const HomeStackScreen = () => {
+  return (
+    <HomeTab.Navigator>
+      <HomeTab.Screen
+        name="Posts"
+        component={Welcome}
+        options={{
+          title: "Posts",
+        }}
+      />
+      <HomeTab.Screen
+        name="Media"
+        component={Resources}
+        options={{
+          title: "Media",
+        }}
+      />
+    </HomeTab.Navigator>
+  );
+};
 export default function myStack() {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
+      <BottomTab.Navigator
+        barStyle={{
+          backgroundColor: "white",
+          paddingBottom: 10,
+          borderTopWidth: 2,
+          borderTopColor: "#ACDAFF",
         }}
+        labeled={false}
+        inactiveColor="#ACDAFF"
+        activeColor="#2E5F85"
       >
-        <Stack.Screen name="Welcome" component={Welcome} />
-        <Stack.Screen name="Chat" component={Chat} />
-        <Stack.Screen name="Resources" component={Resources} />
-      </Stack.Navigator>
+        <BottomTab.Screen
+          name="Home"
+          component={HomeStackScreen}
+          options={{
+            tabBarLabel: "Home",
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons
+                name="home-outline"
+                color={color}
+                size={42}
+              />
+            ),
+          }}
+        />
+        <BottomTab.Screen
+          name="Chat"
+          component={Chat}
+          options={{
+            tabBarLabel: "Chat",
+            tabBarIcon: ({ color }) => (
+              <MaterialIcons
+                name="chat-bubble-outline"
+                color={color}
+                size={35}
+              />
+            ),
+          }}
+        />
+        <BottomTab.Screen
+          name="Resources"
+          component={Resources}
+          options={{
+            tabBarLabel: "Chat",
+            tabBarIcon: ({ color }) => (
+              <Feather name="book-open" color={color} size={35} />
+            ),
+          }}
+        />
+      </BottomTab.Navigator>
     </NavigationContainer>
   );
 }

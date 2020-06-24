@@ -2,16 +2,10 @@ import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import BottomTray from "../components/bottomTray";
 
-export default function Resources(props) {
+export default function Resources() {
   return (
-    <View style={styles.home}>
-      <View style={styles.profile}>
-        <Text>This is a resource screen</Text>
-      </View>
-
-      <View>
-        <BottomTray navigation={props.navigation} />
-      </View>
+    <View style={styles.profile}>
+      <Text>This is a resource screen</Text>
     </View>
   );
 }
@@ -22,7 +16,6 @@ const styles = StyleSheet.create({
   },
   profile: {
     flex: 1,
-    position: "absolute",
     alignItems: "center",
     justifyContent: "center",
   },

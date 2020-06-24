@@ -17,9 +17,9 @@ export default function Welcome(props) {
           source={require("../images/profileButton.png")}
         />
       </TouchableOpacity>
-      <View>
+      {/* <View>
         <BottomTray navigation={props.navigation} />
-      </View>
+      </View> */}
     </View>
   );
 }

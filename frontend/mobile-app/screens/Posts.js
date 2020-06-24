@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { FlatList, mediaDisplay, StyleSheet, View, Text } from "react-native";
 import BottomTray from "../components/bottomTray";
 
 export default function Posts(props) {
@@ -8,7 +8,7 @@ export default function Posts(props) {
     { title: "article2", id: 2 },
     { title: "article3", id: 3 },
   ];
-  Article = ({ title }) => {
+  const Article = ({ title }) => {
     return (
       <View>
         <Text style={styles.posts}>{title}</Text>
