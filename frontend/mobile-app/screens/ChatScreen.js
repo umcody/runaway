@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react'
-import { GiftedChat,InputToolbar,Send, Composer,Bubble} from 'react-native-gifted-chat'
-import { StyleSheet, TextInput, View,Image,TouchableOpacity } from 'react-native';
+import { GiftedChat,InputToolbar,Send,Bubble} from 'react-native-gifted-chat'
+import { StyleSheet, View,Image,TouchableOpacity } from 'react-native';
 
 export default function ChatScreen({navigation}) {
 
@@ -86,9 +86,9 @@ export default function ChatScreen({navigation}) {
         user: {
           _id: 2,
           name: 'React Native',
-          avatar: '.assets/ExampleAvatar.png',
+          avatar: require('../assets/ExampleAvatar.png'),
         },
-        quickReplies: {
+        /*quickReplies: {
           type: 'radio', // or 'checkbox',
           keepIt: true,
           values: [
@@ -101,7 +101,7 @@ export default function ChatScreen({navigation}) {
               value: 'no',
             },
           ],
-        },
+        },*/
       },
     ])
   }, [])
@@ -129,10 +129,12 @@ export default function ChatScreen({navigation}) {
       renderSend={renderSend}
       listViewProps={{
         style: {
+          paddingBottom:44,
           backgroundColor: 'white',
         },
       }}
       renderBubble={renderBubble}
+      
       
       
     />
@@ -144,11 +146,13 @@ const styles = StyleSheet.create({
         borderRadius:30,
         borderWidth:5,
         borderColor:'#E3F1FC',
+        paddingLeft:20,
+        color:'#2E5F85'
         
     },
     sendingContainer: {
         justifyContent: 'center',
-        paddingTop:7,
+        paddingTop:15,
         alignItems: 'flex-start',
         
       },
