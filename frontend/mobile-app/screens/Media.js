@@ -39,7 +39,7 @@ export default function Media(props) {
 }
 
 const styles = StyleSheet.create({
-  posts: {
+  mediaPosts: {
     padding: 7,
     fontSize: 20,
     paddingTop: 30,
