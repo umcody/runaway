@@ -1,5 +1,12 @@
 import React from "react";
 import {
+  StyleSheet,
+  Dimensions,
+  View,
+  TouchableOpacity,
+  Image,
+} from "react-native";
+import {
   MaterialCommunityIcons,
   MaterialIcons,
   Feather,
@@ -49,57 +56,87 @@ const HomeTabScreen = () => {
 };
 export default function myStack() {
   return (
-    <NavigationContainer>
-      <BottomTab.Navigator
-        barStyle={{
-          backgroundColor: "white",
-          paddingBottom: 10,
-          borderTopWidth: 2,
-          borderTopColor: "#ACDAFF",
-        }}
-        labeled={false}
-        inactiveColor="#ACDAFF"
-        activeColor="#2E5F85"
-      >
-        <BottomTab.Screen
-          name="Feed"
-          component={FeedScreen}
-          options={{
-            tabBarLabel: "Feed",
-            tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons
-                name="home-outline"
-                color={color}
-                size={26}
-              />
-            ),
+    <>
+      <NavigationContainer>
+        <BottomTab.Navigator
+          barStyle={{
+            backgroundColor: "white",
+            paddingBottom: 10,
+            borderTopWidth: 2,
+            borderTopColor: "#ACDAFF",
           }}
-        />
-        <BottomTab.Screen
-          name="Chat"
-          component={Chat}
-          options={{
-            tabBarLabel: "Chat",
-            tabBarIcon: ({ color }) => (
-              <MaterialIcons
-                name="chat-bubble-outline"
-                color={color}
-                size={26}
-              />
-            ),
-          }}
-        />
-        <BottomTab.Screen
-          name="Events"
-          component={Events}
-          options={{
-            tabBarLabel: "Chat",
-            tabBarIcon: ({ color }) => (
-              <Feather name="calendar" color={color} size={26} />
-            ),
-          }}
-        />
-      </BottomTab.Navigator>
-    </NavigationContainer>
+          labeled={false}
+          inactiveColor="#ACDAFF"
+          activeColor="#2E5F85"
+        >
+          <BottomTab.Screen
+            name="Feed"
+            component={FeedScreen}
+            options={{
+              tabBarLabel: "Feed",
+              tabBarIcon: ({ color }) => (
+                <MaterialCommunityIcons
+                  name="home-outline"
+                  color={color}
+                  size={25}
+                />
+              ),
+            }}
+          />
+          <BottomTab.Screen
+            name="Chat"
+            component={Chat}
+            options={{
+              tabBarLabel: "Chat",
+              tabBarIcon: ({ color }) => (
+                <MaterialIcons
+                  name="chat-bubble-outline"
+                  color={color}
+                  size={25}
+                />
+              ),
+            }}
+          />
+          <BottomTab.Screen
+            name="Events"
+            component={Events}
+            options={{
+              tabBarLabel: "Chat",
+              tabBarIcon: ({ color }) => (
+                <Feather name="calendar" color={color} size={25} />
+              ),
+            }}
+          />
+        </BottomTab.Navigator>
+      </NavigationContainer>
+      <View style={styles.homeIndicator}></View>
+      <View style={styles.profile}>
+        <TouchableOpacity>
+          <Image source={require("../images/profileButton.png")} />
+        </TouchableOpacity>
+      </View>
+    </>
   );
 }
+
+const windowW = Dimensions.get("window").width;
+const windowH = Dimensions.get("window").height;
+
+const styles = StyleSheet.create({
+  homeIndicator: {
+    backgroundColor: "#FF9EDA",
+    position: "absolute",
+    height: 5,
+    top: windowH - 13,
+    left: windowW / 2 - 67.5,
+    width: 135,
+    borderRadius: 2.5,
+  },
+  profile: {
+    position: "absolute",
+    left: 15,
+    top: 25,
+    width: 32,
+    height: 32,
+  },
+});
