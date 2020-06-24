@@ -22,6 +22,7 @@ import Events from "../screens/Events";
 import Posts from "../screens/Posts";
 import Media from "../screens/Media";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import { Image, StyleSheet, TouchableOpacity } from "react-native";
 
 const BottomTab = createMaterialBottomTabNavigator();
 const HomeTab = createMaterialTopTabNavigator();
@@ -30,7 +31,22 @@ const HomeStack = createStackNavigator();
 const FeedScreen = () => {
   return (
     <HomeStack.Navigator>
-      <HomeStack.Screen name="Feed" component={HomeTabScreen} />
+      <HomeStack.Screen
+        name="Feed"
+        component={HomeTabScreen}
+        options={{
+          headerTitleAlign: "center",
+          headerTitleStyle: {
+            fontSize: 30,
+            color: "#2E5F85",
+          },
+          headerLeft: (props) => {
+            <TouchableOpacity style={styles.profile}>
+              <Image source={require("../images/profileButton.png")} />
+            </TouchableOpacity>;
+          },
+        }}
+      />
     </HomeStack.Navigator>
   );
 };
@@ -119,6 +135,7 @@ export default function myStack() {
   );
 }
 
+<<<<<<< HEAD
 const windowW = Dimensions.get("window").width;
 const windowH = Dimensions.get("window").height;
 
@@ -136,6 +153,16 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: 15,
     top: 25,
+=======
+const styles = StyleSheet.create({
+  home: {
+    flex: 1,
+    backgroundColor: "#FFFFFF",
+  },
+  profile: {
+    left: 30,
+    top: 55,
+>>>>>>> 1c5d385095682c541cdf315cdcdfa43c1ff0d670
     width: 32,
     height: 32,
   },
