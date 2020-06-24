@@ -1,3 +1,6 @@
+const blogModel = require("../models/blogModel.js");
+const { Model } = require("mongoose");
+
 module.exports = function(app,mongoose){
 
     const schemas = require("../schemas/schemas");
@@ -5,8 +8,14 @@ module.exports = function(app,mongoose){
 
     // POST Blog post
     app.post("/api/volunteer/blog/post",function(req,res){
-        console.log("it is working?");
-        console.log(req.body);                
+        blogModel.create({
+            username: "default",
+            title: "default",
+            postTime: new Date(),
+            content: req.body.data,
+            likes:0,
+            url:"default"
+        });             
     })
     
 }
