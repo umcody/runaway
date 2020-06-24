@@ -12,6 +12,6 @@ module.exports = {
         content: { type: String, required: true },
         likes: { type: Number, required: false, default: 0 },
         url: { type: String, required: true },
-        comments: [{ type: String, required: false }]
+        comments: [ { type: String, required: false } ]
     },
 }
