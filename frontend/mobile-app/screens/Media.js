@@ -6,13 +6,21 @@ export default function Media(props) {
   const articles = [
     { title: "media1", id: 1 },
     { title: "media2", id: 2 },
-    { title: "media3", id: 3 },
-    { title: "media4", id: 4 },
-    { title: "media5", id: 5 },
-    { title: "media6", id: 6 },
-    { title: "media7", id: 7 },
-    { title: "media8", id: 8 },
-    { title: "media9", id: 9 },
+    { title: "media3", id: 4 },
+    { title: "media4", id: 5 },
+    { title: "media5", id: 6 },
+    { title: "media6", id: 7 },
+    { title: "media7", id: 8 },
+    { title: "media8", id: 9 },
+    { title: "media9", id: 10 },
+    { title: "media10", id: 11 },
+    { title: "media11", id: 12 },
+    { title: "media12", id: 13 },
+    { title: "media13", id: 14 },
+    { title: "media14", id: 15 },
+    { title: "media16", id: 16 },
+    { title: "media17", id: 17 },
+    { title: "media8", id: 18 },
   ];
   const MediaDisplay = ({ title }) => {
     return (
@@ -32,7 +40,7 @@ export default function Media(props) {
 }
 
 const styles = StyleSheet.create({
-  mediaPosts: {
+  posts: {
     padding: 7,
     fontSize: 20,
     paddingTop: 30,
