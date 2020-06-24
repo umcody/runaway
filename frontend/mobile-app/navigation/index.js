@@ -8,7 +8,6 @@ import {
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import Welcome from "../screens/Welcome";
 import Chat from "../screens/Chat";
@@ -18,9 +17,7 @@ import Media from "../screens/Media";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
 const BottomTab = createMaterialBottomTabNavigator();
-
 const HomeTab = createMaterialTopTabNavigator();
-
 const HomeStack = createStackNavigator();
 
 const FeedScreen = () => {
@@ -35,14 +32,14 @@ const HomeTabScreen = () => {
     <HomeTab.Navigator>
       <HomeTab.Screen
         name="Posts"
-        component={Welcome}
+        component={Posts}
         options={{
           title: "Posts",
         }}
       />
       <HomeTab.Screen
         name="Media"
-        component={Resources}
+        component={Media}
         options={{
           title: "Media",
         }}
