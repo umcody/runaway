@@ -16,13 +16,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 
-import Welcome from "../screens/Welcome";
-import Chat from "../screens/Chat";
-import Events from "../screens/Events";
-import Posts from "../screens/Posts";
-import Media from "../screens/Media";
+import Chat from "../screens/ChatDummy";
+import Events from "../screens/EventsDummy";
+import Posts from "../screens/PostsDummy";
+import Media from "../screens/MediaDummy";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { Image, StyleSheet, TouchableOpacity } from "react-native";
 
 const BottomTab = createMaterialBottomTabNavigator();
 const HomeTab = createMaterialTopTabNavigator();
