@@ -1,3 +1,6 @@
+const bodyParser = require("body-parser");
+const Cors = require("cors");
+
 const express = require("express");
 const mongoose = require("mongoose");
 
@@ -24,10 +27,9 @@ app.get("/", function(req,res){
 blogRoute(app,mongoose);
 
 
-
-
-
-
+app.use(Cors());
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json());
 
 
 app.listen(PORT,() => {

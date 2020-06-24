@@ -1,8 +1,10 @@
 import React from "react";
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
+import axios from 'axios';
 
 class BlogEditor extends React.Component{
+
 
     constructor(props) {
         super(props)
@@ -22,6 +24,10 @@ class BlogEditor extends React.Component{
     handleClick(event){
         console.log(this.state.blogContent);
         //POST METHOD
+        const data = { 
+            data: this.state.blogContent
+        }
+        axios.post("/api/volunteer/blog/post", { data });
     }
 
     render(){
