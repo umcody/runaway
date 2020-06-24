@@ -41,7 +41,7 @@ export default function Media(props) {
 const styles = StyleSheet.create({
   mediaPosts: {
     padding: 7,
-    fontSize: 20,
+    fontSize: 90,
     paddingTop: 30,
     alignItems: "center",
   },

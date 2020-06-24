@@ -33,12 +33,9 @@ const FeedScreen = () => {
             fontSize: 30,
             color: "#2E5F85",
           },
-          headerRight: (props) => {
-            <TouchableOpacity>
-              <Image
-                style={styles.profile}
-                source={require("../images/profileButton.png")}
-              />
+          headerLeft: (props) => {
+            <TouchableOpacity style={styles.profile}>
+              <Image source={require("../images/profileButton.png")} />
             </TouchableOpacity>;
           },
         }}
@@ -129,7 +126,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
   },
   profile: {
-    position: "absolute",
     left: 30,
     top: 55,
     width: 32,
