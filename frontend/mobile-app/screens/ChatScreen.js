@@ -85,7 +85,7 @@ export default function ChatScreen({navigation}) {
     setMessages([
       {
         _id: 1,
-        text: 'Hello, my name is Ronnie.',
+        text: 'Hello, my name is Ronnie. \n \nAre you seeking for advice from this session? I’m more than happy to just listen as well.',
         createdAt: new Date(),
         user: {
           _id: 2,
@@ -98,11 +98,11 @@ export default function ChatScreen({navigation}) {
           values: [
             {
               title: 'I would like advice.',
-              value: 'yes',
+              value: 'advice',
             },
             {
               title: 'I would love to have a listener.',
-              value: 'no',
+              value: 'listen',
             },
           ],
         },
@@ -132,6 +132,7 @@ export default function ChatScreen({navigation}) {
       placeholder="New Message"
       placeholderTextColor = "#2E5F85"
       textInputStyle={styles.composer}
+      minInputToolbarHeight={50}
       messagesContainerStyle={{
         paddingBottom:15,
         backgroundColor:'#fff'
@@ -167,12 +168,14 @@ const styles = StyleSheet.create({
         borderWidth:5,
         borderColor:'#E3F1FC',
         paddingLeft:20,
-        color:'#2E5F85'
+        paddingRight:20,
+        color:'#2E5F85',
+        minHeight:40
         
     },
     sendingContainer: {
         justifyContent: 'center',
-        paddingTop:15,
+        paddingTop:5,
         alignItems: 'flex-start',
         
       },
