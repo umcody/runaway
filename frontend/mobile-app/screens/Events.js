@@ -2,10 +2,10 @@ import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import BottomTray from "../components/bottomTray";
 
-export default function Resources() {
+export default function Events() {
   return (
     <View style={styles.profile}>
-      <Text>This is a resource screen</Text>
+      <Text>This is a events screen</Text>
     </View>
   );
 }

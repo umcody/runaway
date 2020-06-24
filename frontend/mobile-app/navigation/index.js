@@ -11,7 +11,7 @@ import { createMaterialBottomTabNavigator } from "@react-navigation/material-bot
 
 import Welcome from "../screens/Welcome";
 import Chat from "../screens/Chat";
-import Resources from "../screens/Resources";
+import Events from "../screens/Events";
 import Posts from "../screens/Posts";
 import Media from "../screens/Media";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
@@ -90,12 +90,12 @@ export default function myStack() {
           }}
         />
         <BottomTab.Screen
-          name="Resources"
-          component={Resources}
+          name="Events"
+          component={Events}
           options={{
             tabBarLabel: "Chat",
             tabBarIcon: ({ color }) => (
-              <Feather name="book-open" color={color} size={26} />
+              <Feather name="calendar" color={color} size={26} />
             ),
           }}
         />
