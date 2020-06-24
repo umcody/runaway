@@ -20,7 +20,7 @@ export default function Media(props) {
     { title: "media14", id: 15 },
     { title: "media16", id: 16 },
     { title: "media17", id: 17 },
-    { title: "media8", id: 18 },
+    { title: "media18", id: 18 },
   ];
   const MediaDisplay = ({ title }) => {
     return (
