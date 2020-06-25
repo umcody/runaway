@@ -17,18 +17,80 @@ import ChatScreen from "../screens/ChatScreen";
 import Events from "../screens/EventsDummy";
 import Posts from "../screens/PostsDummy";
 import Media from "../screens/MediaDummy";
+import ProfileEvents from "../screens/ProfileParts/ProfileEvents";
+import ProfileLikes from "../screens/ProfileParts/ProfileLikes";
 
-const BottomTab = createMaterialBottomTabNavigator();
+const BottomTabNavigation = createMaterialBottomTabNavigator();
 const HomeTab = createMaterialTopTabNavigator();
 const HomeStack = createStackNavigator();
-const Stack = createStackNavigator();
+const ChatStack = createStackNavigator();
+const ProfileTab = createMaterialTopTabNavigator();
+const ProfileStack = createStackNavigator();
 
+const BottomTab = (props) => {
+  return (
+    <BottomTabNavigation.Navigator
+      barStyle={{
+        backgroundColor: "white",
+        paddingBottom: 10,
+        borderTopWidth: 2,
+        borderTopColor: "#ACDAFF",
+      }}
+      labeled={false}
+      inactiveColor="#ACDAFF"
+      activeColor="#2E5F85"
+    >
+      <BottomTabNavigation.Screen
+        name="Feed"
+        component={FeedScreen}
+        options={{
+          tabBarLabel: "Feed",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons
+              name="home-outline"
+              color={color}
+              size={28}
+            />
+          ),
+        }}
+      />
+      <BottomTabNavigation.Screen
+        name="Chat"
+        component={Chat}
+        options={{
+          tabBarLabel: "Chat",
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="chat-bubble-outline" color={color} size={25} />
+          ),
+        }}
+      />
+      <BottomTabNavigation.Screen
+        name="Events"
+        component={Events}
+        options={{
+          tabBarLabel: "Chat",
+          tabBarIcon: ({ color }) => (
+            <Feather name="calendar" color={color} size={25} />
+          ),
+        }}
+      />
+    </BottomTabNavigation.Navigator>
+  );
+};
+const Profile = () => {
+  return (
+    <ProfileTab.Navigator>
+      <ProfileTab.Screen name="Events" component={ProfileEvents} />
+      <ProfileTab.Screen name="Likes" component={ProfileLikes} />
+    </ProfileTab.Navigator>
+  );
+};
 const Chat = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" translucent={true} />
-      <Stack.Navigator>
-        <Stack.Screen
+      <ChatStack.Navigator>
+        <ChatStack.Screen
           name="Chat"
           component={ChatScreen}
           options={{
@@ -37,7 +99,7 @@ const Chat = () => {
             headerStyle: styles.headerStyle,
           }}
         />
-        <Stack.Screen
+        <ChatStack.Screen
           name="Resources"
           component={EmergencyHotlinesScreen}
           options={{
@@ -46,7 +108,7 @@ const Chat = () => {
             headerStyle: styles.headerStyle,
           }}
         />
-        <Stack.Screen
+        {/* <ChatStack.Screen
           name="Home"
           component={HomeTabScreen}
           options={{
@@ -64,13 +126,13 @@ const Chat = () => {
               />
             ),
           }}
-        />
-      </Stack.Navigator>
+        /> */}
+      </ChatStack.Navigator>
     </>
   );
 };
 
-const FeedScreen = () => {
+const FeedScreen = ({ navigation }) => {
   return (
     <HomeStack.Navigator>
       <HomeStack.Screen
@@ -82,9 +144,9 @@ const FeedScreen = () => {
             fontSize: 30,
             color: "#2E5F85",
           },
-          headerLeft: (props) => (
+          headerLeft: () => (
             <MaterialIcons
-              onPress={() => {}}
+              onPress={() => navigation.navigate("Profile")}
               name="face"
               color="#ACDAFF"
               size={25}
@@ -119,56 +181,20 @@ export default function myStack() {
   return (
     <>
       <NavigationContainer>
-        <BottomTab.Navigator
-          barStyle={{
-            backgroundColor: "white",
-            paddingBottom: 10,
-            borderTopWidth: 2,
-            borderTopColor: "#ACDAFF",
-          }}
-          labeled={false}
-          inactiveColor="#ACDAFF"
-          activeColor="#2E5F85"
-        >
-          <BottomTab.Screen
-            name="Feed"
-            component={FeedScreen}
+        <ProfileStack.Navigator>
+          <ProfileStack.Screen
+            name="Main"
+            component={BottomTab}
             options={{
-              tabBarLabel: "Feed",
-              tabBarIcon: ({ color }) => (
-                <MaterialCommunityIcons
-                  name="home-outline"
-                  color={color}
-                  size={28}
-                />
-              ),
+              headerShown: false,
             }}
           />
-          <BottomTab.Screen
-            name="Chat"
-            component={Chat}
-            options={{
-              tabBarLabel: "Chat",
-              tabBarIcon: ({ color }) => (
-                <MaterialIcons
-                  name="chat-bubble-outline"
-                  color={color}
-                  size={25}
-                />
-              ),
-            }}
+          <ProfileStack.Screen
+            options={{ headerShown: true, headerTitleAlign: "center" }}
+            name="Profile"
+            component={Profile}
           />
-          <BottomTab.Screen
-            name="Events"
-            component={Events}
-            options={{
-              tabBarLabel: "Chat",
-              tabBarIcon: ({ color }) => (
-                <Feather name="calendar" color={color} size={25} />
-              ),
-            }}
-          />
-        </BottomTab.Navigator>
+        </ProfileStack.Navigator>
       </NavigationContainer>
       <View style={styles.homeIndicator}></View>
       {/* <View style={styles.profile}>
