@@ -9,7 +9,7 @@ import {
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
 import EmergencyHotlinesScreen from "../screens/EmergencyHotline";
@@ -20,14 +20,14 @@ import Media from "../screens/MediaDummy";
 import ProfileEvents from "../screens/ProfileParts/ProfileEvents";
 import ProfileLikes from "../screens/ProfileParts/ProfileLikes";
 
-const BottomTabNavigation = createMaterialBottomTabNavigator();
+const BottomTabNavigation = createBottomTabNavigator();
 const HomeTab = createMaterialTopTabNavigator();
 const HomeStack = createStackNavigator();
 const ChatStack = createStackNavigator();
 const ProfileTab = createMaterialTopTabNavigator();
 const ProfileStack = createStackNavigator();
 
-const BottomTab = (props) => {
+const BottomTab = ({ navigation }) => {
   return (
     <BottomTabNavigation.Navigator
       barStyle={{
@@ -36,7 +36,9 @@ const BottomTab = (props) => {
         borderTopWidth: 2,
         borderTopColor: "#ACDAFF",
       }}
-      labeled={false}
+      tabBarOptions={{
+        showLabel: false,
+      }}
       inactiveColor="#ACDAFF"
       activeColor="#2E5F85"
     >
@@ -58,6 +60,7 @@ const BottomTab = (props) => {
         name="Chat"
         component={Chat}
         options={{
+          tabBarVisible: false,
           tabBarLabel: "Chat",
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="chat-bubble-outline" color={color} size={25} />
