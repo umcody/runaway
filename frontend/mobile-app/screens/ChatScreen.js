@@ -91,7 +91,7 @@ export default function ChatScreen({navigation}) {
         user: {
           _id: 2,
           name: 'React Native',
-          avatar: require('../assets/ExampleAvatar.png'),
+          avatar: require('../assets/exampleAvatar.png'),
         },
         quickReplies: {
           type: 'radio', // or 'checkbox',
