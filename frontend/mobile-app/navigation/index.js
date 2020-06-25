@@ -38,14 +38,14 @@ const FeedScreen = () => {
             fontSize: 30,
             color: "#2E5F85",
           },
-          headerLeft: (props) => {
+          headerLeft: (props) => (
             <MaterialIcons
               onPress={() => {}}
               name="face"
               color="ACDAFF"
               size={25}
-            />;
-          },
+            />
+          ),
         }}
       />
     </HomeStack.Navigator>
