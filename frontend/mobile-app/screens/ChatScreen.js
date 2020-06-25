@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
         paddingLeft:20,
         paddingRight:20,
         color:'#2E5F85',
-        minHeight:40
+        minHeight:30
         
     },
     sendingContainer: {
