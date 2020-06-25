@@ -12,7 +12,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
-import EmergencyHotlinesScreen from "../screens/emergencHotline";
+import EmergencyHotlinesScreen from "../screens/EmergencyHotline";
 import ChatScreen from "../screens/ChatScreen";
 import Events from "../screens/EventsDummy";
 import Posts from "../screens/PostsDummy";
