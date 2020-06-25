@@ -46,11 +46,11 @@ class BlogEditor extends React.Component{
                     value={this.state.title}
                     onChange={this.handleChange}
                 />
-                <ReactQuill 
-                    value={this.state.blogContent}
-                    onChange={this.handleChange} 
-                />
-                <a onClick = {this.handleClick}>SUBMIT</a>
+                 <ReactQuill 
+                  value={this.state.blogContent}
+                  onChange={this.handleChange} 
+                  />
+                  <div onClick = {this.handleClick}>SUBMIT</div>
             </div>
         )
     }
