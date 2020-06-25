@@ -14,7 +14,9 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongodb": "^3.5.9",
-    "mongoose": "^5.9.20"
+    "mongoose": "^5.9.20",
+    "nodemon": "^2.0.4",
+    "server.js": "^1.0.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
