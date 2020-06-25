@@ -1,10 +1,18 @@
 import React from "react";
 
-import { StyleSheet, Text, View,TouchableOpacity, Image,StatusBar, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  StatusBar,
+  Dimensions,
+} from "react-native";
 import ChatScreen from "../screens/ChatScreen";
 import EmergencyHotlinesScreen from "../screens/emergencHotline";
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
 import {
   MaterialCommunityIcons,
@@ -20,53 +28,53 @@ import Posts from "../screens/PostsDummy";
 import Media from "../screens/MediaDummy";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
-
 const BottomTab = createMaterialBottomTabNavigator();
 const HomeTab = createMaterialTopTabNavigator();
 const HomeStack = createStackNavigator();
 
-export default function Chat() {
+export default function ChatNav() {
   return (
     <NavigationContainer>
- <StatusBar  barStyle="dark-content" translucent={true} />
-    <Stack.Navigator>
-      <Stack.Screen name="Chat" component={ChatScreen}
-      options={{
-        title: 'Chat',
-        headerTitleStyle: styles.headerTitleStyle,
-        headerStyle: styles.headerStyle,
-        
-      }} />
-      <Stack.Screen name="Resources" component={EmergencyHotlinesScreen}
-      options={{
-        title: 'Emergency Resources',
-        headerTitleStyle: styles.headerTitleStyle,
-        headerStyle: styles.headerStyle,
-        
-      }}  />
-    
-    </Stack.Navigator>
+      <StatusBar barStyle="dark-content" translucent={true} />
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Chat"
+          component={ChatScreen}
+          options={{
+            title: "Chat",
+            headerTitleStyle: styles.headerTitleStyle,
+            headerStyle: styles.headerStyle,
+          }}
+        />
+        <Stack.Screen
+          name="Resources"
+          component={EmergencyHotlinesScreen}
+          options={{
+            title: "Emergency Resources",
+            headerTitleStyle: styles.headerTitleStyle,
+            headerStyle: styles.headerStyle,
+          }}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
 const styles = StyleSheet.create({
-  headerTitleStyle: {    
-    fontFamily: 'System',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
+  headerTitleStyle: {
+    fontFamily: "System",
+    fontStyle: "normal",
+    fontWeight: "normal",
     fontSize: 24,
     lineHeight: 28,
-    textAlign: 'center',
-    color: '#2E5F85',
-      
+    textAlign: "center",
+    color: "#2E5F85",
   },
-  headerStyle:{
-    borderBottomWidth:0,
-    shadowColor: 'transparent',
-    backgroundColor: '#fff'
-  }
+  headerStyle: {
+    borderBottomWidth: 0,
+    shadowColor: "transparent",
+    backgroundColor: "#fff",
+  },
 });
-=======
 const FeedScreen = () => {
   return (
     <HomeStack.Navigator>
@@ -201,4 +209,3 @@ const styles = StyleSheet.create({
     height: 32,
   },
 });
-
