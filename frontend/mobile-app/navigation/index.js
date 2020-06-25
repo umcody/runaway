@@ -22,7 +22,6 @@ import Events from "../screens/Events";
 import Posts from "../screens/Posts";
 import Media from "../screens/Media";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { Image, StyleSheet, TouchableOpacity } from "react-native";
 
 const BottomTab = createMaterialBottomTabNavigator();
 const HomeTab = createMaterialTopTabNavigator();
