@@ -42,7 +42,7 @@ const FeedScreen = () => {
             <MaterialIcons
               onPress={() => {}}
               name="face"
-              color="ACDAFF"
+              color="#ACDAFF"
               size={25}
             />
           ),
@@ -127,14 +127,14 @@ export default function myStack() {
         </BottomTab.Navigator>
       </NavigationContainer>
       <View style={styles.homeIndicator}></View>
-      <View style={styles.profile}>
+      {/* <View style={styles.profile}>
         <MaterialIcons
           onPress={() => {}}
           name="face"
           color="ACDAFF"
           size={25}
         />
-      </View>
+      </View> */}
     </>
   );
 }
