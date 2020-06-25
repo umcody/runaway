@@ -29,8 +29,13 @@ class BlogEditor extends React.Component{
         console.log(this.state.title);
         console.log('Blog Content');
         console.log(this.state.blogContent);
+
+        const blogData = {
+            title: this.state.title,
+            content: this.state.blogContent
+        }
         //POST METHOD
-        axios.post("/api/volunteer/blog/post", { data : this.state.blogContent});
+        axios.post("/api/volunteer/blog/post", blogData);
     }
 
     render(){

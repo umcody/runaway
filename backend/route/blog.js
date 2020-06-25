@@ -12,7 +12,7 @@ module.exports = function(app,mongoose){
             username: "default",
             title: "default",
             postTime: new Date(),
-            content: req.body.data,
+            content: req.body.blogData.content,
             likes:0,
             url:"default"
         });             
