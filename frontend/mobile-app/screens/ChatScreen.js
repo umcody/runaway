@@ -1,18 +1,19 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import { GiftedChat,InputToolbar,Send,Bubble} from 'react-native-gifted-chat'
 import { StyleSheet, View,Image,TouchableOpacity } from 'react-native';
+import { AntDesign,FontAwesome5,Feather } from '@expo/vector-icons'; 
 
 export default function ChatScreen({navigation}) {
 
   navigation.setOptions({
     headerRight: () => (
       <TouchableOpacity style= {{paddingRight:25}} onPress={()=>navigation.navigate('Resources')}>
-        <Image source={require('../assets/ProResources.png')}/>
+       <AntDesign name="exclamationcircleo" size={30} color="#FF9EDA" />
       </TouchableOpacity>
     ),
     headerLeft: () => (
       <TouchableOpacity style= {{paddingLeft:25}}>
-        <Image source={require('../assets/ExitChat.png')}/>
+        <Feather name="x" size={35} color="#FF9EDA" />
       </TouchableOpacity>
     ),
   })
@@ -57,7 +58,7 @@ export default function ChatScreen({navigation}) {
     return (
         <Send {...props}>
           <View style={styles.sendingContainer}>
-            <Image source={require('../assets/SendMessageButton.png')} />
+          <FontAwesome5 name="arrow-alt-circle-up" size={30} color="#FF9EDA" />
           </View>
         </Send>
       );
@@ -176,6 +177,7 @@ const styles = StyleSheet.create({
     sendingContainer: {
         justifyContent: 'center',
         paddingTop:5,
+        paddingLeft:5,
         alignItems: 'flex-start',
         
       },

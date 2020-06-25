@@ -1,15 +1,8 @@
 import 'react-native-gesture-handler';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-
-/* the above changes allow us to use navigation in our app so
-we can connect the different pages of the chat feautre*/
-
-/*import terminateButton from './assets/terminateChat.png'*/
 
 import React from 'react';
 import { StyleSheet, Text, View, Button, TouchableOpacity, Image } from 'react-native';
-
+import { Ionicons } from '@expo/vector-icons';
 
 
 export default function EmergencyHotlinesScreen({ navigation }) {
@@ -17,7 +10,7 @@ export default function EmergencyHotlinesScreen({ navigation }) {
   navigation.setOptions({
     headerLeft: () => (
       <TouchableOpacity style= {{paddingLeft:25}} onPress={()=>navigation.goBack()}>
-        <Image source={require('../assets/Vector.png')}/>
+        <Ionicons name="ios-arrow-back" size={30} color="#FF9EDA" />
       </TouchableOpacity>
     ),
   })
