@@ -150,9 +150,10 @@ const FeedScreen = ({ navigation }) => {
           headerLeft: () => (
             <MaterialIcons
               onPress={() => navigation.navigate("Profile")}
+              style={styles.profilePic}
               name="face"
               color="#ACDAFF"
-              size={25}
+              size={35}
             />
           ),
         }}
@@ -186,7 +187,7 @@ export default function myStack() {
       <NavigationContainer>
         <ProfileStack.Navigator>
           <ProfileStack.Screen
-            name="Main"
+            name="Home"
             component={BottomTab}
             options={{
               headerShown: false,
@@ -245,5 +246,12 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0,
     shadowColor: "transparent",
     backgroundColor: "#fff",
+  },
+  profilePic: {
+    borderLeftWidth: 10,
+  },
+  profileTitle: {
+    color: "#ACDAFF",
+    fontSize: 20,
   },
 });
