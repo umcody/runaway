@@ -19,7 +19,12 @@ export default function ChatScreen({ navigation }) {
       </TouchableOpacity>
     ),
     headerLeft: () => (
-      <TouchableOpacity style={{ paddingLeft: 25 }}>
+      <TouchableOpacity
+        style={{ paddingLeft: 25 }}
+        onPress={() => {
+          alert("I'm gonna have to figure this out later rip");
+        }}
+      >
         <Feather name="x" size={35} color="#FF9EDA" />
       </TouchableOpacity>
     ),

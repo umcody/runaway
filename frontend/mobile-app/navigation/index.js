@@ -25,7 +25,7 @@ const Stack = createStackNavigator();
 
 const Chat = () => {
   return (
-    <NavigationContainer>
+    <>
       <StatusBar barStyle="dark-content" translucent={true} />
       <Stack.Navigator>
         <Stack.Screen
@@ -46,8 +46,27 @@ const Chat = () => {
             headerStyle: styles.headerStyle,
           }}
         />
+        <Stack.Screen
+          name="Home"
+          component={HomeTabScreen}
+          options={{
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              fontSize: 30,
+              color: "#2E5F85",
+            },
+            headerLeft: (props) => (
+              <MaterialIcons
+                onPress={() => {}}
+                name="face"
+                color="#ACDAFF"
+                size={25}
+              />
+            ),
+          }}
+        />
       </Stack.Navigator>
-    </NavigationContainer>
+    </>
   );
 };
 
