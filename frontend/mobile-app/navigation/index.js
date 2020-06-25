@@ -128,9 +128,12 @@ export default function myStack() {
       </NavigationContainer>
       <View style={styles.homeIndicator}></View>
       <View style={styles.profile}>
-        <TouchableOpacity>
-          <Image source={require("../images/profileButton.png")} />
-        </TouchableOpacity>
+        <MaterialIcons
+          onPress={() => {}}
+          name="face"
+          color="ACDAFF"
+          size={25}
+        />
       </View>
     </>
   );
