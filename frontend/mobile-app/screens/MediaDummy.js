@@ -24,7 +24,7 @@ export default function Media(props) {
   const MediaDisplay = ({ title }) => {
     return (
       <View>
-        <Text style={styles.posts}>{title}</Text>
+        <Text style={styles.mediaPosts}>{title}</Text>
       </View>
     );
   };
@@ -41,8 +41,9 @@ export default function Media(props) {
 const styles = StyleSheet.create({
   mediaPosts: {
     padding: 7,
-    fontSize: 90,
+    fontSize: 20,
     paddingTop: 30,
     alignItems: "center",
+    width: "100%",
   },
 });
