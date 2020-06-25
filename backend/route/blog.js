@@ -11,9 +11,9 @@ module.exports = function(app,mongoose){
 
         blogModel.create({
             user: "default",
-            title: title,
+            title: req.body.blogData.title,
             date: new Date(),
-            content: req.body.data,
+            content: req.body.blogData.content,
             url: `${date}/${title}`
         });    
 
