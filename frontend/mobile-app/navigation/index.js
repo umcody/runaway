@@ -39,9 +39,11 @@ const FeedScreen = () => {
             color: "#2E5F85",
           },
           headerLeft: (props) => {
-            <TouchableOpacity style={styles.profile}>
-              <Image source={require("../images/profileButton.png")} />
-            </TouchableOpacity>;
+            <MaterialIcons
+              name="chat-bubble-outline"
+              color="ACDAFF"
+              size={25}
+            />;
           },
         }}
       />
