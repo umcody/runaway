@@ -40,7 +40,8 @@ const FeedScreen = () => {
           },
           headerLeft: (props) => {
             <MaterialIcons
-              name="chat-bubble-outline"
+              onPress={() => {}}
+              name="face"
               color="ACDAFF"
               size={25}
             />;
