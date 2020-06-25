@@ -1,13 +1,29 @@
 import React from "react";
-import { StyleSheet, Text, View,TouchableOpacity, Image,StatusBar } from "react-native";
+
+import { StyleSheet, Text, View,TouchableOpacity, Image,StatusBar, Dimensions } from "react-native";
 import ChatScreen from "../screens/ChatScreen";
 import EmergencyHotlinesScreen from "../screens/emergencHotline";
 import { NavigationContainer } from '@react-navigation/native';
-
-
 import { createStackNavigator } from '@react-navigation/stack';
 
-const Stack = createStackNavigator();
+import {
+  MaterialCommunityIcons,
+  MaterialIcons,
+  Feather,
+} from "@expo/vector-icons";
+
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+
+import Chat from "../screens/ChatDummy";
+import Events from "../screens/EventsDummy";
+import Posts from "../screens/PostsDummy";
+import Media from "../screens/MediaDummy";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+
+
+const BottomTab = createMaterialBottomTabNavigator();
+const HomeTab = createMaterialTopTabNavigator();
+const HomeStack = createStackNavigator();
 
 export default function Chat() {
   return (
@@ -50,3 +66,139 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff'
   }
 });
+=======
+const FeedScreen = () => {
+  return (
+    <HomeStack.Navigator>
+      <HomeStack.Screen
+        name="Feed"
+        component={HomeTabScreen}
+        options={{
+          headerTitleAlign: "center",
+          headerTitleStyle: {
+            fontSize: 30,
+            color: "#2E5F85",
+          },
+          headerLeft: (props) => (
+            <MaterialIcons
+              onPress={() => {}}
+              name="face"
+              color="#ACDAFF"
+              size={25}
+            />
+          ),
+        }}
+      />
+    </HomeStack.Navigator>
+  );
+};
+const HomeTabScreen = () => {
+  return (
+    <HomeTab.Navigator>
+      <HomeTab.Screen
+        name="Posts"
+        component={Posts}
+        options={{
+          title: "Posts",
+        }}
+      />
+      <HomeTab.Screen
+        name="Media"
+        component={Media}
+        options={{
+          title: "Media",
+        }}
+      />
+    </HomeTab.Navigator>
+  );
+};
+export default function myStack() {
+  return (
+    <>
+      <NavigationContainer>
+        <BottomTab.Navigator
+          barStyle={{
+            backgroundColor: "white",
+            paddingBottom: 10,
+            borderTopWidth: 2,
+            borderTopColor: "#ACDAFF",
+          }}
+          labeled={false}
+          inactiveColor="#ACDAFF"
+          activeColor="#2E5F85"
+        >
+          <BottomTab.Screen
+            name="Feed"
+            component={FeedScreen}
+            options={{
+              tabBarLabel: "Feed",
+              tabBarIcon: ({ color }) => (
+                <MaterialCommunityIcons
+                  name="home-outline"
+                  color={color}
+                  size={28}
+                />
+              ),
+            }}
+          />
+          <BottomTab.Screen
+            name="Chat"
+            component={Chat}
+            options={{
+              tabBarLabel: "Chat",
+              tabBarIcon: ({ color }) => (
+                <MaterialIcons
+                  name="chat-bubble-outline"
+                  color={color}
+                  size={25}
+                />
+              ),
+            }}
+          />
+          <BottomTab.Screen
+            name="Events"
+            component={Events}
+            options={{
+              tabBarLabel: "Chat",
+              tabBarIcon: ({ color }) => (
+                <Feather name="calendar" color={color} size={25} />
+              ),
+            }}
+          />
+        </BottomTab.Navigator>
+      </NavigationContainer>
+      <View style={styles.homeIndicator}></View>
+      {/* <View style={styles.profile}>
+        <MaterialIcons
+          onPress={() => {}}
+          name="face"
+          color="ACDAFF"
+          size={25}
+        />
+      </View> */}
+    </>
+  );
+}
+
+const windowW = Dimensions.get("window").width;
+const windowH = Dimensions.get("window").height;
+
+const styles = StyleSheet.create({
+  homeIndicator: {
+    backgroundColor: "#FF9EDA",
+    position: "absolute",
+    height: 5,
+    top: windowH - 13,
+    left: windowW / 2 - 67.5,
+    width: 135,
+    borderRadius: 2.5,
+  },
+  profile: {
+    position: "absolute",
+    left: 15,
+    top: 25,
+    width: 32,
+    height: 32,
+  },
+});
+
