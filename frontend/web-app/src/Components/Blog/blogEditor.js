@@ -8,7 +8,7 @@ class BlogEditor extends React.Component{
 
     constructor(props) {
         super(props)
-        this.state = { blogContent: '' } 
+        this.state = { title: '', blogContent: '' } 
 
         //bind 'this'
         this.handleChange = this.handleChange.bind(this);
@@ -16,12 +16,18 @@ class BlogEditor extends React.Component{
       }
 
 
-    handleChange(value) {
-        this.setState({ blogContent: value })
-        
+    handleChange(event) {
+        if (event.target) {
+            this.setState({ title: event.target.value})
+        } else {
+            this.setState({ blogContent: event })
+        }
     }
 
     handleClick(event){
+        console.log('Title');
+        console.log(this.state.title);
+        console.log('Blog Content');
         console.log(this.state.blogContent);
         //POST METHOD
         axios.post("/api/volunteer/blog/post", { data : this.state.blogContent});
@@ -30,12 +36,16 @@ class BlogEditor extends React.Component{
     render(){
         return(
             <div>
-                <input></input>
-                 <ReactQuill 
-                  value={this.state.blogContent}
-                  onChange={this.handleChange} 
-                  />
-                  <a onClick = {this.handleClick}>SUBMIT</a>
+                <input
+                    type='text'
+                    value={this.state.title}
+                    onChange={this.handleChange}
+                />
+                <ReactQuill 
+                    value={this.state.blogContent}
+                    onChange={this.handleChange} 
+                />
+                <a onClick = {this.handleClick}>SUBMIT</a>
             </div>
         )
     }
