@@ -1,19 +1,17 @@
 import React from "react";
-import {
-  StyleSheet,
-  Dimensions,
-  View,
-  TouchableOpacity,
-  Image,
-} from "react-native";
+
+import { StyleSheet, Text, View,TouchableOpacity, Image,StatusBar, Dimensions } from "react-native";
+import ChatScreen from "../screens/ChatScreen";
+import EmergencyHotlinesScreen from "../screens/emergencHotline";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
 import {
   MaterialCommunityIcons,
   MaterialIcons,
   Feather,
 } from "@expo/vector-icons";
 
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 
 import Chat from "../screens/ChatDummy";
@@ -22,10 +20,53 @@ import Posts from "../screens/PostsDummy";
 import Media from "../screens/MediaDummy";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
+
 const BottomTab = createMaterialBottomTabNavigator();
 const HomeTab = createMaterialTopTabNavigator();
 const HomeStack = createStackNavigator();
 
+export default function Chat() {
+  return (
+    <NavigationContainer>
+ <StatusBar  barStyle="dark-content" translucent={true} />
+    <Stack.Navigator>
+      <Stack.Screen name="Chat" component={ChatScreen}
+      options={{
+        title: 'Chat',
+        headerTitleStyle: styles.headerTitleStyle,
+        headerStyle: styles.headerStyle,
+        
+      }} />
+      <Stack.Screen name="Resources" component={EmergencyHotlinesScreen}
+      options={{
+        title: 'Emergency Resources',
+        headerTitleStyle: styles.headerTitleStyle,
+        headerStyle: styles.headerStyle,
+        
+      }}  />
+    
+    </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+const styles = StyleSheet.create({
+  headerTitleStyle: {    
+    fontFamily: 'System',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: 24,
+    lineHeight: 28,
+    textAlign: 'center',
+    color: '#2E5F85',
+      
+  },
+  headerStyle:{
+    borderBottomWidth:0,
+    shadowColor: 'transparent',
+    backgroundColor: '#fff'
+  }
+});
+=======
 const FeedScreen = () => {
   return (
     <HomeStack.Navigator>
@@ -42,7 +83,7 @@ const FeedScreen = () => {
             <MaterialIcons
               onPress={() => {}}
               name="face"
-              color="ACDAFF"
+              color="#ACDAFF"
               size={25}
             />
           ),
@@ -127,14 +168,14 @@ export default function myStack() {
         </BottomTab.Navigator>
       </NavigationContainer>
       <View style={styles.homeIndicator}></View>
-      <View style={styles.profile}>
+      {/* <View style={styles.profile}>
         <MaterialIcons
           onPress={() => {}}
           name="face"
           color="ACDAFF"
           size={25}
         />
-      </View>
+      </View> */}
     </>
   );
 }
@@ -160,3 +201,4 @@ const styles = StyleSheet.create({
     height: 32,
   },
 });
+
