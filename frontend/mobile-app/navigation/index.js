@@ -5,6 +5,7 @@ import {
   MaterialCommunityIcons,
   MaterialIcons,
   Feather,
+  AntDesign,
 } from "@expo/vector-icons";
 
 import { NavigationContainer } from "@react-navigation/native";
@@ -17,15 +18,12 @@ import ChatScreen from "../screens/ChatScreen";
 import Events from "../screens/EventsDummy";
 import Posts from "../screens/PostsDummy";
 import Media from "../screens/MediaDummy";
-import ProfileEvents from "../screens/ProfileParts/ProfileEvents";
-import ProfileLikes from "../screens/ProfileParts/ProfileLikes";
 
 const BottomTabNavigation = createBottomTabNavigator();
 const HomeTab = createMaterialTopTabNavigator();
 const HomeStack = createStackNavigator();
 const ChatStack = createStackNavigator();
-const ProfileTab = createMaterialTopTabNavigator();
-const ProfileStack = createStackNavigator();
+const HotlineStack = createStackNavigator();
 
 const BottomTab = ({ navigation }) => {
   return (
@@ -80,14 +78,7 @@ const BottomTab = ({ navigation }) => {
     </BottomTabNavigation.Navigator>
   );
 };
-const Profile = () => {
-  return (
-    <ProfileTab.Navigator>
-      <ProfileTab.Screen name="Events" component={ProfileEvents} />
-      <ProfileTab.Screen name="Likes" component={ProfileLikes} />
-    </ProfileTab.Navigator>
-  );
-};
+
 const Chat = () => {
   return (
     <>
@@ -111,7 +102,7 @@ const Chat = () => {
             headerStyle: styles.headerStyle,
           }}
         />
-        {/* <ChatStack.Screen
+        <ChatStack.Screen
           name="Home"
           component={HomeTabScreen}
           options={{
@@ -129,7 +120,7 @@ const Chat = () => {
               />
             ),
           }}
-        /> */}
+        />
       </ChatStack.Navigator>
     </>
   );
@@ -147,13 +138,14 @@ const FeedScreen = ({ navigation }) => {
             fontSize: 30,
             color: "#2E5F85",
           },
-          headerLeft: () => (
-            <MaterialIcons
-              onPress={() => navigation.navigate("Profile")}
-              style={styles.profilePic}
-              name="face"
-              color="#ACDAFF"
-              size={35}
+
+          headerRight: () => (
+            <AntDesign
+              style={{ paddingRight: 25 }}
+              onPress={() => navigation.navigate("Resources")}
+              name="exclamationcircleo"
+              size={30}
+              color="#FF9EDA"
             />
           ),
         }}
@@ -185,30 +177,26 @@ export default function myStack() {
   return (
     <>
       <NavigationContainer>
-        <ProfileStack.Navigator>
-          <ProfileStack.Screen
+        <HotlineStack.Navigator>
+          <HotlineStack.Screen
             name="Home"
             component={BottomTab}
             options={{
               headerShown: false,
             }}
           />
-          <ProfileStack.Screen
-            options={{ headerShown: true, headerTitleAlign: "center" }}
-            name="Profile"
-            component={Profile}
+          <HotlineStack.Screen
+            name="Resources"
+            component={EmergencyHotlinesScreen}
+            options={{
+              title: "Emergency Resources",
+              headerTitleStyle: styles.headerTitleStyle,
+              headerStyle: styles.headerStyle,
+            }}
           />
-        </ProfileStack.Navigator>
+        </HotlineStack.Navigator>
       </NavigationContainer>
-      <View style={styles.homeIndicator}></View>
-      {/* <View style={styles.profile}>
-        <MaterialIcons
-          onPress={() => {}}
-          name="face"
-          color="ACDAFF"
-          size={25}
-        />
-      </View> */}
+      {/* <View style={styles.homeIndicator}></View> */}
     </>
   );
 }
@@ -255,3 +243,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
 });
+
+// const Profile = () => {
+//   return (
+//     <ProfileTab.Navigator>
+//       <ProfileTab.Screen name="Events" component={ProfileEvents} />
+//       <ProfileTab.Screen name="Likes" component={ProfileLikes} />
+//     </ProfileTab.Navigator>
+//   );
+// };
