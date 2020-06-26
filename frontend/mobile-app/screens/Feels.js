@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   StyleSheet,
@@ -9,8 +9,25 @@ import {
   Dimensions,
 } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
+import { color } from "react-native-reanimated";
 
 export default function Chat({ navigation }) {
+  const [feelColor, setFeelColor] = useState("#E3F1FC");
+
+  const colorStyles = StyleSheet.create({
+    feels: {
+      fontSize: 20,
+      marginTop: 100,
+      borderColor: "#ACDAFF",
+      borderWidth: 2,
+      backgroundColor: feelColor,
+      alignItems: "center",
+      width: 126,
+      height: 126,
+      paddingTop: 50,
+    },
+  });
+
   const feelingsCol1 = [
     { title: "Happy", id: 1 },
     { title: "Fearful", id: 2 },
@@ -30,7 +47,10 @@ export default function Chat({ navigation }) {
   const FeelingsList = ({ title }) => {
     return (
       <View>
-        <TouchableOpacity style={styles.feels}>
+        <TouchableOpacity
+          style={colorStyles.feels}
+          onPress={() => setFeelColor("#FF9EDA")}
+        >
           <Text>{title}</Text>
         </TouchableOpacity>
       </View>
@@ -38,28 +58,33 @@ export default function Chat({ navigation }) {
   };
 
   return (
-    <View style={styles.profile}>
-      <View style={styles.col1}>
-        <FlatList
-          data={feelingsCol1}
-          renderItem={({ item }) => <FeelingsList title={item.title} />}
-        />
+    <>
+      <View style={styles.home}>
+        <TouchableOpacity style={styles.skip}>
+          <Text style={{ color: "#FFFFFF", fontSize: 20 }}>Skip</Text>
+        </TouchableOpacity>
+        <View style={styles.col1}>
+          <FlatList
+            data={feelingsCol1}
+            renderItem={({ item }) => <FeelingsList title={item.title} />}
+          />
+        </View>
+        <View style={styles.col2}>
+          <FlatList
+            data={feelingsCol2}
+            renderItem={({ item }) => <FeelingsList title={item.title} />}
+          />
+        </View>
+        <TouchableOpacity
+          style={styles.buttonDismiss}
+          onPress={() => {
+            navigation.navigate("Chat");
+          }}
+        >
+          <Text style={{ color: "#FFFFFF", fontSize: 25 }}>Next</Text>
+        </TouchableOpacity>
       </View>
-      <View style={styles.col2}>
-        <FlatList
-          data={feelingsCol2}
-          renderItem={({ item }) => <FeelingsList title={item.title} />}
-        />
-      </View>
-      <TouchableOpacity
-        style={styles.buttonDismiss}
-        onPress={() => {
-          navigation.navigate("Chat");
-        }}
-      >
-        <Text style={{ color: "#FFFFFF", fontSize: 25 }}>Next</Text>
-      </TouchableOpacity>
-    </View>
+    </>
   );
 }
 
@@ -70,9 +95,6 @@ const styles = StyleSheet.create({
   home: {
     flex: 1,
     backgroundColor: "#FFFFFF",
-  },
-  profile: {
-    flex: 1,
     justifyContent: "center",
     flexDirection: "row",
   },
@@ -97,15 +119,17 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: 3 * (windowW / 4) - 63,
   },
-  feels: {
-    fontSize: 20,
-    marginTop: 100,
-    borderColor: "#ACDAFF",
+  skip: {
+    position: "absolute",
+    left: windowW - 80,
+    width: 70,
+    height: 30,
+    top: 30,
+    borderRadius: 3,
     borderWidth: 2,
-    backgroundColor: "#E3F1FC",
+    backgroundColor: "#ACDAFF",
     alignItems: "center",
-    width: 126,
-    height: 126,
-    paddingTop: 50,
+    textAlign: "center",
+    borderColor: "#ACDAFF",
   },
 });
