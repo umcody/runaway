@@ -98,8 +98,14 @@ const Chat = ({ navigation }) => {
           name="Feels"
           component={Feels}
           options={{
+            headerTitle: "How are you feeling?",
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              color: "#2E5F85",
+            },
             headerLeft: () => (
               <HeaderBackButton
+                labelVisible={false}
                 onPress={() => {
                   navigation.navigate("Feed");
                 }}
