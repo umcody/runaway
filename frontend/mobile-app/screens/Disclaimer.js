@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Modal, TouchableOpacity, Text } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Modal,
+  TouchableOpacity,
+  Text,
+  Dimensions,
+} from "react-native";
 
 export default function Disclaimer({ navigation }) {
   const [modalVisible, setModalVisible] = useState(true);
@@ -29,6 +36,9 @@ export default function Disclaimer({ navigation }) {
   );
 }
 
+const windowW = Dimensions.get("window").width;
+const windowH = Dimensions.get("window").height;
+
 const styles = StyleSheet.create({
   message: {
     color: "#2E5F85",
@@ -48,7 +58,7 @@ const styles = StyleSheet.create({
     width: 270,
     alignItems: "center",
     height: 367,
-    marginTop: 150,
+    marginTop: windowH / 2 - 183.5,
     borderRadius: 30,
   },
   buttonDismiss: {

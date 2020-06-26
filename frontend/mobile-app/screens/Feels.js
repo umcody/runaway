@@ -1,11 +1,26 @@
 import React from "react";
-import { Button, StyleSheet, View, Text } from "react-native";
+import {
+  Button,
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  FlatList,
+} from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
 
 export default function Chat({ navigation }) {
   return (
     <View style={styles.profile}>
-      <Text>This is a chat screen</Text>
-      <Button onPress={() => navigation.navigate("ChatScreen")} title="Next" />
+      <Text>This is the feelings screen screen</Text>
+      <TouchableOpacity
+        style={styles.buttonDismiss}
+        onPress={() => {
+          navigation.navigate("Chat");
+        }}
+      >
+        <Text style={{ color: "#FFFFFF", fontSize: 25 }}>Next</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -18,5 +33,16 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+  },
+  buttonDismiss: {
+    borderRadius: 30,
+    borderWidth: 2,
+    backgroundColor: "#FF9EDA",
+    borderColor: "#FF9EDA",
+    height: 35,
+    marginTop: 7,
+    width: 100,
+    alignItems: "center",
+    textAlign: "center",
   },
 });
