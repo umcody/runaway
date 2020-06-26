@@ -93,10 +93,10 @@ const Chat = () => {
         />
         <ChatStack.Screen name="Feels" component={Feels} />
         <ChatStack.Screen
-          name="ChatScreen"
+          name="Chat"
           component={ChatScreen}
           options={{
-            title: "ChatScreen",
+            title: "Chat",
             headerTitleStyle: styles.headerTitleStyle,
             headerStyle: styles.headerStyle,
           }}
