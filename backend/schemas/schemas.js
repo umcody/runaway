@@ -13,7 +13,7 @@ module.exports = {
     contentSchema: {},
 
     blogSchema: {
-        user: { type: Schema.Types.ObjectId, ref: "User", required: false },
+        author: { type: String},
         title: { type: String, required: true }, 
         date: { type: String, default: Date.now }, 
         content: { type: String, required: true },
