@@ -12,7 +12,7 @@ import { NavigationContainer } from "@react-navigation/native";
 export default function Chat({ navigation }) {
   return (
     <View style={styles.profile}>
-      <Text>This is a chat screen</Text>
+      <Text>This is the feelings screen screen</Text>
       <TouchableOpacity
         style={styles.buttonDismiss}
         onPress={() => {
