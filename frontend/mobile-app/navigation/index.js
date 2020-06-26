@@ -9,7 +9,10 @@ import {
 } from "@expo/vector-icons";
 
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import {
+  createStackNavigator,
+  HeaderBackButton,
+} from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
@@ -81,7 +84,7 @@ const BottomTab = ({ navigation }) => {
   );
 };
 
-const Chat = () => {
+const Chat = ({ navigation }) => {
   return (
     <>
       <StatusBar barStyle="dark-content" translucent={true} />
@@ -91,7 +94,20 @@ const Chat = () => {
           component={Disclaimer}
           options={{ headerShown: false }}
         />
-        <ChatStack.Screen name="Feels" component={Feels} />
+        <ChatStack.Screen
+          name="Feels"
+          component={Feels}
+          options={{
+            headerLeft: () => (
+              <HeaderBackButton
+                onPress={() => {
+                  navigation.navigate("Feed");
+                }}
+              />
+            ),
+          }}
+        />
+
         <ChatStack.Screen
           name="Chat"
           component={ChatScreen}
