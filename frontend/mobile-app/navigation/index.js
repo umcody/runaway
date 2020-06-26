@@ -18,6 +18,7 @@ import ChatScreen from "../screens/ChatScreen";
 import Events from "../screens/EventsDummy";
 import Posts from "../screens/PostsDummy";
 import Media from "../screens/MediaDummy";
+import Feels from "../screens/Feels";
 
 const BottomTabNavigation = createBottomTabNavigator();
 const HomeTab = createMaterialTopTabNavigator();
@@ -83,7 +84,8 @@ const Chat = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" translucent={true} />
-      <ChatStack.Navigator>
+      <ChatStack.Navigator initialRouteName="Feels">
+        <ChatStack.Screen name="Feels" component={Feels} />
         <ChatStack.Screen
           name="Chat"
           component={ChatScreen}
@@ -102,7 +104,7 @@ const Chat = () => {
             headerStyle: styles.headerStyle,
           }}
         />
-        <ChatStack.Screen
+        {/* <ChatStack.Screen
           name="Home"
           component={HomeTabScreen}
           options={{
@@ -120,7 +122,7 @@ const Chat = () => {
               />
             ),
           }}
-        />
+        /> */}
       </ChatStack.Navigator>
     </>
   );
