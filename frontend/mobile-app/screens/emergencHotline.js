@@ -57,6 +57,39 @@ export default function EmergencyHotlinesScreen({ navigation }) {
   
       </View>
     );
+
+ /*###############################################################################################*/
+                      /* the call function */
+
+
+                      call = () => {
+                        const args = {
+                          number: '6475706640',
+                          prompt: false,
+                        };
+                        call(args).catch(console.error);
+                      };
+
+                    /*##########################################################*/
+                    /* example using it with a button press */
+                    // <View style={styles.container}>
+                    //   <Button title="Make a Call" onPress={this.call} />
+                    // </View>
+
+
+
+
+
+  /*###############################################################################################*/
+
+
+
+
+
+
+
+
+
   }
 
   
