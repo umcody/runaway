@@ -136,21 +136,6 @@ export default function ChatScreen({ navigation }) {
 
   return (
     <>
-      <View style={styles.modalContainer}>
-        <Modal animationType="slide" transparent={true} visible={modalVisible}>
-          <View style={styles.modal}>
-            <Text>Hello world</Text>
-          </View>
-          <TouchableOpacity
-            style={styles.buttonDismiss}
-            onPress={() => {
-              setModalVisible(false);
-            }}
-          >
-            <Text>Click here to get rid of modal</Text>
-          </TouchableOpacity>
-        </Modal>
-      </View>
       <GiftedChat
         text={text}
         onInputTextChanged={setText}
@@ -207,24 +192,5 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingLeft: 5,
     alignItems: "flex-start",
-  },
-  modal: {
-    alignContent: "center",
-    justifyContent: "center",
-    backgroundColor: "red",
-    width: "50%",
-    alignItems: "center",
-  },
-  // modalContainer: {
-  //   flex: 1,
-  //   justifyContent: "center",
-  //   alignItems: "center",
-  //   marginTop: 20,
-  // },
-  buttonDismiss: {
-    borderRadius: 5,
-    borderWidth: 2,
-    borderColor: "red",
-    height: 20,
   },
 });
