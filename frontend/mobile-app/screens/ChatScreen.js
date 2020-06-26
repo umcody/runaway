@@ -5,7 +5,7 @@ import {
   Send,
   Bubble,
 } from "react-native-gifted-chat";
-import { StyleSheet, View, TouchableOpacity } from "react-native";
+import { StyleSheet, View, TouchableOpacity, Modal, Text } from "react-native";
 import { AntDesign, FontAwesome5, Feather } from "@expo/vector-icons";
 
 export default function ChatScreen({ navigation }) {
@@ -132,44 +132,63 @@ export default function ChatScreen({ navigation }) {
     setText(quickReply.values.title);
   };
 
+  const [modalVisible, setModalVisible] = useState(true);
+
   return (
-    <GiftedChat
-      text={text}
-      onInputTextChanged={setText}
-      messages={messages}
-      quickReply={messages.quickReplies}
-      onSend={(messages) => onSend(messages)}
-      onQuickReply={(quickReply) => onQuickReply(quickReply)}
-      renderInputToolbar={(props) => customInputToolbar(props)}
-      placeholder="New Message"
-      placeholderTextColor="#2E5F85"
-      textInputStyle={styles.composer}
-      minInputToolbarHeight={50}
-      messagesContainerStyle={{
-        paddingBottom: 15,
-        backgroundColor: "#fff",
-      }}
-      user={{
-        _id: 1,
-      }}
-      alwaysShowSend={true}
-      renderSend={renderSend}
-      listViewProps={{
-        style: {
-          paddingBottom: 44,
-          backgroundColor: "white",
-        },
-      }}
-      renderBubble={renderBubble}
-      timeTextStyle={{
-        right: {
-          display: "none",
-        },
-        left: {
-          display: "none",
-        },
-      }}
-    />
+    <>
+      <View style={styles.modalContainer}>
+        <Modal animationType="slide" transparent={true} visible={modalVisible}>
+          <View style={styles.modal}>
+            <Text>Hello world</Text>
+          </View>
+          <TouchableOpacity
+            style={styles.buttonDismiss}
+            onPress={() => {
+              setModalVisible(false);
+            }}
+          >
+            <Text>Click here to get rid of modal</Text>
+          </TouchableOpacity>
+        </Modal>
+      </View>
+      <GiftedChat
+        text={text}
+        onInputTextChanged={setText}
+        messages={messages}
+        quickReply={messages.quickReplies}
+        onSend={(messages) => onSend(messages)}
+        onQuickReply={(quickReply) => onQuickReply(quickReply)}
+        renderInputToolbar={(props) => customInputToolbar(props)}
+        placeholder="New Message"
+        placeholderTextColor="#2E5F85"
+        textInputStyle={styles.composer}
+        minInputToolbarHeight={50}
+        messagesContainerStyle={{
+          paddingBottom: 15,
+          backgroundColor: "#fff",
+        }}
+        user={{
+          _id: 1,
+        }}
+        alwaysShowSend={true}
+        renderSend={renderSend}
+        listViewProps={{
+          style: {
+            paddingBottom: 44,
+            backgroundColor: "white",
+          },
+        }}
+        renderBubble={renderBubble}
+        timeTextStyle={{
+          right: {
+            display: "none",
+          },
+          left: {
+            display: "none",
+          },
+        }}
+      />
+    </>
   );
 }
 const styles = StyleSheet.create({
@@ -188,5 +207,24 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingLeft: 5,
     alignItems: "flex-start",
+  },
+  modal: {
+    alignContent: "center",
+    justifyContent: "center",
+    backgroundColor: "red",
+    width: "50%",
+    alignItems: "center",
+  },
+  // modalContainer: {
+  //   flex: 1,
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  //   marginTop: 20,
+  // },
+  buttonDismiss: {
+    borderRadius: 5,
+    borderWidth: 2,
+    borderColor: "red",
+    height: 20,
   },
 });
