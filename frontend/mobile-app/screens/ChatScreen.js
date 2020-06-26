@@ -21,7 +21,7 @@ export default function ChatScreen({ navigation }) {
     headerLeft: () => (
       <TouchableOpacity
         style={{ paddingLeft: 25 }}
-        onPress={() => navigation.navigate("Home")}
+        onPress={() => navigation.goBack()}
       >
         <Feather name="x" size={35} color="#FF9EDA" />
       </TouchableOpacity>
@@ -192,24 +192,5 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingLeft: 5,
     alignItems: "flex-start",
-  },
-  modal: {
-    alignContent: "center",
-    justifyContent: "center",
-    backgroundColor: "red",
-    width: "50%",
-    alignItems: "center",
-  },
-  // modalContainer: {
-  //   flex: 1,
-  //   justifyContent: "center",
-  //   alignItems: "center",
-  //   marginTop: 20,
-  // },
-  buttonDismiss: {
-    borderRadius: 5,
-    borderWidth: 2,
-    borderColor: "red",
-    height: 20,
   },
 });
