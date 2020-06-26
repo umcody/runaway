@@ -1,7 +1,9 @@
-import React from "react";
-import { View } from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet, Modal, TouchableOpacity, Text } from "react-native";
 
-export default function Profile(props) {
+export default function Disclaimer({ navigation }) {
+  const [modalVisible, setModalVisible] = useState(true);
+
   return (
     <View style={styles.container}>
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
@@ -12,6 +14,7 @@ export default function Profile(props) {
           style={styles.buttonDismiss}
           onPress={() => {
             setModalVisible(false);
+            navigation.navigate("Feels");
           }}
         >
           <Text>Click here to get rid of modal</Text>

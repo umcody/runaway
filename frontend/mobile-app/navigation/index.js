@@ -19,6 +19,7 @@ import Events from "../screens/EventsDummy";
 import Posts from "../screens/PostsDummy";
 import Media from "../screens/MediaDummy";
 import Feels from "../screens/Feels";
+import Disclaimer from "../screens/Disclaimer";
 
 const BottomTabNavigation = createBottomTabNavigator();
 const HomeTab = createMaterialTopTabNavigator();
@@ -84,7 +85,8 @@ const Chat = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" translucent={true} />
-      <ChatStack.Navigator initialRouteName="Feels">
+      <ChatStack.Navigator initialRouteName="Disclaimer">
+        <ChatStack.Screen name="Disclaimer" component={Disclaimer} />
         <ChatStack.Screen name="Feels" component={Feels} />
         <ChatStack.Screen
           name="Chat"
