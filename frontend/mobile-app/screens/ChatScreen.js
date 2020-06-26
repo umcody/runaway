@@ -21,7 +21,7 @@ export default function ChatScreen({ navigation }) {
     headerLeft: () => (
       <TouchableOpacity
         style={{ paddingLeft: 25 }}
-        onPress={() => navigation.navigate("Feed")}
+        onPress={() => navigation.goto("Feed")}
       >
         <Feather name="x" size={35} color="#FF9EDA" />
       </TouchableOpacity>

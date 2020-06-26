@@ -1,12 +1,11 @@
 import React from "react";
 import { Button, StyleSheet, View, Text } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
 
 export default function Chat({ navigation }) {
   return (
     <View style={styles.profile}>
       <Text>This is a chat screen</Text>
-      <Button onPress={() => navigation.navigate("Chat")} title="Next" />
+      <Button onPress={() => navigation.navigate("ChatScreen")} title="Next" />
     </View>
   );
 }

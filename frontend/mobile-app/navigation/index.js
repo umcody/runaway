@@ -71,7 +71,7 @@ const BottomTab = ({ navigation }) => {
         name="Events"
         component={Events}
         options={{
-          tabBarLabel: "Chat",
+          tabBarLabel: "Events",
           tabBarIcon: ({ color }) => (
             <Feather name="calendar" color={color} size={25} />
           ),
@@ -86,13 +86,17 @@ const Chat = () => {
     <>
       <StatusBar barStyle="dark-content" translucent={true} />
       <ChatStack.Navigator initialRouteName="Disclaimer">
-        <ChatStack.Screen name="Disclaimer" component={Disclaimer} />
+        <ChatStack.Screen
+          name="Disclaimer"
+          component={Disclaimer}
+          options={{ headerShown: false }}
+        />
         <ChatStack.Screen name="Feels" component={Feels} />
         <ChatStack.Screen
-          name="Chat"
+          name="ChatScreen"
           component={ChatScreen}
           options={{
-            title: "Chat",
+            title: "ChatScreen",
             headerTitleStyle: styles.headerTitleStyle,
             headerStyle: styles.headerStyle,
           }}
