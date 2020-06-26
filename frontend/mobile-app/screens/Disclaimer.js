@@ -5,44 +5,61 @@ export default function Disclaimer({ navigation }) {
   const [modalVisible, setModalVisible] = useState(true);
 
   return (
-    <View style={styles.container}>
+    <View style={styles.fullContainer}>
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
-        <View style={styles.modal}>
-          <Text>Hello world</Text>
+        <View style={styles.container}>
+          <Text style={styles.message}>
+            Disclaimer: You will be chatting with a peer volunteer. These
+            volunteers are not medical or health professionals. If you seek
+            professional assistance, the hotlines and resources can be found
+            (here).
+          </Text>
+          <TouchableOpacity
+            style={styles.buttonDismiss}
+            onPress={() => {
+              setModalVisible(false);
+              navigation.navigate("Feels");
+            }}
+          >
+            <Text style={{ color: "#FFFFFF", fontSize: 25 }}>Start</Text>
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity
-          style={styles.buttonDismiss}
-          onPress={() => {
-            setModalVisible(false);
-            navigation.navigate("Feels");
-          }}
-        >
-          <Text>Click here to get rid of modal</Text>
-        </TouchableOpacity>
       </Modal>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    alignContent: "center",
-    justifyContent: "center",
-    backgroundColor: "red",
-    width: "50%",
+  message: {
+    color: "#2E5F85",
+    fontStyle: "normal",
+    fontSize: 24,
     alignItems: "center",
+    textAlign: "center",
+    padding: 10,
   },
-  modal: {
-    alignContent: "center",
-    justifyContent: "center",
-    backgroundColor: "red",
-    width: "50%",
+  fullContainer: {
+    flex: 1,
+    backgroundColor: "#E3F1FC",
+  },
+  container: {
+    alignSelf: "center",
+    backgroundColor: "#FFFFFF",
+    width: 270,
     alignItems: "center",
+    height: 367,
+    marginTop: 150,
+    borderRadius: 30,
   },
   buttonDismiss: {
-    borderRadius: 5,
+    borderRadius: 30,
     borderWidth: 2,
-    borderColor: "red",
-    height: 20,
+    backgroundColor: "#FF9EDA",
+    borderColor: "#FF9EDA",
+    height: 35,
+    marginTop: 7,
+    width: 100,
+    alignItems: "center",
+    textAlign: "center",
   },
 });
