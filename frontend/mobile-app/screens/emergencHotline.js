@@ -64,7 +64,7 @@ export default function EmergencyHotlinesScreen({ navigation }) {
 
                       call = () => {
                         const args = {
-                          number: '6475706640',
+                          number: '1234567890',
                           prompt: false,
                         };
                         call(args).catch(console.error);
