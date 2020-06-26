@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  Button,
   StyleSheet,
   View,
   Text,
@@ -8,8 +7,6 @@ import {
   FlatList,
   Dimensions,
 } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { color } from "react-native-reanimated";
 
 export default function Chat({ navigation }) {
   const [feelColor, setFeelColor] = useState("#E3F1FC");
@@ -60,7 +57,12 @@ export default function Chat({ navigation }) {
   return (
     <>
       <View style={styles.home}>
-        <TouchableOpacity style={styles.skip}>
+        <TouchableOpacity
+          style={styles.skip}
+          onPress={() => {
+            navigation.navigate("Chat");
+          }}
+        >
           <Text style={{ color: "#FFFFFF", fontSize: 20 }}>Skip</Text>
         </TouchableOpacity>
         <View style={styles.col1}>
