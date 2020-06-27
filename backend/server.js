@@ -1,8 +1,8 @@
 const bodyParser = require("body-parser");
 const Cors = require("cors");
-
 const express = require("express");
 const mongoose = require("mongoose");
+const auth = require("./route/auth/auth");
 
 const app = express();
 const PORT = process.env.PORT || 7000
@@ -36,7 +36,7 @@ app.get("/", function(req,res){
 
 //Route function called
 blogRoute(app,mongoose);
-
+auth(app,mongoose);
 
 
 
