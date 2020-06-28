@@ -31,7 +31,9 @@ export default function WelcomeScreen({navigation}) {
       date:item.date
 	  })}
 	  />}
-	  keyExtractor={item => item._id}
+    keyExtractor={item => item._id}
+    showsHorizontalScrollIndicator={false}
+    showsVerticalScrollIndicator={false}
 	/>
     </View>
   );

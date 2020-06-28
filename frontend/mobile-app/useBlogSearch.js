@@ -10,14 +10,17 @@ export default function useBlogSearch(pageNumber) {
        setLoading(true)
        setError(false)
     let cancel
-       axios.get("http://192.168.1.251:7000/api/volunteer/blog/get/" + pageNumber)
-    .then(res =>{
+    axios({
+        method:'GET',
+        url:"http://192.168.1.251:7000/api/volunteer/blog/get/" + pageNumber
+}).then(res =>{
         setHasMore(res.data.length >0)
         setLoading(false)
         setBlogs(res.data)
     })
     .catch(e=> {
-        if(axios.isCancel(e)) return
+        console.log(e);
+        res.sendStatus(500);
         setError(true)
       });
   },[])
