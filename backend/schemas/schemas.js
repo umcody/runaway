@@ -2,7 +2,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 module.exports = {
-    chatSchema: {},
+    chatSchema: {
+        messages: [ 
+            { 
+                sender: { type: String, required: true },
+                message: { type: String, required: true } 
+            } 
+        ] 
+    },
 
     userSchema: {
         name: { type: String, required: true },
@@ -18,7 +25,7 @@ module.exports = {
         date: { type: String, default: Date.now }, 
         content: { type: String, required: true },
         likes: { type: Number, required: false, default: 0 },
-        url: { type: String, required: true },
+        url: { type: String, required: true, unique: true },
         comments: [ { type: String, required: false } ]
     },
 }
