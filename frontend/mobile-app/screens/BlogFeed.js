@@ -21,11 +21,18 @@ export default function WelcomeScreen({navigation}) {
     error
     }  = useBlogSearch(pageNumber)
 
+  function handleLoadMore(){
+    if(hasMore){
+      setPageNumber(prevPage => {prevPage+1})
+    }
+  }
+
   console.log(blogs)
   
   return (
     <View style={styles.home}>
       <Text>{loading && 'Loading...'}</Text>
+      <Text>{error && 'ERROR'}</Text>
       <FlatList style={styles.listContainer}
 	  data={blogs}
 	  renderItem={({ item }) => <BlogPost title={item.title} key={item._id} author={item.author} date={item.date}
@@ -40,7 +47,7 @@ export default function WelcomeScreen({navigation}) {
     showsHorizontalScrollIndicator={false}
     showsVerticalScrollIndicator={false}
     initialNumToRender={20}
-    
+    onEndReached={handleLoadMore}
     onEndReachedThreshold={0.5}
 	/>
     </View>

@@ -17,10 +17,7 @@ export default function useBlogSearch(pageNumber) {
         cancelToken: new axios.CancelToken(c=> cancel =c)
     }).then(res =>{ 
         setBlogs(res.data)
-       /*setBlogs(prevBlogs => {
-           return [...prevBlogs,res.data]
-       })*/
-       setHasMore(res.data.length >0)
+        setHasMore(res.data.length >0)
         setLoading(false)
     })
     .catch(e=> {
