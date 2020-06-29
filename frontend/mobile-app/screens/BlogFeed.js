@@ -5,22 +5,27 @@ import {
   TouchableOpacity,
   Dimensions,
   Image,
-  FlatList
+  FlatList,
+  Text
 } from "react-native";
 import BlogPost from "../BlogPost"
 import useBlogSearch from "../useBlogSearch"
 import data from "../SampleData"
 export default function WelcomeScreen({navigation}) {
-    const [pageNumber,setPageNumber] = useState('1')
-    const {
-      blogs,
-      hasMore,
-      loading,
-      error
-      }  = useBlogSearch(pageNumber)
+  const [pageNumber,setPageNumber] = useState('1')
+
+  const {
+    blogs,
+    hasMore,
+    loading,
+    error
+    }  = useBlogSearch(pageNumber)
+
   console.log(blogs)
+  
   return (
     <View style={styles.home}>
+      <Text>{loading && 'Loading...'}</Text>
       <FlatList style={styles.listContainer}
 	  data={blogs}
 	  renderItem={({ item }) => <BlogPost title={item.title} key={item._id} author={item.author} date={item.date}
@@ -34,6 +39,9 @@ export default function WelcomeScreen({navigation}) {
     keyExtractor={item => item._id}
     showsHorizontalScrollIndicator={false}
     showsVerticalScrollIndicator={false}
+    initialNumToRender={20}
+    
+    onEndReachedThreshold={0.5}
 	/>
     </View>
   );
