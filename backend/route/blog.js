@@ -5,15 +5,15 @@ module.exports = function(app,mongoose){
 
     // POST Blog post
     app.post("/api/volunteer/blog/post", function(req, res) {
+        console.log(req.body);
 
         const title = req.body.title;
         const date = (new Date()).toJSON();
-
         blogModel.create({
-            user: "default",
-            title: req.body.blogData.title,
+            author: "default",
+            title: req.body.title,
             date: new Date(),
-            content: req.body.blogData.content,
+            content: req.body.content,
             url: `${date}/${title}`
         });    
 
