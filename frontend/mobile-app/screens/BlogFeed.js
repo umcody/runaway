@@ -35,12 +35,11 @@ export default function WelcomeScreen({navigation}) {
       <Text>{error && 'ERROR'}</Text>
       <FlatList style={styles.listContainer}
 	  data={blogs}
-	  renderItem={({ item }) => <BlogPost title={item.title} key={item._id} author={item.author} date={item.date}
+	  renderItem={({ item }) => <BlogPost title={item.title} key={item._id} author={item.author} 
 	  HandlePress ={()=> navigation.navigate('Blog',{
 		  title:item.title,
       key:item._id,
       author:item.author,
-      date:item.date
 	  })}
 	  />}
     keyExtractor={item => item._id}

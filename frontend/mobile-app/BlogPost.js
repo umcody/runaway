@@ -12,7 +12,7 @@ import {
 import { FontAwesome } from "@expo/vector-icons";
 const {width,height}= Dimensions.get('window') 
 
-export default function BlogPost({title,author,date,HandlePress}){
+export default function BlogPost({title,author,HandlePress}){
     
     
     
@@ -24,7 +24,7 @@ export default function BlogPost({title,author,date,HandlePress}){
                 <View style = {styles.footer}>
                     <Text style = {styles.title}>{title}</Text>
                     <View style = {styles.extras}>
-                        <Text style = {styles.info}>{author}      {date}</Text>
+                        <Text style = {styles.info}>{author}</Text>
                     </View>
                 </View>
         </TouchableOpacity>

@@ -4,10 +4,10 @@ import { TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handl
 
 export default function BlogScreen({navigation,route}) {
   
-  const {title,author,date} = route.params;
+  const {title,author} = route.params;
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>{title} by {author} {date}</Text>
+      <Text>{title} by {author}</Text>
     </View>
   );
 }
