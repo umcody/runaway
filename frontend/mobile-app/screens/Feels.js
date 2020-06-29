@@ -9,21 +9,27 @@ import {
 } from "react-native";
 
 export default function Chat({ navigation }) {
-  const [feelColor, setFeelColor] = useState("#E3F1FC");
+  const [feelColor, setFeelColor] = useState("#ACDAFF");
 
+  //for later when you can  make the color change for those that are clicked
   const colorStyles = StyleSheet.create({
     feels: {
-      fontSize: 20,
+      color: feelColor,
+      fontSize: 25,
+    },
+    feelsContainer: {
+      fontSize: 25,
       marginTop: 100,
       borderColor: "#ACDAFF",
       borderWidth: 2,
-      backgroundColor: feelColor,
+      backgroundColor: "white",
       alignItems: "center",
       width: 126,
       height: 126,
       paddingTop: 50,
     },
   });
+  //
 
   const feelingsCol1 = [
     { title: "Happy", id: 1 },
@@ -44,11 +50,8 @@ export default function Chat({ navigation }) {
   const FeelingsList = ({ title }) => {
     return (
       <View>
-        <TouchableOpacity
-          style={colorStyles.feels}
-          onPress={() => setFeelColor("#FF9EDA")}
-        >
-          <Text>{title}</Text>
+        <TouchableOpacity style={colorStyles.feelsContainer}>
+          <Text style={colorStyles.feels}>{title}</Text>
         </TouchableOpacity>
       </View>
     );
