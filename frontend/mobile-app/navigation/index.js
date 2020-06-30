@@ -71,6 +71,16 @@ const BottomTab = ({ navigation }) => {
         }}
       />
       <BottomTabNavigation.Screen
+        name="Resources"
+        component={FeedScreen}
+        options={{
+          tabBarLabel: "Resources",
+          tabBarIcon: ({ color }) => (
+            <Feather name="book-open" color={color} size={25} />
+          ),
+        }}
+      />
+      <BottomTabNavigation.Screen
         name="Events"
         component={Events}
         options={{
