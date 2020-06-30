@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, View ,Text,SafeAreaView} from "react-native";
 import { createStackNavigator } from '@react-navigation/stack';
-import WelcomeScreen from '../screens/BlogFeed';
+import BlogFeed from '../screens/BlogFeed';
 import BlogScreen from '../screens/BlogScreen';
 
 export default function BlogNavigator(){
@@ -11,7 +11,7 @@ export default function BlogNavigator(){
             <Stack.Navigator>
             <Stack.Screen
           name="Feed"
-          component={WelcomeScreen}
+          component={BlogFeed}
           options={{ title: 'Feed', headerTitleStyle: {
             color: '#000F1E',
           },}}

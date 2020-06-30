@@ -11,7 +11,7 @@ import {
 import BlogPost from "../BlogPost"
 import useBlogSearch from "../useBlogSearch"
 import data from "../SampleData"
-export default function WelcomeScreen({navigation}) {
+export default function BlogFeed({navigation}) {
   const [pageNumber,setPageNumber] = useState(1)
   
   const {
