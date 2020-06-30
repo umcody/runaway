@@ -6,17 +6,25 @@ function ChatObservation(){
     const [queue, setQueue] = useState([0]);
 
     
+    let socket;
 
     useEffect(()=>{
-        let socket = socketioclient("http://localhost:7000");
+        socket = socketioclient("http://localhost:7000");
+        socket.emit("observeQueue","joining General");
         socket.on("updateQueue", queue => {
             console.log(queue);
             setQueue(queue);
         });
-    })
+    },[])
 
     return(
-        <div>{queue[queue.length-1]}</div>
+        <div>{queue.map((room)=>{
+            return(
+                <div>
+                    {room}
+                </div>
+            )
+        })}</div>
     )
 
 }
