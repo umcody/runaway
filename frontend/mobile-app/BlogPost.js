@@ -11,12 +11,8 @@ import {
   } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 const {width,height}= Dimensions.get('window') 
-
+/*Blog post element*/
 export default function BlogPost({title,author,HandlePress}){
-    
-    
-    
-    
     return(
         <SafeAreaView>
         <TouchableOpacity  style ={styles.container} onPress={HandlePress}>
@@ -28,7 +24,7 @@ export default function BlogPost({title,author,HandlePress}){
                     </View>
                 </View>
         </TouchableOpacity>
-        <FontAwesome name="heart-o" size={22} color="black" style ={{paddingLeft:20,paddingTop:5}} />
+        
         </SafeAreaView>
     )
 }

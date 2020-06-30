@@ -16,8 +16,8 @@ export default function useBlogSearch(pageNumber) {
         params:{p:pageNumber},
         cancelToken: new axios.CancelToken(c=> cancel =c)
     }).then(res =>{ 
-        setBlogs(res.data)
-        setHasMore(res.data.length >0)
+        setBlogs([...blogs,...res.data])
+        setHasMore(res.data.length ==20)
         setLoading(false)
     })
     .catch(e=> {
@@ -26,5 +26,5 @@ export default function useBlogSearch(pageNumber) {
         res.sendStatus(500);
         setError(true)
       });
-    },[])
+    },[pageNumber])
     return {loading,error, hasMore,blogs}}
