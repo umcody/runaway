@@ -12,6 +12,7 @@ export default function useBlogSearch(pageNumber) {
     let cancel
     axios({
         method:'GET',
+        /*NOTE USE YOUR OWN IP AND PORT*/
         url:"http://192.168.1.251:7000/api/volunteer/blog/get/" + pageNumber,
         params:{p:pageNumber},
         cancelToken: new axios.CancelToken(c=> cancel =c)

@@ -33,14 +33,13 @@ export default function BlogFeed({navigation}) {
     Also, replace item._id with item.key and remove onEndReached prop of flatlist*/
   return (
     <View style={styles.home}>
-      <Text>{loading && 'Loading...'}</Text>
-      <Text>{error && 'ERROR'}</Text>
-      <FlatList style={styles.listContainer}
+      <FlatList
 	  data={blogs}
 	  renderItem={({ item }) => {
         return(
           <BlogPost title={item.title} key={item._id} author={item.author} 
             HandlePress ={()=> navigation.navigate('Blog',{
+              item:item,
               title:item.title,
               key:item._id,
               author:item.author,
@@ -56,6 +55,8 @@ export default function BlogFeed({navigation}) {
     onEndReached={handleLoadMore}
     onEndReachedThreshold={0.5}
 	/>
+    <Text>{loading && 'Loading...'}</Text>
+    <Text>{error && 'ERROR'}</Text>
     </View>
   );
 }
@@ -75,7 +76,4 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
   },
-  listContainer:{
-    marginTop:20
-  }
 });
