@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import socketioclient from "socket.io-client";
+import {Widget,addResponseMessage, toggleWidget} from "react-chat-widget";
+import 'react-chat-widget/lib/styles.css';
+import "./chat.css";
+
 let socket;
 function ChatObservation() {
 
     const [queue, setQueue] = useState([0]);
     const [roomNum, setRoomNum] = useState(0);
     const [newMessage, setNewMessage] = useState("");
-
 
 
     function socket_joinRoom(room) {
@@ -23,15 +26,24 @@ function ChatObservation() {
             setQueue(queue);
         });
         socket.on("updateMessage", function (message) {
+
             console.log("message recieved");
             setNewMessage(message);
+
+            addResponseMessage(message);
         })
     }, [])
 
     function joinRoom(event) {
         socket_joinRoom(event.target.innerHTML);
+        toggleWidget();
         console.log(event.target)
     }
+    
+    function handleNewUserMessage(){
+        console.log("HANLDED");
+    }
+    function nothing(){}
 
     return (
         <div>
@@ -46,11 +58,19 @@ function ChatObservation() {
 
             <h3>Most Recent Messages</h3>
             <div>{newMessage}</div>
+
+            {/******************************************************/}
+
+            <Widget
+                handleNewUserMessage = {handleNewUserMessage}
+                title={`Room #${roomNum}`}
+                subtitle="lets start"
+                lancher={handleToggle => nothing(handleToggle)}
+            />
+
+            <img src= "/asset/background-deco.png" style = {{position: "absolute", left:"-200px", height:"500px",opacity:"0.8"}}/>
         </div>
-        
-
     )
-
 }
 
 export default ChatObservation;
