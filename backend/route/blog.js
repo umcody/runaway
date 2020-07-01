@@ -27,7 +27,6 @@ module.exports = function(app,mongoose){
         blogModel.find(null, null, { skip: (resPerPage * (page - 1)), limit: resPerPage }, function(err, blogs) {
             if (err) throw new Error(err);
             const count = blogs.length;
-            console.log(count);
 
             // if there are no more blog posts, return no more found
             if (count == 0) {
@@ -38,4 +37,17 @@ module.exports = function(app,mongoose){
         });
 
     })
+
+    app.get("/api/volunteer/blog/get/url/:url", function(req, res) {
+        const url = req.params.url;
+
+        blogModel.findOne({ url: url }, function(err, blog) {
+            if (err) throw new Error(err); 
+            if (!blog) {
+                res.send(`No blog post found from url: ${url}`);
+            } else {
+                res.json({success: "Found blog post", blog});
+            }
+        });
+    });
 }
