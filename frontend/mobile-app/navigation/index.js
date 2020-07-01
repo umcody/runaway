@@ -23,6 +23,7 @@ import Posts from "../screens/PostsDummy";
 import Media from "../screens/MediaDummy";
 import Feels from "../screens/Feels";
 import Disclaimer from "../screens/Disclaimer";
+import BlogNav from "./BlogNav"
 
 const BottomTabNavigation = createBottomTabNavigator();
 const HomeTab = createMaterialTopTabNavigator();
@@ -188,7 +189,7 @@ const HomeTabScreen = () => {
     <HomeTab.Navigator>
       <HomeTab.Screen
         name="Posts"
-        component={Posts}
+        component={BlogNav}
         options={{
           title: "Posts",
         }}
