@@ -27,8 +27,6 @@ export default function BlogFeed({navigation}) {
         console.log(pageNumber)
       }
     }
-
-  console.log(blogs)
   /*NOTE: If not connected to server, replace flatlist prop data ={blogs} with data ={data}
     Also, replace item._id with item.key and remove onEndReached prop of flatlist*/
   return (
@@ -37,9 +35,9 @@ export default function BlogFeed({navigation}) {
 	  data={blogs}
 	  renderItem={({ item }) => {
         return(
-          <BlogPost title={item.title} key={item._id} author={item.author} 
+          <BlogPost title={item.title} key={item._id} author={item.author} url ={item.url}
             HandlePress ={()=> navigation.navigate('Blog',{
-              item:item,
+              url:item.url,
               title:item.title,
               key:item._id,
               author:item.author,
@@ -53,9 +51,9 @@ export default function BlogFeed({navigation}) {
     showsVerticalScrollIndicator={false}
     initialNumToRender={20}
     onEndReached={handleLoadMore}
-    onEndReachedThreshold={0.5}
+    onEndReachedThreshold={5}
 	/>
-    <Text>{loading && 'Loading...'}</Text>
+    
     <Text>{error && 'ERROR'}</Text>
     </View>
   );
