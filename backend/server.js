@@ -11,7 +11,7 @@ const server = http.createServer(app);
 
 //Routes
 const blogRoute = require("./route/blog.js");
-const chatRoute = require("./route/chat/general");
+const chatRoute = require("./route/chat/chat.js");
 
 
 //connect to the database // for now, the password will be in the file
