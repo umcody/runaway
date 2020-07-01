@@ -40,8 +40,8 @@ function ChatObservation() {
         console.log(event.target)
     }
     
-    function handleNewUserMessage(){
-        console.log("HANLDED");
+    function handleNewUserMessage(message){
+        socket.emit("sendMessage",message);
     }
     function nothing(){}
 
@@ -55,9 +55,6 @@ function ChatObservation() {
                     </div>
                 )
             })}</div>
-
-            <h3>Most Recent Messages</h3>
-            <div>{newMessage}</div>
 
             {/******************************************************/}
 

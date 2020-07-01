@@ -13,6 +13,7 @@ function ChatCreation() {
     const [newMessage, setNewMessage] = useState("");
     const [roomNum, setRoomNum] = useState(0);
 
+    //Joins room and updates queue
     function socket_joinRoom(room) {
         setRoomNum(room);
         socket.emit("joinRoom",room);
@@ -22,12 +23,15 @@ function ChatCreation() {
 
     useEffect(() => {
         socket = socketioclient("http://localhost:7000");
-        let random_room = Math.floor((Math.random() * 10) + 1);
-        //join room
+        //generate random #
+        let random_room = Math.floor((Math.random() * 1000) + 1);
+        
         socket_joinRoom(random_room);
 
+        //When the server responds with "updateMessage"
         socket.on("updateMessage", function (message) {
             console.log("message recieved");
+            //This is where u should handle new messages. ("message" var is the new message)
             setNewMessage(message);
         })
         //when exiting the component
@@ -36,6 +40,7 @@ function ChatCreation() {
         }
     },[])
 
+    //When clicked, call sendMessage function to send message to the server
     function sendMessage(event) {
         socket.emit("sendMessage", event.target.value);
     }
