@@ -24,23 +24,22 @@ export default function BlogFeed({navigation}) {
     function handleLoadMore(){
       if(hasMore && blogs.length ==20){
         setPageNumber(pageNumber+1)
-        console.log(pageNumber)
       }
     }
   /*NOTE: If not connected to server, replace flatlist prop data ={blogs} with data ={data}
     Also, replace item._id with item.key and remove onEndReached prop of flatlist*/
   return (
     <View style={styles.home}>
+      <Text>{error && 'Server Connection Error'}</Text>
       <FlatList
 	  data={blogs}
 	  renderItem={({ item }) => {
         return(
-          <BlogPost title={item.title} key={item._id} author={item.author} url ={item.url}
+          <BlogPost title={item.title} key={item._id} author={item.author} url ={item.url} pageNumber={pageNumber}
             HandlePress ={()=> navigation.navigate('Blog',{
+              blog:item,
               url:item.url,
-              title:item.title,
-              key:item._id,
-              author:item.author,
+              pageNumber:pageNumber,
             })}
           />
         )
@@ -54,7 +53,6 @@ export default function BlogFeed({navigation}) {
     onEndReachedThreshold={5}
 	/>
     
-    <Text>{error && 'ERROR'}</Text>
     </View>
   );
 }

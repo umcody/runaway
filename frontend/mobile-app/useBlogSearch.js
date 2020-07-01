@@ -22,10 +22,11 @@ export default function useBlogSearch(pageNumber) {
         setLoading(false)
     })
     .catch(e=> {
+        setError(true)
         if(axios.isCancel(e)) return
         console.log(e);
         res.sendStatus(500);
-        setError(true)
+        
       });
     },[pageNumber])
     return {loading,error, hasMore,blogs}}
