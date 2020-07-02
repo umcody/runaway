@@ -1,6 +1,6 @@
 import React from "react";
 import Navigation from "./navigation/index";
-import ChatSurvey from "./screens/PostChatSurvey";
+import PreChatSurveyModal from "./screens/PreChatSurvey/ModalSurvey";
 
 export default function App() {
   return <Navigation />;
