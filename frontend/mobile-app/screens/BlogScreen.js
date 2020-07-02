@@ -6,19 +6,19 @@ import axios from 'axios';
 
 export default function BlogScreen({navigation,route}) {
   
-  const {blog,pageNumber,url} = route.params;
+  const {blog,url} = route.params;
   /*
-  const [blogs,setBlogs] = useState([])
+  const [blog,setBlog] = useState([])
   
-  axios.get('http://192.168.1.251:7000/api/volunteer/blog/get/' + pageNumber, {
-    params:{p:pageNumber},
+  axios.get('http://192.168.1.251:7000/api/volunteer/blog/get/url/' + url, {
+    params:{url:url},
   })
   .then(function (response) {
-    setBlogs(response)
+    setBlog(response)
   })
   .catch(function (error) {
     console.log(error);
-  },[pageNumber]);
+  },[url]);
 */
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
