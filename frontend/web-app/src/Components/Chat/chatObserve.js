@@ -32,7 +32,7 @@ function ChatObservation() {
 
             addResponseMessage(newMessage);
         })
-    }, [])
+    }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
     function joinRoom(event) {
         socket_joinRoom(event.target.innerHTML);
