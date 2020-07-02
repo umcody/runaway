@@ -9,7 +9,7 @@ let socket;
 
 function ChatCreation() {
 
-    const [queue, setQueue] = useState([]);
+    //const [queue, setQueue] = useState([]);
     const [newMessage, setNewMessage] = useState("");
     const [roomNum, setRoomNum] = useState(0);
 
