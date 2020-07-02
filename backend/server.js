@@ -12,6 +12,7 @@ const server = http.createServer(app);
 //Routes
 const blogRoute = require("./route/blog.js");
 const chatRoute = require("./route/chat/chat.js");
+const chatDataHandler = require("./route/chat.js"); //to be merged into chatRoute soon
 
 //connect to the database // for now, the password will be in the file
 mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://runaway-database:2gn5YAq0BRwLc7tF@runaway-mrvci.mongodb.net/runaway?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
@@ -39,6 +40,7 @@ app.get("/", function(req,res){
 blogRoute(app,mongoose);
 auth(app,mongoose);
 chatRoute(app,mongoose,server);
+chatDataHandler(app,mongoose);
 
 
 app.set("json spaces", 2);
