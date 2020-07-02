@@ -30,7 +30,7 @@ function ChatObservation() {
             console.log("message recieved");
             setNewMessage(message);
 
-            addResponseMessage(message);
+            addResponseMessage(newMessage);
         })
     }, [])
 
@@ -65,7 +65,7 @@ function ChatObservation() {
                 lancher={handleToggle => nothing(handleToggle)}
             />
 
-            <img src= "/asset/background-deco.png" style = {{position: "absolute", left:"-200px", height:"500px",opacity:"0.8"}}/>
+            <img src= "/asset/background-deco.png" alt="graphics" style = {{position: "absolute", left:"-200px", height:"500px",opacity:"0.8"}}/>
         </div>
     )
 }
