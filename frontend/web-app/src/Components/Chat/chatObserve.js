@@ -30,8 +30,11 @@ function ChatObservation() {
             console.log("message recieved");
             setNewMessage(message);
 
-            addResponseMessage(newMessage);
+            addResponseMessage(message);
         })
+
+        {/* ToDo: When volunteer closes chat, socket.disconnect with data showing the volunteer is volunteer */}
+
     }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
     function joinRoom(event) {
