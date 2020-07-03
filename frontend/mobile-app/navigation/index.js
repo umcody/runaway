@@ -23,7 +23,9 @@ import Posts from "../screens/PostsDummy";
 import Media from "../screens/MediaDummy";
 import Feels from "../screens/Feels";
 import Disclaimer from "../screens/Disclaimer";
-import BlogNav from "./BlogNav"
+import BlogFeed from "../screens/BlogFeed";
+import BlogNav from "../navigation/BlogNav"
+import Res from "../screens/ResourcesDummy"
 
 const BottomTabNavigation = createBottomTabNavigator();
 const HomeTab = createMaterialTopTabNavigator();
@@ -68,6 +70,16 @@ const BottomTab = ({ navigation }) => {
           tabBarLabel: "Chat",
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="chat-bubble-outline" color={color} size={25} />
+          ),
+        }}
+      />
+      <BottomTabNavigation.Screen
+        name="Resources"
+        component={Res}
+        options={{
+          tabBarLabel: "Resources",
+          tabBarIcon: ({ color }) => (
+            <Feather name="book-open" color={color} size={25} />
           ),
         }}
       />

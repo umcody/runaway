@@ -12,7 +12,7 @@ export default function BlogNavigator(){
             <Stack.Screen
           name="Feed"
           component={BlogFeed}
-          options={{ title: 'Feed', headerTitleStyle: {
+          options={{ title: 'Blogs', headerTitleStyle: {
             color: '#000F1E',
           },}}
         />
