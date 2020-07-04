@@ -30,7 +30,7 @@ function ChatObservation() {
             addResponseMessage(message);
         })
 
-        {/* ToDo: When volunteer closes chat, socket.disconnect with data showing the volunteer is volunteer */}
+        /* ToDo: When volunteer closes chat, socket.disconnect with data showing the volunteer is volunteer */
 
     }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
