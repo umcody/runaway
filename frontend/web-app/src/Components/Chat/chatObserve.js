@@ -9,7 +9,6 @@ function ChatObservation() {
 
     const [queue, setQueue] = useState([0]);
     const [roomNum, setRoomNum] = useState(0);
-    const [newMessage, setNewMessage] = useState("");
 
 
     function socket_joinRoom(room) {
@@ -28,12 +27,10 @@ function ChatObservation() {
         socket.on("updateMessage", function (message) {
 
             console.log("message recieved");
-            setNewMessage(message);
-
             addResponseMessage(message);
         })
 
-        {/* ToDo: When volunteer closes chat, socket.disconnect with data showing the volunteer is volunteer */}
+        /* ToDo: When volunteer closes chat, socket.disconnect with data showing the volunteer is volunteer */
 
     }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
@@ -46,6 +43,7 @@ function ChatObservation() {
     function handleNewUserMessage(message){
         socket.emit("sendMessage",message);
     }
+    
     function nothing(){}
 
     return (
