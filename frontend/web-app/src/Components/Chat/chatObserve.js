@@ -43,6 +43,8 @@ function ChatObservation() {
     function handleNewUserMessage(message){
         socket.emit("sendMessage",message);
     }
+    
+    function nothing(){}
 
     return (
         <div>
