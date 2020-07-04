@@ -6,8 +6,8 @@ class Register extends React.Component{
 
     constructor(props) {
         super(props)
-        this.state = { name: '',
-                       username: '',
+        this.state = { username: '',
+                       email: '',
                        password: '' } 
 
         //bind 'this'
@@ -27,17 +27,17 @@ class Register extends React.Component{
     }
 
     handleClick(event){
-        console.log('Name');
-        console.log(this.state.name);
-        console.log('Username');
+        console.log('username');
         console.log(this.state.username);
+        console.log('email');
+        console.log(this.state.email);
         console.log('Password');
         console.log(this.state.password);
 
         // Made an object so it can be passed into axios
         const credentials = {
-            name: this.state.name,
             username: this.state.username,
+            email: this.state.email,
             password: this.state.password
         }
 
@@ -49,10 +49,10 @@ class Register extends React.Component{
         return(
             <div>
                 <label>
-                Name
+                Username
                 <input
                     type='text'
-                    name='name'
+                    name='username'
                     value={this.state.title}
                     onChange={this.handleChange}
                 />
@@ -60,10 +60,10 @@ class Register extends React.Component{
                 <br></br>
                 <br></br>
                 <label>
-                Username
+                Email
                 <input
                     type='text'
-                    name='username'
+                    name='email'
                     value={this.state.title}
                     onChange={this.handleChange}
                 />
