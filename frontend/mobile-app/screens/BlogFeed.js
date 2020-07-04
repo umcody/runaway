@@ -9,7 +9,7 @@ import {
   Text
 } from "react-native";
 import BlogPost from "../BlogPost"
-import useBlogSearch from "../useBlogSearch"
+import useBlogPage from "../useBlogPage"
 import data from "../SampleData"
 export default function BlogFeed({navigation}) {
   const [pageNumber,setPageNumber] = useState(1)
@@ -19,12 +19,11 @@ export default function BlogFeed({navigation}) {
     hasMore,
     loading,
     error
-    }  = useBlogSearch(pageNumber)
+    }  = useBlogPage(pageNumber)
     
     function handleLoadMore(){
       if(hasMore && blogs.length ==20){
         setPageNumber(pageNumber+1)
-        console.log(pageNumber)
       }
     }
   /*NOTE: If not connected to server, replace flatlist prop data ={blogs} with data ={data}
@@ -37,10 +36,8 @@ export default function BlogFeed({navigation}) {
         return(
           <BlogPost title={item.title} key={item._id} author={item.author} url ={item.url}
             HandlePress ={()=> navigation.navigate('Blog',{
+              
               url:item.url,
-              title:item.title,
-              key:item._id,
-              author:item.author,
             })}
           />
         )
@@ -53,8 +50,7 @@ export default function BlogFeed({navigation}) {
     onEndReached={handleLoadMore}
     onEndReachedThreshold={5}
 	/>
-    
-    <Text>{error && 'ERROR'}</Text>
+    <Text>{error && 'Server Connection Error'}</Text>
     </View>
   );
 }

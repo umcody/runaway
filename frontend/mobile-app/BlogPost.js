@@ -32,7 +32,7 @@ export default function BlogPost({title,author,HandlePress}){
 const styles = StyleSheet.create({
     container:{
         marginTop:50,
-        borderRadius:30,
+        borderRadius:10,
         height:height/3,
         width:width*.9,
         borderWidth:1,
