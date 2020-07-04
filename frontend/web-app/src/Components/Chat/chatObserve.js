@@ -9,7 +9,6 @@ function ChatObservation() {
 
     const [queue, setQueue] = useState([0]);
     const [roomNum, setRoomNum] = useState(0);
-    const [newMessage, setNewMessage] = useState("");
 
 
     function socket_joinRoom(room) {
@@ -28,8 +27,6 @@ function ChatObservation() {
         socket.on("updateMessage", function (message) {
 
             console.log("message recieved");
-            setNewMessage(message);
-
             addResponseMessage(message);
         })
 
@@ -46,7 +43,6 @@ function ChatObservation() {
     function handleNewUserMessage(message){
         socket.emit("sendMessage",message);
     }
-    function nothing(){}
 
     return (
         <div>
