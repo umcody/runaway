@@ -36,17 +36,18 @@ const HotlineStack = createStackNavigator();
 const BottomTab = ({ navigation }) => {
   return (
     <BottomTabNavigation.Navigator
-      barStyle={{
-        backgroundColor: "white",
-        paddingBottom: 10,
-        borderTopWidth: 2,
-        borderTopColor: "#ACDAFF",
-      }}
+      
       tabBarOptions={{
         showLabel: false,
+        inactiveTintColor:"#ACDAFF",
+        activeTintColor:"#2E5F85",
+        style:{
+          backgroundColor: "white",
+          height:60,
+          borderTopColor: "#ACDAFF",
+        }
       }}
-      inactiveColor="#ACDAFF"
-      activeColor="#2E5F85"
+      
     >
       <BottomTabNavigation.Screen
         name="Feed"
@@ -57,7 +58,7 @@ const BottomTab = ({ navigation }) => {
             <MaterialCommunityIcons
               name="home-outline"
               color={color}
-              size={28}
+              size={33}
             />
           ),
         }}
@@ -69,7 +70,7 @@ const BottomTab = ({ navigation }) => {
           tabBarVisible: false,
           tabBarLabel: "Chat",
           tabBarIcon: ({ color }) => (
-            <MaterialIcons name="chat-bubble-outline" color={color} size={25} />
+            <MaterialIcons name="chat-bubble-outline" color={color} size={28} />
           ),
         }}
       />
@@ -79,7 +80,7 @@ const BottomTab = ({ navigation }) => {
         options={{
           tabBarLabel: "Resources",
           tabBarIcon: ({ color }) => (
-            <Feather name="book-open" color={color} size={25} />
+            <Feather name="book-open" color={color} size={28} />
           ),
         }}
       />
@@ -89,7 +90,7 @@ const BottomTab = ({ navigation }) => {
         options={{
           tabBarLabel: "Events",
           tabBarIcon: ({ color }) => (
-            <Feather name="calendar" color={color} size={25} />
+            <Feather name="calendar" color={color} size={28} />
           ),
         }}
       />
@@ -177,10 +178,8 @@ const FeedScreen = ({ navigation }) => {
         component={HomeTabScreen}
         options={{
           headerTitleAlign: "center",
-          headerTitleStyle: {
-            fontSize: 30,
-            color: "#2E5F85",
-          },
+          headerTitleStyle:styles.headerTitleStyle,
+          headerStyle: styles.headerStyle,
 
           headerRight: () => (
             <AntDesign
@@ -198,7 +197,10 @@ const FeedScreen = ({ navigation }) => {
 };
 const HomeTabScreen = () => {
   return (
-    <HomeTab.Navigator>
+    <HomeTab.Navigator  tabBarOptions={{
+      indicatorStyle:{backgroundColor:"#ACDAFF"},
+      labelStyle:{color:"#2E5F85"}
+      }}>
       <HomeTab.Screen
         name="Posts"
         component={BlogNav}
@@ -268,15 +270,15 @@ const styles = StyleSheet.create({
     fontFamily: "System",
     fontStyle: "normal",
     fontWeight: "normal",
-    fontSize: 24,
-    lineHeight: 28,
-    textAlign: "center",
+    fontSize: windowW*0.08,
+    lineHeight: 30,
     color: "#2E5F85",
   },
   headerStyle: {
     borderBottomWidth: 0,
     shadowColor: "transparent",
     backgroundColor: "#fff",
+    height:windowH/10,
   },
   profilePic: {
     borderLeftWidth: 10,
