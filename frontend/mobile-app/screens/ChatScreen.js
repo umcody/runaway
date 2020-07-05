@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
+import socketioclient from "socket.io-client";
 import {
   GiftedChat,
   InputToolbar,
@@ -9,6 +10,7 @@ import { StyleSheet, View, TouchableOpacity, Modal, Text } from "react-native";
 import { AntDesign, FontAwesome5, Feather } from "@expo/vector-icons";
 
 export default function ChatScreen({ navigation }) {
+
   navigation.setOptions({
     headerRight: () => (
       <TouchableOpacity
@@ -27,6 +29,8 @@ export default function ChatScreen({ navigation }) {
       </TouchableOpacity>
     ),
   });
+
+
   function renderBubble(props) {
     return (
       <Bubble
@@ -90,9 +94,52 @@ export default function ChatScreen({ navigation }) {
     );
   };
 
+
+  //const [queue, setQueue] = useState([]);
+  const [newMessage, setNewMessage] = useState("");
+  const [roomNum, setRoomNum] = useState(0);
   const [messages, setMessages] = useState([]);
-  const [text, setText] = useState("");
+  const [queue, setQueue] = useState([]);
+  const [modalVisible, setModalVisible] = useState(true);
+  const [text, setText] = useState('');
+
+  //Joins room and updates queue
+  function socket_joinRoom(room) {
+    setRoomNum(room);
+    socket.emit("joinRoom", room);
+    socket.emit("pushQueue", room);
+  }
+
+
   useEffect(() => {
+    socket = socketioclient("http://127.0.0.1:7000");
+    //generate random #
+    let random_room = Math.floor((Math.random() * 1000) + 1);
+
+    socket_joinRoom(random_room);
+
+    //When the server responds with "updateMessage"
+    socket.on("updateMessage", function (message) {
+      console.log("message recieved");
+
+      setMessages((previousMessages) => {
+        temp = [{
+          _id: 1,
+          text:message,
+          createdAt: new Date(),
+          user: {
+            _id: 2,
+            name: "React Native",
+            avatar: require("../assets/exampleAvatar.png"),
+          }
+        }];
+        GiftedChat.append(previousMessages, messages)
+      });
+
+      //This is where u should handle new messages. ("message" var is the new message)
+      setNewMessage(message);
+    });
+
     setMessages([
       {
         _id: 1,
@@ -120,19 +167,32 @@ export default function ChatScreen({ navigation }) {
         },
       },
     ]);
-  }, []);
+    //when exiting the component
+    return () => {
+      socket.disconnect();
+    }
+  }, [])
 
+  //When clicked, call sendMessage function to send message to the server
+  function sendMessage(message) {
+    socket.emit("sendMessage", message);
+  }
+
+// ** GIFTEDCHAT.APPEND NOT WORKING!
   const onSend = useCallback((messages = []) => {
-    setMessages((previousMessages) =>
-      GiftedChat.append(previousMessages, messages)
-    );
+    setMessages((previousMessages) => {
+      console.log(previousMessages);
+      GiftedChat.append(previousMessages, messages);
+      sendMessage(messages[0].text);
+      console.log("message sent!");
+      console.log("////////////////");
+    });
   }, []);
 
   const onQuickReply = (quickReply) => {
     setText(quickReply.values.title);
   };
 
-  const [modalVisible, setModalVisible] = useState(true);
 
   return (
     <>
@@ -140,9 +200,7 @@ export default function ChatScreen({ navigation }) {
         text={text}
         onInputTextChanged={setText}
         messages={messages}
-        quickReply={messages.quickReplies}
         onSend={(messages) => onSend(messages)}
-        onQuickReply={(quickReply) => onQuickReply(quickReply)}
         renderInputToolbar={(props) => customInputToolbar(props)}
         placeholder="New Message"
         placeholderTextColor="#2E5F85"
