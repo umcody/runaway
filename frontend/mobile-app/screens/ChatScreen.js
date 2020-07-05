@@ -7,8 +7,48 @@ import {
 } from "react-native-gifted-chat";
 import { StyleSheet, View, TouchableOpacity, Modal, Text } from "react-native";
 import { AntDesign, FontAwesome5, Feather } from "@expo/vector-icons";
+import socketioclient from "socket.io-client";
+
 
 export default function ChatScreen({ navigation }) {
+    //trying to set up socket stuff here
+    const [queue, setQueue] = useState([]);
+    const [messages, setMessages] = useState("");
+    const [roomNum, setRoomNum] = useState(0);
+  ​
+    //Joins room and updates queue
+    function socket_joinRoom(room) {
+        setRoomNum(room);
+        socket.emit("joinRoom",room);
+        socket.emit("pushQueue",room);
+    }
+
+    useEffect(() => {
+      socket = socketioclient("http://localhost:7000");
+      //generate random #
+      let random_room = Math.floor((Math.random() * 1000) + 1);
+
+      socket_joinRoom(random_room);
+  ​
+      //When the server responds with "updateMessage"
+      socket.on("updateMessage", function (message) {
+          console.log("message recieved");
+          //This is where u should handle new messages. ("message" var is the new message)
+          setNewMessage(message);
+      })
+      //when exiting the component
+      return () => {
+          socket.disconnect();
+      }
+  },[])
+
+  //When clicked, call sendMessage function to send message to the server
+  function sendMessage(event) {
+    socket.emit("sendMessage", event.target.value);
+  }
+
+      
+    
   navigation.setOptions({
     headerRight: () => (
       <TouchableOpacity
@@ -90,7 +130,7 @@ export default function ChatScreen({ navigation }) {
     );
   };
 
-  const [messages, setMessages] = useState([]);
+  //const [messages, setMessages] = useState([]);
   const [text, setText] = useState("");
   useEffect(() => {
     setMessages([
