@@ -122,19 +122,20 @@ export default function ChatScreen({ navigation }) {
     socket.on("updateMessage", function (message) {
       console.log("message recieved");
 
-      setMessages((previousMessages) => {
-        temp = [{
-          _id: 1,
-          text:message,
-          createdAt: new Date(),
-          user: {
-            _id: 2,
-            name: "React Native",
-            avatar: require("../assets/exampleAvatar.png"),
-          }
-        }];
-        GiftedChat.append(previousMessages, messages)
-      });
+      let temp = [{
+        _id: 1,
+        text:message,
+        createdAt: new Date(),
+        user: {
+          _id: 2,
+          name: "React Native",
+          avatar: require("../assets/exampleAvatar.png"),
+        }
+      }];
+
+      setMessages((previousMessages) => 
+        GiftedChat.append(previousMessages, temp)
+      );
 
       //This is where u should handle new messages. ("message" var is the new message)
       setNewMessage(message);
@@ -180,19 +181,24 @@ export default function ChatScreen({ navigation }) {
 
 // ** GIFTEDCHAT.APPEND NOT WORKING!
   const onSend = useCallback((messages = []) => {
-    setMessages((previousMessages) => {
-      console.log(previousMessages);
-      GiftedChat.append(previousMessages, messages);
-      sendMessage(messages[0].text);
-      console.log("message sent!");
-      console.log("////////////////");
-    });
+    setMessages((previousMessages) => 
+      GiftedChat.append(previousMessages, messages)
+    );
+    sendMessage(messages[0].text)
   }, []);
 
   const onQuickReply = (quickReply) => {
     setText(quickReply.values.title);
   };
 
+  const setQuickReply = ()=>{
+    console.log("clicked!");
+    if(messages.quickReplies){
+      return messages.quickReplies;
+    }else{
+      return null
+    }
+  }
 
   return (
     <>
@@ -200,6 +206,8 @@ export default function ChatScreen({ navigation }) {
         text={text}
         onInputTextChanged={setText}
         messages={messages}
+        quickReply={setQuickReply} //NOT WORKING FOR NOW...
+        onQuickReply={(quickReply) => onQuickReply(quickReply)}
         onSend={(messages) => onSend(messages)}
         renderInputToolbar={(props) => customInputToolbar(props)}
         placeholder="New Message"
