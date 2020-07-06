@@ -27,6 +27,19 @@ import BlogFeed from "../screens/BlogFeed";
 import BlogNav from "../navigation/BlogNav"
 import Res from "../screens/ResourcesDummy"
 
+import HomeScreen from "../screens/ResourceParts/Home";
+import GeneralResources from "../screens/ResourceParts/generalResources";
+import LGBTQIA from "../screens/ResourceParts/LGBTQIA";
+import KidsAndTeens from "../screens/ResourceParts/kidsAndTeens";
+import SubstanceRelatedDisorders from "../screens/ResourceParts/substanceRelatedDisorders";
+import MoodRelatedDisorders from "../screens/ResourceParts/moodRelatedDisorders";
+import AnxietyAndTraumaRelatedDisorders from "../screens/ResourceParts/anxietyAndTraumaRelatedDisorders";
+import PsychoticDisorders from "../screens/ResourceParts/psychoticDisorders";
+import DeliberateSelfHarm from "../screens/ResourceParts/deliberateSelfHarm";
+import EatingDisorders from "../screens/ResourceParts/eatingDisorders";
+import DomesticAndSexualViolence from "../screens/ResourceParts/domesticAndSexualViolence";
+import Browser from "../screens/ResourceParts/Browser";
+
 const BottomTabNavigation = createBottomTabNavigator();
 const HomeTab = createMaterialTopTabNavigator();
 const HomeStack = createStackNavigator();
@@ -76,7 +89,7 @@ const BottomTab = ({ navigation }) => {
       />
       <BottomTabNavigation.Screen
         name="Resources"
-        component={Res}
+        component={HomeScreen}
         options={{
           tabBarLabel: "Resources",
           tabBarIcon: ({ color }) => (
