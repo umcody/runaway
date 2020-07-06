@@ -6,8 +6,7 @@ import {
     Dimensions,
     Image,
     Text,
-    ImageBackground,
-    SafeAreaView
+    SafeAreaView,
   } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 const {width,height}= Dimensions.get('window') 
@@ -15,7 +14,7 @@ const {width,height}= Dimensions.get('window')
 export default function BlogPost({title,author,HandlePress}){
     return(
         <SafeAreaView>
-        <TouchableOpacity  style ={styles.container} onPress={HandlePress}>
+        <TouchableOpacity activeOpacity={.95} style ={styles.container} onPress={HandlePress}>
         <Image source={require("./images/sample.jpg")} style={styles.image} imageStyle={{ borderRadius: 30 }}/>
                 <View style = {styles.footer}>
                     <Text style = {styles.title}>{title}</Text>
@@ -24,7 +23,6 @@ export default function BlogPost({title,author,HandlePress}){
                     </View>
                 </View>
         </TouchableOpacity>
-        
         </SafeAreaView>
     )
 }

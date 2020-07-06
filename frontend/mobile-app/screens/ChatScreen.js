@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
+import socketioclient from "socket.io-client";
 import {
   GiftedChat,
   InputToolbar,
@@ -9,6 +10,7 @@ import { StyleSheet, View, TouchableOpacity, Modal, Text } from "react-native";
 import { AntDesign, FontAwesome5, Feather } from "@expo/vector-icons";
 
 export default function ChatScreen({ navigation }) {
+
   navigation.setOptions({
     headerRight: () => (
       <TouchableOpacity
@@ -27,6 +29,8 @@ export default function ChatScreen({ navigation }) {
       </TouchableOpacity>
     ),
   });
+
+
   function renderBubble(props) {
     return (
       <Bubble
@@ -47,13 +51,13 @@ export default function ChatScreen({ navigation }) {
             borderTopRightRadius: 30,
             borderBottomRightRadius: 30,
             borderBottomLeftRadius: 0,
-            padding: 10,
+            padding: 8,
             marginBottom: 5,
           },
           right: {
             backgroundColor: "#E3F1FC",
-
-            padding: 10,
+            marginRight:20,
+            padding: 8,
             borderTopLeftRadius: 30,
             borderTopRightRadius: 30,
             borderBottomRightRadius: 0,
@@ -82,7 +86,7 @@ export default function ChatScreen({ navigation }) {
           paddingBottom: 10,
           backgroundColor: "#fff",
           alignItems: "center",
-          justifyContent: "flex-end",
+          justifyContent: "center",
           borderTopColor: "#E3F1FC",
         }}
         primaryStyle={{ width: 330 }}
@@ -90,9 +94,53 @@ export default function ChatScreen({ navigation }) {
     );
   };
 
+
+  //const [queue, setQueue] = useState([]);
+  const [newMessage, setNewMessage] = useState("");
+  const [roomNum, setRoomNum] = useState(0);
   const [messages, setMessages] = useState([]);
-  const [text, setText] = useState("");
+  const [queue, setQueue] = useState([]);
+  const [modalVisible, setModalVisible] = useState(true);
+  const [text, setText] = useState('');
+
+  //Joins room and updates queue
+  function socket_joinRoom(room) {
+    setRoomNum(room);
+    socket.emit("joinRoom", room);
+    socket.emit("pushQueue", room);
+  }
+
+
   useEffect(() => {
+    socket = socketioclient("http://127.0.0.1:7000");
+    //generate random #
+    let random_room = Math.floor((Math.random() * 1000) + 1);
+
+    socket_joinRoom(random_room);
+
+    //When the server responds with "updateMessage"
+    socket.on("updateMessage", function (message) {
+      console.log("message recieved");
+
+      let temp = [{
+        _id: 1,
+        text:message,
+        createdAt: new Date(),
+        user: {
+          _id: 2,
+          name: "React Native",
+          avatar: require("../assets/exampleAvatar.png"),
+        }
+      }];
+
+      setMessages((previousMessages) => 
+        GiftedChat.append(previousMessages, temp)
+      );
+
+      //This is where u should handle new messages. ("message" var is the new message)
+      setNewMessage(message);
+    });
+
     setMessages([
       {
         _id: 1,
@@ -120,36 +168,53 @@ export default function ChatScreen({ navigation }) {
         },
       },
     ]);
-  }, []);
+    //when exiting the component
+    return () => {
+      socket.disconnect();
+    }
+  }, [])
 
+  //When clicked, call sendMessage function to send message to the server
+  function sendMessage(message) {
+    socket.emit("sendMessage", message);
+  }
+
+// ** GIFTEDCHAT.APPEND NOT WORKING!
   const onSend = useCallback((messages = []) => {
-    setMessages((previousMessages) =>
+    setMessages((previousMessages) => 
       GiftedChat.append(previousMessages, messages)
     );
+    sendMessage(messages[0].text)
   }, []);
 
   const onQuickReply = (quickReply) => {
     setText(quickReply.values.title);
   };
 
-  const [modalVisible, setModalVisible] = useState(true);
+  const setQuickReply = ()=>{
+    console.log("clicked!");
+    if(messages.quickReplies){
+      return messages.quickReplies;
+    }else{
+      return null
+    }
+  }
 
   return (
-    <>
+    <View style={{ flex:1, backgroundColor: "#fff" }}>
       <GiftedChat
         text={text}
         onInputTextChanged={setText}
         messages={messages}
-        quickReply={messages.quickReplies}
-        onSend={(messages) => onSend(messages)}
+        quickReply={setQuickReply} //NOT WORKING FOR NOW...
         onQuickReply={(quickReply) => onQuickReply(quickReply)}
+        onSend={(messages) => onSend(messages)}
         renderInputToolbar={(props) => customInputToolbar(props)}
         placeholder="New Message"
         placeholderTextColor="#2E5F85"
         textInputStyle={styles.composer}
-        minInputToolbarHeight={50}
+        minInputToolbarHeight={60}
         messagesContainerStyle={{
-          paddingBottom: 15,
           backgroundColor: "#fff",
         }}
         user={{
@@ -159,7 +224,6 @@ export default function ChatScreen({ navigation }) {
         renderSend={renderSend}
         listViewProps={{
           style: {
-            paddingBottom: 44,
             backgroundColor: "white",
           },
         }}
@@ -173,7 +237,7 @@ export default function ChatScreen({ navigation }) {
           },
         }}
       />
-    </>
+    </View>
   );
 }
 const styles = StyleSheet.create({
@@ -182,10 +246,11 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     borderWidth: 5,
     borderColor: "#E3F1FC",
-    paddingLeft: 20,
+    paddingLeft: 10,
     paddingRight: 20,
     color: "#2E5F85",
-    minHeight: 30,
+    minHeight: 35,
+    alignItems: 'center'
   },
   sendingContainer: {
     justifyContent: "center",

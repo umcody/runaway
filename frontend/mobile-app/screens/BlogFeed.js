@@ -2,9 +2,7 @@ import React,{useState} from "react";
 import {
   StyleSheet,
   View,
-  TouchableOpacity,
   Dimensions,
-  Image,
   FlatList,
   Text
 } from "react-native";
@@ -42,7 +40,6 @@ export default function BlogFeed({navigation}) {
           />
         )
     }}
-    
     keyExtractor={item => item._id}
     showsHorizontalScrollIndicator={false}
     showsVerticalScrollIndicator={false}
