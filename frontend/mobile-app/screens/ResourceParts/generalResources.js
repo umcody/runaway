@@ -1,4 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
+//import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import {
     StyleSheet,
@@ -14,7 +14,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { WebView } from 'react-native-webview';
 
-export default function LGBTQIA({ navigation }) {
+export default function GeneralResources({ navigation }) {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <SafeAreaView style={styles.container}>
@@ -24,38 +24,29 @@ export default function LGBTQIA({ navigation }) {
                 <View>
                     <TouchableOpacity
                         style={styles.emergencyButton}
-                        onPress={() => {navigation.navigate('Browser', { page: 'https://lgbtqia.ucdavis.edu/educated/ally-tips' })
+                        onPress={() => {navigation.navigate('Browser', { page: 'https://www.mhanational.org/' })
                     }}
                     >
-                        <Text style={styles.emergencyText}>LGBTQIA Ally Tips</Text>
+                        <Text style={styles.emergencyText}>Mental Health America</Text>
                     </TouchableOpacity>
                 </View>
 
                 <View>
                     <TouchableOpacity
                         style={styles.emergencyButton}
-                        onPress={() => {navigation.navigate('Browser', { page: 'https://avp.org/' })
+                        onPress={() => {navigation.navigate('Browser', { page: 'https://www.today.com/news/good-news' })
                     }}
                     >
-                        <Text style={styles.emergencyText}>Anti-Violence Project</Text>
+                        <Text style={styles.emergencyText}>Good News</Text>
                     </TouchableOpacity>
                 </View>
                 <View>
                     <TouchableOpacity
                         style={styles.emergencyButton}
-                        onPress={() => {navigation.navigate('Browser', { page: 'https://www.mhanational.org/bullying-lgbt-youth' })
+                        onPress={() => {navigation.navigate('Browser', { page: 'https://theaggie.org/2020/04/17/a-list-of-heartwarming-things-happening-in-the-world-right-now/' })
                     }}
                     >
-                        <Text style={styles.emergencyText}>Bullying: LGBT Youth</Text>
-                    </TouchableOpacity>
-                </View>
-                <View>
-                    <TouchableOpacity
-                        style={styles.emergencyButton}
-                        onPress={() => {navigation.navigate('Browser', { page: 'https://lgbtqia.ucdavis.edu/trans-101' })
-                    }}
-                    >
-                        <Text style={styles.emergencyText}>Trans 101</Text>
+                        <Text style={styles.emergencyText}>A list of heartwarming things happening in the world right now</Text>
                     </TouchableOpacity>
                 </View>
 

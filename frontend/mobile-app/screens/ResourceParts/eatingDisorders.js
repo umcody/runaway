@@ -1,4 +1,4 @@
-import { StatusBar } from "expo-status-bar";
+//import { StatusBar } from "expo-status-bar";
 import React from "react";
 import {
   StyleSheet,
@@ -24,12 +24,12 @@ export default function KidsAndTeens({ navigation }) {
               style={styles.emergencyButton}
               onPress={() => {
                 navigation.navigate("Browser", {
-                  page: "https://www.thehotline.org/resources/victims-and-survivors/",
+                  page: "https://www.stanfordchildrens.org/en/topic/default?id=understanding-eating-disorders-1-4528",
                 });
               }}
             >
               <Text style={styles.emergencyText}>
-              For Victims & Survivors
+              Understanding Eating Disorders
               </Text>
             </TouchableOpacity>
           </View>
@@ -38,12 +38,12 @@ export default function KidsAndTeens({ navigation }) {
               style={styles.emergencyButton}
               onPress={() => {
                 navigation.navigate("Browser", {
-                  page: "https://www.helpguide.org/articles/abuse/getting-out-of-an-abusive-relationship.htm",
+                  page: "https://ontario.cmha.ca/documents/understanding-and-finding-help-for-eating-disorders/",
                 });
               }}
             >
               <Text style={styles.emergencyText}>
-              How to Get Out of an Abusive Relationship
+              Understanding and Finding Help for Eating Disorders
 
               </Text>
             </TouchableOpacity>

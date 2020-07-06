@@ -30,18 +30,18 @@ const HomeStack = createStackNavigator();
 const ChatStack = createStackNavigator();
 const HotlineStack = createStackNavigator();
 
-import HomeScreen from "./screens/Home";
-import GeneralResources from "./screens/generalResources";
-import LGBTQIA from "./screens/LGBTQIA";
-import KidsAndTeens from "./screens/kidsAndTeens";
-import SubstanceRelatedDisorders from "./screens/substanceRelatedDisorders";
-import MoodRelatedDisorders from "./screens/moodRelatedDisorders";
-import AnxietyAndTraumaRelatedDisorders from "./screens/anxietyAndTraumaRelatedDisorders";
-import PsychoticDisorders from "./screens/psychoticDisorders";
-import DeliberateSelfHarm from "./screens/deliberateSelfHarm";
-import EatingDisorders from "./screens/eatingDisorders";
-import DomesticAndSexualViolence from "./screens/domesticAndSexualViolence";
-import Browser from "./screens/Browser";
+import HomeScreen from "../screens/ResourceParts/Home";
+import GeneralResources from "../screens/ResourceParts/generalResources";
+import LGBTQIA from "../screens/ResourceParts/LGBTQIA";
+import KidsAndTeens from "../screens/ResourceParts/kidsAndTeens";
+import SubstanceRelatedDisorders from "../screens/ResourceParts/substanceRelatedDisorders";
+import MoodRelatedDisorders from "../screens/ResourceParts/moodRelatedDisorders";
+import AnxietyAndTraumaRelatedDisorders from "../screens/ResourceParts/anxietyAndTraumaRelatedDisorders";
+import PsychoticDisorders from "../screens/ResourceParts/psychoticDisorders";
+import DeliberateSelfHarm from "../screens/ResourceParts/deliberateSelfHarm";
+import EatingDisorders from "../screens/ResourceParts/eatingDisorders";
+import DomesticAndSexualViolence from "../screens/ResourceParts/domesticAndSexualViolence";
+import Browser from "../screens/ResourceParts/Browser";
 
 const BottomTab = ({ navigation }) => {
   return (

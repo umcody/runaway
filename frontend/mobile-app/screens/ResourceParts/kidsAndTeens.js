@@ -1,4 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
+//import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import {
     StyleSheet,
@@ -24,30 +24,29 @@ export default function KidsAndTeens({ navigation }) {
                 <View>
                     <TouchableOpacity
                         style={styles.emergencyButton}
-                        onPress={() => {navigation.navigate('Browser', { page: 'https://www.leva.co.nz/wp-content/uploads/2014/06/LeVa-Depression_factsheet2019.pdf' })
+                        onPress={() => {navigation.navigate('Browser', { page: 'https://www.mhanational.org/what-every-child-needs-good-mental-health' })
                     }}
                     >
-                        <Text style={styles.emergencyText}>Understanding depression</Text>
+                        <Text style={styles.emergencyText}>What Every Child Needs For Good Mental Health</Text>
                     </TouchableOpacity>
                 </View>
 
                 <View>
                     <TouchableOpacity
                         style={styles.emergencyButton}
-                        onPress={() => {navigation.navigate('Browser', { page: 'https://www.mentalwealth.nz/article/anxiety/' })
+                        onPress={() => {navigation.navigate('Browser', { page: 'https://childmind.org/article/youre-worried-suicide/' })
                     }}
                     >
-                        <Text style={styles.emergencyText}>Understanding the impact of anxiety
-</Text>
+                        <Text style={styles.emergencyText}>A parent's guide to helping a child in distress</Text>
                     </TouchableOpacity>
                 </View>
                 <View>
                     <TouchableOpacity
                         style={styles.emergencyButton}
-                        onPress={() => {navigation.navigate('Browser', { page: 'https://www.obad.ca/' })
+                        onPress={() => {navigation.navigate('Browser', { page: 'https://www.mhanational.org/back-school' })
                     }}
                     >
-                        <Text style={styles.emergencyText}>Organization for Bipolar Affective Disorders</Text>
+                        <Text style={styles.emergencyText}>Back To School</Text>
                     </TouchableOpacity>
                 </View>
 

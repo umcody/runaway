@@ -1,4 +1,4 @@
-import { StatusBar } from "expo-status-bar";
+//import { StatusBar } from "expo-status-bar";
 import React from "react";
 import {
   StyleSheet,
@@ -24,27 +24,13 @@ export default function KidsAndTeens({ navigation }) {
               style={styles.emergencyButton}
               onPress={() => {
                 navigation.navigate("Browser", {
-                  page: "https://www.stanfordchildrens.org/en/topic/default?id=understanding-eating-disorders-1-4528",
+                  page: "https://www.samhsa.gov/",
                 });
               }}
             >
               <Text style={styles.emergencyText}>
-              Understanding Eating Disorders
-              </Text>
-            </TouchableOpacity>
-          </View>
-          <View>
-            <TouchableOpacity
-              style={styles.emergencyButton}
-              onPress={() => {
-                navigation.navigate("Browser", {
-                  page: "https://ontario.cmha.ca/documents/understanding-and-finding-help-for-eating-disorders/",
-                });
-              }}
-            >
-              <Text style={styles.emergencyText}>
-              Understanding and Finding Help for Eating Disorders
-
+                Substance Abuse and Mental Health Services Administration
+                (SAMHSA)
               </Text>
             </TouchableOpacity>
           </View>
@@ -61,15 +47,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   emergencyButton: {
-    backgroundColor: "white",
+    backgroundColor: "#FF9EDA",
     borderRadius: 30,
-    width: 160,
-    margin: 15,
-    height: 100,
+    width: 335,
+    margin: 20,
+    height: 150,
     justifyContent: "center",
-    borderColor: '#FF9EDA',
-    borderWidth: 1,
-    alignSelf: 'center'
   },
   emergencyText: {
     color: "#2E5F85",

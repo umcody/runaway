@@ -1,4 +1,4 @@
-import { StatusBar } from "expo-status-bar";
+//import { StatusBar } from "expo-status-bar";
 import React from "react";
 import {
   StyleSheet,
@@ -24,26 +24,12 @@ export default function KidsAndTeens({ navigation }) {
               style={styles.emergencyButton}
               onPress={() => {
                 navigation.navigate("Browser", {
-                  page: "https://www.healthline.com/health/mental-health/how-to-cope-with-anxiety",
+                  page: "https://ontario.cmha.ca/documents/understanding-psychosis-and-finding-help-early/",
                 });
               }}
             >
               <Text style={styles.emergencyText}>
-              Do You Live with Anxiety? Here Are 11 Ways to Cope
-              </Text>
-            </TouchableOpacity>
-          </View>
-          <View>
-            <TouchableOpacity
-              style={styles.emergencyButton}
-              onPress={() => {
-                navigation.navigate("Browser", {
-                  page: "https://www.nami.org/Blogs/NAMI-Blog/January-2019/7-Tools-for-Managing-Traumatic-Stress",
-                });
-              }}
-            >
-              <Text style={styles.emergencyText}>
-              7 Tools for Managing Traumatic Stress
+              Understanding Psychosis and Finding Help Early
 
               </Text>
             </TouchableOpacity>
