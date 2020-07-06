@@ -5,7 +5,7 @@ import call from 'react-native-phone-call';
 //import { NavigationContainer } from '@react-navigation/native';
 //import { createStackNavigator } from '@react-navigation/stack';
 
-export default class App extends React.Component {
+export default class EmergencyHotlinesScreen extends React.Component {
     call = () => {
       //handler to make a call
       const args = {

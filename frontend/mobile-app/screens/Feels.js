@@ -78,6 +78,7 @@ export default function Chat({ navigation }) {
           />
         </View>
         <TouchableOpacity
+          activeOpacity={.95}
           style={styles.buttonDismiss}
           onPress={() => {
             navigation.navigate("Chat");

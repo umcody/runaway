@@ -28,17 +28,7 @@ import BlogNav from "../navigation/BlogNav"
 import Res from "../screens/ResourcesDummy"
 
 import HomeScreen from "../screens/ResourceParts/Home";
-import GeneralResources from "../screens/ResourceParts/generalResources";
-import LGBTQIA from "../screens/ResourceParts/LGBTQIA";
-import KidsAndTeens from "../screens/ResourceParts/kidsAndTeens";
-import SubstanceRelatedDisorders from "../screens/ResourceParts/substanceRelatedDisorders";
-import MoodRelatedDisorders from "../screens/ResourceParts/moodRelatedDisorders";
-import AnxietyAndTraumaRelatedDisorders from "../screens/ResourceParts/anxietyAndTraumaRelatedDisorders";
-import PsychoticDisorders from "../screens/ResourceParts/psychoticDisorders";
-import DeliberateSelfHarm from "../screens/ResourceParts/deliberateSelfHarm";
-import EatingDisorders from "../screens/ResourceParts/eatingDisorders";
-import DomesticAndSexualViolence from "../screens/ResourceParts/domesticAndSexualViolence";
-import Browser from "../screens/ResourceParts/Browser";
+import ResourceNav from "./ResourceNav"
 
 const BottomTabNavigation = createBottomTabNavigator();
 const HomeTab = createMaterialTopTabNavigator();
@@ -89,7 +79,7 @@ const BottomTab = ({ navigation }) => {
       />
       <BottomTabNavigation.Screen
         name="Resources"
-        component={HomeScreen}
+        component={ResourceNav}
         options={{
           tabBarLabel: "Resources",
           tabBarIcon: ({ color }) => (
@@ -151,10 +141,10 @@ const Chat = ({ navigation }) => {
           }}
         />
         <ChatStack.Screen
-          name="Resources"
+          name="Emergency"
           component={EmergencyHotlinesScreen}
           options={{
-            title: "Emergency Resources",
+            title: "",
             headerTitleStyle: styles.headerTitleStyle,
             headerStyle: styles.headerStyle,
           }}
@@ -197,7 +187,7 @@ const FeedScreen = ({ navigation }) => {
           headerRight: () => (
             <AntDesign
               style={{ paddingRight: 25 }}
-              onPress={() => navigation.navigate("Resources")}
+              onPress={() => navigation.navigate("Emergency")}
               name="exclamationcircleo"
               size={30}
               color="#FF9EDA"
@@ -244,10 +234,10 @@ export default function myStack() {
             }}
           />
           <HotlineStack.Screen
-            name="Resources"
+            name="Emergency"
             component={EmergencyHotlinesScreen}
             options={{
-              title: "Emergency Resources",
+              title: "",
               headerTitleStyle: styles.headerTitleStyle,
               headerStyle: styles.headerStyle,
             }}

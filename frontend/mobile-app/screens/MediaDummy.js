@@ -33,6 +33,7 @@ export default function Media(props) {
       <FlatList
         data={articles}
         renderItem={({ item }) => <MediaDisplay title={item.title} />}
+        keyExtractor={item => item.id}
       />
     </View>
   );
