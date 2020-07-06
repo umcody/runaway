@@ -30,6 +30,19 @@ const HomeStack = createStackNavigator();
 const ChatStack = createStackNavigator();
 const HotlineStack = createStackNavigator();
 
+import HomeScreen from "./screens/Home";
+import GeneralResources from "./screens/generalResources";
+import LGBTQIA from "./screens/LGBTQIA";
+import KidsAndTeens from "./screens/kidsAndTeens";
+import SubstanceRelatedDisorders from "./screens/substanceRelatedDisorders";
+import MoodRelatedDisorders from "./screens/moodRelatedDisorders";
+import AnxietyAndTraumaRelatedDisorders from "./screens/anxietyAndTraumaRelatedDisorders";
+import PsychoticDisorders from "./screens/psychoticDisorders";
+import DeliberateSelfHarm from "./screens/deliberateSelfHarm";
+import EatingDisorders from "./screens/eatingDisorders";
+import DomesticAndSexualViolence from "./screens/domesticAndSexualViolence";
+import Browser from "./screens/Browser";
+
 const BottomTab = ({ navigation }) => {
   return (
     <BottomTabNavigation.Navigator
