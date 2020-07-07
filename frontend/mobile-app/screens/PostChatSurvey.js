@@ -53,8 +53,8 @@ export default function PreChatSurvey({ navigation }) {
               style={styles.buttonDismiss}
               onPress={() => {
                 setModalVisible(false);
-                navigation.dispatch(StackActions.replace("Disclaimer"));
                 navigation.navigate("Feed");
+                navigation.popToTop();
               }}
             >
               <Text style={{ color: "#FFFFFF", fontSize: 24 }}>Submit</Text>
