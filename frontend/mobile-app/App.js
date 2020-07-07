@@ -1,9 +1,8 @@
 import React from "react";
 import Navigation from "./navigation/index";
 import PreChatSurveyModal from "./screens/PreChatSurvey/ModalSurvey";
-import PreChatSurvey from "./screens/PreChatSurvey/Survey";
+import PostChatSurvey from "./screens/PostChatSurvey";
 
 export default function App() {
   return <Navigation />;
-  //return <PreChatSurvey />;
 }

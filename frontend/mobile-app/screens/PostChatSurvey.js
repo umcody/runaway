@@ -7,6 +7,7 @@ import {
   Text,
   Dimensions,
 } from "react-native";
+import { CheckBox, Rating, AirbnbRating } from "react-native-elements";
 
 export default function PreChatSurvey({ navigation }) {
   const [modalVisible, setModalVisible] = useState(true);
@@ -22,16 +23,24 @@ export default function PreChatSurvey({ navigation }) {
             pressing this button. Thank you!
           </Text>
 
-          <View style={styles.shareCheck}>
-            <Text style={{ color: "#2E5F85", fontSize: 25 }}>Share? </Text>
-            <Text style={{ color: "#2E5F85", fontSize: 25 }}>
-              Checkbox here
-            </Text>
-          </View>
+          <CheckBox
+            title="Share?"
+            checked={checked}
+            onPress={() => {
+              setChecked(!checked);
+            }}
+            textStyle={styles.check}
+            uncheckedColor="#2E5F85"
+            checkedColor="#FF9EDA"
+            iconRight
+            containerStyle={styles.checkBoxContainer}
+          />
 
           <Text style={styles.message}>Rate Your Chat:</Text>
 
-          {/* here is where the star rating system should go */}
+          <View style={styles.starRating}>
+            <AirbnbRating defaultRating={3} size={30} />
+          </View>
 
           <TouchableOpacity
             style={styles.buttonDismiss}
@@ -50,7 +59,7 @@ export default function PreChatSurvey({ navigation }) {
 const windowW = Dimensions.get("window").width;
 const windowH = Dimensions.get("window").height;
 
-const heightModal = 450;
+const heightModal = 475;
 const widthModal = 270;
 
 const styles = StyleSheet.create({
@@ -88,5 +97,20 @@ const styles = StyleSheet.create({
   },
   shareCheck: {
     flexDirection: "row",
+  },
+  check: {
+    fontSize: 24,
+    color: "#2E5F85",
+    fontWeight: "normal",
+  },
+  checkBoxContainer: {
+    backgroundColor: "#FFFFFF",
+    borderColor: "#FFFFFF",
+    width: "90%",
+    alignItems: "center",
+    marginVertical: 0,
+  },
+  starRating: {
+    marginBottom: 15,
   },
 });
