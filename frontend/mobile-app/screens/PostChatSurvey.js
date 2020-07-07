@@ -39,17 +39,24 @@ export default function PreChatSurvey({ navigation }) {
           <Text style={styles.message}>Rate Your Chat:</Text>
 
           <View style={styles.starRating}>
-            <AirbnbRating defaultRating={3} size={30} />
+            <AirbnbRating
+              defaultRating={3}
+              size={30}
+              selectedColor={"#FF9EDA"}
+              reviewColor={"#2E5F85"}
+              showRating={false}
+            />
           </View>
-
-          <TouchableOpacity
-            style={styles.buttonDismiss}
-            onPress={() => {
-              setModalVisible(false);
-            }}
-          >
-            <Text style={{ color: "#FFFFFF", fontSize: 24 }}>Submit</Text>
-          </TouchableOpacity>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              style={styles.buttonDismiss}
+              onPress={() => {
+                setModalVisible(false);
+              }}
+            >
+              <Text style={{ color: "#FFFFFF", fontSize: 24 }}>Submit</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </Modal>
     </View>
@@ -112,5 +119,9 @@ const styles = StyleSheet.create({
   },
   starRating: {
     marginBottom: 15,
+    marginTop: 15,
+  },
+  buttonContainer: {
+    marginTop: 20,
   },
 });
