@@ -23,12 +23,14 @@ import Posts from "../screens/PostsDummy";
 import Media from "../screens/MediaDummy";
 import Feels from "../screens/Feels";
 import Disclaimer from "../screens/Disclaimer";
+import PostChatSurvey from "../screens/PostChatSurvey";
 
 const BottomTabNavigation = createBottomTabNavigator();
 const HomeTab = createMaterialTopTabNavigator();
 const HomeStack = createStackNavigator();
 const ChatStack = createStackNavigator();
 const HotlineStack = createStackNavigator();
+const DisclaimerStack = createStackNavigator();
 
 const BottomTab = ({ navigation }) => {
   return (
@@ -60,11 +62,11 @@ const BottomTab = ({ navigation }) => {
         }}
       />
       <BottomTabNavigation.Screen
-        name="Chat"
-        component={Chat}
+        name="DisclaimerChat"
+        component={DisclaimerChat}
         options={{
           tabBarVisible: false,
-          tabBarLabel: "Chat",
+          tabBarLabel: "DisclaimerChat",
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="chat-bubble-outline" color={color} size={25} />
           ),
@@ -94,16 +96,31 @@ const BottomTab = ({ navigation }) => {
   );
 };
 
-const Chat = ({ navigation }) => {
+const DisclaimerChat = ({ navigation }) => {
   return (
     <>
       <StatusBar barStyle="dark-content" translucent={true} />
-      <ChatStack.Navigator initialRouteName="Disclaimer">
-        <ChatStack.Screen
+      <DisclaimerStack.Navigator initialRouteName="Disclaimer">
+        <DisclaimerStack.Screen
           name="Disclaimer"
           component={Disclaimer}
           options={{ headerShown: false }}
         />
+        <DisclaimerStack.Screen
+          name="DisclaimerChat"
+          component={Chat}
+          options={{ headerShown: false }}
+        />
+      </DisclaimerStack.Navigator>
+    </>
+  );
+};
+
+const Chat = ({ navigation }) => {
+  return (
+    <>
+      <StatusBar barStyle="dark-content" translucent={true} />
+      <ChatStack.Navigator initialRouteName="Feels">
         <ChatStack.Screen
           name="Feels"
           component={Feels}
@@ -123,7 +140,6 @@ const Chat = ({ navigation }) => {
             ),
           }}
         />
-
         <ChatStack.Screen
           name="Chat"
           component={ChatScreen}
@@ -133,6 +149,13 @@ const Chat = ({ navigation }) => {
             headerStyle: styles.headerStyle,
           }}
         />
+
+        <ChatStack.Screen
+          name="PostSurvey"
+          component={PostChatSurvey}
+          options={{ headerShown: false }}
+        />
+
         <ChatStack.Screen
           name="Resources"
           component={EmergencyHotlinesScreen}

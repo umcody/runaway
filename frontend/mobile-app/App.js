@@ -4,6 +4,5 @@ import PreChatSurveyModal from "./screens/PreChatSurvey/ModalSurvey";
 import PostChatSurvey from "./screens/PostChatSurvey";
 
 export default function App() {
-  //return <Navigation />;
-  return <PostChatSurvey />;
+  return <Navigation />;
 }
