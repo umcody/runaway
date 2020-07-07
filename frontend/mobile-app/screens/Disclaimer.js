@@ -25,7 +25,7 @@ export default function Disclaimer({ navigation }) {
             style={styles.buttonDismiss}
             onPress={() => {
               setModalVisible(false);
-              navigation.navigate("Feels");
+              navigation.navigate("PreChatModal");
             }}
           >
             <Text style={{ color: "#FFFFFF", fontSize: 25 }}>Start</Text>

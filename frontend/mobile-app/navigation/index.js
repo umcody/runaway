@@ -24,6 +24,8 @@ import Media from "../screens/MediaDummy";
 import Feels from "../screens/Feels";
 import Disclaimer from "../screens/Disclaimer";
 import PostChatSurvey from "../screens/PostChatSurvey";
+import PreChatModal from "../screens/PreChatSurvey/ModalSurvey";
+import PreChatSurvey from "../screens/PreChatSurvey/Survey";
 
 const BottomTabNavigation = createBottomTabNavigator();
 const HomeTab = createMaterialTopTabNavigator();
@@ -110,6 +112,33 @@ const Chat = ({ navigation }) => {
           component={Feels}
           options={{
             headerTitle: "How are you feeling?",
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              color: "#2E5F85",
+            },
+            headerLeft: () => (
+              <HeaderBackButton
+                labelVisible={false}
+                onPress={() => {
+                  navigation.dispatch(StackActions.replace("Disclaimer"));
+                  navigation.navigate("Feed");
+                }}
+              />
+            ),
+          }}
+        />
+
+        <ChatStack.Screen
+          name="PreChatModal"
+          component={PreChatModal}
+          options={{ headerShown: false }}
+        />
+
+        <ChatStack.Screen
+          name="PreChatSurvey"
+          component={PreChatSurvey}
+          options={{
+            headerTitle: "PreChat Survey",
             headerTitleAlign: "center",
             headerTitleStyle: {
               color: "#2E5F85",

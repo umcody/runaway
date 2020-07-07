@@ -27,6 +27,7 @@ export default function PreChatSurveyModal({ navigation }) {
             style={styles.buttonDismiss}
             onPress={() => {
               setModalVisible(false);
+              navigation.navigate("PreChatSurvey");
             }}
           >
             <Text style={{ color: "#FFFFFF", fontSize: 24 }}>Start</Text>

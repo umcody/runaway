@@ -16,7 +16,7 @@ export default function EmergencyHotlinesScreen({ navigation }) {
     headerLeft: () => (
       <TouchableOpacity
         style={{ paddingLeft: 25 }}
-        onPress={() => navigation.popToTop()}
+        onPress={() => navigation.goBack()}
       >
         <Ionicons name="ios-arrow-back" size={30} color="#FF9EDA" />
       </TouchableOpacity>
