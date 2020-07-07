@@ -54,7 +54,7 @@ export default function PreChatSurvey({ navigation }) {
               onPress={() => {
                 setModalVisible(false);
                 navigation.navigate("Feed");
-                navigation.popToTop();
+                navigation.dispatch(StackActions.popToTop());
               }}
             >
               <Text style={{ color: "#FFFFFF", fontSize: 24 }}>Submit</Text>
