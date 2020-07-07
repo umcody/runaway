@@ -8,6 +8,7 @@ import {
   Dimensions,
 } from "react-native";
 import { CheckBox, Rating, AirbnbRating } from "react-native-elements";
+import { StackActions } from "@react-navigation/native";
 
 export default function PreChatSurvey({ navigation }) {
   const [modalVisible, setModalVisible] = useState(true);
@@ -52,6 +53,7 @@ export default function PreChatSurvey({ navigation }) {
               style={styles.buttonDismiss}
               onPress={() => {
                 setModalVisible(false);
+                navigation.dispatch(StackActions.replace("Disclaimer"));
                 navigation.navigate("Feed");
               }}
             >

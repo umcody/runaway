@@ -25,7 +25,7 @@ export default function Disclaimer({ navigation }) {
             style={styles.buttonDismiss}
             onPress={() => {
               setModalVisible(false);
-              navigation.navigate("DisclaimerChat");
+              navigation.navigate("Feels");
             }}
           >
             <Text style={{ color: "#FFFFFF", fontSize: 25 }}>Start</Text>

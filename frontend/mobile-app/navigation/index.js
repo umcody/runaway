@@ -8,7 +8,7 @@ import {
   AntDesign,
 } from "@expo/vector-icons";
 
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, StackActions } from "@react-navigation/native";
 import {
   createStackNavigator,
   HeaderBackButton,
@@ -30,7 +30,6 @@ const HomeTab = createMaterialTopTabNavigator();
 const HomeStack = createStackNavigator();
 const ChatStack = createStackNavigator();
 const HotlineStack = createStackNavigator();
-const DisclaimerStack = createStackNavigator();
 
 const BottomTab = ({ navigation }) => {
   return (
@@ -62,11 +61,11 @@ const BottomTab = ({ navigation }) => {
         }}
       />
       <BottomTabNavigation.Screen
-        name="DisclaimerChat"
-        component={DisclaimerChat}
+        name="Chat"
+        component={Chat}
         options={{
           tabBarVisible: false,
-          tabBarLabel: "DisclaimerChat",
+          tabBarLabel: "Chat",
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="chat-bubble-outline" color={color} size={25} />
           ),
@@ -96,31 +95,16 @@ const BottomTab = ({ navigation }) => {
   );
 };
 
-const DisclaimerChat = ({ navigation }) => {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" translucent={true} />
-      <DisclaimerStack.Navigator initialRouteName="Disclaimer">
-        <DisclaimerStack.Screen
-          name="Disclaimer"
-          component={Disclaimer}
-          options={{ headerShown: false }}
-        />
-        <DisclaimerStack.Screen
-          name="DisclaimerChat"
-          component={Chat}
-          options={{ headerShown: false }}
-        />
-      </DisclaimerStack.Navigator>
-    </>
-  );
-};
-
 const Chat = ({ navigation }) => {
   return (
     <>
       <StatusBar barStyle="dark-content" translucent={true} />
-      <ChatStack.Navigator initialRouteName="Feels">
+      <ChatStack.Navigator initialRouteName="Disclaimer">
+        <ChatStack.Screen
+          name="Disclaimer"
+          component={Disclaimer}
+          options={{ headerShown: false }}
+        />
         <ChatStack.Screen
           name="Feels"
           component={Feels}
@@ -134,6 +118,7 @@ const Chat = ({ navigation }) => {
               <HeaderBackButton
                 labelVisible={false}
                 onPress={() => {
+                  navigation.dispatch(StackActions.replace("Disclaimer"));
                   navigation.navigate("Feed");
                 }}
               />
@@ -157,7 +142,7 @@ const Chat = ({ navigation }) => {
         />
 
         <ChatStack.Screen
-          name="Resources"
+          name="EmergencyResources"
           component={EmergencyHotlinesScreen}
           options={{
             title: "Emergency Resources",
@@ -205,7 +190,7 @@ const FeedScreen = ({ navigation }) => {
           headerRight: () => (
             <AntDesign
               style={{ paddingRight: 25 }}
-              onPress={() => navigation.navigate("Resources")}
+              onPress={() => navigation.navigate("EmergencyResources")}
               name="exclamationcircleo"
               size={30}
               color="#FF9EDA"
@@ -249,7 +234,7 @@ export default function myStack() {
             }}
           />
           <HotlineStack.Screen
-            name="Resources"
+            name="EmergencyResources"
             component={EmergencyHotlinesScreen}
             options={{
               title: "Emergency Resources",
