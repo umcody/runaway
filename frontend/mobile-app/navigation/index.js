@@ -1,6 +1,6 @@
 import React from "react";
 
-import { StyleSheet, View, StatusBar, Dimensions } from "react-native";
+import { StyleSheet, StatusBar, Dimensions } from "react-native";
 import {
   MaterialCommunityIcons,
   MaterialIcons,
@@ -107,11 +107,18 @@ const Chat = ({ navigation }) => {
           component={Disclaimer}
           options={{ headerShown: false }}
         />
+
         <ChatStack.Screen
-          name="Feels"
-          component={Feels}
+          name="PreChatModal"
+          component={PreChatModal}
+          options={{ headerShown: false }}
+        />
+
+        <ChatStack.Screen
+          name="PreChatSurvey"
+          component={PreChatSurvey}
           options={{
-            headerTitle: "How are you feeling?",
+            headerTitle: "PreChat Survey",
             headerTitleAlign: "center",
             headerTitleStyle: {
               color: "#2E5F85",
@@ -127,18 +134,11 @@ const Chat = ({ navigation }) => {
             ),
           }}
         />
-
         <ChatStack.Screen
-          name="PreChatModal"
-          component={PreChatModal}
-          options={{ headerShown: false }}
-        />
-
-        <ChatStack.Screen
-          name="PreChatSurvey"
-          component={PreChatSurvey}
+          name="Feels"
+          component={Feels}
           options={{
-            headerTitle: "PreChat Survey",
+            headerTitle: "How are you feeling?",
             headerTitleAlign: "center",
             headerTitleStyle: {
               color: "#2E5F85",
