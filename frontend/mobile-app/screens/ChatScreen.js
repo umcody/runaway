@@ -7,9 +7,19 @@ import {
   Bubble,
 } from "react-native-gifted-chat";
 import { StyleSheet, View, TouchableOpacity, Modal, Text } from "react-native";
+import axios from "axios";
 import { AntDesign, FontAwesome5, Feather } from "@expo/vector-icons";
 
 export default function ChatScreen({ navigation }) {
+
+    //const [queue, setQueue] = useState([]);
+    const [newMessage, setNewMessage] = useState("");
+    const [roomNum, setRoomNum] = useState(0);
+    const [messages, setMessages] = useState([]);
+    const [queue, setQueue] = useState([]);
+    const [modalVisible, setModalVisible] = useState(true);
+    const [text, setText] = useState('');
+  
 
   navigation.setOptions({
     headerRight: () => (
@@ -23,7 +33,10 @@ export default function ChatScreen({ navigation }) {
     headerLeft: () => (
       <TouchableOpacity
         style={{ paddingLeft: 25 }}
-        onPress={() => navigation.navigate("Feed")}
+        onPress={() => {
+          axios.post("http://127.0.0.1:7000/api/volunteer/chat",{chatData:messages});
+          return navigation.navigate("Feed");
+        }}
       >
         <Feather name="x" size={35} color="#FF9EDA" />
       </TouchableOpacity>
@@ -94,14 +107,6 @@ export default function ChatScreen({ navigation }) {
     );
   };
 
-
-  //const [queue, setQueue] = useState([]);
-  const [newMessage, setNewMessage] = useState("");
-  const [roomNum, setRoomNum] = useState(0);
-  const [messages, setMessages] = useState([]);
-  const [queue, setQueue] = useState([]);
-  const [modalVisible, setModalVisible] = useState(true);
-  const [text, setText] = useState('');
 
   //Joins room and updates queue
   function socket_joinRoom(room) {
