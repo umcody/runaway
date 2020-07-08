@@ -11,19 +11,23 @@ import { CheckBox, Rating, AirbnbRating } from "react-native-elements";
 import { StackActions } from "@react-navigation/native";
 
 export default function PreChatSurvey({ navigation }) {
+  //these two consts are to determine if the modal is visible and
+  //if the Share checkBox is checked
   const [modalVisible, setModalVisible] = useState(true);
   const [checked, setChecked] = useState(false);
 
   return (
     <View style={styles.fullContainer}>
+      {/* modal that contains all the info */}
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <View style={styles.container}>
+          {/* message for the data collection */}
           <Text style={styles.message}>
             If you liked our service and would like to help us improve in the
             future, please consider letting us anonymously save chat data by
             pressing this button. Thank you!
           </Text>
-
+          {/* this checkBox is for whether or not the user wants to share their info */}
           <CheckBox
             title="Share?"
             checked={checked}
@@ -36,7 +40,7 @@ export default function PreChatSurvey({ navigation }) {
             iconRight
             containerStyle={styles.checkBoxContainer}
           />
-
+          {/* this text and then the AirbnbRating after it are the rating function for after the chat */}
           <Text style={styles.message}>Rate Your Chat:</Text>
 
           <View style={styles.starRating}>
@@ -49,6 +53,7 @@ export default function PreChatSurvey({ navigation }) {
             />
           </View>
           <View style={styles.buttonContainer}>
+            {/* this is the touchable to submit your feedback at the end */}
             <TouchableOpacity
               style={styles.buttonDismiss}
               onPress={() => {
@@ -72,6 +77,7 @@ const windowH = Dimensions.get("window").height;
 const heightModal = 475;
 const widthModal = 270;
 
+//styles
 const styles = StyleSheet.create({
   message: {
     color: "#2E5F85",

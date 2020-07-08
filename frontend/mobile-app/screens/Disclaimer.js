@@ -13,14 +13,17 @@ export default function Disclaimer({ navigation }) {
 
   return (
     <View style={styles.fullContainer}>
+      {/* the disclaimer is a modal that pops up from the bottom */}
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <View style={styles.container}>
+          {/* message of the actually disclaimer */}
           <Text style={styles.message}>
             Disclaimer: You will be chatting with a peer volunteer. These
             volunteers are not medical or health professionals. If you seek
             professional assistance, the hotlines and resources can be found
             (here).
           </Text>
+          {/* this touchable is the next button after the disclaimer */}
           <TouchableOpacity
             style={styles.buttonDismiss}
             onPress={() => {
@@ -39,6 +42,7 @@ export default function Disclaimer({ navigation }) {
 const windowW = Dimensions.get("window").width;
 const windowH = Dimensions.get("window").height;
 
+//styles
 const styles = StyleSheet.create({
   message: {
     color: "#2E5F85",

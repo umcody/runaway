@@ -12,6 +12,7 @@ export default function Chat({ navigation }) {
   const [feelColor, setFeelColor] = useState("#ACDAFF");
 
   //for later when you can  make the color change for those that are clicked
+  //also put it all in a scrollview so that there is just one list
   const colorStyles = StyleSheet.create({
     feels: {
       color: feelColor,
@@ -31,6 +32,8 @@ export default function Chat({ navigation }) {
   });
   //
 
+  //two feeling columns, once the page gets reworked this will be gone and they
+  //will all be individual objects and in a scrollview
   const feelingsCol1 = [
     { title: "Happy", id: 1 },
     { title: "Fearful", id: 2 },
@@ -47,6 +50,7 @@ export default function Chat({ navigation }) {
     { title: "Surprised", id: 5 },
   ];
 
+  //creates the touchable for each of them
   const FeelingsList = ({ title }) => {
     return (
       <View>
@@ -60,6 +64,7 @@ export default function Chat({ navigation }) {
   return (
     <>
       <View style={styles.home}>
+        {/* this is the skip button to not fill out the feels page */}
         <TouchableOpacity
           style={styles.skip}
           onPress={() => {
@@ -68,6 +73,7 @@ export default function Chat({ navigation }) {
         >
           <Text style={{ color: "#FFFFFF", fontSize: 20 }}>Skip</Text>
         </TouchableOpacity>
+        {/* these each print both of the lists */}
         <View style={styles.col1}>
           <FlatList
             data={feelingsCol1}
@@ -96,6 +102,7 @@ export default function Chat({ navigation }) {
 const windowW = Dimensions.get("window").width;
 const windowH = Dimensions.get("window").height;
 
+//styles
 const styles = StyleSheet.create({
   home: {
     flex: 1,

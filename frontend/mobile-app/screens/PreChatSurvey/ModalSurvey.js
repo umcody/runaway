@@ -9,13 +9,15 @@ import {
 } from "react-native";
 
 export default function PreChatSurveyModal({ navigation }) {
+  //this const is for the modal to show if it is visible at the time
   const [modalVisible, setModalVisible] = useState(true);
-  const [checked, setChecked] = useState(false);
 
   return (
     <View style={styles.fullContainer}>
+      {/* the modal here is what holds the screen before the survey */}
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <View style={styles.container}>
+          {/* The nested text objects are for the bold font and the overall disclaimer */}
           <Text style={styles.message}>
             This is a
             <Text style={{ fontWeight: "bold" }}> voluntary survey</Text> that
@@ -23,6 +25,7 @@ export default function PreChatSurveyModal({ navigation }) {
             allows Runaway to analyze information to create specific resources
             to others searching for assistance.
           </Text>
+          {/* button that makes you advance to the next screen */}
           <TouchableOpacity
             style={styles.buttonDismiss}
             onPress={() => {
@@ -30,6 +33,7 @@ export default function PreChatSurveyModal({ navigation }) {
               navigation.navigate("PreChatSurvey");
             }}
           >
+            {/* the button is labeled start */}
             <Text style={{ color: "#FFFFFF", fontSize: 24 }}>Start</Text>
           </TouchableOpacity>
         </View>
@@ -44,6 +48,7 @@ const windowH = Dimensions.get("window").height;
 const heightModal = 350;
 const widthModal = 270;
 
+//styles
 const styles = StyleSheet.create({
   message: {
     color: "#2E5F85",
