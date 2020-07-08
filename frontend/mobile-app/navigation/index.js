@@ -1,6 +1,6 @@
 import React from "react";
 
-import { StyleSheet, View, StatusBar, Dimensions } from "react-native";
+import { StyleSheet, View, StatusBar, Dimensions,Image } from "react-native";
 import {
   MaterialCommunityIcons,
   MaterialIcons,
@@ -180,16 +180,11 @@ const FeedScreen = ({ navigation }) => {
           headerTitleAlign: "center",
           headerTitleStyle:styles.headerTitleStyle,
           headerStyle: styles.headerStyle,
-
-          headerRight: () => (
-            <AntDesign
-              style={{ paddingRight: 25 }}
-              onPress={() => navigation.navigate("Resources")}
-              name="exclamationcircleo"
-              size={30}
-              color="#FF9EDA"
-            />
-          ),
+          headerTitle: (
+            <View style = {{paddingTop:10}}>
+              <Image source={require('../assets/RunawayLogo.png')}/>
+            </View>
+        ),
         }}
       />
     </HomeStack.Navigator>
@@ -205,14 +200,14 @@ const HomeTabScreen = () => {
         name="Posts"
         component={BlogNav}
         options={{
-          title: "Posts",
+          title: "Featured",
         }}
       />
       <HomeTab.Screen
         name="Media"
         component={Media}
         options={{
-          title: "Media",
+          title: "Feed",
         }}
       />
     </HomeTab.Navigator>
@@ -273,6 +268,7 @@ const styles = StyleSheet.create({
     fontSize: windowW*0.08,
     lineHeight: 30,
     color: "#2E5F85",
+    
   },
   headerStyle: {
     borderBottomWidth: 0,

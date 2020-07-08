@@ -3,7 +3,7 @@ import { StyleSheet, View ,Text,SafeAreaView} from "react-native";
 import { createStackNavigator } from '@react-navigation/stack';
 import BlogFeed from '../screens/BlogFeed';
 import BlogScreen from '../screens/BlogScreen';
-
+// stack nav for blog post to blog page
 export default function BlogNavigator(){
     const Stack = createStackNavigator();
     return (
@@ -25,6 +25,5 @@ export default function BlogNavigator(){
 const styles = StyleSheet.create({
 	container: {
     flex:1,
-
 	},
 });

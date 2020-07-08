@@ -1,6 +1,7 @@
 import {useEffect,useState} from 'react'
 import axios from 'axios'
-
+// custom hook
+// get specific blog using url prop
 export default function useBlogUrl(url) {
     const [loading,setLoading] = useState(true)
     const [error,setError] = useState(false)
@@ -9,6 +10,7 @@ export default function useBlogUrl(url) {
        setLoading(true)
        setError(false)
     let cancel
+    //axios get using url endpoint with param: url
     axios({
         method:'GET',
         url:"https://runaway-practicum.herokuapp.com/api/volunteer/blog/get/url/" + encodeURIComponent(url),
@@ -26,4 +28,5 @@ export default function useBlogUrl(url) {
         
       });
     },[url])
+    //return blog state
     return {loading,error, blog}}
