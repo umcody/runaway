@@ -10,6 +10,8 @@ import {
 import { CheckBox } from "react-native-elements";
 
 export default function PreChatSurvey({ navigation }) {
+  //this is not an efficient way to do this I don't think but
+  //for example these are const for all the checkboxes for each question.
   const [checkedOne, setCheckedOne] = useState(false);
   const [checkedTwo, setCheckedTwo] = useState(false);
   const [checkedThree, setCheckedThree] = useState(false);
@@ -20,6 +22,7 @@ export default function PreChatSurvey({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.home}>
+        {/* this touchable is the skip button  */}
         <TouchableOpacity
           style={styles.skip}
           onPress={() => {
@@ -29,10 +32,12 @@ export default function PreChatSurvey({ navigation }) {
           <Text style={{ color: "#FFFFFF", fontSize: 20 }}>Skip</Text>
         </TouchableOpacity>
       </View>
+      {/* scroll view for the questions */}
       <ScrollView style={styles.scroll}>
         <Text style={styles.subTitle}>
           What brings you to this chat? (You can choose multiple.)
         </Text>
+        {/* these next 7 checkboxes are all the current questions  */}
         <CheckBox
           title="Understanding Emotions/Feelings"
           checked={checkedOne}
@@ -111,6 +116,7 @@ export default function PreChatSurvey({ navigation }) {
           containerStyle={styles.surveyContainers}
         />
       </ScrollView>
+      {/* this last touchable is to progress to the feels screen */}
       <TouchableOpacity
         style={styles.buttonDismiss}
         onPress={() => {
@@ -126,12 +132,8 @@ export default function PreChatSurvey({ navigation }) {
 const windowW = Dimensions.get("window").width;
 const windowH = Dimensions.get("window").height;
 
+//styles
 const styles = StyleSheet.create({
-  // scroll: {
-  //   backgroundColor: "#FFFFFF",
-  //   marginHorizontal: 10,
-  //   marginVertical: 10,
-  // },
   container: {
     flex: 1,
     alignItems: "center",
