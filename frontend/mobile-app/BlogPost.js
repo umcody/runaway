@@ -10,7 +10,9 @@ import {
   } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 const {width,height}= Dimensions.get('window') 
-/*Blog post element*/
+/*Blog post element
+This goes into the flatlist
+Each post shows the author and title*/
 export default function BlogPost({title,author,HandlePress}){
     return(
         <SafeAreaView>

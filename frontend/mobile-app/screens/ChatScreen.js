@@ -9,8 +9,9 @@ import {
 import { StyleSheet, View, TouchableOpacity, Modal, Text } from "react-native";
 import { AntDesign, FontAwesome5, Feather } from "@expo/vector-icons";
 
+//This is the chat screen and messaging components
 export default function ChatScreen({ navigation }) {
-
+  //setting header right and left buttons for navigation
   navigation.setOptions({
     headerRight: () => (
       <TouchableOpacity
@@ -30,11 +31,12 @@ export default function ChatScreen({ navigation }) {
     ),
   });
 
-
+// message bubble rendering and styling
   function renderBubble(props) {
     return (
       <Bubble
         {...props}
+        //text styling
         textStyle={{
           left: {
             color: "white",
@@ -43,6 +45,7 @@ export default function ChatScreen({ navigation }) {
             color: "#2E5F85",
           },
         }}
+        //bubble styling
         wrapperStyle={{
           left: {
             backgroundColor: "#2E5F85",
@@ -68,6 +71,7 @@ export default function ChatScreen({ navigation }) {
       />
     );
   }
+  // creating the send button component
   function renderSend(props) {
     return (
       <Send {...props}>
@@ -78,6 +82,7 @@ export default function ChatScreen({ navigation }) {
     );
   }
 
+  // the rendering of the bottom tool bar
   const customInputToolbar = (props) => {
     return (
       <InputToolbar
@@ -101,7 +106,6 @@ export default function ChatScreen({ navigation }) {
   const [messages, setMessages] = useState([]);
   const [queue, setQueue] = useState([]);
   const [modalVisible, setModalVisible] = useState(true);
-  const [text, setText] = useState('');
 
   //Joins room and updates queue
   function socket_joinRoom(room) {
@@ -140,7 +144,8 @@ export default function ChatScreen({ navigation }) {
       //This is where u should handle new messages. ("message" var is the new message)
       setNewMessage(message);
     });
-
+// Default messages that show up at first
+// This is all for testing purposes
     setMessages([
       {
         _id: 1,
@@ -152,7 +157,8 @@ export default function ChatScreen({ navigation }) {
           name: "React Native",
           avatar: require("../assets/exampleAvatar.png"),
         },
-        quickReplies: {
+        //quick reply- where user can click on the bubble to reply a message. (NOT IMPLEMENTED)
+        /*quickReplies: {
           type: "radio", // or 'checkbox',
           keepIt: true,
           values: [
@@ -165,7 +171,7 @@ export default function ChatScreen({ navigation }) {
               value: "listen",
             },
           ],
-        },
+        },*/
       },
     ]);
     //when exiting the component
@@ -187,9 +193,6 @@ export default function ChatScreen({ navigation }) {
     sendMessage(messages[0].text)
   }, []);
 
-  const onQuickReply = (quickReply) => {
-    setText(quickReply.values.title);
-  };
 
   const setQuickReply = ()=>{
     console.log("clicked!");
@@ -203,16 +206,14 @@ export default function ChatScreen({ navigation }) {
   return (
     <View style={{ flex:1, backgroundColor: "#fff" }}>
       <GiftedChat
-        text={text}
-        onInputTextChanged={setText}
         messages={messages}
-        quickReply={setQuickReply} //NOT WORKING FOR NOW...
-        onQuickReply={(quickReply) => onQuickReply(quickReply)}
+        //quickReply={setQuickReply} NOT WORKING FOR NOW...
+        //onQuickReply={(quickReply) => onQuickReply(quickReply)}
         onSend={(messages) => onSend(messages)}
         renderInputToolbar={(props) => customInputToolbar(props)}
         placeholder="New Message"
         placeholderTextColor="#2E5F85"
-        textInputStyle={styles.composer}
+        textInputStyle={styles.composer} //styling of text input
         minInputToolbarHeight={60}
         messagesContainerStyle={{
           backgroundColor: "#fff",
@@ -222,13 +223,13 @@ export default function ChatScreen({ navigation }) {
         }}
         alwaysShowSend={true}
         renderSend={renderSend}
-        listViewProps={{
+        listViewProps={{// styling of the list of messages to have a white background
           style: {
             backgroundColor: "white",
           },
         }}
         renderBubble={renderBubble}
-        timeTextStyle={{
+        timeTextStyle={{ //disable date and time
           right: {
             display: "none",
           },

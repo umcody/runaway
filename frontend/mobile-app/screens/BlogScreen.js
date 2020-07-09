@@ -4,9 +4,11 @@ import {TouchableOpacity } from 'react-native-gesture-handler';
 import { Ionicons } from "@expo/vector-icons";
 import HTML from 'react-native-render-html';
 import useBlogUrl from "../useBlogUrl"
+// shows the blog page 
 export default function BlogScreen({navigation,route}) {
-  
+  //sends in url prop
   const {url} = route.params;
+  //get request to obtain blog object
   const {
     blog,
     loading,
@@ -22,6 +24,8 @@ export default function BlogScreen({navigation,route}) {
         </TouchableOpacity>
         <Text style={styles.title}>{blog.title}</Text>
         <Text style={styles.author}>by {blog.author}</Text>
+        {/* loading indicator if the page is loading
+        else show html content from database, uses HTML parser to convert into jsx*/}
         {loading ? <ActivityIndicator /> : <HTML html={blog.content} containerStyle={styles.content} /> }
       </ScrollView>
       <Text>{error && 'Server Connection Error'}</Text>

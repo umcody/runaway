@@ -1,6 +1,6 @@
 import React from "react";
 
-import { StyleSheet, View, StatusBar, Dimensions } from "react-native";
+import { StyleSheet, View, StatusBar, Dimensions,Image } from "react-native";
 import {
   MaterialCommunityIcons,
   MaterialIcons,
@@ -16,6 +16,7 @@ import {
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
+
 import EmergencyHotlinesScreen from "../screens/EmergencyHotline";
 import ChatScreen from "../screens/ChatScreen";
 import Events from "../screens/EventsDummy";
@@ -24,8 +25,10 @@ import Media from "../screens/MediaDummy";
 import Feels from "../screens/Feels";
 import Disclaimer from "../screens/Disclaimer";
 import BlogFeed from "../screens/BlogFeed";
-import BlogNav from "../navigation/BlogNav"
-import Res from "../screens/ResourcesDummy"
+import BlogNav from "../navigation/BlogNav";
+import Res from "../screens/ResourcesDummy";
+import Twitter from "../screens/Twitter";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const BottomTabNavigation = createBottomTabNavigator();
 const HomeTab = createMaterialTopTabNavigator();
@@ -45,6 +48,7 @@ const BottomTab = ({ navigation }) => {
           backgroundColor: "white",
           height:60,
           borderTopColor: "#ACDAFF",
+          borderTopWidth:1
         }
       }}
       
@@ -172,6 +176,8 @@ const Chat = ({ navigation }) => {
 
 const FeedScreen = ({ navigation }) => {
   return (
+    <>
+    <StatusBar barStyle="dark-content" translucent={true} />
     <HomeStack.Navigator>
       <HomeStack.Screen
         name="Feed"
@@ -180,19 +186,21 @@ const FeedScreen = ({ navigation }) => {
           headerTitleAlign: "center",
           headerTitleStyle:styles.headerTitleStyle,
           headerStyle: styles.headerStyle,
+          headerTitle: (
+            <View style = {{paddingTop:10}}>
+              <Image source={require('../assets/RunawayLogo.png')}/>
+            </View>
+        ),
+        headerLeft: () => (
+          <TouchableOpacity style ={{paddingTop:20,paddingLeft:20}}>
 
-          headerRight: () => (
-            <AntDesign
-              style={{ paddingRight: 25 }}
-              onPress={() => navigation.navigate("Resources")}
-              name="exclamationcircleo"
-              size={30}
-              color="#FF9EDA"
-            />
-          ),
+            <Feather name="settings" size={25} color="#2E5F85" />
+          </TouchableOpacity>
+        ),
         }}
       />
     </HomeStack.Navigator>
+    </>
   );
 };
 const HomeTabScreen = () => {
@@ -205,14 +213,14 @@ const HomeTabScreen = () => {
         name="Posts"
         component={BlogNav}
         options={{
-          title: "Posts",
+          title: "Featured",
         }}
       />
       <HomeTab.Screen
         name="Media"
-        component={Media}
+        component={Twitter}
         options={{
-          title: "Media",
+          title: "Feed",
         }}
       />
     </HomeTab.Navigator>
@@ -273,6 +281,7 @@ const styles = StyleSheet.create({
     fontSize: windowW*0.08,
     lineHeight: 30,
     color: "#2E5F85",
+    
   },
   headerStyle: {
     borderBottomWidth: 0,
