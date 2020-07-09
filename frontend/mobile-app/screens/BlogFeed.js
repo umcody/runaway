@@ -1,10 +1,12 @@
-import React,{useState} from "react";
+import React,{useState,useCallback} from "react";
 import {
   StyleSheet,
   View,
   Dimensions,
   FlatList,
-  Text
+  Text,
+  RefreshControl,
+  ActivityIndicator
 } from "react-native";
 import BlogPost from "../BlogPost"
 import useBlogPage from "../useBlogPage"
@@ -27,8 +29,23 @@ export default function BlogFeed({navigation}) {
         setPageNumber(pageNumber+1)
       }
     }
+  // refresh functionality (Not tested)
+    function wait(timeout) {
+      return new Promise(resolve => {
+        setTimeout(resolve, timeout);
+      });
+    }  
+    const [refreshing, setRefreshing] = useState(false);
+  // function onRefreah to change refreshing state to true, wait, then to false
+    const onRefresh = useCallback(() => {
+      setRefreshing(true);
+  
+      wait(2000).then(() => setRefreshing(false));
+    }, [refreshing]);
+// ternary operator to show error or loading content
   return (
     <View style={styles.home}>
+      {error ? <Text>Server Connection Error</Text> :  loading ? <ActivityIndicator /> :
       <FlatList
 	  data={blogs}
 	  renderItem={({ item }) => {
@@ -50,8 +67,11 @@ export default function BlogFeed({navigation}) {
     // gives infinite scroll effect.
     onEndReached={handleLoadMore}
     onEndReachedThreshold={5}
-	/>
-    <Text>{error && 'Server Connection Error'}</Text>
+    refreshControl={
+      <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+    }
+	/>}
+    
     </View>
   );
 }
