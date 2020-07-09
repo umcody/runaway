@@ -15,6 +15,7 @@ import {
 } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import EmergencyHotlinesScreen from "../screens/EmergencyHotline";
 import ChatScreen from "../screens/ChatScreen";
@@ -32,6 +33,7 @@ const HomeTab = createMaterialTopTabNavigator();
 const HomeStack = createStackNavigator();
 const ChatStack = createStackNavigator();
 const HotlineStack = createStackNavigator();
+const SettingsDrawer = createDrawerNavigator();
 
 const BottomTab = ({ navigation }) => {
   return (
@@ -216,11 +218,11 @@ const FeedScreen = ({ navigation }) => {
             color: "#2E5F85",
           },
 
-          headerRight: () => (
-            <AntDesign
-              style={{ paddingRight: 25 }}
-              onPress={() => navigation.navigate("EmergencyResources")}
-              name="exclamationcircleo"
+          headerLeft: () => (
+            <Feather
+              style={{ paddingLeft: 25 }}
+              onPress={() => navigation.openDrawer()}
+              name="settings"
               size={30}
               color="#FF9EDA"
             />
@@ -237,47 +239,59 @@ const HomeTabScreen = () => {
         name="Posts"
         component={Posts}
         options={{
-          title: "Posts",
+          title: "Featured",
         }}
       />
       <HomeTab.Screen
         name="Media"
         component={Media}
         options={{
-          title: "Media",
+          title: "Feed",
         }}
       />
     </HomeTab.Navigator>
   );
 };
-export default function myStack() {
+
+const TemporaryStack = () => {
   return (
-    <>
-      <NavigationContainer>
-        <HotlineStack.Navigator>
-          <HotlineStack.Screen
-            name="Home"
-            component={BottomTab}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <HotlineStack.Screen
-            name="EmergencyResources"
-            component={EmergencyHotlinesScreen}
-            options={{
-              title: "Emergency Resources",
-              headerTitleStyle: styles.headerTitleStyle,
-              headerStyle: styles.headerStyle,
-            }}
-          />
-        </HotlineStack.Navigator>
-      </NavigationContainer>
-      {/* <View style={styles.homeIndicator}></View> */}
-    </>
+    <HotlineStack.Navigator>
+      <HotlineStack.Screen
+        name="EmergencyResources"
+        component={EmergencyHotlinesScreen}
+        options={{
+          title: "Emergency Resources",
+          headerTitleStyle: styles.headerTitleStyle,
+          headerStyle: styles.headerStyle,
+        }}
+      />
+    </HotlineStack.Navigator>
+  );
+};
+export default function MyDrawer() {
+  return (
+    <NavigationContainer>
+      <SettingsDrawer.Navigator>
+        <SettingsDrawer.Screen
+          name="Home"
+          component={BottomTab}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <SettingsDrawer.Screen
+          name="EmergencyResources"
+          component={TemporaryStack}
+          options={{
+            title: "Emergency Resources",
+            headerTitleStyle: styles.headerTitleStyle,
+            headerStyle: styles.headerStyle,
+          }}
+        />
+      </SettingsDrawer.Navigator>
+    </NavigationContainer>
   );
 }
-
 const windowW = Dimensions.get("window").width;
 const windowH = Dimensions.get("window").height;
 
