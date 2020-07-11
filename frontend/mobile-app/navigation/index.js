@@ -28,6 +28,7 @@ import BlogFeed from "../screens/BlogFeed";
 import BlogNav from "../navigation/BlogNav";
 import Res from "../screens/ResourcesDummy";
 import Twitter from "../screens/Twitter";
+import AboutUs from "../screens/About"
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 const BottomTabNavigation = createBottomTabNavigator();
@@ -80,7 +81,7 @@ const BottomTab = ({ navigation }) => {
       />
       <BottomTabNavigation.Screen
         name="Resources"
-        component={Res}
+        component={AboutUs}
         options={{
           tabBarLabel: "Resources",
           tabBarIcon: ({ color }) => (
