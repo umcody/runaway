@@ -9,6 +9,9 @@ import {
 } from "react-native";
 import { CheckBox, Rating, AirbnbRating } from "react-native-elements";
 import { StackActions } from "@react-navigation/native";
+import axios from "axios";
+//need to still get the current ChatScreen that way messages has the actual messages.
+import { messages } from "./ChatScreen.js";
 
 export default function PreChatSurvey({ navigation }) {
   //these two consts are to determine if the modal is visible and
@@ -63,6 +66,9 @@ export default function PreChatSurvey({ navigation }) {
                     chatData: messages,
                   });
                 }
+                //else {
+                //  some way to ensure the chat data is deleted?
+                //}
                 navigation.navigate("Feed");
                 navigation.dispatch(StackActions.replace("Disclaimer"));
               }}
