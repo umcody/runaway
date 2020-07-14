@@ -12,17 +12,14 @@ import { AntDesign, FontAwesome5, Feather } from "@expo/vector-icons";
 
 //This is the chat screen and messaging components
 export default function ChatScreen({ navigation }) {
-
-    //const [queue, setQueue] = useState([]);
-    const [newMessage, setNewMessage] = useState("");
-    const [roomNum, setRoomNum] = useState(0);
-    const [messages, setMessages] = useState([]);
-    const [queue, setQueue] = useState([]);
-    const [modalVisible, setModalVisible] = useState(true);
-    const [text, setText] = useState('');
-  
-
-
+  //const [queue, setQueue] = useState([]);
+  const [newMessage, setNewMessage] = useState("");
+  const [roomNum, setRoomNum] = useState(0);
+  const [messages, setMessages] = useState([]);
+  const [queue, setQueue] = useState([]);
+  const [modalVisible, setModalVisible] = useState(true);
+  const [text, setText] = useState("");
+  let socket;
   navigation.setOptions({
     headerRight: () => (
       <TouchableOpacity
@@ -36,8 +33,10 @@ export default function ChatScreen({ navigation }) {
       <TouchableOpacity
         style={{ paddingLeft: 25 }}
         onPress={() => {
-          axios.post("http://127.0.0.1:7000/api/volunteer/chat",{chatData:messages});
-          return navigation.navigate("Feed");
+          axios.post("http://127.0.0.1:7000/api/volunteer/chat", {
+            chatData: messages,
+          });
+          return navigation.navigate("PostSurvey");
         }}
       >
         <Feather name="x" size={35} color="#FF9EDA" />
@@ -45,7 +44,7 @@ export default function ChatScreen({ navigation }) {
     ),
   });
 
-// message bubble rendering and styling
+  // message bubble rendering and styling
   function renderBubble(props) {
     return (
       <Bubble
@@ -73,7 +72,7 @@ export default function ChatScreen({ navigation }) {
           },
           right: {
             backgroundColor: "#E3F1FC",
-            marginRight:20,
+            marginRight: 20,
             padding: 8,
             borderTopLeftRadius: 30,
             borderTopRightRadius: 30,
@@ -113,7 +112,6 @@ export default function ChatScreen({ navigation }) {
     );
   };
 
-
   //Joins room and updates queue
   function socket_joinRoom(room) {
     setRoomNum(room);
@@ -121,11 +119,10 @@ export default function ChatScreen({ navigation }) {
     socket.emit("pushQueue", room);
   }
 
-
   useEffect(() => {
     socket = socketioclient("http://127.0.0.1:7000");
     //generate random #
-    let random_room = Math.floor((Math.random() * 1000) + 1);
+    let random_room = Math.floor(Math.random() * 1000 + 1);
 
     socket_joinRoom(random_room);
 
@@ -133,26 +130,28 @@ export default function ChatScreen({ navigation }) {
     socket.on("updateMessage", function (message) {
       console.log("message recieved");
 
-      let temp = [{
-        _id: 1,
-        text:message,
-        createdAt: new Date(),
-        user: {
-          _id: 2,
-          name: "React Native",
-          avatar: require("../assets/exampleAvatar.png"),
-        }
-      }];
+      let temp = [
+        {
+          _id: 1,
+          text: message,
+          createdAt: new Date(),
+          user: {
+            _id: 2,
+            name: "React Native",
+            avatar: require("../assets/exampleAvatar.png"),
+          },
+        },
+      ];
 
-      setMessages((previousMessages) => 
+      setMessages((previousMessages) =>
         GiftedChat.append(previousMessages, temp)
       );
 
       //This is where u should handle new messages. ("message" var is the new message)
       setNewMessage(message);
     });
-// Default messages that show up at first
-// This is all for testing purposes
+    // Default messages that show up at first
+    // This is all for testing purposes
     setMessages([
       {
         _id: 1,
@@ -184,34 +183,33 @@ export default function ChatScreen({ navigation }) {
     //when exiting the component
     return () => {
       socket.disconnect();
-    }
-  }, [])
+    };
+  }, []);
 
   //When clicked, call sendMessage function to send message to the server
   function sendMessage(message) {
     socket.emit("sendMessage", message);
   }
 
-// ** GIFTEDCHAT.APPEND NOT WORKING!
+  // ** GIFTEDCHAT.APPEND NOT WORKING!
   const onSend = useCallback((messages = []) => {
-    setMessages((previousMessages) => 
+    setMessages((previousMessages) =>
       GiftedChat.append(previousMessages, messages)
     );
-    sendMessage(messages[0].text)
+    sendMessage(messages[0].text);
   }, []);
 
-
-  const setQuickReply = ()=>{
+  const setQuickReply = () => {
     console.log("clicked!");
-    if(messages.quickReplies){
+    if (messages.quickReplies) {
       return messages.quickReplies;
-    }else{
-      return null
+    } else {
+      return null;
     }
-  }
+  };
 
   return (
-    <View style={{ flex:1, backgroundColor: "#fff" }}>
+    <View style={{ flex: 1, backgroundColor: "#fff" }}>
       <GiftedChat
         messages={messages}
         //quickReply={setQuickReply} NOT WORKING FOR NOW...
@@ -230,13 +228,15 @@ export default function ChatScreen({ navigation }) {
         }}
         alwaysShowSend={true}
         renderSend={renderSend}
-        listViewProps={{// styling of the list of messages to have a white background
+        listViewProps={{
+          // styling of the list of messages to have a white background
           style: {
             backgroundColor: "white",
           },
         }}
         renderBubble={renderBubble}
-        timeTextStyle={{ //disable date and time
+        timeTextStyle={{
+          //disable date and time
           right: {
             display: "none",
           },
@@ -258,7 +258,7 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     color: "#2E5F85",
     minHeight: 35,
-    alignItems: 'center'
+    alignItems: "center",
   },
   sendingContainer: {
     justifyContent: "center",

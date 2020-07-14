@@ -1,6 +1,6 @@
 import React from "react";
 
-import { StyleSheet, View, StatusBar, Dimensions,Image } from "react-native";
+import { StyleSheet, View, StatusBar, Dimensions, Image } from "react-native";
 import {
   MaterialCommunityIcons,
   MaterialIcons,
@@ -16,7 +16,6 @@ import {
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
-
 import EmergencyHotlinesScreen from "../screens/EmergencyHotline";
 import ChatScreen from "../screens/ChatScreen";
 import Events from "../screens/EventsDummy";
@@ -24,6 +23,7 @@ import Posts from "../screens/PostsDummy";
 import Media from "../screens/MediaDummy";
 import Feels from "../screens/Feels";
 import Disclaimer from "../screens/Disclaimer";
+import PostChatSurvey from "../screens/PostChatSurvey";
 import BlogFeed from "../screens/BlogFeed";
 import BlogNav from "../navigation/BlogNav";
 import Res from "../screens/ResourcesDummy";
@@ -39,19 +39,17 @@ const HotlineStack = createStackNavigator();
 const BottomTab = ({ navigation }) => {
   return (
     <BottomTabNavigation.Navigator
-      
       tabBarOptions={{
         showLabel: false,
-        inactiveTintColor:"#ACDAFF",
-        activeTintColor:"#2E5F85",
-        style:{
+        inactiveTintColor: "#ACDAFF",
+        activeTintColor: "#2E5F85",
+        style: {
           backgroundColor: "white",
-          height:60,
+          height: 60,
           borderTopColor: "#ACDAFF",
-          borderTopWidth:1
-        }
+          borderTopWidth: 1,
+        },
       }}
-      
     >
       <BottomTabNavigation.Screen
         name="Feed"
@@ -141,6 +139,13 @@ const Chat = ({ navigation }) => {
             headerStyle: styles.headerStyle,
           }}
         />
+
+        <ChatStack.Screen
+          name="PostSurvey"
+          component={PostChatSurvey}
+          options={{ headerShown: false }}
+        />
+
         <ChatStack.Screen
           name="Resources"
           component={EmergencyHotlinesScreen}
@@ -177,38 +182,39 @@ const Chat = ({ navigation }) => {
 const FeedScreen = ({ navigation }) => {
   return (
     <>
-    <StatusBar barStyle="dark-content" translucent={true} />
-    <HomeStack.Navigator>
-      <HomeStack.Screen
-        name="Feed"
-        component={HomeTabScreen}
-        options={{
-          headerTitleAlign: "center",
-          headerTitleStyle:styles.headerTitleStyle,
-          headerStyle: styles.headerStyle,
-          headerTitle: (
-            <View style = {{paddingTop:10}}>
-              <Image source={require('../assets/RunawayLogo.png')}/>
-            </View>
-        ),
-        headerLeft: () => (
-          <TouchableOpacity style ={{paddingTop:20,paddingLeft:20}}>
-
-            <Feather name="settings" size={25} color="#2E5F85" />
-          </TouchableOpacity>
-        ),
-        }}
-      />
-    </HomeStack.Navigator>
+      <StatusBar barStyle="dark-content" translucent={true} />
+      <HomeStack.Navigator>
+        <HomeStack.Screen
+          name="Feed"
+          component={HomeTabScreen}
+          options={{
+            headerTitleAlign: "center",
+            headerTitleStyle: styles.headerTitleStyle,
+            headerStyle: styles.headerStyle,
+            headerTitle: (
+              <View style={{ paddingTop: 10 }}>
+                <Image source={require("../assets/RunawayLogo.png")} />
+              </View>
+            ),
+            headerLeft: () => (
+              <TouchableOpacity style={{ paddingTop: 20, paddingLeft: 20 }}>
+                <Feather name="settings" size={25} color="#2E5F85" />
+              </TouchableOpacity>
+            ),
+          }}
+        />
+      </HomeStack.Navigator>
     </>
   );
 };
 const HomeTabScreen = () => {
   return (
-    <HomeTab.Navigator  tabBarOptions={{
-      indicatorStyle:{backgroundColor:"#ACDAFF"},
-      labelStyle:{color:"#2E5F85"}
-      }}>
+    <HomeTab.Navigator
+      tabBarOptions={{
+        indicatorStyle: { backgroundColor: "#ACDAFF" },
+        labelStyle: { color: "#2E5F85" },
+      }}
+    >
       <HomeTab.Screen
         name="Posts"
         component={BlogNav}
@@ -278,16 +284,15 @@ const styles = StyleSheet.create({
     fontFamily: "System",
     fontStyle: "normal",
     fontWeight: "normal",
-    fontSize: windowW*0.08,
+    fontSize: windowW * 0.08,
     lineHeight: 30,
     color: "#2E5F85",
-    
   },
   headerStyle: {
     borderBottomWidth: 0,
     shadowColor: "transparent",
     backgroundColor: "#fff",
-    height:windowH/10,
+    height: windowH / 10,
   },
   profilePic: {
     borderLeftWidth: 10,
