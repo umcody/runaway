@@ -65,6 +65,7 @@ export default function PreChatSurvey({ navigation }) {
                   axios.post("http://127.0.0.1:7000/api/volunteer/chat", {
                     chatData: messages,
                   });
+                  //logs here are for testing to make sure it is working with the checkbox
                   console.log("checked");
                 } else {
                   console.log("unChecked");
