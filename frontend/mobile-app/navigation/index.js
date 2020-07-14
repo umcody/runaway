@@ -49,7 +49,7 @@ const BottomTab = ({ navigation }) => {
           backgroundColor: "white",
           height:60,
           borderTopColor: "#ACDAFF",
-          borderTopWidth:1
+          borderTopWidth:.5
         }
       }}
       
@@ -195,7 +195,7 @@ const FeedScreen = ({ navigation }) => {
         headerLeft: () => (
           <TouchableOpacity style ={{paddingTop:20,paddingLeft:20}}>
 
-            <Feather name="settings" size={25} color="#2E5F85" />
+            <Feather name="settings" size={25} color="#FF9EDA" />
           </TouchableOpacity>
         ),
         }}

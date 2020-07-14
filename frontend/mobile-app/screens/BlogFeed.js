@@ -8,8 +8,8 @@ import {
   RefreshControl,
   ActivityIndicator
 } from "react-native";
-import BlogPost from "../BlogPost"
-import useBlogPage from "../useBlogPage"
+import BlogPost from "../components/BlogPost"
+import useBlogPage from "../components/useBlogPage"
 import data from "../SampleData"
 
 //This file is the blog feed component that allows infinite scrolling
@@ -46,7 +46,8 @@ export default function BlogFeed({navigation}) {
   return (
     <View style={styles.home}>
       {error ? <Text>Server Connection Error</Text> :  loading ? <ActivityIndicator /> :
-      <FlatList
+      <FlatList 
+      style={{paddingTop:30}}
 	  data={blogs}
 	  renderItem={({ item }) => {
         return(
@@ -62,7 +63,7 @@ export default function BlogFeed({navigation}) {
     keyExtractor={item => item._id}
     showsHorizontalScrollIndicator={false}
     showsVerticalScrollIndicator={false}
-    initialNumToRender={20}
+    initialNumToRender={5}
     //When the user scrolls to the end defined by the onEndReachThreshold, function handleLoadMore is called
     // gives infinite scroll effect.
     onEndReached={handleLoadMore}
@@ -82,7 +83,8 @@ const styles = StyleSheet.create({
   home: {
     flex: 1,
     backgroundColor: "#FFFFFF",
-    alignItems:'center'
+    alignItems:'center',
+    
   },
   profile: {
     position: "absolute",
