@@ -58,6 +58,11 @@ export default function PreChatSurvey({ navigation }) {
               style={styles.buttonDismiss}
               onPress={() => {
                 setModalVisible(false);
+                if (checked == true) {
+                  axios.post("http://127.0.0.1:7000/api/volunteer/chat", {
+                    chatData: messages,
+                  });
+                }
                 navigation.navigate("Feed");
                 navigation.dispatch(StackActions.replace("Disclaimer"));
               }}
