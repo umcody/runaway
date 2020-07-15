@@ -19,6 +19,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import {
   DrawerContentScrollView,
   DrawerItemList,
+  DrawerItem,
 } from "@react-navigation/drawer";
 
 import EmergencyHotlinesScreen from "../screens/EmergencyHotline";
@@ -31,6 +32,7 @@ import Disclaimer from "../screens/Disclaimer";
 import PostChatSurvey from "../screens/PostChatSurvey";
 import PreChatModal from "../screens/PreChatSurvey/ModalSurvey";
 import PreChatSurvey from "../screens/PreChatSurvey/Survey";
+import AboutUs from "../screens/AboutUs";
 
 const BottomTabNavigation = createBottomTabNavigator();
 const HomeTab = createMaterialTopTabNavigator();
@@ -43,6 +45,30 @@ function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props}>
       <DrawerItemList {...props} />
+      <DrawerItem
+        onPress={() => {
+          Linking.openURL("instagram://user?username=runaway.app");
+        }}
+        label="Instagram"
+        icon={() => <AntDesign name="instagram" size={32} color="#FF9EDA" />}
+      />
+      <DrawerItem
+        onPress={() => {}}
+        label="Facebook"
+        icon={() => <Feather name="facebook" size={32} color="#FF9EDA" />}
+      />
+      <DrawerItem
+        onPress={() => {}}
+        label="Twitter"
+        icon={() => <Feather name="twitter" size={32} color="#FF9EDA" />}
+      />
+      <DrawerItem
+        onPress={() => {}}
+        label="Website"
+        icon={() => (
+          <MaterialCommunityIcons name="web" size={32} color="#FF9EDA" />
+        )}
+      />
     </DrawerContentScrollView>
   );
 }
@@ -293,15 +319,11 @@ export default function MyDrawer() {
             headerShown: false,
           }}
         />
-        <SettingsDrawer.Screen
-          name="About Us"
-          component={TemporaryStack}
-          options={{
-            title: "Emergency Resources",
-            headerTitleStyle: styles.headerTitleStyle,
-            headerStyle: styles.headerStyle,
-          }}
-        />
+        <SettingsDrawer.Screen name="About Us" component={AboutUs} />
+        <SettingsDrawer.Screen name="FAQs" component={BottomTab} />
+        <SettingsDrawer.Screen name="Privacy Policy" component={BottomTab} />
+        <SettingsDrawer.Screen name="Usage" component={BottomTab} />
+        <SettingsDrawer.Screen name="Sign In" component={BottomTab} />
       </SettingsDrawer.Navigator>
     </NavigationContainer>
   );
