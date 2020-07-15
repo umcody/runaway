@@ -1,5 +1,5 @@
 import React from "react";
-
+import 'react-native-gesture-handler';
 import { StyleSheet, View, StatusBar, Dimensions,Image } from "react-native";
 import {
   MaterialCommunityIcons,
