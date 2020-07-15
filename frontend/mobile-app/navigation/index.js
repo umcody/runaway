@@ -16,6 +16,10 @@ import {
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import {
+  DrawerContentScrollView,
+  DrawerItemList,
+} from "@react-navigation/drawer";
 
 import EmergencyHotlinesScreen from "../screens/EmergencyHotline";
 import ChatScreen from "../screens/ChatScreen";
@@ -34,6 +38,14 @@ const HomeStack = createStackNavigator();
 const ChatStack = createStackNavigator();
 const HotlineStack = createStackNavigator();
 const SettingsDrawer = createDrawerNavigator();
+
+function CustomDrawerContent(props) {
+  return (
+    <DrawerContentScrollView {...props}>
+      <DrawerItemList {...props} />
+    </DrawerContentScrollView>
+  );
+}
 
 const BottomTab = ({ navigation }) => {
   return (
@@ -222,7 +234,7 @@ const FeedScreen = ({ navigation }) => {
             <Feather
               style={{ paddingLeft: 25 }}
               onPress={() => navigation.openDrawer()}
-              name="settings"
+              name="info"
               size={30}
               color="#FF9EDA"
             />
@@ -271,7 +283,9 @@ const TemporaryStack = () => {
 export default function MyDrawer() {
   return (
     <NavigationContainer>
-      <SettingsDrawer.Navigator>
+      <SettingsDrawer.Navigator
+        drawerContent={(props) => <CustomDrawerContent {...props} />}
+      >
         <SettingsDrawer.Screen
           name="Home"
           component={BottomTab}
@@ -280,7 +294,7 @@ export default function MyDrawer() {
           }}
         />
         <SettingsDrawer.Screen
-          name="EmergencyResources"
+          name="About Us"
           component={TemporaryStack}
           options={{
             title: "Emergency Resources",
