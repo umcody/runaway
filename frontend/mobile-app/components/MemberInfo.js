@@ -7,7 +7,7 @@ import {
   SectionList
 } from "react-native";
 
-
+// Card component for each member
 const TeamCard = ({name,role}) => (
     <View style={{backgroundColor:'#fff',width:'100%',borderRadius:10,marginBottom:10}}>
         <View style={{padding:10}}>

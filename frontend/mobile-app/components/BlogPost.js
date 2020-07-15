@@ -17,7 +17,7 @@ Each post shows the author and title*/
 export default function BlogPost({title,author,HandlePress}){
     return(
         <SafeAreaView>
-        <TouchableOpacity activeOpacity={.95} style ={styles.container} onPress={HandlePress}>
+        <TouchableOpacity activeOpacity={.8} style ={styles.container} onPress={HandlePress}>
         <View style = {styles.text}>
                     <Text style = {styles.title}>{title}</Text>
                     <View style = {styles.extras}>

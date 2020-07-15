@@ -4,6 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Ionicons } from '@expo/vector-icons'; 
 import TeamCard from "../components/MemberInfo"
+// about us page
 export default function AboutUs() {
   
   return (
@@ -50,7 +51,7 @@ export default function AboutUs() {
             <TeamCard name ="Alex Chao" role="Front-end Developer"></TeamCard>
             <TeamCard name ="William Maue" role="Front-end Developer"></TeamCard>
             <TeamCard name ="Ethan Ma" role="Front-end Developer"></TeamCard>
-            <TeamCard name ="Rohan Sidhu" role="Front-end Developer or Back End?"></TeamCard>
+            <TeamCard name ="Rohan Sidhu" role="Back-end Developer"></TeamCard>
             <TeamCard name ="Cedric Blaise" role="Back-end Developer"></TeamCard>
             <TeamCard name ="Dongjoo Lee" role="Back-end Developer"></TeamCard>
             

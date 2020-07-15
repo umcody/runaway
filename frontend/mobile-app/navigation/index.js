@@ -81,7 +81,7 @@ const BottomTab = ({ navigation }) => {
       />
       <BottomTabNavigation.Screen
         name="Resources"
-        component={AboutUs}
+        component={Res}
         options={{
           tabBarLabel: "Resources",
           tabBarIcon: ({ color }) => (
@@ -91,7 +91,7 @@ const BottomTab = ({ navigation }) => {
       />
       <BottomTabNavigation.Screen
         name="Events"
-        component={Events}
+        component={AboutUs}
         options={{
           tabBarLabel: "Events",
           tabBarIcon: ({ color }) => (

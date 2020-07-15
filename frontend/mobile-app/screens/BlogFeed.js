@@ -63,7 +63,7 @@ export default function BlogFeed({navigation}) {
     keyExtractor={item => item._id}
     showsHorizontalScrollIndicator={false}
     showsVerticalScrollIndicator={false}
-    initialNumToRender={5}
+    initialNumToRender={20}
     //When the user scrolls to the end defined by the onEndReachThreshold, function handleLoadMore is called
     // gives infinite scroll effect.
     onEndReached={handleLoadMore}
