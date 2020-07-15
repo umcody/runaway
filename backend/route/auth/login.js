@@ -9,6 +9,7 @@ module.exports = function (app, mongoose) {
                 console.log(err);
             } else {
                 if (user === false) {
+                    console.log("Failed :(");
                     res.status(422).send({
                         auth: false,
                         message: "Username or password is wrong"

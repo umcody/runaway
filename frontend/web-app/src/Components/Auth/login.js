@@ -7,7 +7,8 @@ class Login extends React.Component{
     constructor(props) {
         super(props)
         this.state = { username: '',
-                       password: '' } 
+                       password: '',
+                       access: 'admin' } 
 
         //bind 'this'
         this.handleChange = this.handleChange.bind(this);
@@ -30,11 +31,14 @@ class Login extends React.Component{
         console.log(this.state.username);
         console.log('Password');
         console.log(this.state.password);
+        console.log('Access Type');
+        console.log(this.state.access);
 
         // Made an object so it can be passed into axios
         const credentials = {
             username: this.state.username,
-            password: this.state.password
+            password: this.state.password,
+            access: this.state.access
         }
 
         //POST METHOD
@@ -53,8 +57,10 @@ class Login extends React.Component{
                     onChange={this.handleChange}
                 />
                 </label>
+                
                 <br></br>
                 <br></br>
+                
                 <label>
                 Password
                 <input
@@ -64,6 +70,22 @@ class Login extends React.Component{
                     onChange={this.handleChange}
                 />
                 </label>
+                
+                <br></br>
+                <br></br>
+
+                <label>
+                    User Type
+                    <select 
+                        name='access'
+                        value={this.state.access} 
+                        onChange={this.handleChange}>
+                        <option value="admin">Admin</option>
+                        <option value="volunteer">Volunteer</option>
+                        <option value="blog editor">Blog Editor</option>
+                    </select>
+                </label>
+
                 <div onClick = {this.handleClick}>SUBMIT</div>
               </div>
           )

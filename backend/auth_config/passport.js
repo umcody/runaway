@@ -30,7 +30,8 @@ module.exports = function (app, mongoose) {
                                 VolunteerModel.create({ //CREATE
                                     username: req.body.username,
                                     email: email,
-                                    password: hashed
+                                    password: hashed,
+                                    access: req.body.access
                                 }).then(user => {
                                     console.log("Created User");
                                     return (done(null, user));
