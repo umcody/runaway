@@ -36,7 +36,7 @@ class Login extends React.Component{
 
         // Made an object so it can be passed into axios
         const credentials = {
-            username: this.state.username,
+            email: this.state.username,
             password: this.state.password,
             access: this.state.access
         }

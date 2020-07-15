@@ -3,7 +3,7 @@ const Cors = require("cors");
 const express = require("express");
 const mongoose = require("mongoose");
 const auth = require("./route/auth/auth");
-
+const passport = require('passport');
 const app = express();
 const PORT = process.env.PORT || 7000
 
@@ -24,7 +24,7 @@ app.use(Cors());
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 
-
+app.use(passport.initialize());
 
 app.get("/", function(req,res){
     return res.status(200).send("Hello World");
