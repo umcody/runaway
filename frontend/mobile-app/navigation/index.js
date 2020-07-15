@@ -123,16 +123,6 @@ const BottomTab = ({ navigation }) => {
           ),
         }}
       />
-      <BottomTabNavigation.Screen
-        name="Events"
-        component={Events}
-        options={{
-          tabBarLabel: "Events",
-          tabBarIcon: ({ color }) => (
-            <Feather name="calendar" color={color} size={25} />
-          ),
-        }}
-      />
     </BottomTabNavigation.Navigator>
   );
 };
