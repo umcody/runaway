@@ -1,12 +1,13 @@
 import React from "react";
 
-import { StyleSheet, StatusBar, Dimensions } from "react-native";
+import { Linking, StyleSheet, StatusBar, Dimensions } from "react-native";
 import {
   MaterialCommunityIcons,
   MaterialIcons,
   Feather,
   AntDesign,
 } from "@expo/vector-icons";
+import * as WebBrowser from "expo-web-browser";
 
 import { NavigationContainer, StackActions } from "@react-navigation/native";
 import {
@@ -24,7 +25,6 @@ import {
 
 import EmergencyHotlinesScreen from "../screens/EmergencyHotline";
 import ChatScreen from "../screens/ChatScreen";
-import Events from "../screens/EventsDummy";
 import Posts from "../screens/PostsDummy";
 import Media from "../screens/MediaDummy";
 import Feels from "../screens/Feels";
@@ -47,23 +47,29 @@ function CustomDrawerContent(props) {
       <DrawerItemList {...props} />
       <DrawerItem
         onPress={() => {
-          Linking.openURL("instagram://user?username=runaway.app");
+          Linking.openURL("https://www.instagram.com/runaway.app/");
         }}
         label="Instagram"
         icon={() => <AntDesign name="instagram" size={32} color="#FF9EDA" />}
       />
       <DrawerItem
-        onPress={() => {}}
+        onPress={() => {
+          Linking.openURL("https://www.facebook.com/runawayapp/");
+        }}
         label="Facebook"
         icon={() => <Feather name="facebook" size={32} color="#FF9EDA" />}
       />
       <DrawerItem
-        onPress={() => {}}
+        onPress={() => {
+          Linking.openURL("https://twitter.com/runaway_app");
+        }}
         label="Twitter"
         icon={() => <Feather name="twitter" size={32} color="#FF9EDA" />}
       />
       <DrawerItem
-        onPress={() => {}}
+        onPress={() => {
+          WebBrowser.openBrowserAsync("https://www.runawayapp.com/");
+        }}
         label="Website"
         icon={() => (
           <MaterialCommunityIcons name="web" size={32} color="#FF9EDA" />
