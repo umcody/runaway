@@ -7,39 +7,42 @@ import {
   Text,
   Image,
   TextInput,
+  ImageBackground,
 } from "react-native";
 import axios from "axios";
-import LinearGradient from "react-native-linear-gradient";
 
 export default function SignInPage({ navigation }) {
   return (
     <View style={styles.container}>
-      <Image
-        style={styles.runawayLogo}
-        source={require("../images/RunawayLogo.png")}
-      />
-      <Text style={styles.Welcome}>Welcome</Text>
-      <TextInput
-        style={styles.userName}
-        clearButtonMode="always"
-        placeholder="Username or Email"
-      ></TextInput>
-      <TextInput
-        style={styles.password}
-        clearButtonMode="always"
-        placeholder="Password"
-      ></TextInput>
-      <TouchableOpacity style={styles.forgotContainer}>
-        <Text style={styles.forgot}>Forgot Username/Password</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.signInButton}>
-        <Text style={styles.signIn}>Sign In</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.newtoRunawayContainer}>
-        <Text style={styles.newtoRunaway}>
-          New to Runaway? Sign Up for Free
-        </Text>
-      </TouchableOpacity>
+      <ImageBackground
+        source={require("../images/flowerImage.png")}
+        style={styles.background}
+      >
+        <Image
+          style={styles.runawayLogo}
+          source={require("../images/RunawayLogo.png")}
+        />
+        <Text style={styles.Welcome}>Welcome</Text>
+        <TextInput
+          style={styles.userName}
+          clearButtonMode="always"
+          placeholder="Username or Email"
+        ></TextInput>
+        <TextInput
+          style={styles.password}
+          clearButtonMode="always"
+          placeholder="Password"
+        ></TextInput>
+        <TouchableOpacity style={styles.forgotContainer}>
+          <Text style={styles.forgot}>Forgot Username/Password</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.signInButton}>
+          <Text style={styles.signIn}>Sign In</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.newtoRunawayContainer}>
+          <Text style={styles.newtoRunaway}>Continue as a Guest</Text>
+        </TouchableOpacity>
+      </ImageBackground>
     </View>
   );
 }
@@ -132,5 +135,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     textAlign: "center",
     textDecorationLine: "underline",
+  },
+  background: {
+    width: "100%",
+    height: "100%",
   },
 });
