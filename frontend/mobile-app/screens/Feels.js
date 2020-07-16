@@ -4,87 +4,67 @@ import {
   View,
   Text,
   TouchableOpacity,
-  FlatList,
   Dimensions,
+  Button,
+  ScrollView,
 } from "react-native";
+import { CheckBox } from "react-native-elements";
 
 export default function Chat({ navigation }) {
-  const [feelColor, setFeelColor] = useState("#E3F1FC");
-
-  const colorStyles = StyleSheet.create({
-    feels: {
-      fontSize: 20,
-      marginTop: 100,
-      borderColor: "#ACDAFF",
-      borderWidth: 2,
-      backgroundColor: feelColor,
-      alignItems: "center",
-      width: 126,
-      height: 126,
-      paddingTop: 50,
-    },
-  });
-
-  const feelingsCol1 = [
-    { title: "Happy", id: 1 },
-    { title: "Fearful", id: 2 },
-    { title: "Shameful", id: 3 },
-    { title: "Embarrassed", id: 4 },
-    { title: "Disgusted", id: 5 },
-  ];
-
-  const feelingsCol2 = [
-    { title: "Sad", id: 1 },
-    { title: "Angry", id: 2 },
-    { title: "Frustrated", id: 3 },
-    { title: "Stressed", id: 4 },
-    { title: "Surprised", id: 5 },
-  ];
-
-  const FeelingsList = ({ title }) => {
-    return (
-      <View>
-        <TouchableOpacity
-          style={colorStyles.feels}
-          onPress={() => setFeelColor("#FF9EDA")}
-        >
-          <Text>{title}</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  };
+  const [agree, setAgree] = useState(false);
+  const [skipNext, setSkipNext] = useState(true);
 
   return (
     <>
-      <View style={styles.home}>
-        <TouchableOpacity
-          style={styles.skip}
-          onPress={() => {
-            navigation.navigate("Chat");
-          }}
-        >
-          <Text style={{ color: "#FFFFFF", fontSize: 20 }}>Skip</Text>
-        </TouchableOpacity>
-        <View style={styles.col1}>
-          <FlatList
-            data={feelingsCol1}
-            renderItem={({ item }) => <FeelingsList title={item.title} />}
+      <View style={styles.container}>
+        <ScrollView style={styles.home}>
+          {/* Disclaimer here */}
+          <Text style={styles.question}>
+            <Text style={styles.questionBold}>Disclaimer:</Text> You will be
+            chatting with a peer volunteer. These volunteers are not medical or
+            health professionals. If you seek professional assistance, the
+            hotlines and resources can be found (here).
+          </Text>
+          <CheckBox
+            title="I Agree:"
+            checked={agree}
+            onPress={() => {
+              setAgree(!agree);
+              if (agree == true) {
+                setSkipNext(true);
+              } else {
+                setSkipNext(false);
+              }
+            }}
+            textStyle={styles.check}
+            uncheckedColor="#2E5F85"
+            checkedColor="#FF9EDA"
+            iconRight
+            containerStyle={styles.checkBoxContainer}
+          />
+          <Text style={styles.question}>
+            Here is an optional survey to help improve your chat:
+          </Text>
+          <Button
+            title="Skip To Chat"
+            color="#2E5F85"
+            disabled={skipNext}
+            onPress={() => {
+              navigation.navigate("Chat");
+            }}
+          />
+          <Text style={styles.question}>How are you feeling?</Text>
+        </ScrollView>
+        <View style={styles.dismissContainer}>
+          <Button
+            title="Next"
+            color="#2E5F85"
+            disabled={skipNext}
+            onPress={() => {
+              navigation.navigate("Chat");
+            }}
           />
         </View>
-        <View style={styles.col2}>
-          <FlatList
-            data={feelingsCol2}
-            renderItem={({ item }) => <FeelingsList title={item.title} />}
-          />
-        </View>
-        <TouchableOpacity
-          style={styles.buttonDismiss}
-          onPress={() => {
-            navigation.navigate("Chat");
-          }}
-        >
-          <Text style={{ color: "#FFFFFF", fontSize: 25 }}>Next</Text>
-        </TouchableOpacity>
       </View>
     </>
   );
@@ -94,15 +74,21 @@ const windowW = Dimensions.get("window").width;
 const windowH = Dimensions.get("window").height;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#FFFFFF",
+  },
   home: {
     flex: 1,
     backgroundColor: "#FFFFFF",
+  },
+  dismissContainer: {
+    backgroundColor: "#FFFFFF",
     justifyContent: "center",
-    flexDirection: "row",
+    alignSelf: "center",
+    marginBottom: 10,
   },
   buttonDismiss: {
-    position: "absolute",
-    top: windowH - 125,
     borderRadius: 30,
     borderWidth: 2,
     backgroundColor: "#FF9EDA",
@@ -112,26 +98,55 @@ const styles = StyleSheet.create({
     width: 100,
     alignItems: "center",
     textAlign: "center",
-  },
-  col1: {
-    position: "absolute",
-    left: windowW / 4 - 63,
-  },
-  col2: {
-    position: "absolute",
-    left: 3 * (windowW / 4) - 63,
+    justifyContent: "center",
   },
   skip: {
-    position: "absolute",
-    left: windowW - 80,
+    left: 10,
     width: 70,
     height: 30,
-    top: 30,
+    marginHorizontal: 5,
     borderRadius: 3,
     borderWidth: 2,
     backgroundColor: "#ACDAFF",
     alignItems: "center",
     textAlign: "center",
     borderColor: "#ACDAFF",
+  },
+  question: {
+    color: "#ACDAFF",
+    fontStyle: "normal",
+    fontSize: 18,
+    textAlign: "center",
+    padding: 10,
+    width: "100%",
+    fontWeight: "bold",
+  },
+  questionBold: {
+    color: "#2E5F85",
+    fontStyle: "normal",
+    fontSize: 18,
+    textAlign: "center",
+    padding: 10,
+    width: "100%",
+    fontWeight: "bold",
+  },
+  check: {
+    fontSize: 18,
+    color: "#2E5F85",
+    fontWeight: "normal",
+    paddingHorizontal: 0,
+  },
+  checkBoxContainer: {
+    backgroundColor: "#FFFFFF",
+    borderColor: "#FFFFFF",
+    width: 125,
+    height: 45,
+    borderRadius: 1,
+    marginVertical: 0,
+    alignSelf: "center",
+  },
+  button: {
+    width: "%50",
+    color: "red",
   },
 });

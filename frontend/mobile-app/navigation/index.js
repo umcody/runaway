@@ -104,20 +104,21 @@ const Chat = ({ navigation }) => {
   return (
     <>
       <StatusBar barStyle="dark-content" translucent={true} />
-      <ChatStack.Navigator initialRouteName="Disclaimer">
-        <ChatStack.Screen
+      <ChatStack.Navigator initialRouteName="Feels">
+        {/* <ChatStack.Screen
           name="Disclaimer"
           component={Disclaimer}
           options={{ headerShown: false }}
-        />
+        /> */}
         <ChatStack.Screen
           name="Feels"
           component={Feels}
           options={{
-            headerTitle: "How are you feeling?",
+            headerTitle: "Pre-Chat Survey",
             headerTitleAlign: "center",
             headerTitleStyle: {
               color: "#2E5F85",
+              fontSize: 18,
             },
             headerLeft: () => (
               <HeaderBackButton
