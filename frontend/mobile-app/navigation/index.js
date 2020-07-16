@@ -26,7 +26,7 @@ import Feels from "../screens/Feels";
 import Disclaimer from "../screens/Disclaimer";
 import BlogFeed from "../screens/BlogFeed";
 import BlogNav from "../navigation/BlogNav";
-import SiteMapNav from "../navigation/SiteMapNav";
+
 import Res from "../screens/ResourcesDummy";
 import Twitter from "../screens/Twitter";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -91,7 +91,7 @@ const BottomTab = ({ navigation }) => {
       />
       <BottomTabNavigation.Screen
         name="Events"
-        component={SiteMapNav}
+        component={Events}
         options={{
           tabBarLabel: "Events",
           tabBarIcon: ({ color }) => (
