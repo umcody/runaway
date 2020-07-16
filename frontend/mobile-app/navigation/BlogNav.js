@@ -16,7 +16,7 @@ export default function BlogNavigator(){
             color: '#000F1E',
           },}}
         />
-        <Stack.Screen name="Blog" component={BlogScreen} />
+        <Stack.Screen name="Blog" component={BlogScreen}/>
             </Stack.Navigator>
        </View>
         

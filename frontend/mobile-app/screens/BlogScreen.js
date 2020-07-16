@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { SafeAreaView, Text,ScrollView, View, StyleSheet,Image,ActivityIndicator} from "react-native";
-import {TouchableOpacity } from 'react-native-gesture-handler';
+import { SafeAreaView, Text, View, StyleSheet,Image,ActivityIndicator} from "react-native";
+import {TouchableOpacity,ScrollView } from 'react-native-gesture-handler';
 import { Ionicons } from "@expo/vector-icons";
 import HTML from 'react-native-render-html';
-import useBlogUrl from "../useBlogUrl"
+import useBlogUrl from "../components/useBlogUrl"
 // shows the blog page 
 export default function BlogScreen({navigation,route}) {
   //sends in url prop

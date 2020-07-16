@@ -1,6 +1,6 @@
 import React from "react";
 
-import { StyleSheet, View, StatusBar, Dimensions,Image } from "react-native";
+import { StyleSheet, StatusBar, Dimensions } from "react-native";
 import {
   MaterialCommunityIcons,
   MaterialIcons,
@@ -8,14 +8,18 @@ import {
   AntDesign,
 } from "@expo/vector-icons";
 
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, StackActions } from "@react-navigation/native";
 import {
   createStackNavigator,
   HeaderBackButton,
 } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import {
+  DrawerContentScrollView,
+  DrawerItemList,
+} from "@react-navigation/drawer";
 
 import EmergencyHotlinesScreen from "../screens/EmergencyHotline";
 import ChatScreen from "../screens/ChatScreen";
@@ -24,34 +28,39 @@ import Posts from "../screens/PostsDummy";
 import Media from "../screens/MediaDummy";
 import Feels from "../screens/Feels";
 import Disclaimer from "../screens/Disclaimer";
-import BlogFeed from "../screens/BlogFeed";
-import BlogNav from "../navigation/BlogNav";
-import Res from "../screens/ResourcesDummy";
-import Twitter from "../screens/Twitter";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import PostChatSurvey from "../screens/PostChatSurvey";
+import PreChatModal from "../screens/PreChatSurvey/ModalSurvey";
+import PreChatSurvey from "../screens/PreChatSurvey/Survey";
 
 const BottomTabNavigation = createBottomTabNavigator();
 const HomeTab = createMaterialTopTabNavigator();
 const HomeStack = createStackNavigator();
 const ChatStack = createStackNavigator();
 const HotlineStack = createStackNavigator();
+const SettingsDrawer = createDrawerNavigator();
+
+function CustomDrawerContent(props) {
+  return (
+    <DrawerContentScrollView {...props}>
+      <DrawerItemList {...props} />
+    </DrawerContentScrollView>
+  );
+}
 
 const BottomTab = ({ navigation }) => {
   return (
     <BottomTabNavigation.Navigator
-      
+      barStyle={{
+        backgroundColor: "white",
+        paddingBottom: 10,
+        borderTopWidth: 2,
+        borderTopColor: "#ACDAFF",
+      }}
       tabBarOptions={{
         showLabel: false,
-        inactiveTintColor:"#ACDAFF",
-        activeTintColor:"#2E5F85",
-        style:{
-          backgroundColor: "white",
-          height:60,
-          borderTopColor: "#ACDAFF",
-          borderTopWidth:1
-        }
       }}
-      
+      inactiveColor="#ACDAFF"
+      activeColor="#2E5F85"
     >
       <BottomTabNavigation.Screen
         name="Feed"
@@ -62,7 +71,7 @@ const BottomTab = ({ navigation }) => {
             <MaterialCommunityIcons
               name="home-outline"
               color={color}
-              size={33}
+              size={28}
             />
           ),
         }}
@@ -74,17 +83,17 @@ const BottomTab = ({ navigation }) => {
           tabBarVisible: false,
           tabBarLabel: "Chat",
           tabBarIcon: ({ color }) => (
-            <MaterialIcons name="chat-bubble-outline" color={color} size={28} />
+            <MaterialIcons name="chat-bubble-outline" color={color} size={25} />
           ),
         }}
       />
       <BottomTabNavigation.Screen
         name="Resources"
-        component={Res}
+        component={FeedScreen}
         options={{
           tabBarLabel: "Resources",
           tabBarIcon: ({ color }) => (
-            <Feather name="book-open" color={color} size={28} />
+            <Feather name="book-open" color={color} size={25} />
           ),
         }}
       />
@@ -94,7 +103,7 @@ const BottomTab = ({ navigation }) => {
         options={{
           tabBarLabel: "Events",
           tabBarIcon: ({ color }) => (
-            <Feather name="calendar" color={color} size={28} />
+            <Feather name="calendar" color={color} size={25} />
           ),
         }}
       />
@@ -112,6 +121,33 @@ const Chat = ({ navigation }) => {
           component={Disclaimer}
           options={{ headerShown: false }}
         />
+
+        <ChatStack.Screen
+          name="PreChatModal"
+          component={PreChatModal}
+          options={{ headerShown: false }}
+        />
+
+        <ChatStack.Screen
+          name="PreChatSurvey"
+          component={PreChatSurvey}
+          options={{
+            headerTitle: "PreChat Survey",
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              color: "#2E5F85",
+            },
+            headerLeft: () => (
+              <HeaderBackButton
+                labelVisible={false}
+                onPress={() => {
+                  navigation.dispatch(StackActions.replace("Disclaimer"));
+                  navigation.navigate("Feed");
+                }}
+              />
+            ),
+          }}
+        />
         <ChatStack.Screen
           name="Feels"
           component={Feels}
@@ -125,13 +161,13 @@ const Chat = ({ navigation }) => {
               <HeaderBackButton
                 labelVisible={false}
                 onPress={() => {
+                  navigation.dispatch(StackActions.replace("Disclaimer"));
                   navigation.navigate("Feed");
                 }}
               />
             ),
           }}
         />
-
         <ChatStack.Screen
           name="Chat"
           component={ChatScreen}
@@ -141,8 +177,15 @@ const Chat = ({ navigation }) => {
             headerStyle: styles.headerStyle,
           }}
         />
+
         <ChatStack.Screen
-          name="Resources"
+          name="PostSurvey"
+          component={PostChatSurvey}
+          options={{ headerShown: false }}
+        />
+
+        <ChatStack.Screen
+          name="EmergencyResources"
           component={EmergencyHotlinesScreen}
           options={{
             title: "Emergency Resources",
@@ -176,49 +219,44 @@ const Chat = ({ navigation }) => {
 
 const FeedScreen = ({ navigation }) => {
   return (
-    <>
-    <StatusBar barStyle="dark-content" translucent={true} />
     <HomeStack.Navigator>
       <HomeStack.Screen
         name="Feed"
         component={HomeTabScreen}
         options={{
           headerTitleAlign: "center",
-          headerTitleStyle:styles.headerTitleStyle,
-          headerStyle: styles.headerStyle,
-          headerTitle: (
-            <View style = {{paddingTop:10}}>
-              <Image source={require('../assets/RunawayLogo.png')}/>
-            </View>
-        ),
-        headerLeft: () => (
-          <TouchableOpacity style ={{paddingTop:20,paddingLeft:20}}>
+          headerTitleStyle: {
+            fontSize: 30,
+            color: "#2E5F85",
+          },
 
-            <Feather name="settings" size={25} color="#2E5F85" />
-          </TouchableOpacity>
-        ),
+          headerLeft: () => (
+            <Feather
+              style={{ paddingLeft: 25 }}
+              onPress={() => navigation.openDrawer()}
+              name="info"
+              size={30}
+              color="#FF9EDA"
+            />
+          ),
         }}
       />
     </HomeStack.Navigator>
-    </>
   );
 };
 const HomeTabScreen = () => {
   return (
-    <HomeTab.Navigator  tabBarOptions={{
-      indicatorStyle:{backgroundColor:"#ACDAFF"},
-      labelStyle:{color:"#2E5F85"}
-      }}>
+    <HomeTab.Navigator>
       <HomeTab.Screen
         name="Posts"
-        component={BlogNav}
+        component={Posts}
         options={{
           title: "Featured",
         }}
       />
       <HomeTab.Screen
         name="Media"
-        component={Twitter}
+        component={Media}
         options={{
           title: "Feed",
         }}
@@ -226,34 +264,48 @@ const HomeTabScreen = () => {
     </HomeTab.Navigator>
   );
 };
-export default function myStack() {
+
+const TemporaryStack = () => {
   return (
-    <>
-      <NavigationContainer>
-        <HotlineStack.Navigator>
-          <HotlineStack.Screen
-            name="Home"
-            component={BottomTab}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <HotlineStack.Screen
-            name="Resources"
-            component={EmergencyHotlinesScreen}
-            options={{
-              title: "Emergency Resources",
-              headerTitleStyle: styles.headerTitleStyle,
-              headerStyle: styles.headerStyle,
-            }}
-          />
-        </HotlineStack.Navigator>
-      </NavigationContainer>
-      {/* <View style={styles.homeIndicator}></View> */}
-    </>
+    <HotlineStack.Navigator>
+      <HotlineStack.Screen
+        name="EmergencyResources"
+        component={EmergencyHotlinesScreen}
+        options={{
+          title: "Emergency Resources",
+          headerTitleStyle: styles.headerTitleStyle,
+          headerStyle: styles.headerStyle,
+        }}
+      />
+    </HotlineStack.Navigator>
+  );
+};
+export default function MyDrawer() {
+  return (
+    <NavigationContainer>
+      <SettingsDrawer.Navigator
+        drawerContent={(props) => <CustomDrawerContent {...props} />}
+      >
+        <SettingsDrawer.Screen
+          name="Home"
+          component={BottomTab}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <SettingsDrawer.Screen
+          name="About Us"
+          component={TemporaryStack}
+          options={{
+            title: "Emergency Resources",
+            headerTitleStyle: styles.headerTitleStyle,
+            headerStyle: styles.headerStyle,
+          }}
+        />
+      </SettingsDrawer.Navigator>
+    </NavigationContainer>
   );
 }
-
 const windowW = Dimensions.get("window").width;
 const windowH = Dimensions.get("window").height;
 
@@ -278,16 +330,15 @@ const styles = StyleSheet.create({
     fontFamily: "System",
     fontStyle: "normal",
     fontWeight: "normal",
-    fontSize: windowW*0.08,
-    lineHeight: 30,
+    fontSize: 24,
+    lineHeight: 28,
+    textAlign: "center",
     color: "#2E5F85",
-    
   },
   headerStyle: {
     borderBottomWidth: 0,
     shadowColor: "transparent",
     backgroundColor: "#fff",
-    height:windowH/10,
   },
   profilePic: {
     borderLeftWidth: 10,
