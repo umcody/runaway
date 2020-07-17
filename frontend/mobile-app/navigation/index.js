@@ -187,11 +187,13 @@ const FeedScreen = ({ navigation }) => {
           headerTitleAlign: "center",
           headerTitleStyle:styles.headerTitleStyle,
           headerStyle: styles.headerStyle,
+          /*
           headerTitle: (
             <View style = {{paddingTop:10}}>
               <Image source={require('../assets/RunawayLogo.png')}/>
             </View>
-        ),
+          ),
+          */
         headerLeft: () => (
           <TouchableOpacity style ={{paddingTop:20,paddingLeft:20}}>
 
