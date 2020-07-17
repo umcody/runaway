@@ -42,17 +42,15 @@ export default function BlogFeed({navigation}) {
   
       wait(2000).then(() => setRefreshing(false));
     }, [refreshing]);
-// ternary operator to show error or loading content
+
   return (
     <View style={styles.home}>
-      {error ? <Text>Server Connection Error</Text> :  loading ? <ActivityIndicator /> :
+      {!!error ? <Text>Server Connection Error</Text> :  loading ? <ActivityIndicator /> :
       <FlatList 
       style={{paddingTop:30}}
 	  data={blogs}
 	  renderItem={({ item }) => {
         return(
-          // renders blog component, gives prop HandlePress for navigation
-          // when blog component is pressed, it navigates to the blog screen and sends in url prop
           <BlogPost title={item.title} key={item._id} author={item.author} url ={item.url}
             HandlePress ={()=> navigation.navigate('Blog',{
               url:item.url,
@@ -64,8 +62,6 @@ export default function BlogFeed({navigation}) {
     showsHorizontalScrollIndicator={false}
     showsVerticalScrollIndicator={false}
     initialNumToRender={20}
-    //When the user scrolls to the end defined by the onEndReachThreshold, function handleLoadMore is called
-    // gives infinite scroll effect.
     onEndReached={handleLoadMore}
     onEndReachedThreshold={5}
     refreshControl={

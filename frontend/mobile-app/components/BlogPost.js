@@ -17,23 +17,22 @@ Each post shows the author and title*/
 export default function BlogPost({title,author,HandlePress}){
     return(
         <SafeAreaView>
-        <TouchableOpacity activeOpacity={.8} style ={styles.container} onPress={HandlePress}>
-        <View style = {styles.text}>
-                    <Text style = {styles.title}>{title}</Text>
-                    <View style = {styles.extras}>
-                        <View style={{flexDirection:'row'}}>
-                            <Text style = {styles.info}>{author}</Text>
-                            <MaterialCommunityIcons name="feather" size={14} color="#FF9EDA" />
-                            <Text style ={styles.info}> • 3 min</Text>
+            <TouchableOpacity activeOpacity={.8} style ={styles.container} onPress={HandlePress}>
+            <View style = {styles.text}>
+                        <Text style = {styles.title}>{title}</Text>
+                        <View style = {styles.extras}>
+                            <View style={{flexDirection:'row'}}>
+                                <Text style = {styles.info}>{author}</Text>
+                                <MaterialCommunityIcons name="feather" size={14} color="#FF9EDA" />
+                                <Text style ={styles.info}> • 3 min</Text>
+                            </View>
+                            <Text style={styles.info}>Date</Text>
+                            <AntDesign name="ellipsis1" size={30} color="#2E5F85" />
                         </View>
-                        <Text style={styles.info}>Date</Text>
-                        <AntDesign name="ellipsis1" size={30} color="#2E5F85" />
                     </View>
-                </View>
-        <View style={styles.image}>
-            <Image source={require("../images/sample.jpg")} style={{flex:1,height:undefined,width:undefined,borderRadius:10}}/>
-        </View>
-                
+            <View style={styles.image}>
+                <Image source={require("../images/sample.jpg")} style={{flex:1,height:undefined,width:undefined,borderRadius:10}}/>
+            </View>             
         </TouchableOpacity>
         </SafeAreaView>
     )

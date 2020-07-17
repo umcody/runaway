@@ -50,7 +50,7 @@ export default function ChatScreen({ navigation }) {
     return (
       <Bubble
         {...props}
-        //text styling
+      
         textStyle={{
           left: {
             color: "white",
@@ -59,7 +59,7 @@ export default function ChatScreen({ navigation }) {
             color: "#2E5F85",
           },
         }}
-        //bubble styling
+      
         wrapperStyle={{
           left: {
             backgroundColor: "#2E5F85",
@@ -214,13 +214,11 @@ export default function ChatScreen({ navigation }) {
     <View style={{ flex:1, backgroundColor: "#fff" }}>
       <GiftedChat
         messages={messages}
-        //quickReply={setQuickReply} NOT WORKING FOR NOW...
-        //onQuickReply={(quickReply) => onQuickReply(quickReply)}
         onSend={(messages) => onSend(messages)}
         renderInputToolbar={(props) => customInputToolbar(props)}
         placeholder="New Message"
         placeholderTextColor="#2E5F85"
-        textInputStyle={styles.composer} //styling of text input
+        textInputStyle={styles.composer} 
         minInputToolbarHeight={60}
         messagesContainerStyle={{
           backgroundColor: "#fff",
@@ -230,13 +228,13 @@ export default function ChatScreen({ navigation }) {
         }}
         alwaysShowSend={true}
         renderSend={renderSend}
-        listViewProps={{// styling of the list of messages to have a white background
+        listViewProps={{
           style: {
             backgroundColor: "white",
           },
         }}
         renderBubble={renderBubble}
-        timeTextStyle={{ //disable date and time
+        timeTextStyle={{
           right: {
             display: "none",
           },
