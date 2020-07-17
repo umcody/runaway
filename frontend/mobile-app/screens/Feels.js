@@ -14,6 +14,31 @@ export default function Chat({ navigation }) {
   const [agree, setAgree] = useState(false);
   const [skipNext, setSkipNext] = useState(true);
 
+  //feelings
+  const [happy, setHappy] = useState(false);
+  const [sad, setSad] = useState(false);
+  const [fearful, setFearful] = useState(false);
+  const [angry, setAngry] = useState(false);
+  const [shameful, setShameful] = useState(false);
+  const [frustrated, setFrustated] = useState(false);
+  const [embarrassed, setEmbarrassed] = useState(false);
+  const [stressed, setStressed] = useState(false);
+  const [disgusted, setDisgusted] = useState(false);
+  const [surprised, setSurprised] = useState(false);
+
+  //reason for being in the chat
+  const [checkedOne, setCheckedOne] = useState(false);
+  const [checkedTwo, setCheckedTwo] = useState(false);
+  const [checkedThree, setCheckedThree] = useState(false);
+  const [checkedFour, setCheckedFour] = useState(false);
+  const [checkedFive, setCheckedFive] = useState(false);
+  const [checkedSix, setCheckedSix] = useState(false);
+  const [checkedSeven, setCheckedSeven] = useState(false);
+
+  //yes no for suicidal thoughts
+  const [yes, setYes] = useState(false);
+  const [no, setNo] = useState(false);
+
   return (
     <>
       <View style={styles.container}>
@@ -23,7 +48,16 @@ export default function Chat({ navigation }) {
             <Text style={styles.questionBold}>Disclaimer:</Text> You will be
             chatting with a peer volunteer. These volunteers are not medical or
             health professionals. If you seek professional assistance, the
-            hotlines and resources can be found (here).
+            hotlines and resources can be found{" "}
+            <Text
+              style={styles.questionBold}
+              onPress={() => {
+                navigation.navigate("Resources");
+              }}
+            >
+              (here)
+            </Text>
+            .
           </Text>
           <CheckBox
             title="I Agree:"
@@ -54,8 +88,210 @@ export default function Chat({ navigation }) {
             }}
           />
           <Text style={styles.question}>How are you feeling?</Text>
-        </ScrollView>
-        <View style={styles.dismissContainer}>
+          <CheckBox
+            title="Happy"
+            checked={happy}
+            onPress={() => {
+              setHappy(!happy);
+            }}
+            textStyle={styles.check}
+            uncheckedColor="#ACDAFF"
+            checkedColor="#FF9EDA"
+            containerStyle={styles.questionCheckContainer}
+          />
+          <CheckBox
+            title="Sad"
+            checked={sad}
+            onPress={() => {
+              setSad(!sad);
+            }}
+            textStyle={styles.check}
+            uncheckedColor="#ACDAFF"
+            checkedColor="#FF9EDA"
+            containerStyle={styles.questionCheckContainer}
+          />
+          <CheckBox
+            title="Fearful"
+            checked={fearful}
+            onPress={() => {
+              setFearful(!fearful);
+            }}
+            textStyle={styles.check}
+            uncheckedColor="#ACDAFF"
+            checkedColor="#FF9EDA"
+            containerStyle={styles.questionCheckContainer}
+          />
+          <CheckBox
+            title="Angry"
+            checked={angry}
+            onPress={() => {
+              setAngry(!angry);
+            }}
+            textStyle={styles.check}
+            uncheckedColor="#ACDAFF"
+            checkedColor="#FF9EDA"
+            containerStyle={styles.questionCheckContainer}
+          />
+          <CheckBox
+            title="Shameful"
+            checked={shameful}
+            onPress={() => {
+              setShameful(!shameful);
+            }}
+            textStyle={styles.check}
+            uncheckedColor="#ACDAFF"
+            checkedColor="#FF9EDA"
+            containerStyle={styles.questionCheckContainer}
+          />
+          <CheckBox
+            title="Frustrated"
+            checked={frustrated}
+            onPress={() => {
+              setFrustated(!frustrated);
+            }}
+            textStyle={styles.check}
+            uncheckedColor="#ACDAFF"
+            checkedColor="#FF9EDA"
+            containerStyle={styles.questionCheckContainer}
+          />
+          <CheckBox
+            title="Embarrassed"
+            checked={embarrassed}
+            onPress={() => {
+              setEmbarrassed(!embarrassed);
+            }}
+            textStyle={styles.check}
+            uncheckedColor="#ACDAFF"
+            checkedColor="#FF9EDA"
+            containerStyle={styles.questionCheckContainer}
+          />
+          <CheckBox
+            title="Stressed"
+            checked={stressed}
+            onPress={() => {
+              setStressed(!stressed);
+            }}
+            textStyle={styles.check}
+            uncheckedColor="#ACDAFF"
+            checkedColor="#FF9EDA"
+            containerStyle={styles.questionCheckContainer}
+          />
+          <CheckBox
+            title="Disgusted"
+            checked={disgusted}
+            onPress={() => {
+              setDisgusted(!disgusted);
+            }}
+            textStyle={styles.check}
+            uncheckedColor="#ACDAFF"
+            checkedColor="#FF9EDA"
+            containerStyle={styles.questionCheckContainer}
+          />
+          <CheckBox
+            title="Surprised"
+            checked={surprised}
+            onPress={() => {
+              setSurprised(!surprised);
+            }}
+            textStyle={styles.check}
+            uncheckedColor="#ACDAFF"
+            checkedColor="#FF9EDA"
+            containerStyle={styles.questionCheckContainer}
+          />
+          <Text style={styles.question}>What brings you to this chat?</Text>
+          <CheckBox
+            title="Understanding Emotions/Feelings"
+            checked={checkedOne}
+            onPress={() => {
+              setCheckedOne(!checkedOne);
+            }}
+            textStyle={styles.check}
+            uncheckedColor="#ACDAFF"
+            checkedColor="#FF9EDA"
+            containerStyle={styles.questionCheckContainer}
+          />
+          <CheckBox
+            title="Life Challenges (e.g. illness, loss)"
+            checked={checkedTwo}
+            onPress={() => {
+              setCheckedTwo(!checkedTwo);
+            }}
+            textStyle={styles.check}
+            uncheckedColor="#ACDAFF"
+            checkedColor="#FF9EDA"
+            containerStyle={styles.questionCheckContainer}
+          />
+          <CheckBox
+            title="Use or Abuse of Substance"
+            checked={checkedThree}
+            onPress={() => {
+              setCheckedThree(!checkedThree);
+            }}
+            textStyle={styles.check}
+            uncheckedColor="#ACDAFF"
+            checkedColor="#FF9EDA"
+            containerStyle={styles.questionCheckContainer}
+          />
+          <CheckBox
+            title="Anxiety/Depression"
+            checked={checkedFour}
+            onPress={() => {
+              setCheckedFour(!checkedFour);
+            }}
+            textStyle={styles.check}
+            uncheckedColor="#ACDAFF"
+            checkedColor="#FF9EDA"
+            containerStyle={styles.questionCheckContainer}
+          />
+          <CheckBox
+            title="Friendship/Relationship"
+            checked={checkedFive}
+            onPress={() => {
+              setCheckedFive(!checkedFive);
+            }}
+            textStyle={styles.check}
+            uncheckedColor="#ACDAFF"
+            checkedColor="#FF9EDA"
+            containerStyle={styles.questionCheckContainer}
+          />
+          <CheckBox
+            title="Unhealthy Behaviors"
+            checked={checkedSix}
+            onPress={() => {
+              setCheckedSix(!checkedSix);
+            }}
+            textStyle={styles.check}
+            uncheckedColor="#ACDAFF"
+            checkedColor="#FF9EDA"
+            containerStyle={styles.questionCheckContainer}
+          />
+          <Text style={styles.question}>
+            Have you had suicidal thought in the past 6 months?
+          </Text>
+          <CheckBox
+            title="Yes"
+            checked={yes}
+            disabled={no}
+            onPress={() => {
+              setYes(!yes);
+            }}
+            textStyle={styles.check}
+            uncheckedColor="#ACDAFF"
+            checkedColor="#FF9EDA"
+            containerStyle={styles.questionCheckContainer}
+          />
+          <CheckBox
+            title="No"
+            checked={no}
+            disabled={yes}
+            onPress={() => {
+              setNo(!no);
+            }}
+            textStyle={styles.check}
+            uncheckedColor="#ACDAFF"
+            checkedColor="#FF9EDA"
+            containerStyle={styles.questionCheckContainer}
+          />
           <Button
             title="Next"
             color="#2E5F85"
@@ -64,7 +300,17 @@ export default function Chat({ navigation }) {
               navigation.navigate("Chat");
             }}
           />
-        </View>
+        </ScrollView>
+        {/* <View style={styles.dismissContainer}>
+          <Button
+            title="Next"
+            color="#2E5F85"
+            disabled={skipNext}
+            onPress={() => {
+              navigation.navigate("Chat");
+            }}
+          />
+        </View> */}
       </View>
     </>
   );
@@ -80,6 +326,7 @@ const styles = StyleSheet.create({
   },
   home: {
     flex: 1,
+    marginBottom: 10,
     backgroundColor: "#FFFFFF",
   },
   dismissContainer: {
@@ -148,5 +395,11 @@ const styles = StyleSheet.create({
   button: {
     width: "%50",
     color: "red",
+  },
+  questionCheckContainer: {
+    backgroundColor: "#FFFFFF",
+    borderColor: "#FFFFFF",
+    // width: "50%",
+    marginVertical: 0,
   },
 });

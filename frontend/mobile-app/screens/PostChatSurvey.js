@@ -66,14 +66,14 @@ export default function PreChatSurvey({ navigation }) {
                     chatData: messages,
                   });
                   //logs here are for testing to make sure it is working with the checkbox
-                  console.log("checked");
+                  //console.log("checked");
                 } else {
-                  console.log("unChecked");
+                  // console.log("unChecked");
                 }
                 navigation.navigate("Feed");
                 //I think the reason that the discalimer pops up when the stack is reset is because its a modal and its
                 //values gets reset to true when the stack resets
-                navigation.dispatch(StackActions.replace("Disclaimer"));
+                navigation.dispatch(StackActions.replace("Feels"));
               }}
             >
               <Text style={{ color: "#FFFFFF", fontSize: 24 }}>Submit</Text>

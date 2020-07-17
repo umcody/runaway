@@ -194,7 +194,10 @@ const FeedScreen = ({ navigation }) => {
             headerStyle: styles.headerStyle,
             headerTitle: (
               <View style={{ paddingTop: 10 }}>
-                <Image source={require("../assets/RunawayLogo.png")} />
+                <Image
+                  style={styles.runaway}
+                  source={require("../images/RunawayLogo.png")}
+                />
               </View>
             ),
             headerLeft: () => (
@@ -301,6 +304,11 @@ const styles = StyleSheet.create({
   profileTitle: {
     color: "#ACDAFF",
     fontSize: 20,
+  },
+  runaway: {
+    width: 75,
+    height: 56,
+    alignSelf: "center",
   },
 });
 
