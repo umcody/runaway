@@ -1,0 +1,59 @@
+import React from "react";
+import ReactQuill from "react-quill";
+import 'react-quill/dist/quill.snow.css';
+import axios from 'axios';
+
+class BlogEditor extends React.Component{
+
+
+    constructor(props) {
+        super(props)
+        this.state = { title: '', blogContent: '' } 
+
+        //bind 'this'
+        this.handleChange = this.handleChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+      }
+
+
+    handleChange(event) {
+        if (event.target) {
+            this.setState({ title: event.target.value})
+        } else {
+            this.setState({ blogContent: event })
+        }
+    }
+
+    handleClick(event){
+        console.log('Title');
+        console.log(this.state.title);
+        console.log('Blog Content');
+        console.log(this.state.blogContent);
+
+        const blogData = {
+            title: this.state.title,
+            content: this.state.blogContent
+        }
+        //POST METHOD
+        axios.post("/api/volunteer/blog/post", blogData);
+    }
+
+    render(){
+        return(
+            <div>
+                <input
+                    type='text'
+                    value={this.state.title}
+                    onChange={this.handleChange}
+                />
+                 <ReactQuill 
+                  value={this.state.blogContent}
+                  onChange={this.handleChange} 
+                  />
+                  <div onClick = {this.handleClick}>SUBMIT</div>
+            </div>
+        )
+    }
+}
+
+export default BlogEditor;

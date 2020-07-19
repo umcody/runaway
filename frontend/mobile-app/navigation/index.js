@@ -1,6 +1,11 @@
 import React from "react";
+<<<<<<< HEAD
 
 import { Linking, StyleSheet, StatusBar, Dimensions } from "react-native";
+=======
+import 'react-native-gesture-handler';
+import { StyleSheet, View, StatusBar, Dimensions,Image } from "react-native";
+>>>>>>> master
 import {
   MaterialCommunityIcons,
   MaterialIcons,
@@ -23,16 +28,26 @@ import {
   DrawerItem,
 } from "@react-navigation/drawer";
 
+
 import EmergencyHotlinesScreen from "../screens/EmergencyHotline";
 import ChatScreen from "../screens/ChatScreen";
 import Posts from "../screens/PostsDummy";
 import Media from "../screens/MediaDummy";
 import Feels from "../screens/Feels";
 import Disclaimer from "../screens/Disclaimer";
+<<<<<<< HEAD
 import PostChatSurvey from "../screens/PostChatSurvey";
 import PreChatModal from "../screens/PreChatSurvey/ModalSurvey";
 import PreChatSurvey from "../screens/PreChatSurvey/Survey";
 import AboutUs from "../screens/AboutUs";
+=======
+import BlogFeed from "../screens/BlogFeed";
+import BlogNav from "../navigation/BlogNav";
+
+import Res from "../screens/ResourcesDummy";
+import Twitter from "../screens/Twitter";
+import { TouchableOpacity } from "react-native-gesture-handler";
+>>>>>>> master
 
 const BottomTabNavigation = createBottomTabNavigator();
 const HomeTab = createMaterialTopTabNavigator();
@@ -82,17 +97,19 @@ function CustomDrawerContent(props) {
 const BottomTab = ({ navigation }) => {
   return (
     <BottomTabNavigation.Navigator
-      barStyle={{
-        backgroundColor: "white",
-        paddingBottom: 10,
-        borderTopWidth: 2,
-        borderTopColor: "#ACDAFF",
-      }}
+      
       tabBarOptions={{
         showLabel: false,
+        inactiveTintColor:"#ACDAFF",
+        activeTintColor:"#2E5F85",
+        style:{
+          backgroundColor: "white",
+          height:60,
+          borderTopColor: "#ACDAFF",
+          borderTopWidth:1
+        }
       }}
-      inactiveColor="#ACDAFF"
-      activeColor="#2E5F85"
+      
     >
       <BottomTabNavigation.Screen
         name="Feed"
@@ -103,7 +120,7 @@ const BottomTab = ({ navigation }) => {
             <MaterialCommunityIcons
               name="home-outline"
               color={color}
-              size={28}
+              size={33}
             />
           ),
         }}
@@ -115,7 +132,17 @@ const BottomTab = ({ navigation }) => {
           tabBarVisible: false,
           tabBarLabel: "Chat",
           tabBarIcon: ({ color }) => (
-            <MaterialIcons name="chat-bubble-outline" color={color} size={25} />
+            <MaterialIcons name="chat-bubble-outline" color={color} size={28} />
+          ),
+        }}
+      />
+      <BottomTabNavigation.Screen
+        name="Resources"
+        component={Res}
+        options={{
+          tabBarLabel: "Resources",
+          tabBarIcon: ({ color }) => (
+            <Feather name="book-open" color={color} size={28} />
           ),
         }}
       />
@@ -125,7 +152,11 @@ const BottomTab = ({ navigation }) => {
         options={{
           tabBarLabel: "Resources",
           tabBarIcon: ({ color }) => (
+<<<<<<< HEAD
             <Feather name="book-open" color={color} size={25} />
+=======
+            <Feather name="calendar" color={color} size={28} />
+>>>>>>> master
           ),
         }}
       />
@@ -241,17 +272,25 @@ const Chat = ({ navigation }) => {
 
 const FeedScreen = ({ navigation }) => {
   return (
+    <>
+    <StatusBar barStyle="dark-content" translucent={true} />
     <HomeStack.Navigator>
       <HomeStack.Screen
         name="Feed"
         component={HomeTabScreen}
         options={{
           headerTitleAlign: "center",
-          headerTitleStyle: {
-            fontSize: 30,
-            color: "#2E5F85",
-          },
+          headerTitleStyle:styles.headerTitleStyle,
+          headerStyle: styles.headerStyle,
+          headerTitle: (
+            <View style = {{paddingTop:10}}>
+              <Image source={require('../assets/RunawayLogo.png')}/>
+            </View>
+        ),
+        headerLeft: () => (
+          <TouchableOpacity style ={{paddingTop:20,paddingLeft:20}}>
 
+<<<<<<< HEAD
           headerLeft: () => (
             <Feather
               style={{ paddingLeft: 25 }}
@@ -261,24 +300,33 @@ const FeedScreen = ({ navigation }) => {
               color="#FF9EDA"
             />
           ),
+=======
+            <Feather name="settings" size={25} color="#2E5F85" />
+          </TouchableOpacity>
+        ),
+>>>>>>> master
         }}
       />
     </HomeStack.Navigator>
+    </>
   );
 };
 const HomeTabScreen = () => {
   return (
-    <HomeTab.Navigator>
+    <HomeTab.Navigator  tabBarOptions={{
+      indicatorStyle:{backgroundColor:"#ACDAFF"},
+      labelStyle:{color:"#2E5F85"}
+      }}>
       <HomeTab.Screen
         name="Posts"
-        component={Posts}
+        component={BlogNav}
         options={{
           title: "Featured",
         }}
       />
       <HomeTab.Screen
         name="Media"
-        component={Media}
+        component={Twitter}
         options={{
           title: "Feed",
         }}
@@ -348,15 +396,16 @@ const styles = StyleSheet.create({
     fontFamily: "System",
     fontStyle: "normal",
     fontWeight: "normal",
-    fontSize: 24,
-    lineHeight: 28,
-    textAlign: "center",
+    fontSize: windowW*0.08,
+    lineHeight: 30,
     color: "#2E5F85",
+    
   },
   headerStyle: {
     borderBottomWidth: 0,
     shadowColor: "transparent",
     backgroundColor: "#fff",
+    height:windowH/10,
   },
   profilePic: {
     borderLeftWidth: 10,

@@ -1,26 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
+import {Route} from 'react-router-dom';
+import BlogEditor from './Components/Blog/blogEditor';
+
+import Register from './Components/Auth/register';
+import Login from './Components/Auth/login';
+import ChatCreation from './Components/Chat/chatCreate';
+import ChatObservation from './Components/Chat/chatObserve';
+
+
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h2 style = {{"color":"#ACD1E9"}}>RunAway</h2>
+      <div style = {{"color":"fffff","font-size":"60px","font-weight":"700"}}>RunAway</div>
+      <link rel="stylesheet" href="//cdn.quilljs.com/1.2.6/quill.snow.css"></link>
+      <Route exact path = "/login" component = {Login}/>
+    <Route exact path = "/register" component = {Register}/>
+      <Route exact path = "/chatCreate" component = {ChatCreation}/>
+      <Route exact path = "/chatObserve" component = {ChatObservation}/>
+      <Route exact path = "/" component = {BlogEditor}/>
+
     </div>
-  );
+    );
 }
 
 export default App;
