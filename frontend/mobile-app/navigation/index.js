@@ -1,41 +1,98 @@
 import React from "react";
+<<<<<<< HEAD
+
+import { Linking, StyleSheet, StatusBar, Dimensions } from "react-native";
+=======
 import 'react-native-gesture-handler';
 import { StyleSheet, View, StatusBar, Dimensions,Image } from "react-native";
+>>>>>>> master
 import {
   MaterialCommunityIcons,
   MaterialIcons,
   Feather,
   AntDesign,
 } from "@expo/vector-icons";
+import * as WebBrowser from "expo-web-browser";
 
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, StackActions } from "@react-navigation/native";
 import {
   createStackNavigator,
   HeaderBackButton,
 } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import {
+  DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem,
+} from "@react-navigation/drawer";
 
 
 import EmergencyHotlinesScreen from "../screens/EmergencyHotline";
 import ChatScreen from "../screens/ChatScreen";
-import Events from "../screens/EventsDummy";
 import Posts from "../screens/PostsDummy";
 import Media from "../screens/MediaDummy";
 import Feels from "../screens/Feels";
 import Disclaimer from "../screens/Disclaimer";
+<<<<<<< HEAD
+import PostChatSurvey from "../screens/PostChatSurvey";
+import PreChatModal from "../screens/PreChatSurvey/ModalSurvey";
+import PreChatSurvey from "../screens/PreChatSurvey/Survey";
+import AboutUs from "../screens/AboutUs";
+=======
 import BlogFeed from "../screens/BlogFeed";
 import BlogNav from "../navigation/BlogNav";
 
 import Res from "../screens/ResourcesDummy";
 import Twitter from "../screens/Twitter";
 import { TouchableOpacity } from "react-native-gesture-handler";
+>>>>>>> master
 
 const BottomTabNavigation = createBottomTabNavigator();
 const HomeTab = createMaterialTopTabNavigator();
 const HomeStack = createStackNavigator();
 const ChatStack = createStackNavigator();
 const HotlineStack = createStackNavigator();
+const SettingsDrawer = createDrawerNavigator();
+
+function CustomDrawerContent(props) {
+  return (
+    <DrawerContentScrollView {...props}>
+      <DrawerItemList {...props} />
+      <DrawerItem
+        onPress={() => {
+          Linking.openURL("https://www.instagram.com/runaway.app/");
+        }}
+        label="Instagram"
+        icon={() => <AntDesign name="instagram" size={32} color="#FF9EDA" />}
+      />
+      <DrawerItem
+        onPress={() => {
+          Linking.openURL("https://www.facebook.com/runawayapp/");
+        }}
+        label="Facebook"
+        icon={() => <Feather name="facebook" size={32} color="#FF9EDA" />}
+      />
+      <DrawerItem
+        onPress={() => {
+          Linking.openURL("https://twitter.com/runaway_app");
+        }}
+        label="Twitter"
+        icon={() => <Feather name="twitter" size={32} color="#FF9EDA" />}
+      />
+      <DrawerItem
+        onPress={() => {
+          WebBrowser.openBrowserAsync("https://www.runawayapp.com/");
+        }}
+        label="Website"
+        icon={() => (
+          <MaterialCommunityIcons name="web" size={32} color="#FF9EDA" />
+        )}
+      />
+    </DrawerContentScrollView>
+  );
+}
 
 const BottomTab = ({ navigation }) => {
   return (
@@ -90,12 +147,16 @@ const BottomTab = ({ navigation }) => {
         }}
       />
       <BottomTabNavigation.Screen
-        name="Events"
-        component={Events}
+        name="Resources"
+        component={FeedScreen}
         options={{
-          tabBarLabel: "Events",
+          tabBarLabel: "Resources",
           tabBarIcon: ({ color }) => (
+<<<<<<< HEAD
+            <Feather name="book-open" color={color} size={25} />
+=======
             <Feather name="calendar" color={color} size={28} />
+>>>>>>> master
           ),
         }}
       />
@@ -113,6 +174,33 @@ const Chat = ({ navigation }) => {
           component={Disclaimer}
           options={{ headerShown: false }}
         />
+
+        <ChatStack.Screen
+          name="PreChatModal"
+          component={PreChatModal}
+          options={{ headerShown: false }}
+        />
+
+        <ChatStack.Screen
+          name="PreChatSurvey"
+          component={PreChatSurvey}
+          options={{
+            headerTitle: "PreChat Survey",
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              color: "#2E5F85",
+            },
+            headerLeft: () => (
+              <HeaderBackButton
+                labelVisible={false}
+                onPress={() => {
+                  navigation.dispatch(StackActions.replace("Disclaimer"));
+                  navigation.navigate("Feed");
+                }}
+              />
+            ),
+          }}
+        />
         <ChatStack.Screen
           name="Feels"
           component={Feels}
@@ -126,13 +214,13 @@ const Chat = ({ navigation }) => {
               <HeaderBackButton
                 labelVisible={false}
                 onPress={() => {
+                  navigation.dispatch(StackActions.replace("Disclaimer"));
                   navigation.navigate("Feed");
                 }}
               />
             ),
           }}
         />
-
         <ChatStack.Screen
           name="Chat"
           component={ChatScreen}
@@ -142,8 +230,15 @@ const Chat = ({ navigation }) => {
             headerStyle: styles.headerStyle,
           }}
         />
+
         <ChatStack.Screen
-          name="Resources"
+          name="PostSurvey"
+          component={PostChatSurvey}
+          options={{ headerShown: false }}
+        />
+
+        <ChatStack.Screen
+          name="EmergencyResources"
           component={EmergencyHotlinesScreen}
           options={{
             title: "Emergency Resources",
@@ -197,9 +292,21 @@ const FeedScreen = ({ navigation }) => {
         headerLeft: () => (
           <TouchableOpacity style ={{paddingTop:20,paddingLeft:20}}>
 
+<<<<<<< HEAD
+          headerLeft: () => (
+            <Feather
+              style={{ paddingLeft: 25 }}
+              onPress={() => navigation.openDrawer()}
+              name="info"
+              size={30}
+              color="#FF9EDA"
+            />
+          ),
+=======
             <Feather name="settings" size={25} color="#2E5F85" />
           </TouchableOpacity>
         ),
+>>>>>>> master
         }}
       />
     </HomeStack.Navigator>
@@ -229,34 +336,44 @@ const HomeTabScreen = () => {
     </HomeTab.Navigator>
   );
 };
-export default function myStack() {
+
+const TemporaryStack = () => {
   return (
-    <>
-      <NavigationContainer>
-        <HotlineStack.Navigator>
-          <HotlineStack.Screen
-            name="Home"
-            component={BottomTab}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <HotlineStack.Screen
-            name="Resources"
-            component={EmergencyHotlinesScreen}
-            options={{
-              title: "Emergency Resources",
-              headerTitleStyle: styles.headerTitleStyle,
-              headerStyle: styles.headerStyle,
-            }}
-          />
-        </HotlineStack.Navigator>
-      </NavigationContainer>
-      {/* <View style={styles.homeIndicator}></View> */}
-    </>
+    <HotlineStack.Navigator>
+      <HotlineStack.Screen
+        name="EmergencyResources"
+        component={EmergencyHotlinesScreen}
+        options={{
+          title: "Emergency Resources",
+          headerTitleStyle: styles.headerTitleStyle,
+          headerStyle: styles.headerStyle,
+        }}
+      />
+    </HotlineStack.Navigator>
+  );
+};
+export default function MyDrawer() {
+  return (
+    <NavigationContainer>
+      <SettingsDrawer.Navigator
+        drawerContent={(props) => <CustomDrawerContent {...props} />}
+      >
+        <SettingsDrawer.Screen
+          name="Home"
+          component={BottomTab}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <SettingsDrawer.Screen name="About Us" component={AboutUs} />
+        <SettingsDrawer.Screen name="FAQs" component={BottomTab} />
+        <SettingsDrawer.Screen name="Privacy Policy" component={BottomTab} />
+        <SettingsDrawer.Screen name="Usage" component={BottomTab} />
+        <SettingsDrawer.Screen name="Sign In" component={BottomTab} />
+      </SettingsDrawer.Navigator>
+    </NavigationContainer>
   );
 }
-
 const windowW = Dimensions.get("window").width;
 const windowH = Dimensions.get("window").height;
 

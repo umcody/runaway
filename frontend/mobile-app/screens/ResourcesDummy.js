@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
-import BottomTray from "../components/bottomTray";
 
 export default function Res() {
   return (

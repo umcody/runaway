@@ -8,30 +8,33 @@ import {
   Dimensions,
 } from "react-native";
 
-export default function Disclaimer({ navigation }) {
+export default function PreChatSurveyModal({ navigation }) {
+  //this const is for the modal to show if it is visible at the time
   const [modalVisible, setModalVisible] = useState(true);
 
   return (
     <View style={styles.fullContainer}>
-      {/* the disclaimer is a modal that pops up from the bottom */}
+      {/* the modal here is what holds the screen before the survey */}
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <View style={styles.container}>
-          {/* message of the actually disclaimer */}
+          {/* The nested text objects are for the bold font and the overall disclaimer */}
           <Text style={styles.message}>
-            Disclaimer: You will be chatting with a peer volunteer. These
-            volunteers are not medical or health professionals. If you seek
-            professional assistance, the hotlines and resources can be found
-            (here).
+            This is a
+            <Text style={{ fontWeight: "bold" }}> voluntary survey</Text> that
+            help us deliver the best experience during your chat. Your data
+            allows Runaway to analyze information to create specific resources
+            to others searching for assistance.
           </Text>
-          {/* this touchable is the next button after the disclaimer */}
+          {/* button that makes you advance to the next screen */}
           <TouchableOpacity
             style={styles.buttonDismiss}
             onPress={() => {
               setModalVisible(false);
-              navigation.navigate("PreChatModal");
+              navigation.navigate("PreChatSurvey");
             }}
           >
-            <Text style={{ color: "#FFFFFF", fontSize: 25 }}>Start</Text>
+            {/* the button is labeled start */}
+            <Text style={{ color: "#FFFFFF", fontSize: 24 }}>Start</Text>
           </TouchableOpacity>
         </View>
       </Modal>
@@ -41,6 +44,9 @@ export default function Disclaimer({ navigation }) {
 
 const windowW = Dimensions.get("window").width;
 const windowH = Dimensions.get("window").height;
+
+const heightModal = 350;
+const widthModal = 270;
 
 //styles
 const styles = StyleSheet.create({
@@ -59,10 +65,11 @@ const styles = StyleSheet.create({
   container: {
     alignSelf: "center",
     backgroundColor: "#FFFFFF",
-    width: 270,
+    width: widthModal,
     alignItems: "center",
-    height: 367,
-    marginTop: windowH / 2 - 183.5,
+    height: heightModal,
+    marginTop: windowH / 2 - heightModal / 2,
+
     borderRadius: 30,
   },
   buttonDismiss: {
@@ -71,9 +78,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#FF9EDA",
     borderColor: "#FF9EDA",
     height: 35,
-    marginTop: 7,
     width: 100,
     alignItems: "center",
     textAlign: "center",
+  },
+  shareCheck: {
+    flexDirection: "row",
   },
 });

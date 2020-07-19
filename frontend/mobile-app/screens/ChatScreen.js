@@ -27,7 +27,7 @@ export default function ChatScreen({ navigation }) {
     headerRight: () => (
       <TouchableOpacity
         style={{ paddingRight: 25 }}
-        onPress={() => navigation.navigate("Resources")}
+        onPress={() => navigation.navigate("EmergencyResources")}
       >
         <AntDesign name="exclamationcircleo" size={30} color="#FF9EDA" />
       </TouchableOpacity>
@@ -35,10 +35,7 @@ export default function ChatScreen({ navigation }) {
     headerLeft: () => (
       <TouchableOpacity
         style={{ paddingLeft: 25 }}
-        onPress={() => {
-          axios.post("http://127.0.0.1:7000/api/volunteer/chat",{chatData:messages});
-          return navigation.navigate("Feed");
-        }}
+        onPress={() => navigation.navigate("PostSurvey")}
       >
         <Feather name="x" size={35} color="#FF9EDA" />
       </TouchableOpacity>
