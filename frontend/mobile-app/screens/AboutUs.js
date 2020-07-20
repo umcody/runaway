@@ -6,16 +6,27 @@ import {
   ScrollView,
   Dimensions,
   SectionList,
+  Linking
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { Ionicons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 import TeamCard from "../components/MemberInfo";
-// about us page
-export default function AboutUs() {
+// about us page 
+
+export default function AboutUs({navigation}) {
+  navigation.setOptions({headerLeft: () => (
+    <Feather
+      style={{ paddingLeft: 25 }}
+      onPress={() => navigation.openDrawer()}
+      name="info"
+      size={30}
+      color="#FF9EDA"
+    />
+  ),})
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView>
+    <View style={styles.container}>
+      <ScrollView style={{flex:1}}>
         <View style={styles.about}>
           <Text style={styles.title}>About Us</Text>
           <Text style={styles.text}>
@@ -36,7 +47,9 @@ export default function AboutUs() {
             provides users with happy art, quotes, music, inspiring stories,
             etc.{" "}
           </Text>
-          <TouchableOpacity activeOpacity={0.9} style={styles.button}>
+          <TouchableOpacity activeOpacity={0.9} style={styles.button} onPress={() => {
+          Linking.openURL("https://www.runawayapp.com/");
+        }}>
             <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 18 }}>
               Visit Our Site
             </Text>
@@ -93,15 +106,9 @@ export default function AboutUs() {
         </View>
         <TouchableOpacity style={styles.partners} activeOpacity={0.9}>
           <Text style={styles.pSubtitle}>Our Partners</Text>
-          <Ionicons
-            name="ios-arrow-forward"
-            size={30}
-            color="#2E5F85"
-            style={{ position: "absolute", right: 20 }}
-          />
         </TouchableOpacity>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
 const windowW = Dimensions.get("window").width;

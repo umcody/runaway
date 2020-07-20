@@ -1,6 +1,7 @@
 import React from "react";
 import "react-native-gesture-handler";
-import { Linking, StyleSheet, StatusBar, Dimensions } from "react-native";
+import { Linking, StyleSheet, StatusBar, Dimensions,Image,TouchableOpacity } from "react-native";
+
 import {
   MaterialCommunityIcons,
   MaterialIcons,
@@ -31,11 +32,10 @@ import PostChatSurvey from "../screens/PostChatSurvey";
 import PreChatModal from "../screens/PreChatSurvey/ModalSurvey";
 import PreChatSurvey from "../screens/PreChatSurvey/Survey";
 import AboutUs from "../screens/AboutUs";
-
 import BlogNav from "../navigation/BlogNav";
-
 import Res from "../screens/ResourcesDummy";
-import Twitter from "../screens/Twitter";
+import SiteMapNav from "./SiteMapNav";
+
 
 const BottomTabNavigation = createBottomTabNavigator();
 const HomeTab = createMaterialTopTabNavigator();
@@ -43,6 +43,7 @@ const HomeStack = createStackNavigator();
 const ChatStack = createStackNavigator();
 const HotlineStack = createStackNavigator();
 const SettingsDrawer = createDrawerNavigator();
+const AboutStack = createStackNavigator();
 
 function CustomDrawerContent(props) {
   return (
@@ -254,13 +255,9 @@ const FeedScreen = ({ navigation }) => {
             headerTitleAlign: "center",
             headerTitleStyle: styles.headerTitleStyle,
             headerStyle: styles.headerStyle,
-            /*
-          headerTitle: (
-            <View style = {{paddingTop:10}}>
-              <Image source={require('../assets/RunawayLogo.png')}/>
-            </View>
+            headerTitle: (
+              <Image source={require('../assets/RunawayLogo.png')} style = {{paddingTop:10}}/>
           ),
-          */
             headerLeft: () => (
               <Feather
                 style={{ paddingLeft: 25 }}
@@ -291,13 +288,6 @@ const HomeTabScreen = () => {
           title: "Featured",
         }}
       />
-      <HomeTab.Screen
-        name="Media"
-        component={Twitter}
-        options={{
-          title: "Feed",
-        }}
-      />
     </HomeTab.Navigator>
   );
 };
@@ -317,6 +307,21 @@ const TemporaryStack = () => {
     </HotlineStack.Navigator>
   );
 };
+
+const About = () =>{
+  return(
+    <AboutStack.Navigator>
+      <AboutStack.Screen
+      name="About"
+      component={AboutUs}
+      options={{
+        title: "",
+        headerTitleStyle: styles.headerTitleStyle,
+        headerStyle: styles.headerStyle,
+      }}/>
+    </AboutStack.Navigator>
+  )
+}
 export default function MyDrawer() {
   return (
     <NavigationContainer>
@@ -330,10 +335,10 @@ export default function MyDrawer() {
             headerShown: false,
           }}
         />
-        <SettingsDrawer.Screen name="About Us" component={AboutUs} />
+        <SettingsDrawer.Screen name="About Us" component={About} />
         <SettingsDrawer.Screen name="FAQs" component={BottomTab} />
         <SettingsDrawer.Screen name="Privacy Policy" component={BottomTab} />
-        <SettingsDrawer.Screen name="Usage" component={BottomTab} />
+        <SettingsDrawer.Screen name="Help" component={SiteMapNav} />
         <SettingsDrawer.Screen name="Sign In" component={BottomTab} />
       </SettingsDrawer.Navigator>
     </NavigationContainer>
