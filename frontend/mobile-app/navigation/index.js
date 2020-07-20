@@ -1,6 +1,7 @@
 import React from "react";
 import "react-native-gesture-handler";
 import { Linking, StyleSheet, StatusBar, Dimensions,Image,TouchableOpacity } from "react-native";
+
 import {
   MaterialCommunityIcons,
   MaterialIcons,
@@ -34,6 +35,7 @@ import AboutUs from "../screens/AboutUs";
 import BlogNav from "../navigation/BlogNav";
 import Res from "../screens/ResourcesDummy";
 import SiteMapNav from "./SiteMapNav";
+
 
 const BottomTabNavigation = createBottomTabNavigator();
 const HomeTab = createMaterialTopTabNavigator();
