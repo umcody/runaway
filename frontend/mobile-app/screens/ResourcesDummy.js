@@ -1,11 +1,10 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
-import BottomTray from "../components/bottomTray";
 
-export default function Chat() {
+export default function Res() {
   return (
     <View style={styles.profile}>
-      <Text>This is a chat screen</Text>
+      <Text>This is the resources screen</Text>
     </View>
   );
 }
