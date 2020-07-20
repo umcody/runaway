@@ -1,7 +1,6 @@
 import React from "react";
 import "react-native-gesture-handler";
-import { Linking, StyleSheet, StatusBar, Dimensions,Image,TouchableOpacity } from "react-native";
-
+import { View, Linking, StyleSheet, StatusBar, Dimensions,Image,TouchableOpacity } from "react-native";
 import {
   MaterialCommunityIcons,
   MaterialIcons,
@@ -24,11 +23,13 @@ import {
   DrawerItem,
 } from "@react-navigation/drawer";
 
+
 import EmergencyHotlinesScreen from "../screens/EmergencyHotline";
 import ChatScreen from "../screens/ChatScreen";
 import Feels from "../screens/Feels";
 import Disclaimer from "../screens/Disclaimer";
 import PostChatSurvey from "../screens/PostChatSurvey";
+import BlogFeed from "../screens/BlogFeed";
 import PreChatModal from "../screens/PreChatSurvey/ModalSurvey";
 import PreChatSurvey from "../screens/PreChatSurvey/Survey";
 import AboutUs from "../screens/AboutUs";
@@ -141,11 +142,12 @@ const Chat = ({ navigation }) => {
   return (
     <>
       <StatusBar barStyle="dark-content" translucent={true} />
-      <ChatStack.Navigator initialRouteName="Disclaimer">
-        <ChatStack.Screen
+      <ChatStack.Navigator initialRouteName="Feels">
+        {/* <ChatStack.Screen
           name="Disclaimer"
           component={Disclaimer}
           options={{ headerShown: false }}
+        /> */}
         />
 
         <ChatStack.Screen
@@ -174,14 +176,16 @@ const Chat = ({ navigation }) => {
             ),
           }}
         />
+
         <ChatStack.Screen
           name="Feels"
           component={Feels}
           options={{
-            headerTitle: "How are you feeling?",
+            headerTitle: "Pre-Chat Survey",
             headerTitleAlign: "center",
             headerTitleStyle: {
               color: "#2E5F85",
+              fontSize: 18,
             },
             headerLeft: () => (
               <HeaderBackButton
@@ -256,16 +260,18 @@ const FeedScreen = ({ navigation }) => {
             headerTitleStyle: styles.headerTitleStyle,
             headerStyle: styles.headerStyle,
             headerTitle: (
-              <Image source={require('../assets/RunawayLogo.png')} style = {{paddingTop:10}}/>
-          ),
+
+              <View style={{ paddingTop: 10 }}>
+                <Image
+                  style={styles.runaway}
+                  source={require("../images/RunawayLogo.png")}
+                />
+              </View>
+            ),
             headerLeft: () => (
-              <Feather
-                style={{ paddingLeft: 25 }}
-                onPress={() => navigation.openDrawer()}
-                name="info"
-                size={30}
-                color="#FF9EDA"
-              />
+              <TouchableOpacity style={{ paddingTop: 20, paddingLeft: 20 }}>
+                <Feather name="settings" size={25} color="#2E5F85" />
+              </TouchableOpacity>
             ),
           }}
         />
@@ -384,6 +390,11 @@ const styles = StyleSheet.create({
   profileTitle: {
     color: "#ACDAFF",
     fontSize: 20,
+  },
+  runaway: {
+    width: 75,
+    height: 56,
+    alignSelf: "center",
   },
 });
 
