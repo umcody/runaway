@@ -132,16 +132,6 @@ const BottomTab = ({ navigation }) => {
           ),
         }}
       />
-      <BottomTabNavigation.Screen
-        name="Resources"
-        component={FeedScreen}
-        options={{
-          tabBarLabel: "Resources",
-          tabBarIcon: ({ color }) => (
-            <Feather name="calendar" color={color} size={28} />
-          ),
-        }}
-      />
     </BottomTabNavigation.Navigator>
   );
 };
