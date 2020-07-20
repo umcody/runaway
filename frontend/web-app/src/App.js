@@ -19,10 +19,12 @@ function App() {
       <link rel="stylesheet" href="//cdn.quilljs.com/1.2.6/quill.snow.css"></link>
       <Route exact path = "/login" component = {Login}/>
       <Route exact path = "/register" component = {Register}/>
-      <Route exact path = "/chat/oberve" component = {ChatObservation}/>
+      <Route exact path = "/chat/observe" component = {ChatObservation}/>
       <Route exact path = "/blog/write" component = {BlogEditor}/>
       <Route exact path = "/resource/write" component = {Resource}/>
       <Route exact path = "/admin/overview" component = {Admin}/>
+      <Route exact path = "/" component = {Login}/>
+
 
 
 
