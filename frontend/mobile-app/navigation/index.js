@@ -1,11 +1,6 @@
 import React from "react";
-<<<<<<< HEAD
-
-import { Linking, StyleSheet, StatusBar, Dimensions } from "react-native";
-=======
 import 'react-native-gesture-handler';
-import { StyleSheet, View, StatusBar, Dimensions,Image } from "react-native";
->>>>>>> master
+import { Linking, StyleSheet, View, StatusBar, Dimensions,Image } from "react-native";
 import {
   MaterialCommunityIcons,
   MaterialIcons,
@@ -35,19 +30,16 @@ import Posts from "../screens/PostsDummy";
 import Media from "../screens/MediaDummy";
 import Feels from "../screens/Feels";
 import Disclaimer from "../screens/Disclaimer";
-<<<<<<< HEAD
 import PostChatSurvey from "../screens/PostChatSurvey";
 import PreChatModal from "../screens/PreChatSurvey/ModalSurvey";
 import PreChatSurvey from "../screens/PreChatSurvey/Survey";
 import AboutUs from "../screens/AboutUs";
-=======
 import BlogFeed from "../screens/BlogFeed";
 import BlogNav from "../navigation/BlogNav";
 
 import Res from "../screens/ResourcesDummy";
 import Twitter from "../screens/Twitter";
 import { TouchableOpacity } from "react-native-gesture-handler";
->>>>>>> master
 
 const BottomTabNavigation = createBottomTabNavigator();
 const HomeTab = createMaterialTopTabNavigator();
@@ -143,20 +135,6 @@ const BottomTab = ({ navigation }) => {
           tabBarLabel: "Resources",
           tabBarIcon: ({ color }) => (
             <Feather name="book-open" color={color} size={28} />
-          ),
-        }}
-      />
-      <BottomTabNavigation.Screen
-        name="Resources"
-        component={FeedScreen}
-        options={{
-          tabBarLabel: "Resources",
-          tabBarIcon: ({ color }) => (
-<<<<<<< HEAD
-            <Feather name="book-open" color={color} size={25} />
-=======
-            <Feather name="calendar" color={color} size={28} />
->>>>>>> master
           ),
         }}
       />
@@ -289,10 +267,6 @@ const FeedScreen = ({ navigation }) => {
             </View>
           ),
           */
-        headerLeft: () => (
-          <TouchableOpacity style ={{paddingTop:20,paddingLeft:20}}>
-
-<<<<<<< HEAD
           headerLeft: () => (
             <Feather
               style={{ paddingLeft: 25 }}
@@ -302,11 +276,6 @@ const FeedScreen = ({ navigation }) => {
               color="#FF9EDA"
             />
           ),
-=======
-            <Feather name="settings" size={25} color="#2E5F85" />
-          </TouchableOpacity>
-        ),
->>>>>>> master
         }}
       />
     </HomeStack.Navigator>

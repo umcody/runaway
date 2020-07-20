@@ -14,7 +14,7 @@ const {width,height}= Dimensions.get('window')
 /*Blog post element
 This goes into the flatlist
 Each post shows the author and title*/
-export default function BlogPost({title,author,HandlePress}){
+export default function BlogPost({title,author,readTime,imageURL,HandlePress}){
     return(
         <SafeAreaView>
             <TouchableOpacity activeOpacity={.8} style ={styles.container} onPress={HandlePress}>
@@ -24,14 +24,14 @@ export default function BlogPost({title,author,HandlePress}){
                             <View style={{flexDirection:'row'}}>
                                 <Text style = {styles.info}>{author}</Text>
                                 <MaterialCommunityIcons name="feather" size={14} color="#FF9EDA" />
-                                <Text style ={styles.info}> • 3 min</Text>
+                                <Text style ={styles.info}>{readTime}</Text>
                             </View>
                             <Text style={styles.info}>Date</Text>
                             <AntDesign name="ellipsis1" size={30} color="#2E5F85" />
                         </View>
                     </View>
             <View style={styles.image}>
-                <Image source={require("../images/sample.jpg")} style={{flex:1,height:undefined,width:undefined,borderRadius:10}}/>
+                <Image source={{uri:imageURL}} style={{flex:1,height:undefined,width:undefined,borderRadius:10}}/>
             </View>             
         </TouchableOpacity>
         </SafeAreaView>
