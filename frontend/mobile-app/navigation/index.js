@@ -1,6 +1,6 @@
 import React from "react";
-import 'react-native-gesture-handler';
-import { Linking, StyleSheet, View, StatusBar, Dimensions,Image } from "react-native";
+import "react-native-gesture-handler";
+import { Linking, StyleSheet, StatusBar, Dimensions } from "react-native";
 import {
   MaterialCommunityIcons,
   MaterialIcons,
@@ -23,23 +23,19 @@ import {
   DrawerItem,
 } from "@react-navigation/drawer";
 
-
 import EmergencyHotlinesScreen from "../screens/EmergencyHotline";
 import ChatScreen from "../screens/ChatScreen";
-import Posts from "../screens/PostsDummy";
-import Media from "../screens/MediaDummy";
 import Feels from "../screens/Feels";
 import Disclaimer from "../screens/Disclaimer";
 import PostChatSurvey from "../screens/PostChatSurvey";
 import PreChatModal from "../screens/PreChatSurvey/ModalSurvey";
 import PreChatSurvey from "../screens/PreChatSurvey/Survey";
 import AboutUs from "../screens/AboutUs";
-import BlogFeed from "../screens/BlogFeed";
+
 import BlogNav from "../navigation/BlogNav";
 
 import Res from "../screens/ResourcesDummy";
 import Twitter from "../screens/Twitter";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 const BottomTabNavigation = createBottomTabNavigator();
 const HomeTab = createMaterialTopTabNavigator();
@@ -89,19 +85,17 @@ function CustomDrawerContent(props) {
 const BottomTab = ({ navigation }) => {
   return (
     <BottomTabNavigation.Navigator
-      
       tabBarOptions={{
         showLabel: false,
-        inactiveTintColor:"#ACDAFF",
-        activeTintColor:"#2E5F85",
-        style:{
+        inactiveTintColor: "#ACDAFF",
+        activeTintColor: "#2E5F85",
+        style: {
           backgroundColor: "white",
-          height:60,
+          height: 60,
           borderTopColor: "#ACDAFF",
-          borderTopWidth:1
-        }
+          borderTopWidth: 1,
+        },
       }}
-      
     >
       <BottomTabNavigation.Screen
         name="Feed"
@@ -135,6 +129,16 @@ const BottomTab = ({ navigation }) => {
           tabBarLabel: "Resources",
           tabBarIcon: ({ color }) => (
             <Feather name="book-open" color={color} size={28} />
+          ),
+        }}
+      />
+      <BottomTabNavigation.Screen
+        name="Resources"
+        component={FeedScreen}
+        options={{
+          tabBarLabel: "Resources",
+          tabBarIcon: ({ color }) => (
+            <Feather name="calendar" color={color} size={28} />
           ),
         }}
       />
@@ -251,43 +255,45 @@ const Chat = ({ navigation }) => {
 const FeedScreen = ({ navigation }) => {
   return (
     <>
-    <StatusBar barStyle="dark-content" translucent={true} />
-    <HomeStack.Navigator>
-      <HomeStack.Screen
-        name="Feed"
-        component={HomeTabScreen}
-        options={{
-          headerTitleAlign: "center",
-          headerTitleStyle:styles.headerTitleStyle,
-          headerStyle: styles.headerStyle,
-          /*
+      <StatusBar barStyle="dark-content" translucent={true} />
+      <HomeStack.Navigator>
+        <HomeStack.Screen
+          name="Feed"
+          component={HomeTabScreen}
+          options={{
+            headerTitleAlign: "center",
+            headerTitleStyle: styles.headerTitleStyle,
+            headerStyle: styles.headerStyle,
+            /*
           headerTitle: (
             <View style = {{paddingTop:10}}>
               <Image source={require('../assets/RunawayLogo.png')}/>
             </View>
           ),
           */
-          headerLeft: () => (
-            <Feather
-              style={{ paddingLeft: 25 }}
-              onPress={() => navigation.openDrawer()}
-              name="info"
-              size={30}
-              color="#FF9EDA"
-            />
-          ),
-        }}
-      />
-    </HomeStack.Navigator>
+            headerLeft: () => (
+              <Feather
+                style={{ paddingLeft: 25 }}
+                onPress={() => navigation.openDrawer()}
+                name="info"
+                size={30}
+                color="#FF9EDA"
+              />
+            ),
+          }}
+        />
+      </HomeStack.Navigator>
     </>
   );
 };
 const HomeTabScreen = () => {
   return (
-    <HomeTab.Navigator  tabBarOptions={{
-      indicatorStyle:{backgroundColor:"#ACDAFF"},
-      labelStyle:{color:"#2E5F85"}
-      }}>
+    <HomeTab.Navigator
+      tabBarOptions={{
+        indicatorStyle: { backgroundColor: "#ACDAFF" },
+        labelStyle: { color: "#2E5F85" },
+      }}
+    >
       <HomeTab.Screen
         name="Posts"
         component={BlogNav}
@@ -367,16 +373,15 @@ const styles = StyleSheet.create({
     fontFamily: "System",
     fontStyle: "normal",
     fontWeight: "normal",
-    fontSize: windowW*0.08,
+    fontSize: windowW * 0.08,
     lineHeight: 30,
     color: "#2E5F85",
-    
   },
   headerStyle: {
     borderBottomWidth: 0,
     shadowColor: "transparent",
     backgroundColor: "#fff",
-    height:windowH/10,
+    height: windowH / 10,
   },
   profilePic: {
     borderLeftWidth: 10,
