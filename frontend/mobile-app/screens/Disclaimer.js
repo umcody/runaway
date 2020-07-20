@@ -10,7 +10,6 @@ import {
 
 export default function Disclaimer({ navigation }) {
   const [modalVisible, setModalVisible] = useState(true);
-  const [agree, setAgree] = useState(false);
 
   return (
     <View style={styles.fullContainer}>

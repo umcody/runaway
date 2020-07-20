@@ -1,6 +1,5 @@
 import React from "react";
 import Navigation from "./navigation/index";
-import SignInPage from "./screens/SignInPage";
 
 import {
   StyleSheet,
@@ -23,4 +22,3 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
 });
-
