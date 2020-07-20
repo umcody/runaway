@@ -6,14 +6,27 @@ import {
   FlatList,
   Text,
   RefreshControl,
-  ActivityIndicator
+  ActivityIndicator,
+  TouchableOpacity
 } from "react-native";
 import BlogPost from "../components/BlogPost"
 import useBlogPage from "../components/useBlogPage"
 import data from "../SampleData"
+import { Ionicons } from "@expo/vector-icons";
 
 //This file is the blog feed component that allows infinite scrolling
 export default function BlogFeed({navigation}) {
+  //allow users to go back
+  navigation.setOptions({headerLeft: () => (
+    <TouchableOpacity
+      style={{ paddingLeft: 25 }}
+      onPress={() => {
+        return navigation.goBack();
+      }}
+    >
+      <Ionicons name="ios-arrow-back" size={35} color="#FF9EDA" />
+    </TouchableOpacity>
+  ),});
   //default page number is 1 which is the first page of blogs
   const [pageNumber,setPageNumber] = useState(1)
   // returns the blogs data and other variables regarding the blogs from the custom hook, useBlogPage
