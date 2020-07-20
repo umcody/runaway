@@ -7,12 +7,12 @@ class Login extends React.Component{
     constructor(props) {
         super(props)
         this.state = { username: '',
-                       password: '',
-                       access: 'admin' } 
+                       password: ''} 
 
         //bind 'this'
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.navigate = this.navigate.bind(this);
       }
 
 
@@ -26,23 +26,36 @@ class Login extends React.Component{
         });
     }
 
+
+    navigate(access){
+        console.log(access);
+        if(access === "blog editor"){
+            window.location = "/blog/write";
+        }else if (access === "volunteer"){
+            window.location = "/chat/observe";
+        }else if (access === "admin"){
+            window.location = "/admin/overview";
+        }
+    }
+
     handleClick(event){
         console.log('Username');
         console.log(this.state.username);
         console.log('Password');
         console.log(this.state.password);
-        console.log('Access Type');
-        console.log(this.state.access);
 
         // Made an object so it can be passed into axios
         const credentials = {
             email: this.state.username,
             password: this.state.password,
-            access: this.state.access
         }
 
         //POST METHOD
-        axios.post("/api/volunteer/login", credentials);
+        axios.post("/api/volunteer/login", credentials)
+        .then(res => {
+            this.navigate(res.data.access)
+        });
+        
     }
 
     render(){
@@ -74,17 +87,6 @@ class Login extends React.Component{
                 <br></br>
                 <br></br>
 
-                <label>
-                    User Type
-                    <select 
-                        name='access'
-                        value={this.state.access} 
-                        onChange={this.handleChange}>
-                        <option value="admin">Admin</option>
-                        <option value="volunteer">Volunteer</option>
-                        <option value="blog editor">Blog Editor</option>
-                    </select>
-                </label>
 
                 <div onClick = {this.handleClick}>SUBMIT</div>
               </div>

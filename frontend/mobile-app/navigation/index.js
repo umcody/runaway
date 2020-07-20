@@ -1,5 +1,4 @@
 import React from "react";
-
 import "react-native-gesture-handler";
 import {
   Linking,
@@ -39,6 +38,7 @@ import PostChatSurvey from "../screens/PostChatSurvey";
 import PreChatModal from "../screens/PreChatSurvey/ModalSurvey";
 import PreChatSurvey from "../screens/PreChatSurvey/Survey";
 import AboutUs from "../screens/AboutUs";
+
 import BlogNav from "../navigation/BlogNav";
 
 import Res from "../screens/ResourcesDummy";
@@ -272,12 +272,13 @@ const FeedScreen = ({ navigation }) => {
             headerTitleAlign: "center",
             headerTitleStyle: styles.headerTitleStyle,
             headerStyle: styles.headerStyle,
-            headerTitle: (
-              <View style={{ paddingTop: 10 }}>
-                <Image source={require("../assets/RunawayLogo.png")} />
-              </View>
-            ),
-
+            /*
+          headerTitle: (
+            <View style = {{paddingTop:10}}>
+              <Image source={require('../assets/RunawayLogo.png')}/>
+            </View>
+          ),
+          */
             headerLeft: () => (
               <Feather
                 style={{ paddingLeft: 25 }}
