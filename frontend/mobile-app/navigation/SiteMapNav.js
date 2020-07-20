@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, View ,Text,SafeAreaView,Dimensions} from "react-native";
-import { createStackNavigator,CardStyleInterpolators,HeaderStyleInterpolators } from '@react-navigation/stack';
+import { createStackNavigator,CardStyleInterpolators,} from '@react-navigation/stack';
 import FeaturePage from '../screens/FeaturePage';
 import SiteMap from '../screens/SiteMap';
 import Feature from '../screens/Feature';
@@ -16,7 +16,7 @@ export default function SiteMapNav({navigation}){
             <Stack.Screen
           name="SiteMap"
           component={SiteMap}
-          options={{ title: 'Site Map', headerTitleStyle: styles.headerTitleStyle, headerStyle:styles.headerStyle,
+          options={{ title: 'App Features', headerTitleStyle: styles.headerTitleStyle, headerStyle:styles.headerStyle,
           headerLeft: () => (
             <Feather
               style={{ paddingLeft: 25 }}
