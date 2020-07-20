@@ -13,17 +13,11 @@ const {width,height}= Dimensions.get('window')
 /*Blog post element
 This goes into the flatlist
 Each post shows the author and title*/
-export default function BlogPost({title,author,HandlePress}){
+export default function FeatureCard({category,HandlePress}){
     return(
         <SafeAreaView>
         <TouchableOpacity activeOpacity={.95} style ={styles.container} onPress={HandlePress}>
-        <Image source={require("./images/sample.jpg")} style={styles.image} imageStyle={{ borderRadius: 30 }}/>
-                <View style = {styles.footer}>
-                    <Text style = {styles.title}>{title}</Text>
-                    <View style = {styles.extras}>
-                        <Text style = {styles.info}>{author}</Text>
-                    </View>
-                </View>
+                    <Text style = {styles.title}>{category}</Text>
         </TouchableOpacity>
         </SafeAreaView>
     )
@@ -33,27 +27,23 @@ const styles = StyleSheet.create({
     container:{
         marginTop:50,
         borderRadius:10,
-        height:height/3,
+        height:height/2,
         width:width*.9,
         borderWidth:1,
         borderColor: '#e5e6e9',
-        justifyContent:'flex-end',
+        justifyContent:'flex-start',
         alignItems:'flex-start',
-        overflow:'hidden'
+        overflow:'hidden',
+        flex:1,
+        backgroundColor:'#2E5F85',
         
     },
-    footer:{
-        backgroundColor:'#fff',
-        width:'100%',
-        paddingLeft:20,
-        paddingTop:10,
-        height:'30%',
-        paddingBottom:25,
-    },
     title:{
-        color:'#000',
-        fontSize:20,
-        paddingBottom:10,
+        color:'#fff',
+        fontSize:30,
+        paddingTop:30,
+        paddingLeft:30,
+        fontWeight:'bold',
     },
     extras:{
        
@@ -64,10 +54,5 @@ const styles = StyleSheet.create({
     info:{
         color:'#9E9EA7'
     },
-    image: {
-        
-        resizeMode: "contain",
-        
-      },
+
   });
-  

@@ -8,8 +8,10 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-native-community/checkbox": "^0.4.2",
     "@react-native-community/masked-view": "0.1.6",
     "@react-navigation/bottom-tabs": "^5.5.2",
+    "@react-navigation/drawer": "^5.8.4",
     "@react-navigation/material-bottom-tabs": "^5.2.11",
     "@react-navigation/material-top-tabs": "^5.2.11",
     "@react-navigation/native": "^5.5.1",
@@ -24,6 +26,7 @@
     "react-native-gifted-chat": "^0.16.1",
     "react-native-ionicons": "^4.6.5",
     "react-native-linear-gradient": "^2.5.6",
+    "react-native-openanything": "0.0.6",
     "react-native-paper": "^3.10.1",
     "react-native-reanimated": "~1.7.0",
     "react-native-render-html": "^4.2.0",
@@ -32,6 +35,7 @@
     "react-native-tab-view": "^2.14.4",
     "react-native-vector-icons": "^6.6.0",
     "react-native-web": "~0.11.7",
+    "expo-web-browser": "~8.2.1",
     "react-native-webview": "^8.1.1",
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0"

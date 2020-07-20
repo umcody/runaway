@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View ,Text,SafeAreaView} from "react-native";
+import { StyleSheet, View ,Text,SafeAreaView,Dimensions} from "react-native";
 import { createStackNavigator } from '@react-navigation/stack';
 import BlogFeed from '../screens/BlogFeed';
 import BlogScreen from '../screens/BlogScreen';
@@ -12,18 +12,36 @@ export default function BlogNavigator(){
             <Stack.Screen
           name="Feed"
           component={BlogFeed}
-          options={{ title: 'Blogs', headerTitleStyle: {
-            color: '#000F1E',
-          },}}
+          options={{ title: 'Blogs', headerTitleStyle: styles.headerTitleStyle,
+          headerStyle: styles.headerStyle
+          }}
         />
-        <Stack.Screen name="Blog" component={BlogScreen} />
+        <Stack.Screen name="Blog" component={BlogScreen} options={{ headerShown:false, gestureResponseDistance:{horizontal: 500}
+          }}/>
             </Stack.Navigator>
        </View>
         
     )
 }
+const windowW = Dimensions.get("window").width;
+const windowH = Dimensions.get("window").height;
 const styles = StyleSheet.create({
 	container: {
     flex:1,
-	},
+  },
+  headerTitleStyle: {
+    fontFamily: "System",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: windowW*0.08,
+    lineHeight: 30,
+    color: "#2E5F85",
+    
+  },
+  headerStyle: {
+    borderBottomWidth: 0,
+    shadowColor: "transparent",
+    backgroundColor: "#fff",
+    height:windowH/10,
+  },
 });

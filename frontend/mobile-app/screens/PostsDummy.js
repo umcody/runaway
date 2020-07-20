@@ -1,6 +1,5 @@
 import React from "react";
 import { FlatList, mediaDisplay, StyleSheet, View, Text } from "react-native";
-import BottomTray from "../components/bottomTray";
 
 export default function Posts(props) {
   const articles = [

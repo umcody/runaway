@@ -300,6 +300,92 @@ export default function Chat({ navigation }) {
             }}
           />
         </ScrollView>
+=======
+  const [feelColor, setFeelColor] = useState("#ACDAFF");
+
+  //for later when you can  make the color change for those that are clicked
+  //also put it all in a scrollview so that there is just one list
+  const colorStyles = StyleSheet.create({
+    feels: {
+      color: feelColor,
+      fontSize: 25,
+    },
+    feelsContainer: {
+      fontSize: 25,
+      marginTop: 100,
+      borderColor: "#ACDAFF",
+      borderWidth: 2,
+      backgroundColor: "white",
+      alignItems: "center",
+      width: 126,
+      height: 126,
+      paddingTop: 50,
+    },
+  });
+  //
+
+  //two feeling columns, once the page gets reworked this will be gone and they
+  //will all be individual objects and in a scrollview
+  const feelingsCol1 = [
+    { title: "Happy", id: 1 },
+    { title: "Fearful", id: 2 },
+    { title: "Shameful", id: 3 },
+    { title: "Embarrassed", id: 4 },
+    { title: "Disgusted", id: 5 },
+  ];
+
+  const feelingsCol2 = [
+    { title: "Sad", id: 1 },
+    { title: "Angry", id: 2 },
+    { title: "Frustrated", id: 3 },
+    { title: "Stressed", id: 4 },
+    { title: "Surprised", id: 5 },
+  ];
+
+  //creates the touchable for each of them
+  const FeelingsList = ({ title }) => {
+    return (
+      <View>
+        <TouchableOpacity style={colorStyles.feelsContainer}>
+          <Text style={colorStyles.feels}>{title}</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
+
+  return (
+    <>
+      <View style={styles.home}>
+        {/* this is the skip button to not fill out the feels page */}
+        <TouchableOpacity
+          style={styles.skip}
+          onPress={() => {
+            navigation.navigate("Chat");
+          }}
+        >
+          <Text style={{ color: "#FFFFFF", fontSize: 20 }}>Skip</Text>
+        </TouchableOpacity>
+        {/* these each print both of the lists */}
+        <View style={styles.col1}>
+          <FlatList
+            data={feelingsCol1}
+            renderItem={({ item }) => <FeelingsList title={item.title} />}
+          />
+        </View>
+        <View style={styles.col2}>
+          <FlatList
+            data={feelingsCol2}
+            renderItem={({ item }) => <FeelingsList title={item.title} />}
+          />
+        </View>
+        <TouchableOpacity
+          style={styles.buttonDismiss}
+          onPress={() => {
+            navigation.navigate("Chat");
+          }}
+        >
+          <Text style={{ color: "#FFFFFF", fontSize: 25 }}>Next</Text>
+        </TouchableOpacity>
       </View>
     </>
   );
@@ -308,6 +394,7 @@ export default function Chat({ navigation }) {
 const windowW = Dimensions.get("window").width;
 const windowH = Dimensions.get("window").height;
 
+//styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,

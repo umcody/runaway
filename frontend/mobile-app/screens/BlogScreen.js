@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { SafeAreaView, Text,ScrollView, View, StyleSheet,Image,ActivityIndicator} from "react-native";
-import {TouchableOpacity } from 'react-native-gesture-handler';
+import { SafeAreaView, Text, View, StyleSheet,Image,ActivityIndicator} from "react-native";
+import {TouchableOpacity,ScrollView } from 'react-native-gesture-handler';
 import { Ionicons } from "@expo/vector-icons";
 import HTML from 'react-native-render-html';
-import useBlogUrl from "../useBlogUrl"
+import useBlogUrl from "../components/useBlogUrl"
 // shows the blog page 
 export default function BlogScreen({navigation,route}) {
   //sends in url prop
@@ -18,7 +18,7 @@ export default function BlogScreen({navigation,route}) {
   return (
     <SafeAreaView style={{ flex: 1,backgroundColor:'#fff'}}>
       <ScrollView style={{ flex: 1, }} contentContainerStyle={{alignItems:'baseline'}}>
-      <Image source={require("../images/sample.jpg")} />
+      <Image source={{uri:blog.imageURL}} style={{width:"100%",height:250,resizeMode:'contain'}}/>
         <TouchableOpacity onPress={()=>navigation.goBack()}>
         <Ionicons name="ios-arrow-back" size={35} color="black" style={{paddingTop:20,paddingLeft:20}} />
         </TouchableOpacity>
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
   },
   content: {
-    paddingTop: 50,
+    paddingTop: 30,
     paddingLeft: 20,
   },
 });
