@@ -33,10 +33,7 @@ export default function ChatScreen({ navigation }) {
       <TouchableOpacity
         style={{ paddingLeft: 25 }}
         onPress={() => {
-          axios.post("http://127.0.0.1:7000/api/volunteer/chat", {
-            chatData: messages,
-          });
-          return navigation.navigate("PostSurvey");
+          return navigation.navigate("PostSurvey", { messages: messages });
         }}
       >
         <Feather name="x" size={35} color="#FF9EDA" />

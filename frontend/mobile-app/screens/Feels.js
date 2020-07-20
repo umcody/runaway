@@ -33,7 +33,6 @@ export default function Chat({ navigation }) {
   const [checkedFour, setCheckedFour] = useState(false);
   const [checkedFive, setCheckedFive] = useState(false);
   const [checkedSix, setCheckedSix] = useState(false);
-  const [checkedSeven, setCheckedSeven] = useState(false);
 
   //yes no for suicidal thoughts
   const [yes, setYes] = useState(false);
@@ -301,16 +300,6 @@ export default function Chat({ navigation }) {
             }}
           />
         </ScrollView>
-        {/* <View style={styles.dismissContainer}>
-          <Button
-            title="Next"
-            color="#2E5F85"
-            disabled={skipNext}
-            onPress={() => {
-              navigation.navigate("Chat");
-            }}
-          />
-        </View> */}
       </View>
     </>
   );

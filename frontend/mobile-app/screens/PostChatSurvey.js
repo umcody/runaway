@@ -11,13 +11,19 @@ import { CheckBox, Rating, AirbnbRating } from "react-native-elements";
 import { StackActions } from "@react-navigation/native";
 import axios from "axios";
 //need to still get the current ChatScreen that way messages has the actual messages.
-import { messages } from "./ChatScreen.js";
+//import { messages } from "./ChatScreen.js";
 
-export default function PreChatSurvey({ navigation }) {
+export default function PreChatSurvey({ route, navigation }) {
   //these two consts are to determine if the modal is visible and
   //if the Share checkBox is checked
   const [modalVisible, setModalVisible] = useState(true);
   const [checked, setChecked] = useState(false);
+  const { messages } = route.params;
+  var rating = 0;
+
+  const ratingFun = (temp) => {
+    rating = temp;
+  };
 
   return (
     <View style={styles.fullContainer}>
@@ -53,6 +59,7 @@ export default function PreChatSurvey({ navigation }) {
               selectedColor={"#FF9EDA"}
               reviewColor={"#2E5F85"}
               showRating={false}
+              onFinishRating={ratingFun}
             />
           </View>
           <View style={styles.buttonContainer}>
@@ -62,17 +69,19 @@ export default function PreChatSurvey({ navigation }) {
               onPress={() => {
                 setModalVisible(false);
                 if (checked == true) {
+                  //message data sent back
                   axios.post("http://127.0.0.1:7000/api/volunteer/chat", {
                     chatData: messages,
                   });
-                  //logs here are for testing to make sure it is working with the checkbox
-                  //console.log("checked");
-                } else {
-                  // console.log("unChecked");
+                  //logs here are for testing to make sure it is working
+                  console.log(messages);
+                  console.log("Chat rating: " + rating);
                 }
+                //the rating value getting sent to database not sure if this should be a different address
+                axios.post("http://127.0.0.1:7000/api/volunteer/chat", {
+                  rating: rating,
+                });
                 navigation.navigate("Feed");
-                //I think the reason that the discalimer pops up when the stack is reset is because its a modal and its
-                //values gets reset to true when the stack resets
                 navigation.dispatch(StackActions.replace("Feels"));
               }}
             >
