@@ -1,13 +1,6 @@
 import React from "react";
 import "react-native-gesture-handler";
-import {
-  Linking,
-  StyleSheet,
-  View,
-  StatusBar,
-  Dimensions,
-  Image,
-} from "react-native";
+import { Linking, StyleSheet, StatusBar, Dimensions } from "react-native";
 import {
   MaterialCommunityIcons,
   MaterialIcons,
@@ -43,7 +36,6 @@ import BlogNav from "../navigation/BlogNav";
 
 import Res from "../screens/ResourcesDummy";
 import Twitter from "../screens/Twitter";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 const BottomTabNavigation = createBottomTabNavigator();
 const HomeTab = createMaterialTopTabNavigator();
