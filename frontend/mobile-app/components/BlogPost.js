@@ -16,48 +16,46 @@ This goes into the flatlist
 Each post shows the author and title*/
 export default function BlogPost({title,author,readTime,imageURL,HandlePress}){
     return(
-        <SafeAreaView>
+        <View>
             <TouchableOpacity activeOpacity={.8} style ={styles.container} onPress={HandlePress}>
             <View style = {styles.text}>
-                        <Text style = {styles.title}>{title}</Text>
-                        <View style = {styles.extras}>
-                            <View style={{flexDirection:'row'}}>
-                                <Text style = {styles.info}>{author}</Text>
-                                <MaterialCommunityIcons name="feather" size={14} color="#FF9EDA" />
-                                <Text style ={styles.info}>{readTime}</Text>
-                            </View>
-                            <Text style={styles.info}>Date</Text>
-                            <AntDesign name="ellipsis1" size={30} color="#2E5F85" />
+                    <Text style = {styles.title}>{title}</Text>
+                    <View style = {styles.extras}>
+                        <View style={{flexDirection:'row'}}>
+                            <Text style = {styles.info}>{author}</Text>
+                            <MaterialCommunityIcons name="feather" size={14} color="#FF9EDA" />
+                            <Text style ={styles.info}>{readTime}</Text>
                         </View>
+                        <Text style={styles.info}>Date</Text>
+                        <AntDesign name="ellipsis1" size={30} color="#2E5F85" />
                     </View>
+            </View>
             <View style={styles.image}>
                 <Image source={{uri:imageURL}} style={{flex:1,height:undefined,width:undefined,borderRadius:10}}/>
             </View>             
         </TouchableOpacity>
-        </SafeAreaView>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
     container:{
-        height:height/5,
+        height:height/5.5,
         width:width*.9,
         borderWidth:1,
         borderColor: '#fff',
         justifyContent:'space-between',
-        alignItems:'flex-start',
         overflow:'hidden',
         flexDirection:'row'
     },
     text:{
         backgroundColor:'#fff',
-        
-        paddingBottom:15,
     },
     title:{
         color:'#2E5F85',
         fontSize:20,
         paddingBottom:10,
+        fontWeight:'bold'
     },
     extras:{
        
@@ -73,7 +71,7 @@ const styles = StyleSheet.create({
     image: {
         width:100,
         height:100,
-        borderRadius:30
+        borderRadius:20
         
       },
   });
