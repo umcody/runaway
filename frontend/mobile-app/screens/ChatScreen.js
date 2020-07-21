@@ -9,6 +9,7 @@ import {
 import { StyleSheet, View, TouchableOpacity, Modal, Text } from "react-native";
 import axios from "axios";
 import { AntDesign, FontAwesome5, Feather } from "@expo/vector-icons";
+import {SafeAreaView } from 'react-native-safe-area-context';
 
 //This is the chat screen and messaging components
 export default function ChatScreen({ navigation }) {
@@ -208,7 +209,7 @@ export default function ChatScreen({ navigation }) {
   }
 
   return (
-    <View style={{ flex:1, backgroundColor: "#fff" }}>
+    <SafeAreaView style={{ flex:1, backgroundColor: "#fff" }}>
       <GiftedChat
         messages={messages}
         onSend={(messages) => onSend(messages)}
@@ -240,7 +241,7 @@ export default function ChatScreen({ navigation }) {
           },
         }}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 const styles = StyleSheet.create({

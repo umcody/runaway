@@ -62,11 +62,4 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     alignItems:'center'
   },
-  profile: {
-    position: "absolute",
-    left: 30,
-    top: 55,
-    width: 32,
-    height: 32,
-  },
 });
