@@ -34,7 +34,6 @@ import {
 import EmergencyHotlinesScreen from "../screens/EmergencyHotline";
 import ChatScreen from "../screens/ChatScreen";
 import Feels from "../screens/Feels";
-import Disclaimer from "../screens/Disclaimer";
 import PostChatSurvey from "../screens/PostChatSurvey";
 import PreChatModal from "../screens/PreChatSurvey/ModalSurvey";
 import PreChatSurvey from "../screens/PreChatSurvey/Survey";
