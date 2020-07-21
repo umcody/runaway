@@ -50,15 +50,16 @@ const styles = StyleSheet.create({
         fontFamily: "System",
         fontStyle: "normal",
         fontWeight: "normal",
-        fontSize: windowW*0.08,
+        fontSize: 24,
         lineHeight: 30,
         color: "#2E5F85",
         
       },
       headerStyle: {
-        borderBottomWidth: 0,
+        borderBottomWidth: 1,
         shadowColor: "transparent",
         backgroundColor: "#fff",
-        height:windowH/10,
+        height: windowH / 8,
+        borderBottomColor: "#ACDAFF"
       },
 });

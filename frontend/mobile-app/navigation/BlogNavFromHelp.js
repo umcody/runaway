@@ -1,12 +1,12 @@
+//same thing as BlogNav.js but different header for the site map functionality
 import React, { Component } from 'react'
-import { StyleSheet, View ,Text,SafeAreaView,Dimensions,Image} from "react-native";
+import { StyleSheet, View ,Text,SafeAreaView,Dimensions,TouchableOpacity} from "react-native";
 import { createStackNavigator } from '@react-navigation/stack';
 import BlogFeed from '../screens/BlogFeed';
 import BlogScreen from '../screens/BlogScreen';
 import { Ionicons,Feather} from "@expo/vector-icons";
-// stack nav for blog post to blog page 
-//for now this is used as the homepage
-export default function BlogNav({navigation}){
+// Different blog nav for sitemap because this allows a back button instead of the info panel
+export default function BlogNavFromHelp({navigation}){
     const Stack = createStackNavigator();
     return (
         <View style = {styles.container}>
@@ -16,21 +16,18 @@ export default function BlogNav({navigation}){
           component={BlogFeed}
           options={{ title: 'Blogs', headerTitleStyle: styles.headerTitleStyle,
           headerStyle: styles.headerStyle2,
-          headerTitleAlign: "center",
-          headerTitle: (
-            <Image source={require('../assets/RunawayLogo.png')} style = {{resizeMode:"contain",width:60,height:60}}/>
-        ),
           headerLeft: () => (
-            <Feather
+            <TouchableOpacity
               style={{ paddingLeft: 25 }}
-              onPress={() => navigation.openDrawer()}
-              name="info"
-              size={30}
-              color="#FF9EDA"
-            />
-          ),
+              onPress={() => {
+                return navigation.goBack('Feed');
               }}
-            />
+            >
+              <Ionicons name="ios-arrow-back" size={35} color="#FF9EDA" />
+            </TouchableOpacity>
+          ),
+          }}
+        />
         <Stack.Screen name="Blog" component={BlogScreen} options={{ headerShown:false, gestureResponseDistance:{horizontal: 500}
           }}/>
             </Stack.Navigator>

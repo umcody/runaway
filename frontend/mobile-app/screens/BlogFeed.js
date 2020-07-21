@@ -7,26 +7,17 @@ import {
   Text,
   RefreshControl,
   ActivityIndicator,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from "react-native";
+import {SafeAreaView } from 'react-native-safe-area-context';
 import BlogPost from "../components/BlogPost"
 import useBlogPage from "../components/useBlogPage"
 import data from "../SampleData"
-import { Ionicons } from "@expo/vector-icons";
 
 //This file is the blog feed component that allows infinite scrolling
-export default function BlogFeed({navigation}) {
-  //allow users to go back
-  navigation.setOptions({headerLeft: () => (
-    <TouchableOpacity
-      style={{ paddingLeft: 25 }}
-      onPress={() => {
-        return navigation.goBack();
-      }}
-    >
-      <Ionicons name="ios-arrow-back" size={35} color="#FF9EDA" />
-    </TouchableOpacity>
-  ),});
+export default function BlogFeed({navigation,fromHelp}) {
+
   //default page number is 1 which is the first page of blogs
   const [pageNumber,setPageNumber] = useState(1)
   // returns the blogs data and other variables regarding the blogs from the custom hook, useBlogPage
@@ -57,7 +48,7 @@ export default function BlogFeed({navigation}) {
     }, [refreshing]);
 
   return (
-    <View style={styles.home}>
+    <SafeAreaView style={styles.home}>
       {!!error ? <Text>Server Connection Error</Text> :  loading ? <ActivityIndicator /> :
       <FlatList 
       style={{paddingTop:30}}
@@ -83,7 +74,7 @@ export default function BlogFeed({navigation}) {
     }
 	/>}
     
-    </View>
+    </SafeAreaView>
   );
 }
 const windowW = Dimensions.get("window").width;
@@ -96,11 +87,11 @@ const styles = StyleSheet.create({
     alignItems:'center',
     
   },
-  profile: {
-    position: "absolute",
-    left: 30,
-    top: 55,
-    width: 32,
-    height: 32,
+  headerStyle: {
+    borderBottomWidth: 1,
+    shadowColor: "transparent",
+    backgroundColor: "#fff",
+    height: windowH / 10,
+    borderBottomColor: "#ACDAFF"
   },
 });

@@ -100,7 +100,7 @@ const BottomTab = ({ navigation }) => {
     >
       <BottomTabNavigation.Screen
         name="Feed"
-        component={FeedScreen}
+        component={BlogNav}
         options={{
           tabBarLabel: "Feed",
           tabBarIcon: ({ color }) => (
@@ -243,20 +243,20 @@ const Chat = ({ navigation }) => {
   );
 };
 
-const FeedScreen = ({ navigation }) => {
+/*const FeedScreen = ({ navigation }) => {
   return (
     <>
       <StatusBar barStyle="dark-content" translucent={true} />
-      <HomeStack.Navigator>
+      <HomeStack.Navigator options={{headerMode: 'screen' }}>
         <HomeStack.Screen
           name="Feed"
-          component={HomeTabScreen}
+          component={BlogNav}
           options={{
             headerTitleAlign: "center",
             headerTitleStyle: styles.headerTitleStyle,
             headerStyle: styles.headerStyle,
             headerTitle: (
-              <Image source={require('../assets/RunawayLogo.png')} style = {{paddingTop:10}}/>
+              <Image source={require('../assets/RunawayLogo.png')} style = {{resizeMode:"contain",width:60,height:60}}/>
           ),
             headerLeft: () => (
               <Feather
@@ -291,7 +291,7 @@ const HomeTabScreen = () => {
     </HomeTab.Navigator>
   );
 };
-
+*/
 const TemporaryStack = () => {
   return (
     <HotlineStack.Navigator>
@@ -368,15 +368,16 @@ const styles = StyleSheet.create({
     fontFamily: "System",
     fontStyle: "normal",
     fontWeight: "normal",
-    fontSize: windowW * 0.08,
+    fontSize: 24,
     lineHeight: 30,
     color: "#2E5F85",
   },
   headerStyle: {
-    borderBottomWidth: 0,
+    borderBottomWidth: 1,
     shadowColor: "transparent",
     backgroundColor: "#fff",
-    height: windowH / 10,
+    height: windowH / 8,
+    borderBottomColor: "#ACDAFF"
   },
   profilePic: {
     borderLeftWidth: 10,

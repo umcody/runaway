@@ -1,10 +1,11 @@
 //List of features in a specific category
 
 import React from 'react'
-import { SafeAreaView, Text, View, StyleSheet,Image,Dimensions} from "react-native";
+import {Text, View, StyleSheet,Image,Dimensions} from "react-native";
 import {TouchableOpacity,ScrollView } from 'react-native-gesture-handler';
 import { AntDesign } from "@expo/vector-icons";
 import { Link } from '@react-navigation/native';
+import {SafeAreaView } from 'react-native-safe-area-context';
 const {width,height}= Dimensions.get('window') 
 // shows the feature category
 export default function FeaturePage({navigation,route}) {

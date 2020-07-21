@@ -16,7 +16,7 @@ This goes into the flatlist
 Each post shows the author and title*/
 export default function BlogPost({title,author,readTime,imageURL,HandlePress}){
     return(
-        <SafeAreaView>
+        <View>
             <TouchableOpacity activeOpacity={.8} style ={styles.container} onPress={HandlePress}>
             <View style = {styles.text}>
                         <Text style = {styles.title}>{title}</Text>
@@ -34,7 +34,7 @@ export default function BlogPost({title,author,readTime,imageURL,HandlePress}){
                 <Image source={{uri:imageURL}} style={{flex:1,height:undefined,width:undefined,borderRadius:10}}/>
             </View>             
         </TouchableOpacity>
-        </SafeAreaView>
+        </View>
     )
 }
 
@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
     },
     text:{
         backgroundColor:'#fff',
-        
         paddingBottom:15,
     },
     title:{
@@ -73,7 +72,7 @@ const styles = StyleSheet.create({
     image: {
         width:100,
         height:100,
-        borderRadius:30
+        borderRadius:20
         
       },
   });

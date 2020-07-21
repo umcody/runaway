@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { SafeAreaView, Text, View, StyleSheet,Image,ActivityIndicator} from "react-native";
+import { SafeAreaView, Text, View, StyleSheet,Image,ActivityIndicator,ImageBackground} from "react-native";
 import {TouchableOpacity,ScrollView } from 'react-native-gesture-handler';
 import { Ionicons } from "@expo/vector-icons";
 import HTML from 'react-native-render-html';
@@ -18,10 +18,11 @@ export default function BlogScreen({navigation,route}) {
   return (
     <SafeAreaView style={{ flex: 1,backgroundColor:'#fff'}}>
       <ScrollView style={{ flex: 1, }} contentContainerStyle={{alignItems:'baseline'}}>
-      <Image source={{uri:blog.imageURL}} style={{width:"100%",height:250,resizeMode:'contain'}}/>
-        <TouchableOpacity onPress={()=>navigation.goBack()}>
-        <Ionicons name="ios-arrow-back" size={35} color="black" style={{paddingTop:20,paddingLeft:20}} />
+      <ImageBackground source={{uri:blog.imageURL}} style={{width:"100%",height:250,resizeMode:'contain'}}>
+        <TouchableOpacity onPress={()=>navigation.goBack()} style={{width:35,height:35,marginLeft:20,marginTop:20}}>
+            <Ionicons name="ios-arrow-back" size={35} color="black" style={{ position: 'absolute', zIndex:1}} />
         </TouchableOpacity>
+        </ImageBackground>
         <Text style={styles.title}>{blog.title}</Text>
         <Text style={styles.author}>by {blog.author}</Text>
         {/* loading indicator if the page is loading
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
   },
   content: {
-    paddingTop: 30,
+    paddingTop: 20,
     paddingLeft: 20,
   },
 });
