@@ -70,17 +70,23 @@ export default function PreChatSurvey({ route, navigation }) {
                 setModalVisible(false);
                 if (checked == true) {
                   //message data sent back
-                  axios.post("http://127.0.0.1:7000/api/volunteer/chat", {
-                    chatData: messages,
-                  });
+                  axios.post(
+                    "https://runaway-practicum.herokuapp.com/api/volunteer/chat",
+                    {
+                      chatData: messages,
+                    }
+                  );
                   //logs here are for testing to make sure it is working
-                  console.log(messages);
-                  console.log("Chat rating: " + rating);
+                  //console.log(messages);
+                  //console.log("Chat rating: " + rating);
                 }
                 //the rating value getting sent to database not sure if this should be a different address
-                axios.post("http://127.0.0.1:7000/api/volunteer/chat", {
-                  rating: rating,
-                });
+                // axios.post(
+                //   "https://runaway-practicum.herokuapp.com/api/volunteer/chat",
+                //   {
+                //     rating: rating,
+                //   }
+                // );
                 navigation.navigate("Feed");
                 navigation.dispatch(StackActions.replace("Feels"));
               }}
