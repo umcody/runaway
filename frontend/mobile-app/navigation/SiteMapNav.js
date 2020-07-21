@@ -56,10 +56,10 @@ const styles = StyleSheet.create({
         
       },
       headerStyle: {
-        borderBottomWidth: 1,
+        borderBottomWidth: 0,
         shadowColor: "transparent",
         backgroundColor: "#fff",
-        height: windowH / 8,
+        height: windowH / 9,
         borderBottomColor: "#ACDAFF"
       },
 });

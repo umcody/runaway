@@ -45,6 +45,9 @@ const HotlineStack = createStackNavigator();
 const SettingsDrawer = createDrawerNavigator();
 const AboutStack = createStackNavigator();
 
+const windowW = Dimensions.get("window").width;
+const windowH = Dimensions.get("window").height;
+
 function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props}>
@@ -92,7 +95,7 @@ const BottomTab = ({ navigation }) => {
         activeTintColor: "#2E5F85",
         style: {
           backgroundColor: "white",
-          height: 60,
+          height: windowH*.085,
           borderTopColor: "#ACDAFF",
           borderTopWidth: 1,
         },
@@ -344,8 +347,7 @@ export default function MyDrawer() {
     </NavigationContainer>
   );
 }
-const windowW = Dimensions.get("window").width;
-const windowH = Dimensions.get("window").height;
+
 
 const styles = StyleSheet.create({
   homeIndicator: {
@@ -373,10 +375,10 @@ const styles = StyleSheet.create({
     color: "#2E5F85",
   },
   headerStyle: {
-    borderBottomWidth: 1,
+    borderBottomWidth: 0,
     shadowColor: "transparent",
     backgroundColor: "#fff",
-    height: windowH / 8,
+    height: windowH / 9,
     borderBottomColor: "#ACDAFF"
   },
   profilePic: {

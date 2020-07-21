@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     shadowColor: "transparent",
     backgroundColor: "#fff",
-    height: windowH / 8,
+    height: windowH / 9,
     borderBottomColor: "#ACDAFF"
   },
 });

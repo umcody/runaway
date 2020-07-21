@@ -40,23 +40,22 @@ export default function BlogPost({title,author,readTime,imageURL,HandlePress}){
 
 const styles = StyleSheet.create({
     container:{
-        height:height/5,
+        height:height/5.5,
         width:width*.9,
         borderWidth:1,
         borderColor: '#fff',
         justifyContent:'space-between',
-        alignItems:'flex-start',
         overflow:'hidden',
         flexDirection:'row'
     },
     text:{
         backgroundColor:'#fff',
-       
     },
     title:{
         color:'#2E5F85',
         fontSize:20,
         paddingBottom:10,
+        fontWeight:'bold'
     },
     extras:{
        

@@ -48,10 +48,10 @@ export default function BlogFeed({navigation,fromHelp}) {
     }, [refreshing]);
 
   return (
-    <SafeAreaView style={styles.home}>
+    <View style={styles.home}>
       {!!error ? <Text>Server Connection Error</Text> :  loading ? <ActivityIndicator /> :
       <FlatList 
-      style={{paddingTop:30}}
+      style={{paddingTop:10}}
 	  data={blogs}
 	  renderItem={({ item }) => {
         return(
@@ -74,7 +74,7 @@ export default function BlogFeed({navigation,fromHelp}) {
     }
 	/>}
     
-    </SafeAreaView>
+    </View>
   );
 }
 const windowW = Dimensions.get("window").width;
@@ -86,12 +86,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     alignItems:'center',
     
-  },
-  headerStyle: {
-    borderBottomWidth: 1,
-    shadowColor: "transparent",
-    backgroundColor: "#fff",
-    height: windowH / 10,
-    borderBottomColor: "#ACDAFF"
   },
 });
