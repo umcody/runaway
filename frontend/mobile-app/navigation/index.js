@@ -1,6 +1,13 @@
 import React from "react";
 import "react-native-gesture-handler";
-import { Linking, StyleSheet, StatusBar, Dimensions,Image,TouchableOpacity } from "react-native";
+import {
+  Linking,
+  StyleSheet,
+  StatusBar,
+  Dimensions,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 
 import {
   MaterialCommunityIcons,
@@ -27,7 +34,6 @@ import {
 import EmergencyHotlinesScreen from "../screens/EmergencyHotline";
 import ChatScreen from "../screens/ChatScreen";
 import Feels from "../screens/Feels";
-import Disclaimer from "../screens/Disclaimer";
 import PostChatSurvey from "../screens/PostChatSurvey";
 import PreChatModal from "../screens/PreChatSurvey/ModalSurvey";
 import PreChatSurvey from "../screens/PreChatSurvey/Survey";
@@ -35,7 +41,7 @@ import AboutUs from "../screens/AboutUs";
 import BlogNav from "../navigation/BlogNav";
 import Res from "../screens/ResourcesDummy";
 import SiteMapNav from "./SiteMapNav";
-
+import SignInPage from "../screens/SignInPage";
 
 const BottomTabNavigation = createBottomTabNavigator();
 const HomeTab = createMaterialTopTabNavigator();
@@ -144,13 +150,7 @@ const Chat = ({ navigation }) => {
   return (
     <>
       <StatusBar barStyle="dark-content" translucent={true} />
-      <ChatStack.Navigator initialRouteName="Disclaimer">
-        <ChatStack.Screen
-          name="Disclaimer"
-          component={Disclaimer}
-          options={{ headerShown: false }}
-        />
-
+      <ChatStack.Navigator initialRouteName="Feels">
         <ChatStack.Screen
           name="PreChatModal"
           component={PreChatModal}
@@ -170,7 +170,7 @@ const Chat = ({ navigation }) => {
               <HeaderBackButton
                 labelVisible={false}
                 onPress={() => {
-                  navigation.dispatch(StackActions.replace("Disclaimer"));
+                  navigation.dispatch(StackActions.replace("Feels"));
                   navigation.navigate("Feed");
                 }}
               />
@@ -190,7 +190,7 @@ const Chat = ({ navigation }) => {
               <HeaderBackButton
                 labelVisible={false}
                 onPress={() => {
-                  navigation.dispatch(StackActions.replace("Disclaimer"));
+                  navigation.dispatch(StackActions.replace("Feels"));
                   navigation.navigate("Feed");
                 }}
               />
@@ -311,20 +311,21 @@ const TemporaryStack = () => {
   );
 };
 
-const About = () =>{
-  return(
+const About = () => {
+  return (
     <AboutStack.Navigator>
       <AboutStack.Screen
-      name="About"
-      component={AboutUs}
-      options={{
-        title: "",
-        headerTitleStyle: styles.headerTitleStyle,
-        headerStyle: styles.headerStyle,
-      }}/>
+        name="About"
+        component={AboutUs}
+        options={{
+          title: "",
+          headerTitleStyle: styles.headerTitleStyle,
+          headerStyle: styles.headerStyle,
+        }}
+      />
     </AboutStack.Navigator>
-  )
-}
+  );
+};
 export default function MyDrawer() {
   return (
     <NavigationContainer>
@@ -342,7 +343,7 @@ export default function MyDrawer() {
         <SettingsDrawer.Screen name="FAQs" component={BottomTab} />
         <SettingsDrawer.Screen name="Privacy Policy" component={BottomTab} />
         <SettingsDrawer.Screen name="Help" component={SiteMapNav} />
-        <SettingsDrawer.Screen name="Sign In" component={BottomTab} />
+        <SettingsDrawer.Screen name="Sign In" component={SignInPage} />
       </SettingsDrawer.Navigator>
     </NavigationContainer>
   );
