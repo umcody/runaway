@@ -1,6 +1,13 @@
 import React from "react";
 import "react-native-gesture-handler";
-import { Linking, StyleSheet, StatusBar, Dimensions,Image,TouchableOpacity } from "react-native";
+import {
+  Linking,
+  StyleSheet,
+  StatusBar,
+  Dimensions,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 
 import {
   MaterialCommunityIcons,
@@ -35,7 +42,6 @@ import AboutUs from "../screens/AboutUs";
 import BlogNav from "../navigation/BlogNav";
 import Res from "../screens/ResourcesDummy";
 import SiteMapNav from "./SiteMapNav";
-
 
 const BottomTabNavigation = createBottomTabNavigator();
 const HomeTab = createMaterialTopTabNavigator();
@@ -141,13 +147,7 @@ const Chat = ({ navigation }) => {
   return (
     <>
       <StatusBar barStyle="dark-content" translucent={true} />
-      <ChatStack.Navigator initialRouteName="Disclaimer">
-        <ChatStack.Screen
-          name="Disclaimer"
-          component={Disclaimer}
-          options={{ headerShown: false }}
-        />
-
+      <ChatStack.Navigator initialRouteName="Feels">
         <ChatStack.Screen
           name="PreChatModal"
           component={PreChatModal}
@@ -167,7 +167,7 @@ const Chat = ({ navigation }) => {
               <HeaderBackButton
                 labelVisible={false}
                 onPress={() => {
-                  navigation.dispatch(StackActions.replace("Disclaimer"));
+                  navigation.dispatch(StackActions.replace("Feels"));
                   navigation.navigate("Feed");
                 }}
               />
@@ -187,7 +187,7 @@ const Chat = ({ navigation }) => {
               <HeaderBackButton
                 labelVisible={false}
                 onPress={() => {
-                  navigation.dispatch(StackActions.replace("Disclaimer"));
+                  navigation.dispatch(StackActions.replace("Feels"));
                   navigation.navigate("Feed");
                 }}
               />
@@ -256,8 +256,11 @@ const FeedScreen = ({ navigation }) => {
             headerTitleStyle: styles.headerTitleStyle,
             headerStyle: styles.headerStyle,
             headerTitle: (
-              <Image source={require('../assets/RunawayLogo.png')} style = {{paddingTop:10}}/>
-          ),
+              <Image
+                source={require("../assets/RunawayLogo.png")}
+                style={{ paddingTop: 10 }}
+              />
+            ),
             headerLeft: () => (
               <Feather
                 style={{ paddingLeft: 25 }}
@@ -308,20 +311,21 @@ const TemporaryStack = () => {
   );
 };
 
-const About = () =>{
-  return(
+const About = () => {
+  return (
     <AboutStack.Navigator>
       <AboutStack.Screen
-      name="About"
-      component={AboutUs}
-      options={{
-        title: "",
-        headerTitleStyle: styles.headerTitleStyle,
-        headerStyle: styles.headerStyle,
-      }}/>
+        name="About"
+        component={AboutUs}
+        options={{
+          title: "",
+          headerTitleStyle: styles.headerTitleStyle,
+          headerStyle: styles.headerStyle,
+        }}
+      />
     </AboutStack.Navigator>
-  )
-}
+  );
+};
 export default function MyDrawer() {
   return (
     <NavigationContainer>
