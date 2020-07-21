@@ -41,6 +41,7 @@ import AboutUs from "../screens/AboutUs";
 import BlogNav from "../navigation/BlogNav";
 import Res from "../screens/ResourcesDummy";
 import SiteMapNav from "./SiteMapNav";
+import SignInPage from "../screens/SignInPage";
 
 const BottomTabNavigation = createBottomTabNavigator();
 const HomeTab = createMaterialTopTabNavigator();
@@ -342,7 +343,7 @@ export default function MyDrawer() {
         <SettingsDrawer.Screen name="FAQs" component={BottomTab} />
         <SettingsDrawer.Screen name="Privacy Policy" component={BottomTab} />
         <SettingsDrawer.Screen name="Help" component={SiteMapNav} />
-        <SettingsDrawer.Screen name="Sign In" component={BottomTab} />
+        <SettingsDrawer.Screen name="Sign In" component={SignInPage} />
       </SettingsDrawer.Navigator>
     </NavigationContainer>
   );

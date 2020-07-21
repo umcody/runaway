@@ -36,10 +36,20 @@ export default function SignInPage({ navigation }) {
         <TouchableOpacity style={styles.forgotContainer}>
           <Text style={styles.forgot}>Forgot Username/Password</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.signInButton}>
+        <TouchableOpacity
+          style={styles.signInButton}
+          onPress={() => {
+            navigation.navigate("Home");
+          }}
+        >
           <Text style={styles.signIn}>Sign In</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.newtoRunawayContainer}>
+        <TouchableOpacity
+          style={styles.newtoRunawayContainer}
+          onPress={() => {
+            navigation.navigate("Home");
+          }}
+        >
           <Text style={styles.newtoRunaway}>Continue as a Guest</Text>
         </TouchableOpacity>
       </ImageBackground>

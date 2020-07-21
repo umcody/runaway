@@ -69,24 +69,25 @@ export default function PreChatSurvey({ route, navigation }) {
               onPress={() => {
                 setModalVisible(false);
                 if (checked == true) {
-                  //message data sent back
-                  axios.post("http://127.0.0.1:7000/api/volunteer/chat", {
-                    chatData: messages,
-                    rating: rating,
-                  });
+                  axios.post(
+                    "https://runaway-practicum.herokuapp.com/api/volunteer/chat",
+                    {
+                      chatData: messages,
+                      rating: rating,
+                    }
+                  );
                 } else {
-                  axios.post("http://127.0.0.1:7000/api/volunteer/chat", {
-                    chatData: "User did not want to share data",
-                    rating: rating,
-                  });
+                  axios.post(
+                    "https://runaway-practicum.herokuapp.com/api/volunteer/chat",
+                    {
+                      chatData: "User chose not to share data",
+                      rating: rating,
+                    }
+                  );
                 }
                 //logs here are for testing to make sure it is working
                 console.log(messages);
                 console.log("Chat rating: " + rating);
-                //the rating value getting sent to database not sure if this should be a different address
-                axios.post("http://127.0.0.1:7000/api/volunteer/chat", {
-                  rating: rating,
-                });
                 navigation.navigate("Feed");
                 navigation.dispatch(StackActions.replace("Feels"));
               }}
