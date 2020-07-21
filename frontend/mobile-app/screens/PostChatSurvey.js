@@ -11,9 +11,9 @@ import { CheckBox, Rating, AirbnbRating } from "react-native-elements";
 import { StackActions } from "@react-navigation/native";
 import axios from "axios";
 //need to still get the current ChatScreen that way messages has the actual messages.
-//import { messages } from "./ChatScreen.js";
 
 export default function PreChatSurvey({ route, navigation }) {
+
   //these two consts are to determine if the modal is visible and
   //if the Share checkBox is checked
   const [modalVisible, setModalVisible] = useState(true);
@@ -24,6 +24,7 @@ export default function PreChatSurvey({ route, navigation }) {
   const ratingFun = (temp) => {
     rating = temp;
   };
+
 
   return (
     <View style={styles.fullContainer}>
@@ -60,6 +61,7 @@ export default function PreChatSurvey({ route, navigation }) {
               reviewColor={"#2E5F85"}
               showRating={false}
               onFinishRating={ratingFun}
+
             />
           </View>
           <View style={styles.buttonContainer}>
