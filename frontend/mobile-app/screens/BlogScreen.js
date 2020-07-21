@@ -19,8 +19,8 @@ export default function BlogScreen({navigation,route}) {
     <SafeAreaView style={{ flex: 1,backgroundColor:'#fff'}}>
       <ScrollView style={{ flex: 1, }} contentContainerStyle={{alignItems:'baseline'}}>
       <ImageBackground source={{uri:blog.imageURL}} style={{width:"100%",height:250,resizeMode:'contain'}}>
-        <TouchableOpacity onPress={()=>navigation.goBack()} style={{width:35,height:35,marginLeft:20,marginTop:20}}>
-            <Ionicons name="ios-arrow-back" size={35} color="black" style={{ position: 'absolute', zIndex:1}} />
+        <TouchableOpacity onPress={()=>navigation.goBack()} style={styles.back}>
+            <Ionicons name="ios-arrow-back" size={35} color="white" style={{ position: 'absolute', zIndex:1}} />
         </TouchableOpacity>
         </ImageBackground>
         <Text style={styles.title}>{blog.title}</Text>
@@ -48,4 +48,12 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     paddingLeft: 20,
   },
+  back:{
+    width:45,height:45,
+    marginLeft:20,marginTop:20, 
+    backgroundColor: 'rgba(52, 52, 52, 0.6)',
+    alignItems:'center',
+    justifyContent:'center',
+    borderRadius:45/2,
+  }
 });

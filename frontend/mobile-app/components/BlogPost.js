@@ -19,17 +19,17 @@ export default function BlogPost({title,author,readTime,imageURL,HandlePress}){
         <View>
             <TouchableOpacity activeOpacity={.8} style ={styles.container} onPress={HandlePress}>
             <View style = {styles.text}>
-                        <Text style = {styles.title}>{title}</Text>
-                        <View style = {styles.extras}>
-                            <View style={{flexDirection:'row'}}>
-                                <Text style = {styles.info}>{author}</Text>
-                                <MaterialCommunityIcons name="feather" size={14} color="#FF9EDA" />
-                                <Text style ={styles.info}>{readTime}</Text>
-                            </View>
-                            <Text style={styles.info}>Date</Text>
-                            <AntDesign name="ellipsis1" size={30} color="#2E5F85" />
+                    <Text style = {styles.title}>{title}</Text>
+                    <View style = {styles.extras}>
+                        <View style={{flexDirection:'row'}}>
+                            <Text style = {styles.info}>{author}</Text>
+                            <MaterialCommunityIcons name="feather" size={14} color="#FF9EDA" />
+                            <Text style ={styles.info}>{readTime}</Text>
                         </View>
+                        <Text style={styles.info}>Date</Text>
+                        <AntDesign name="ellipsis1" size={30} color="#2E5F85" />
                     </View>
+            </View>
             <View style={styles.image}>
                 <Image source={{uri:imageURL}} style={{flex:1,height:undefined,width:undefined,borderRadius:10}}/>
             </View>             
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     },
     text:{
         backgroundColor:'#fff',
-        paddingBottom:15,
+       
     },
     title:{
         color:'#2E5F85',
