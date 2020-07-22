@@ -10,6 +10,7 @@ import { StyleSheet, View, TouchableOpacity, Modal, Text } from "react-native";
 import axios from "axios";
 import { AntDesign, FontAwesome5, Feather } from "@expo/vector-icons";
 import {SafeAreaView } from 'react-native-safe-area-context';
+import QuickReplies from 'react-native-gifted-chat/lib/QuickReplies';
 
 //This is the chat screen and messaging components
 export default function ChatScreen({ navigation }) {
@@ -161,8 +162,8 @@ export default function ChatScreen({ navigation }) {
           name: "React Native",
           avatar: require("../assets/exampleAvatar.png"),
         },
-        //quick reply- where user can click on the bubble to reply a message. (NOT IMPLEMENTED)
-        /*quickReplies: {
+        //quick reply- where user can click on the bubble to reply a message.
+        quickReplies: {
           type: "radio", // or 'checkbox',
           keepIt: true,
           values: [
@@ -175,7 +176,7 @@ export default function ChatScreen({ navigation }) {
               value: "listen",
             },
           ],
-        },*/
+        },
       },
     ]);
     //when exiting the component
@@ -197,15 +198,38 @@ export default function ChatScreen({ navigation }) {
     sendMessage(messages[0].text);
   }, []);
 
-  const setQuickReply = () => {
-    console.log("clicked!");
-    if (messages.quickReplies) {
-      return messages.quickReplies;
+   // dont know how this works but when quickreplies are pressed it sends a messages
+   const onQuickReply = replies => {
+    const createdAt = new Date()
+    if (replies.length === 1) {
+      onSend([
+        {
+          createdAt,
+          _id: Math.round(Math.random() * 1000000),
+          text: replies[0].title,
+          user:{_id:1},
+        },
+      ])
+    } else if (replies.length > 1) {
+      onSend([
+        {
+          createdAt,
+          _id: Math.round(Math.random() * 1000000),
+          text: replies.map(reply => reply.title).join(', '),
+          user:{_id:1},
+        },
+      ])
     } else {
-      return null;
+      console.warn('replies param is not set correctly')
     }
-  };
-
+  }
+// this renders the quick reply buttons
+// it is set that when # of messages > 1, they dissapear
+  const renderQuickReplies = (props) => {
+    return(
+      <QuickReplies color='#2E5F85' {...props} />
+    )
+  }
   return (
     <SafeAreaView style={{ flex:1, backgroundColor: "#fff" }}>
       <GiftedChat
@@ -242,6 +266,9 @@ export default function ChatScreen({ navigation }) {
             display: "none",
           },
         }}
+        onQuickReply={onQuickReply}
+        renderQuickReplies={
+          (props) => {if(messages.length ===1){return(renderQuickReplies(props))} else{return(null)}}}
       />
     </SafeAreaView>
   );

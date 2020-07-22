@@ -20,7 +20,7 @@ export default function BlogScreen({navigation,route}) {
       <ScrollView style={{ flex: 1, }} contentContainerStyle={{alignItems:'baseline'}}>
       <ImageBackground source={{uri:blog.imageURL}} style={{width:"100%",height:250,resizeMode:'contain'}}>
         <TouchableOpacity onPress={()=>navigation.goBack()} style={styles.back}>
-            <Ionicons name="ios-arrow-back" size={30} color="white" style={{ position: 'absolute', zIndex:1}} />
+            <Ionicons name="ios-arrow-back" size={32} color="white" style={styles.shadow} />
         </TouchableOpacity>
         </ImageBackground>
         <Text style={styles.title}>{blog.title}</Text>
@@ -50,10 +50,15 @@ const styles = StyleSheet.create({
   },
   back:{
     width:35,height:35,
-    marginLeft:20,marginTop:20, 
-    backgroundColor: 'rgba(52, 52, 52, 0.6)',
-    alignItems:'center',
-    justifyContent:'center',
-    borderRadius:45/2,
+    marginLeft:20,marginTop:"10%", 
+  },
+  shadow:{
+    position: 'absolute', zIndex:1,shadowColor: 'black',
+    shadowOpacity: 0.5,
+    textShadowRadius: 4,
+    textShadowOffset: {
+        width: 2,
+        height: 2,  
+    },
   }
 });
