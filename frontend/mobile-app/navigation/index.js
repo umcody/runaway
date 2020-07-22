@@ -1,13 +1,6 @@
 import React from "react";
 import "react-native-gesture-handler";
-import {
-  Linking,
-  StyleSheet,
-  StatusBar,
-  Dimensions,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import { Linking, StyleSheet, StatusBar, Dimensions } from "react-native";
 
 import {
   MaterialCommunityIcons,
@@ -23,9 +16,8 @@ import {
   HeaderBackButton,
 } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { createDrawerNavigator } from "@react-navigation/drawer";
 import {
+  createDrawerNavigator,
   DrawerContentScrollView,
   DrawerItemList,
   DrawerItem,
@@ -44,10 +36,7 @@ import SiteMapNav from "./SiteMapNav";
 import SignInPage from "../screens/SignInPage";
 
 const BottomTabNavigation = createBottomTabNavigator();
-const HomeTab = createMaterialTopTabNavigator();
-const HomeStack = createStackNavigator();
 const ChatStack = createStackNavigator();
-const HotlineStack = createStackNavigator();
 const SettingsDrawer = createDrawerNavigator();
 const AboutStack = createStackNavigator();
 
@@ -101,7 +90,7 @@ const BottomTab = ({ navigation }) => {
         activeTintColor: "#2E5F85",
         style: {
           backgroundColor: "white",
-          height: windowH*.085,
+          height: windowH * 0.085,
           borderTopColor: "#ACDAFF",
           borderTopWidth: 1,
         },
@@ -222,92 +211,8 @@ const Chat = ({ navigation }) => {
             headerStyle: styles.headerStyle,
           }}
         />
-        {/* <ChatStack.Screen
-          name="Home"
-          component={HomeTabScreen}
-          options={{
-            headerTitleAlign: "center",
-            headerTitleStyle: {
-              fontSize: 30,
-              color: "#2E5F85",
-            },
-            headerLeft: (props) => (
-              <MaterialIcons
-                onPress={() => {}}
-                name="face"
-                color="#ACDAFF"
-                size={25}
-              />
-            ),
-          }}
-        /> */}
       </ChatStack.Navigator>
     </>
-  );
-};
-
-/*const FeedScreen = ({ navigation }) => {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" translucent={true} />
-      <HomeStack.Navigator options={{headerMode: 'screen' }}>
-        <HomeStack.Screen
-          name="Feed"
-          component={BlogNav}
-          options={{
-            headerTitleAlign: "center",
-            headerTitleStyle: styles.headerTitleStyle,
-            headerStyle: styles.headerStyle,
-            headerTitle: (
-              <Image source={require('../assets/RunawayLogo.png')} style = {{resizeMode:"contain",width:60,height:60}}/>
-          ),
-            headerLeft: () => (
-              <Feather
-                style={{ paddingLeft: 25 }}
-                onPress={() => navigation.openDrawer()}
-                name="info"
-                size={30}
-                color="#FF9EDA"
-              />
-            ),
-          }}
-        />
-      </HomeStack.Navigator>
-    </>
-  );
-};
-const HomeTabScreen = () => {
-  return (
-    <HomeTab.Navigator
-      tabBarOptions={{
-        indicatorStyle: { backgroundColor: "#ACDAFF" },
-        labelStyle: { color: "#2E5F85" },
-      }}
-    >
-      <HomeTab.Screen
-        name="Posts"
-        component={BlogNav}
-        options={{
-          title: "Featured",
-        }}
-      />
-    </HomeTab.Navigator>
-  );
-};
-*/
-const TemporaryStack = () => {
-  return (
-    <HotlineStack.Navigator>
-      <HotlineStack.Screen
-        name="EmergencyResources"
-        component={EmergencyHotlinesScreen}
-        options={{
-          title: "Emergency Resources",
-          headerTitleStyle: styles.headerTitleStyle,
-          headerStyle: styles.headerStyle,
-        }}
-      />
-    </HotlineStack.Navigator>
   );
 };
 
@@ -349,7 +254,6 @@ export default function MyDrawer() {
   );
 }
 
-
 const styles = StyleSheet.create({
   homeIndicator: {
     backgroundColor: "#FF9EDA",
@@ -380,7 +284,7 @@ const styles = StyleSheet.create({
     shadowColor: "transparent",
     backgroundColor: "#fff",
     height: windowH / 9,
-    borderBottomColor: "#ACDAFF"
+    borderBottomColor: "#ACDAFF",
   },
   profilePic: {
     borderLeftWidth: 10,
@@ -390,12 +294,3 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
 });
-
-// const Profile = () => {
-//   return (
-//     <ProfileTab.Navigator>
-//       <ProfileTab.Screen name="Events" component={ProfileEvents} />
-//       <ProfileTab.Screen name="Likes" component={ProfileLikes} />
-//     </ProfileTab.Navigator>
-//   );
-// };
