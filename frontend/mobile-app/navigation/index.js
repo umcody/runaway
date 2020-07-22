@@ -39,9 +39,29 @@ import PreChatModal from "../screens/PreChatSurvey/ModalSurvey";
 import PreChatSurvey from "../screens/PreChatSurvey/Survey";
 import AboutUs from "../screens/AboutUs";
 import BlogNav from "../navigation/BlogNav";
-import Res from "../screens/ResourcesDummy";
 import SiteMapNav from "./SiteMapNav";
 import SignInPage from "../screens/SignInPage";
+
+
+
+
+
+
+import ResourceNav from "./ResourceNav";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const BottomTabNavigation = createBottomTabNavigator();
 const HomeTab = createMaterialTopTabNavigator();
@@ -132,9 +152,20 @@ const BottomTab = ({ navigation }) => {
           ),
         }}
       />
+
+
+
+
+
+
+
+
+
+
+
       <BottomTabNavigation.Screen
         name="Resources"
-        component={Res}
+        component={ResourceNav}
         options={{
           tabBarLabel: "Resources",
           tabBarIcon: ({ color }) => (
@@ -142,6 +173,18 @@ const BottomTab = ({ navigation }) => {
           ),
         }}
       />
+
+
+
+
+
+
+
+
+
+
+
+
     </BottomTabNavigation.Navigator>
   );
 };
