@@ -17,9 +17,12 @@ export default function ChatScreen({ navigation }) {
   const [newMessage, setNewMessage] = useState("");
   const [roomNum, setRoomNum] = useState(0);
   const [messages, setMessages] = useState([]);
+  const [volunteerJoined, setVolunteerJoined] = useState(false);
   const [queue, setQueue] = useState([]);
   const [modalVisible, setModalVisible] = useState(true);
   const [text, setText] = useState("");
+
+
   let socket;
   navigation.setOptions({
     headerRight: () => (
@@ -118,11 +121,18 @@ export default function ChatScreen({ navigation }) {
   }
 
   useEffect(() => {
-    socket = socketioclient("http://127.0.0.1:7000");
+    socket = socketioclient("https://runaway-practicum.herokuapp.com/");
     //generate random #
     let random_room = Math.floor(Math.random() * 1000 + 1);
 
     socket_joinRoom(random_room);
+
+    //When the volunteer enters the chat
+    socket.on("volunteerJoined",function(){
+      console.log("volunteer joined");
+      setVolunteerJoined(true);
+    })
+
 
     //When the server responds with "updateMessage"
     socket.on("updateMessage", function (message) {
@@ -206,6 +216,11 @@ export default function ChatScreen({ navigation }) {
     }
   };
 
+
+
+  //IF VOLUNTEERJOINED is FALSE, display queue screen
+  
+  //If VolunteerJoined is true, display chat screen
   return (
     <SafeAreaView style={{ flex:1, backgroundColor: "#fff" }}>
       <GiftedChat
