@@ -2,10 +2,30 @@ import React, {useState, useEffect} from 'react'
 import {View, FlatList} from 'react-native'
 import ResourceAPI from '../APIs/ResourceAPI'
 import ResourceCard from '../components/ResourceCard'
+import Fuse from 'fuse.js'
 
 export default function OfResources({ route, navigation }) {
     const { endPoint } = route.params;
     const [Resources, setResources] = useState([]);
+
+
+
+    const fuse = new Fuse(characters, {
+        keys: [ //the keys for the data that we want to search on
+          'title',
+          'categories'
+        ],
+        includeScore: true // score form 0-1. lower score means better match
+      });
+
+      /*
+       * in the brackets we put in what we wanna seach
+       */
+      const results = fuse.search();
+
+
+
+
 
     useEffect(() => {
         getResourcesFromAPI()
