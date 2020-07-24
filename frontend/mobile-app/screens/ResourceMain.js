@@ -30,7 +30,7 @@ export default function HomeScreen({ navigation }) {
             <View>
               <TouchableOpacity
                 style={styles.emergencyButton}
-                onPress={() => {navigation.navigate('Links', { endPoint: 'api/volunteer/resource' })
+                onPress={() => {navigation.navigate('Links', { endPoint: 'api/volunteer/resource?filter=LGBTQIA%2B' })
               }}
               >
                 <Text style={styles.emergencyText}>LGBTQIA+</Text>
@@ -42,7 +42,7 @@ export default function HomeScreen({ navigation }) {
           <View>
               <TouchableOpacity
                 style={styles.emergencyButton}
-                onPress={() => {navigation.navigate('Links', { endPoint: 'api/volunteer/resource' })}}
+                onPress={() => {navigation.navigate('Links', { endPoint: 'api/volunteer/resource?filter=Kids%20and%20Teens' })}}
               >
                 <Text style={styles.emergencyText}>Kids and Teens</Text>
               </TouchableOpacity>
@@ -51,7 +51,7 @@ export default function HomeScreen({ navigation }) {
             <View>
               <TouchableOpacity
                 style={styles.emergencyButton}
-                onPress={() => {navigation.navigate('Links', { endPoint: 'api/volunteer/resource' })}}
+                onPress={() => {navigation.navigate('Links', { endPoint: 'api/volunteer/resource?filter=Substance%20Related%20Disorders' })}}
               >
                 <Text style={styles.emergencyText}>Substance Related Disorders</Text>
               </TouchableOpacity>
@@ -62,7 +62,7 @@ export default function HomeScreen({ navigation }) {
           <View>
               <TouchableOpacity
                 style={styles.emergencyButton}
-                onPress={() => {navigation.navigate('Links', { endPoint: 'api/volunteer/resource' })}}
+                onPress={() => {navigation.navigate('Links', { endPoint: 'api/volunteer/resource?filter=Mood%20Related%20Disorders' })}}
               >
                 <Text style={styles.emergencyText}>Mood Related Disorders</Text>
               </TouchableOpacity>
@@ -71,7 +71,7 @@ export default function HomeScreen({ navigation }) {
             <View>
               <TouchableOpacity
                 style={styles.emergencyButton}
-                onPress={() => {navigation.navigate('Links', { endPoint: 'api/volunteer/resource' })}}
+                onPress={() => {navigation.navigate('Links', { endPoint: 'api/volunteer/resource?filter=Anxiety%20and%20Trauma%20Related%20Disorders' })}}
               >
                 <Text style={styles.emergencyText}>Anxiety and Trauma Related Disorders</Text>
               </TouchableOpacity>
@@ -82,7 +82,7 @@ export default function HomeScreen({ navigation }) {
           <View>
               <TouchableOpacity
                 style={styles.emergencyButton}
-                onPress={() => {navigation.navigate('Links', { endPoint: 'api/volunteer/resource' })}}
+                onPress={() => {navigation.navigate('Links', { endPoint: 'api/volunteer/resource?filter=Psychotic%20Disorders' })}}
               >
                 <Text style={styles.emergencyText}>Psychotic Disorders</Text>
               </TouchableOpacity>
@@ -91,7 +91,7 @@ export default function HomeScreen({ navigation }) {
             <View>
               <TouchableOpacity
                 style={styles.emergencyButton}
-                onPress={() => {navigation.navigate('Links', { endPoint: 'api/volunteer/resource' })}}
+                onPress={() => {navigation.navigate('Links', { endPoint: 'api/volunteer/resource?filter=Deliberate%20Self%20Harm' })}}
               >
                 <Text style={styles.emergencyText}>Deliberate Self Harm</Text>
               </TouchableOpacity>
@@ -102,7 +102,7 @@ export default function HomeScreen({ navigation }) {
           <View>
               <TouchableOpacity
                 style={styles.emergencyButton}
-                onPress={() => {navigation.navigate('Links', { endPoint: 'api/volunteer/resource' })}}
+                onPress={() => {navigation.navigate('Links', { endPoint: 'api/volunteer/resource?filter=Eating%20Disorders' })}}
               >
                 <Text style={styles.emergencyText}>Eating Disorders</Text>
               </TouchableOpacity>
@@ -111,7 +111,7 @@ export default function HomeScreen({ navigation }) {
             <View>
               <TouchableOpacity
                 style={styles.emergencyButton}
-                onPress={() => {navigation.navigate('Links', { endPoint: 'api/volunteer/resource' })}}
+                onPress={() => {navigation.navigate('Links', { endPoint: 'api/volunteer/resource?filter=Domestic%20and%20Sexual%20Violence' })}}
               >
                 <Text style={styles.emergencyText}>Domestic and Sexual Violence</Text>
               </TouchableOpacity>

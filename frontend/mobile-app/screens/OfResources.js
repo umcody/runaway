@@ -10,7 +10,7 @@ export default function OfResources({ route, navigation }) {
 
 
 
-    const fuse = new Fuse(characters, {
+    /*const fuse = new Fuse(characters, {
         keys: [ //the keys for the data that we want to search on
           'title',
           'categories'
@@ -18,10 +18,11 @@ export default function OfResources({ route, navigation }) {
         includeScore: true // score form 0-1. lower score means better match
       });
 
-      /*
+     
        * in the brackets we put in what we wanna seach
-       */
+       
       const results = fuse.search();
+    */
 
 
 
