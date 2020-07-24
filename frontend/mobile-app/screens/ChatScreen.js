@@ -11,6 +11,7 @@ import axios from "axios";
 import { AntDesign, FontAwesome5, Feather } from "@expo/vector-icons";
 import {SafeAreaView } from 'react-native-safe-area-context';
 import QuickReplies from 'react-native-gifted-chat/lib/QuickReplies';
+import WaitingPage from './WaitingPage';
 
 //This is the chat screen and messaging components
 export default function ChatScreen({ navigation }) {
@@ -25,26 +26,45 @@ export default function ChatScreen({ navigation }) {
 
 
   let socket;
-  navigation.setOptions({
-    headerRight: () => (
-      <TouchableOpacity
-        style={{ paddingRight: 25 }}
-        onPress={() => navigation.navigate("Resources")}
-      >
-        <AntDesign name="exclamationcircleo" size={30} color="#FF9EDA" />
-      </TouchableOpacity>
-    ),
-    headerLeft: () => (
-      <TouchableOpacity
-        style={{ paddingLeft: 25 }}
-        onPress={() => {
-          return navigation.navigate("PostSurvey", { messages: messages });
-        }}
-      >
-        <Feather name="x" size={35} color="#FF9EDA" />
-      </TouchableOpacity>
-    ),
-  });
+
+  // conditional header depending on if user is in waiting screen or chat room
+  if (volunteerJoined){
+    navigation.setOptions({
+      headerRight: () => (
+        <TouchableOpacity
+          style={{ paddingRight: 25 }}
+          onPress={() => navigation.navigate("Resources")}
+        >
+          <AntDesign name="exclamationcircleo" size={30} color="#FF9EDA" />
+        </TouchableOpacity>
+      ),
+      headerLeft: () => (
+        <TouchableOpacity
+          style={{ paddingLeft: 25 }}
+          onPress={() => {
+            return navigation.navigate("PostSurvey", { messages: messages });
+          }}
+        >
+          <Feather name="x" size={35} color="#FF9EDA" />
+        </TouchableOpacity>
+      ),
+    });
+  }
+  else {
+    navigation.setOptions({
+      headerLeft: () => (
+        <TouchableOpacity
+          style={{ paddingLeft: 25 }}
+          onPress={() => {
+            return navigation.pop();
+          }}
+        >
+          <Feather name="x" size={35} color="#FF9EDA" />
+        </TouchableOpacity>
+      ),
+      headerTitle:''
+    });
+  }
 
   // message bubble rendering and styling
   function renderBubble(props) {
@@ -242,6 +262,7 @@ export default function ChatScreen({ navigation }) {
   }
   return (
     <SafeAreaView style={{ flex:1, backgroundColor: "#fff" }}>
+    {volunteerJoined ? 
       <GiftedChat
         messages={messages}
         //quickReply={setQuickReply} NOT WORKING FOR NOW...
@@ -280,7 +301,10 @@ export default function ChatScreen({ navigation }) {
         renderQuickReplies={
           (props) => {if(messages.length ===1){return(renderQuickReplies(props))} else{return(null)}}}
       />
-    </SafeAreaView>
+    :
+          <WaitingPage/>
+    }
+    </SafeAreaView> 
   );
 }
 const styles = StyleSheet.create({
