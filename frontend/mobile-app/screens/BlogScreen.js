@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { SafeAreaView, Text, View, StyleSheet,Image,ActivityIndicator,ImageBackground} from "react-native";
+import { SafeAreaView, Text, View, StyleSheet,Image,ActivityIndicator,ImageBackground,StatusBar,} from "react-native";
 import {TouchableOpacity,ScrollView } from 'react-native-gesture-handler';
 import { Ionicons,MaterialCommunityIcons } from "@expo/vector-icons";
 import HTML from 'react-native-render-html';
@@ -22,7 +22,7 @@ export default function BlogScreen({navigation,route}) {
   }
   return (
     <SafeAreaView style={{ flex: 1,backgroundColor:'#fff'}}>
-      <ScrollView style={{ flex: 1, }} contentContainerStyle={{alignItems:'flex-start'}}>
+      <ScrollView style={{ flex: 1, }} contentContainerStyle={{flex:1,alignItems:'flex-start'}}>
         {/* loading indicator if the page is loading
         else show html content from database, uses HTML parser to convert into jsx*/}
         {loading ? <ActivityIndicator /> : <View>
@@ -56,7 +56,8 @@ const styles = StyleSheet.create({
   author: {
     paddingTop: 5,
     paddingLeft: 20,
-    fontSize:14
+    fontSize:14,
+    fontStyle:'italic'
   },
   content: {
     paddingTop: 20,
