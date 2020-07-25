@@ -55,7 +55,7 @@ export default function BlogFeed({navigation,fromHelp}) {
 	  data={blogs}
 	  renderItem={({ item }) => {
         return(
-          <BlogPost title={item.title} key={item._id} author={item.author} url ={item.url} imageURL={item.imageURL}
+          <BlogPost title={item.title} key={item._id} author={item.author} date={item.date} url ={item.url} imageURL={item.imageURL}
             readTime={item.readTime}
             HandlePress ={()=> navigation.navigate('Blog',{
               url:item.url,

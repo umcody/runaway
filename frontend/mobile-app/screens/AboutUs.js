@@ -5,11 +5,10 @@ import {
   Text,
   ScrollView,
   Dimensions,
-  SectionList,
-  Linking
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import * as WebBrowser from "expo-web-browser";
 import { Feather } from "@expo/vector-icons";
 import TeamCard from "../components/MemberInfo";
 // about us page 
@@ -19,7 +18,7 @@ export default function AboutUs({navigation}) {
     <Feather
       style={{ paddingLeft: 25 }}
       onPress={() => navigation.openDrawer()}
-      name="info"
+      name="menu"
       size={30}
       color="#FF9EDA"
     />
@@ -31,24 +30,9 @@ export default function AboutUs({navigation}) {
           <Text style={styles.title}>About Us</Text>
           <Text style={styles.text}>
             Runaway is a social entrepreneurial venture that aims to spread
-            mental health awareness and make the world happier. Currently we're
-            working on 3 modules:
-          </Text>
-          <Text style={styles.text}>
-            1. Hosting events and workshops focused around mental health.{" "}
-          </Text>
-          <Text style={styles.text}>
-            2. Our mobile app that will allow users to anonymously talk to our
-            highly skilled and monitored set of volunteers from across the
-            world.{" "}
-          </Text>
-          <Text style={styles.text}>
-            3. A carefully and passionately curated positivity zone that
-            provides users with happy art, quotes, music, inspiring stories,
-            etc.{" "}
-          </Text>
+            mental health awareness and make the world happier. </Text>
           <TouchableOpacity activeOpacity={0.9} style={styles.button} onPress={() => {
-          Linking.openURL("https://www.runawayapp.com/");
+          WebBrowser.openBrowserAsync("https://www.runawayapp.com/");
         }}>
             <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 18 }}>
               Visit Our Site
@@ -82,17 +66,13 @@ export default function AboutUs({navigation}) {
             <TeamCard name="Willis Tang" role="Blogger"></TeamCard>
             <TeamCard name="Jayant Singhal" role="Blogger"></TeamCard>
             <TeamCard name="Maggie Dunsford" role="Blogger"></TeamCard>
-            <Text style={styles.teamTitle}>Practicum Team</Text>
+            <Text style={styles.teamTitle}>Technology Team</Text>
             <TeamCard name="Will Hunter" role="Practicum Advisor"></TeamCard>
             <TeamCard
               name="Rithwik Nichenametla"
               role="Project Manager"
             ></TeamCard>
             <TeamCard name="Pranaya Jajoo" role="Project Manager"></TeamCard>
-            <TeamCard
-              name="Dybe Fredy Mwaisyange"
-              role="Project Manager"
-            ></TeamCard>
             <TeamCard name="Sandy Lee" role="Product Designer"></TeamCard>
             <TeamCard name="Cody Um" role="Lead Engineer"></TeamCard>
             <TeamCard name="Yasir Azizi" role="Front-end Developer"></TeamCard>
@@ -104,9 +84,9 @@ export default function AboutUs({navigation}) {
             <TeamCard name="Dongjoo Lee" role="Back-end Developer"></TeamCard>
           </View>
         </View>
-        <TouchableOpacity style={styles.partners} activeOpacity={0.9}>
-          <Text style={styles.pSubtitle}>Our Partners</Text>
-        </TouchableOpacity>
+        <View style={styles.partners}>
+          <Text style={styles.subtitle}>Our Partners</Text>
+        </View>
       </ScrollView>
     </View>
   );
@@ -167,13 +147,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#FF9EDA",
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 10,
+    paddingVertical: 12,
     borderRadius: 20,
     marginTop: 20,
+    marginHorizontal:50
   },
   partners: {
     padding: 20,
-    backgroundColor: "#fff",
+    backgroundColor: "#E3F1FC",
     flexDirection: "row",
     alignItems: "center",
   },

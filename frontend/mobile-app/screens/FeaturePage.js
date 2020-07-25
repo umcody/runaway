@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     fontWeight:'bold',
   },
   content: {
-    height:height/2.3,width:width,
+    height:height/3,width:width,
     backgroundColor:'#2E5F85',
     justifyContent:'space-between',
     alignItems:'flex-start',

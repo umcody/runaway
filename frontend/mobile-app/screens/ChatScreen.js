@@ -11,6 +11,7 @@ import axios from "axios";
 import { AntDesign, FontAwesome5, Feather } from "@expo/vector-icons";
 import {SafeAreaView } from 'react-native-safe-area-context';
 import QuickReplies from 'react-native-gifted-chat/lib/QuickReplies';
+import WaitingPage from './WaitingPage';
 
 //This is the chat screen and messaging components
 export default function ChatScreen({ navigation }) {
@@ -25,26 +26,46 @@ export default function ChatScreen({ navigation }) {
 
 
   let socket;
-  navigation.setOptions({
-    headerRight: () => (
-      <TouchableOpacity
-        style={{ paddingRight: 25 }}
-        onPress={() => navigation.navigate("Resources")}
-      >
-        <AntDesign name="exclamationcircleo" size={30} color="#FF9EDA" />
-      </TouchableOpacity>
-    ),
-    headerLeft: () => (
-      <TouchableOpacity
-        style={{ paddingLeft: 25 }}
-        onPress={() => {
-          return navigation.navigate("PostSurvey", { messages: messages });
-        }}
-      >
-        <Feather name="x" size={35} color="#FF9EDA" />
-      </TouchableOpacity>
-    ),
-  });
+
+  // conditional header depending on if user is in waiting screen or chat room
+  //right now waiting screen wont show for testing purposes
+  if (volunteerJoined){
+    navigation.setOptions({
+      headerRight: () => (
+        <TouchableOpacity
+          style={{ paddingRight: 25 }}
+          onPress={() => navigation.navigate("Resources")}
+        >
+          <AntDesign name="exclamationcircleo" size={30} color="#FF9EDA" />
+        </TouchableOpacity>
+      ),
+      headerLeft: () => (
+        <TouchableOpacity
+          style={{ paddingLeft: 25 }}
+          onPress={() => {
+            return navigation.navigate("PostSurvey", { messages: messages });
+          }}
+        >
+          <Feather name="x" size={35} color="#FF9EDA" />
+        </TouchableOpacity>
+      ),
+    });
+  }
+  else {
+    navigation.setOptions({
+      headerLeft: () => (
+        <TouchableOpacity
+          style={{ paddingLeft: 25 }}
+          onPress={() => {
+            return navigation.pop(1);
+          }}
+        >
+          <Feather name="x" size={35} color="#FF9EDA" />
+        </TouchableOpacity>
+      ),
+      headerTitle:''
+    });
+  }
 
   // message bubble rendering and styling
   function renderBubble(props) {
@@ -64,7 +85,6 @@ export default function ChatScreen({ navigation }) {
         wrapperStyle={{
           left: {
             backgroundColor: "#2E5F85",
-
             borderTopLeftRadius: 30,
             borderTopRightRadius: 30,
             borderBottomRightRadius: 30,
@@ -74,8 +94,8 @@ export default function ChatScreen({ navigation }) {
           },
           right: {
             backgroundColor: "#E3F1FC",
-            marginRight: 20,
             padding: 8,
+            marginRight:20,
             borderTopLeftRadius: 30,
             borderTopRightRadius: 30,
             borderBottomRightRadius: 0,
@@ -237,11 +257,14 @@ export default function ChatScreen({ navigation }) {
 // it is set that when # of messages > 1, they dissapear
   const renderQuickReplies = (props) => {
     return(
-      <QuickReplies color='#2E5F85' {...props} />
+      <QuickReplies color='#2E5F85'{...props} style={{
+        container: {justifyContent:'flex-end'}}}
+        />
     )
   }
   return (
     <SafeAreaView style={{ flex:1, backgroundColor: "#fff" }}>
+    {volunteerJoined ? 
       <GiftedChat
         messages={messages}
         //quickReply={setQuickReply} NOT WORKING FOR NOW...
@@ -279,8 +302,18 @@ export default function ChatScreen({ navigation }) {
         onQuickReply={onQuickReply}
         renderQuickReplies={
           (props) => {if(messages.length ===1){return(renderQuickReplies(props))} else{return(null)}}}
+        quickReplyStyle={{
+          marginLeft:101,
+          width:170,
+          flexDirection:'row',
+          justifyContent:'flex-start',
+          alignItems:'center',
+        }}
       />
-    </SafeAreaView>
+    :
+          <WaitingPage/>
+    }
+    </SafeAreaView> 
   );
 }
 const styles = StyleSheet.create({

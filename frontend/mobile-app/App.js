@@ -14,7 +14,7 @@ import { AntDesign, Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 export default function App() {
   return (
     <SafeAreaProvider>
-      {(Platform.OS === 'ios')  ? <StatusBar  barStyle="dark-content" translucent={true} /> : null}
+      {(Platform.OS === 'ios')  ? <StatusBar  barStyle="dark-content" translucent={true} />:null}
       <Navigation/>
     </SafeAreaProvider>
   )

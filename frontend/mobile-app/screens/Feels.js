@@ -7,6 +7,7 @@ import {
   Dimensions,
   Button,
   ScrollView,
+  StatusBar
 } from "react-native";
 import { CheckBox } from "react-native-elements";
 
@@ -41,6 +42,7 @@ export default function Chat({ navigation }) {
   return (
     <>
       <View style={styles.container}>
+      <StatusBar  barStyle="dark-content" backgroundColor="#fff" translucent={true} />
         <ScrollView style={styles.home}>
           {/* Disclaimer here */}
           <Text style={styles.question}>

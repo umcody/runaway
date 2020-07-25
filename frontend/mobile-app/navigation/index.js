@@ -112,7 +112,8 @@ const BottomTab = ({ navigation }) => {
           backgroundColor: "white",
           height: windowH * 0.085,
           borderTopColor: "#ACDAFF",
-          borderTopWidth: 1,
+          borderTopWidth: 0,
+          elevation:0
         },
       }}
     >
@@ -234,6 +235,7 @@ const Chat = ({ navigation }) => {
           component={ChatScreen}
           options={{
             title: "Chat",
+            headerTitleAlign: "center",
             headerTitleStyle: styles.headerTitleStyle,
             headerStyle: styles.headerStyle,
           }}
@@ -267,6 +269,7 @@ const About = () => {
         component={AboutUs}
         options={{
           title: "",
+          headerTitleAlign: "center",
           headerTitleStyle: styles.headerTitleStyle,
           headerStyle: styles.headerStyle,
         }}
@@ -328,6 +331,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     height: windowH / 9,
     borderBottomColor: "#ACDAFF",
+    elevation:0,
+    
+    
   },
   profilePic: {
     borderLeftWidth: 10,

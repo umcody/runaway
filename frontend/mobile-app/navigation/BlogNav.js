@@ -8,23 +8,27 @@ import { Ionicons,Feather} from "@expo/vector-icons";
 //for now this is used as the homepage
 export default function BlogNav({navigation}){
     const Stack = createStackNavigator();
+    //header logo
+    function LogoTitle() {
+      return (
+        <Image source={require('../assets/RunawayLogo.png')} resizeMode="contain" style={{ width: 60}}/>
+      );
+    }
     return (
         <View style = {styles.container}>
             <Stack.Navigator>
             <Stack.Screen
           name="Feed"
           component={BlogFeed}
-          options={{ title: 'Blogs', headerTitleStyle: styles.headerTitleStyle,
-          headerStyle: styles.headerStyle2,
+          options={{ title: "Blogs", headerTitleStyle: styles.headerTitleStyle,
+          headerStyle: styles.headerStyle,
           headerTitleAlign: "center",
-          headerTitle: (
-            <Image source={require('../assets/RunawayLogo.png')} style = {{resizeMode:"contain",width:60,height:60}}/>
-        ),
+          headerTitle: props => <LogoTitle {...props} /> ,
           headerLeft: () => (
             <Feather
               style={{ paddingLeft: 25 }}
               onPress={() => navigation.openDrawer()}
-              name="info"
+              name="menu"
               size={30}
               color="#FF9EDA"
             />
@@ -56,13 +60,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0,
     shadowColor: "transparent",
     backgroundColor: "#fff",
-    height:windowH/10,
-  },
-  headerStyle2: {
-    borderBottomWidth: 0,
-    shadowColor: "transparent",
-    backgroundColor: "#fff",
     height: windowH / 9,
-    borderBottomColor: "#ACDAFF"
+    borderBottomColor: "#ACDAFF",
+    elevation:0
   },
 });
