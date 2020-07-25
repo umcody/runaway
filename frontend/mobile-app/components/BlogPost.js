@@ -29,7 +29,7 @@ export default function BlogPost({title,author,date,readTime,imageURL,HandlePres
                         <View style={{flexDirection:'row'}}>
                             <Text style = {styles.info}>{author}</Text>
                             <MaterialCommunityIcons name="feather" size={14} color="#FF9EDA" />
-                            <Text style ={styles.info}>{readTime}</Text>
+                            <Text style ={styles.info}>{readTime} min</Text>
                         </View>
                         <Text style={styles.info}>{ConvertDate(date)}</Text>
                         <AntDesign style={{position:'absolute',bottom:0}}name="ellipsis1" size={30} color="#2E5F85" />

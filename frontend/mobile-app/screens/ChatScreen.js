@@ -28,6 +28,7 @@ export default function ChatScreen({ navigation }) {
   let socket;
 
   // conditional header depending on if user is in waiting screen or chat room
+  //right now waiting screen wont show for testing purposes
   if (volunteerJoined==false){
     navigation.setOptions({
       headerRight: () => (
@@ -94,6 +95,7 @@ export default function ChatScreen({ navigation }) {
           right: {
             backgroundColor: "#E3F1FC",
             padding: 8,
+            marginRight:20,
             borderTopLeftRadius: 30,
             borderTopRightRadius: 30,
             borderBottomRightRadius: 0,
@@ -271,7 +273,6 @@ export default function ChatScreen({ navigation }) {
         renderInputToolbar={(props) => customInputToolbar(props)}
         placeholder="New Message"
         placeholderTextColor="#2E5F85"
-        showUserAvatar={true}
         textInputStyle={styles.composer} //styling of text input
         minInputToolbarHeight={60}
         messagesContainerStyle={{

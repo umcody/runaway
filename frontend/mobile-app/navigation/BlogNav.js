@@ -14,11 +14,11 @@ export default function BlogNav({navigation}){
             <Stack.Screen
           name="Feed"
           component={BlogFeed}
-          options={{ title: 'Blogs', headerTitleStyle: styles.headerTitleStyle,
-          headerStyle: styles.headerStyle2,
+          options={{ title: "Blogs", headerTitleStyle: styles.headerTitleStyle,
+          headerStyle: styles.headerStyle,
           headerTitleAlign: "center",
           headerTitle: (
-            <Image source={require('../assets/RunawayLogo.png')} style = {{resizeMode:"contain",width:60,height:60}}/>
+            <Image source={require('../assets/RunawayLogo.png')} resizeMode="contain" style={{ width: 60}}/>
         ),
           headerLeft: () => (
             <Feather
@@ -56,13 +56,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0,
     shadowColor: "transparent",
     backgroundColor: "#fff",
-    height:windowH/10,
-  },
-  headerStyle2: {
-    borderBottomWidth: 0,
-    shadowColor: "transparent",
-    backgroundColor: "#fff",
     height: windowH / 9,
-    borderBottomColor: "#ACDAFF"
+    borderBottomColor: "#ACDAFF",
+    elevation:0
   },
 });

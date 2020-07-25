@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   },
   back:{
     width:35,height:35,
-    marginLeft:20,marginTop:"15%", 
+    marginLeft:20,marginTop:30, 
   },
   shadow:{
     position: 'absolute', zIndex:1,shadowColor: 'black',

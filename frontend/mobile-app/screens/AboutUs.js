@@ -31,22 +31,7 @@ export default function AboutUs({navigation}) {
           <Text style={styles.title}>About Us</Text>
           <Text style={styles.text}>
             Runaway is a social entrepreneurial venture that aims to spread
-            mental health awareness and make the world happier. Currently we're
-            working on 3 modules:
-          </Text>
-          <Text style={styles.text}>
-            1. Hosting events and workshops focused around mental health.{" "}
-          </Text>
-          <Text style={styles.text}>
-            2. Our mobile app that will allow users to anonymously talk to our
-            highly skilled and monitored set of volunteers from across the
-            world.{" "}
-          </Text>
-          <Text style={styles.text}>
-            3. A carefully and passionately curated positivity zone that
-            provides users with happy art, quotes, music, inspiring stories,
-            etc.{" "}
-          </Text>
+            mental health awareness and make the world happier. </Text>
           <TouchableOpacity activeOpacity={0.9} style={styles.button} onPress={() => {
           Linking.openURL("https://www.runawayapp.com/");
         }}>
@@ -82,7 +67,7 @@ export default function AboutUs({navigation}) {
             <TeamCard name="Willis Tang" role="Blogger"></TeamCard>
             <TeamCard name="Jayant Singhal" role="Blogger"></TeamCard>
             <TeamCard name="Maggie Dunsford" role="Blogger"></TeamCard>
-            <Text style={styles.teamTitle}>Practicum Team</Text>
+            <Text style={styles.teamTitle}>Technology Team</Text>
             <TeamCard name="Will Hunter" role="Practicum Advisor"></TeamCard>
             <TeamCard
               name="Rithwik Nichenametla"
@@ -101,7 +86,7 @@ export default function AboutUs({navigation}) {
           </View>
         </View>
         <TouchableOpacity style={styles.partners} activeOpacity={0.9}>
-          <Text style={styles.pSubtitle}>Our Partners</Text>
+          <Text style={styles.subtitle}>Our Partners</Text>
         </TouchableOpacity>
       </ScrollView>
     </View>
@@ -169,7 +154,7 @@ const styles = StyleSheet.create({
   },
   partners: {
     padding: 20,
-    backgroundColor: "#fff",
+    backgroundColor: "#E3F1FC",
     flexDirection: "row",
     alignItems: "center",
   },
