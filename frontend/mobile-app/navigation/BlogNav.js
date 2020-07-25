@@ -28,7 +28,7 @@ export default function BlogNav({navigation}){
             <Feather
               style={{ paddingLeft: 25 }}
               onPress={() => navigation.openDrawer()}
-              name="info"
+              name="menu"
               size={30}
               color="#FF9EDA"
             />

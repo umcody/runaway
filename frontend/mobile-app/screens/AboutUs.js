@@ -5,11 +5,10 @@ import {
   Text,
   ScrollView,
   Dimensions,
-  SectionList,
-  Linking
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import * as WebBrowser from "expo-web-browser";
 import { Feather } from "@expo/vector-icons";
 import TeamCard from "../components/MemberInfo";
 // about us page 
@@ -19,7 +18,7 @@ export default function AboutUs({navigation}) {
     <Feather
       style={{ paddingLeft: 25 }}
       onPress={() => navigation.openDrawer()}
-      name="info"
+      name="menu"
       size={30}
       color="#FF9EDA"
     />
@@ -33,7 +32,7 @@ export default function AboutUs({navigation}) {
             Runaway is a social entrepreneurial venture that aims to spread
             mental health awareness and make the world happier. </Text>
           <TouchableOpacity activeOpacity={0.9} style={styles.button} onPress={() => {
-          Linking.openURL("https://www.runawayapp.com/");
+          WebBrowser.openBrowserAsync("https://www.runawayapp.com/");
         }}>
             <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 18 }}>
               Visit Our Site
@@ -85,9 +84,9 @@ export default function AboutUs({navigation}) {
             <TeamCard name="Dongjoo Lee" role="Back-end Developer"></TeamCard>
           </View>
         </View>
-        <TouchableOpacity style={styles.partners} activeOpacity={0.9}>
+        <View style={styles.partners}>
           <Text style={styles.subtitle}>Our Partners</Text>
-        </TouchableOpacity>
+        </View>
       </ScrollView>
     </View>
   );
@@ -148,9 +147,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#FF9EDA",
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 10,
+    paddingVertical: 12,
     borderRadius: 20,
     marginTop: 20,
+    marginHorizontal:50
   },
   partners: {
     padding: 20,
