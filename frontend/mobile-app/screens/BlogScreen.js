@@ -16,6 +16,8 @@ export default function BlogScreen({navigation,route}) {
     error
     }  = useBlogUrl(url)
 
+
+  // creates time object and returns string format
   function ConvertDate(date){
       var d = new Date(parseInt(date.substr(0,4)),parseInt(date.substr(6,7)),parseInt(date.substr(9,10)));
       return d.toString().substr(4,7)

@@ -2,12 +2,15 @@ import React, { useRef,useEffect } from "react";
 import { Animated, Text, View, StyleSheet, Button, ImageBackground,Dimensions} from "react-native";
 import * as Progress from 'react-native-progress';
 
+// animated waiting screen. This will show until a volunteer joins.
+// need to implement waiting time
 const WaitingPage = () => {
   // fadeAnim will be used as the value for opacity. Initial Value: 0
   const fadeAnim1 = useRef(new Animated.Value(0)).current;
   const fadeAnim2 = useRef(new Animated.Value(0)).current;
   const fadeAnim3 = useRef(new Animated.Value(0)).current;
   
+  // animation for woman fading in n out
   useEffect(() => {
       Animated.loop(
         Animated.sequence([

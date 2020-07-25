@@ -8,6 +8,7 @@ import { Ionicons,Feather} from "@expo/vector-icons";
 //for now this is used as the homepage
 export default function BlogNav({navigation}){
     const Stack = createStackNavigator();
+    //header logo
     function LogoTitle() {
       return (
         <Image source={require('../assets/RunawayLogo.png')} resizeMode="contain" style={{ width: 60}}/>
