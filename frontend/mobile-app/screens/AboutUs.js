@@ -89,10 +89,6 @@ export default function AboutUs({navigation}) {
               role="Project Manager"
             ></TeamCard>
             <TeamCard name="Pranaya Jajoo" role="Project Manager"></TeamCard>
-            <TeamCard
-              name="Dybe Fredy Mwaisyange"
-              role="Project Manager"
-            ></TeamCard>
             <TeamCard name="Sandy Lee" role="Product Designer"></TeamCard>
             <TeamCard name="Cody Um" role="Lead Engineer"></TeamCard>
             <TeamCard name="Yasir Azizi" role="Front-end Developer"></TeamCard>

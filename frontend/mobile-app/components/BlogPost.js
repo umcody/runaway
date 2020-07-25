@@ -14,7 +14,12 @@ const {width,height}= Dimensions.get('window')
 /*Blog post element
 This goes into the flatlist
 Each post shows the author and title*/
-export default function BlogPost({title,author,readTime,imageURL,HandlePress}){
+export default function BlogPost({title,author,date,readTime,imageURL,HandlePress}){
+
+    function ConvertDate(date){
+        var d = new Date(parseInt(date.substr(0,4)),parseInt(date.substr(6,7)),parseInt(date.substr(9,10)));
+        return d.toString().substr(4,7)
+    }
     return(
         <View>
             <TouchableOpacity activeOpacity={.8} style ={styles.container} onPress={HandlePress}>
@@ -26,8 +31,8 @@ export default function BlogPost({title,author,readTime,imageURL,HandlePress}){
                             <MaterialCommunityIcons name="feather" size={14} color="#FF9EDA" />
                             <Text style ={styles.info}>{readTime}</Text>
                         </View>
-                        <Text style={styles.info}>Date</Text>
-                        <AntDesign name="ellipsis1" size={30} color="#2E5F85" />
+                        <Text style={styles.info}>{ConvertDate(date)}</Text>
+                        <AntDesign style={{position:'absolute',bottom:0}}name="ellipsis1" size={30} color="#2E5F85" />
                     </View>
             </View>
             <View style={styles.image}>
@@ -58,7 +63,7 @@ const styles = StyleSheet.create({
         fontWeight:'bold'
     },
     extras:{
-       
+       flex:1
     },
     profile:{
        

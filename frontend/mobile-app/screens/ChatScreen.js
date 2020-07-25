@@ -28,7 +28,7 @@ export default function ChatScreen({ navigation }) {
   let socket;
 
   // conditional header depending on if user is in waiting screen or chat room
-  if (volunteerJoined){
+  if (volunteerJoined==false){
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity
@@ -84,7 +84,6 @@ export default function ChatScreen({ navigation }) {
         wrapperStyle={{
           left: {
             backgroundColor: "#2E5F85",
-
             borderTopLeftRadius: 30,
             borderTopRightRadius: 30,
             borderBottomRightRadius: 30,
@@ -94,7 +93,6 @@ export default function ChatScreen({ navigation }) {
           },
           right: {
             backgroundColor: "#E3F1FC",
-            marginRight: 20,
             padding: 8,
             borderTopLeftRadius: 30,
             borderTopRightRadius: 30,
@@ -257,12 +255,14 @@ export default function ChatScreen({ navigation }) {
 // it is set that when # of messages > 1, they dissapear
   const renderQuickReplies = (props) => {
     return(
-      <QuickReplies color='#2E5F85' {...props} />
+      <QuickReplies color='#2E5F85'{...props} style={{
+        container: {justifyContent:'flex-end'}}}
+        />
     )
   }
   return (
     <SafeAreaView style={{ flex:1, backgroundColor: "#fff" }}>
-    {volunteerJoined ? 
+    {volunteerJoined ==false? 
       <GiftedChat
         messages={messages}
         //quickReply={setQuickReply} NOT WORKING FOR NOW...
@@ -271,6 +271,7 @@ export default function ChatScreen({ navigation }) {
         renderInputToolbar={(props) => customInputToolbar(props)}
         placeholder="New Message"
         placeholderTextColor="#2E5F85"
+        showUserAvatar={true}
         textInputStyle={styles.composer} //styling of text input
         minInputToolbarHeight={60}
         messagesContainerStyle={{
@@ -300,6 +301,13 @@ export default function ChatScreen({ navigation }) {
         onQuickReply={onQuickReply}
         renderQuickReplies={
           (props) => {if(messages.length ===1){return(renderQuickReplies(props))} else{return(null)}}}
+        quickReplyStyle={{
+          marginLeft:101,
+          width:170,
+          flexDirection:'row',
+          justifyContent:'flex-start',
+          alignItems:'center',
+        }}
       />
     :
           <WaitingPage/>
