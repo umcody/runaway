@@ -14,6 +14,8 @@ function ChatObservation() {
     function socket_joinRoom(room) {
         setRoomNum(room);
         socket.emit("joinRoom", room);
+        socket.emit("volunteerJoined","dummy");
+        console.log("volunteerJoined sent");
     }
 
     useEffect(() => {
@@ -24,6 +26,7 @@ function ChatObservation() {
             console.log(queue);
             setQueue(queue);
         });
+
         socket.on("updateMessage", function (message) {
 
             console.log("message recieved");
