@@ -9,19 +9,14 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import * as WebBrowser from "expo-web-browser";
-import { Feather } from "@expo/vector-icons";
+import { Feather,Ionicons } from "@expo/vector-icons";
 import TeamCard from "../components/MemberInfo";
 // about us page 
 
 export default function AboutUs({navigation}) {
-  navigation.setOptions({headerLeft: () => (
-    <Feather
-      style={{ paddingLeft: 25 }}
-      onPress={() => navigation.openDrawer()}
-      name="menu"
-      size={30}
-      color="#FF9EDA"
-    />
+  navigation.setOptions(
+    {headerLeft: () => (
+    <Ionicons name="ios-arrow-back" size={30} color="#FF9EDA" style={{ paddingLeft: 25 }} onPress={() => navigation.goBack()}/>
   ),})
   return (
     <View style={styles.container}>

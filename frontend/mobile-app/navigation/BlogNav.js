@@ -32,6 +32,7 @@ export default function BlogNav({navigation}){
               size={30}
               color="#FF9EDA"
             />
+            
           ),
               }}
             />
