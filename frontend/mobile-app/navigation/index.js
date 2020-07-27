@@ -1,6 +1,6 @@
 import React from "react";
 import "react-native-gesture-handler";
-import { Linking, StyleSheet, StatusBar, Dimensions } from "react-native";
+import { Linking, StyleSheet, StatusBar, Dimensions,View,Text } from "react-native";
 
 import {
   MaterialCommunityIcons,
@@ -33,27 +33,7 @@ import AboutUs from "../screens/AboutUs";
 import BlogNav from "../navigation/BlogNav";
 import SiteMapNav from "./SiteMapNav";
 import SignInPage from "../screens/SignInPage";
-
-
-
-
-
-
 import ResourceNav from "./ResourceNav";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 const BottomTabNavigation = createBottomTabNavigator();
 const ChatStack = createStackNavigator();
@@ -66,6 +46,18 @@ const windowH = Dimensions.get("window").height;
 function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props}>
+    <View
+      style={{
+        backgroundColor: '#fff',
+        height: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <Text style={{ color: '#ACDAFF', fontSize: 26 }}>
+        Information Pane
+      </Text>
+    </View>
       <DrawerItemList {...props} />
       <DrawerItem
         onPress={() => {
@@ -141,18 +133,7 @@ const BottomTab = ({ navigation }) => {
             <MaterialIcons name="chat-bubble-outline" color={color} size={28} />
           ),
         }}
-      />
-
-
-
-
-
-
-
-
-
-
-
+/>
       <BottomTabNavigation.Screen
         name="Resources"
         component={ResourceNav}
@@ -163,18 +144,6 @@ const BottomTab = ({ navigation }) => {
           ),
         }}
       />
-
-
-
-
-
-
-
-
-
-
-
-
     </BottomTabNavigation.Navigator>
   );
 };
@@ -189,7 +158,6 @@ const Chat = ({ navigation }) => {
           component={PreChatModal}
           options={{ headerShown: false }}
         />
-
         <ChatStack.Screen
           name="PreChatSurvey"
           component={PreChatSurvey}
@@ -238,15 +206,15 @@ const Chat = ({ navigation }) => {
             headerTitleAlign: "center",
             headerTitleStyle: styles.headerTitleStyle,
             headerStyle: styles.headerStyle,
+            gestureEnabled:false
           }}
         />
-
         <ChatStack.Screen
           name="PostSurvey"
           component={PostChatSurvey}
-          options={{ headerShown: false }}
+          options={{ headerShown: false,gestureEnabled:false}}
+          
         />
-
         <ChatStack.Screen
           name="EmergencyResources"
           component={EmergencyHotlinesScreen}
@@ -282,6 +250,7 @@ export default function MyDrawer() {
     <NavigationContainer>
       <SettingsDrawer.Navigator
         drawerContent={(props) => <CustomDrawerContent {...props} />}
+        edgeWidth={0}
       >
         <SettingsDrawer.Screen
           name="Home"

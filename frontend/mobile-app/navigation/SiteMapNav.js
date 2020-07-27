@@ -4,7 +4,7 @@ import { createStackNavigator,CardStyleInterpolators,} from '@react-navigation/s
 import FeaturePage from '../screens/FeaturePage';
 import SiteMap from '../screens/SiteMap';
 import Feature from '../screens/Feature';
-import {Feather,} from "@expo/vector-icons";
+import {Feather,Ionicons} from "@expo/vector-icons";
 
 const {width,height}= Dimensions.get('window') 
 // stack nav for feature cards
@@ -18,13 +18,7 @@ export default function SiteMapNav({navigation}){
           component={SiteMap}
           options={{ title: 'App Features', headerTitleStyle: styles.headerTitleStyle, headerStyle:styles.headerStyle,
           headerLeft: () => (
-            <Feather
-              style={{ paddingLeft: 25 }}
-              onPress={() => navigation.openDrawer()}
-              name="menu"
-              size={30}
-              color="#FF9EDA"
-            />
+            <Ionicons name="ios-arrow-back" size={30} color="#FF9EDA" style={{ paddingLeft: 25 }} onPress={() => navigation.goBack()}/>
           ),}}
         />
         <Stack.Screen name="Features" component={FeaturePage}
