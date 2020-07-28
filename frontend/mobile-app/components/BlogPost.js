@@ -29,10 +29,10 @@ export default function BlogPost({title,author,date,readTime,imageURL,HandlePres
                         <View style={{flexDirection:'row'}}>
                             <Text style = {styles.info}>{author}</Text>
                             <MaterialCommunityIcons name="feather" size={14} color="#FF9EDA" />
-                            <Text style ={styles.info}>{readTime} min</Text>
+                            <Text style ={styles.info}>· {readTime} min</Text>
                         </View>
                         <Text style={styles.info}>{ConvertDate(date)}</Text>
-                        <AntDesign style={{position:'absolute',bottom:0}}name="ellipsis1" size={30} color="#2E5F85" />
+                        <AntDesign style={{position:'absolute',bottom:0}}name="ellipsis1" size={30} color="#000" />
                     </View>
             </View>
             <View style={styles.image}>
@@ -57,10 +57,9 @@ const styles = StyleSheet.create({
         backgroundColor:'#fff',
     },
     title:{
-        color:'#2E5F85',
-        fontSize:20,
+        color:'#000',
+        fontSize:18,
         paddingBottom:10,
-        fontWeight:'bold'
     },
     extras:{
        flex:1
@@ -69,7 +68,7 @@ const styles = StyleSheet.create({
        
     },
     info:{
-        color:'#2E5F85',
+        color:'#000',
         paddingRight:5,
         paddingBottom:5
     },

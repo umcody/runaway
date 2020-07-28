@@ -11,7 +11,7 @@ export default function BlogNav({navigation}){
     //header logo
     function LogoTitle() {
       return (
-        <Image source={require('../assets/RunawayLogo.png')} resizeMode="contain" style={{ width: 60}}/>
+        <Image source={require('../assets/RunawayLogo.png')} resizeMode="contain" style={{ width: 50}}/>
       );
     }
     return (
@@ -26,11 +26,11 @@ export default function BlogNav({navigation}){
           headerTitle: props => <LogoTitle {...props} /> ,
           headerLeft: () => (
             <Feather
-              style={{ paddingLeft: 25 }}
+              style={{ paddingLeft: 25,paddingTop:5 }}
               onPress={() => navigation.openDrawer()}
               name="menu"
-              size={30}
-              color="#FF9EDA"
+              size={25}
+              color="#000"
             />
             
           ),
@@ -59,10 +59,16 @@ const styles = StyleSheet.create({
   },
   headerStyle: {
     borderBottomWidth: 0,
-    shadowColor: "transparent",
+    shadowColor: "#ACDAFF",
     backgroundColor: "#fff",
     height: windowH / 9,
     borderBottomColor: "#ACDAFF",
-    elevation:0
+    elevation:2,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
   },
 });

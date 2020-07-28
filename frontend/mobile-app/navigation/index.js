@@ -104,7 +104,7 @@ const BottomTab = ({ navigation }) => {
           backgroundColor: "white",
           height: windowH * 0.085,
           borderTopColor: "#ACDAFF",
-          borderTopWidth: 0,
+          borderTopWidth: .7,
           elevation:0
         },
       }}
