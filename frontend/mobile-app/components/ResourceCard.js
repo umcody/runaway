@@ -33,8 +33,15 @@ const styles = StyleSheet.create({
         height: 100,
         backgroundColor:"#ACDAFF",
         justifyContent:'center',
-        paddingLeft:10
-    },
+        paddingLeft:10,
+        elevation:1,
+        shadowOffset: {
+        width: 0,
+        height: 1,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 4,
+        },
     title: {
         width: '100%',
         color: "#000",
