@@ -94,7 +94,7 @@ export default function OfResources({ route, navigation }) {
             />
             <FlatList data={Resources}
             nestedScrollEnabled={true}
-            ListHeaderComponent={<Text style={{paddingLeft:20,color: '#C4C4C4'}}>{Resources.length} Results</Text>}
+            ListHeaderComponent={<Text style={{paddingLeft:20,color: '#C4C4C4'}}>{Resources.length} {(Resources.length>1)? Results : Result}</Text>}
                 keyExtractor={(item, index) => 'key' + index}
                 renderItem={({item}) => {
                     return (
