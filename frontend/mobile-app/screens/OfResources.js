@@ -22,6 +22,26 @@ export default function OfResources({ route, navigation }) {
        * in the brackets we put in what we wanna seach
        
       const results = fuse.search();
+
+
+  const characterResults = query ? results.map(character => character.item) : characters;
+
+  function onSearch({ currentTarget }) {
+    updateQuery(currentTarget.value);
+
+    // have to still add in the search box and wires it to 'query'
+        <form className="search">
+            <label>Search</label>
+            <input type="text" value={query} onChange={onSearch} />
+          </form>
+    // something lke the above but in a react native style
+  }
+
+
+
+
+
+
     */
 
 
