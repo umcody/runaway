@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {SafeAreaView, FlatList, Text} from 'react-native'
 import ResourceAPI from '../APIs/ResourceAPI'
 import ResourceCard from '../components/ResourceCard'
-import Fuse from 'fuse.js'
+//import Fuse from 'fuse.js'
 import DropDownPicker from 'react-native-dropdown-picker';
 import { SearchBar,Icon } from 'react-native-elements';
 
@@ -24,8 +24,7 @@ export default function OfResources({ route, navigation }) {
        
       const results = fuse.search();
     */
-      
-   
+
     useEffect(() => {
         getResourcesFromAPI(EndPoint)
     },[])
@@ -94,12 +93,11 @@ export default function OfResources({ route, navigation }) {
             />
             <FlatList data={Resources}
             nestedScrollEnabled={true}
-            ListHeaderComponent={<Text style={{paddingLeft:20,color: '#C4C4C4'}}>{Resources.length} {(Resources.length>1)? Results : Result}</Text>}
+            ListHeaderComponent={<Text style={{paddingLeft:20,color: '#C4C4C4'}}>{Resources.length} {(Resources.length>1)? "Results" : "Result"}</Text>}
                 keyExtractor={(item, index) => 'key' + index}
                 renderItem={({item}) => {
                     return (
                         <ResourceCard item = {item}
-                        HandlePress = {() => navigation.navigate('Browser', { page: item.url })}
                         />
                     ) 
                 }}

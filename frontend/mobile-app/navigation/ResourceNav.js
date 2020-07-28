@@ -2,9 +2,9 @@ import React from "react";
 import { StyleSheet, Text, View, Image,Dimensions } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Ionicons,Feather} from "@expo/vector-icons";
-import ResourceScreen from "../screens/ResourceMain";
+//import ResourceScreen from "../screens/ResourceMain";
 import OfResources from '../screens/OfResources'
-import Browser from "../screens/Browser";
+//import Browser from "../screens/Browser";
 
 const Stack = createStackNavigator();
 
@@ -36,11 +36,6 @@ function ResourceNav({navigation}) {
           ),
               }}
           
-        />
-        <Stack.Screen
-          name="Browser"
-          component={Browser}
-          options={{ title: "Browser" }}
         />
       </Stack.Navigator>
   );

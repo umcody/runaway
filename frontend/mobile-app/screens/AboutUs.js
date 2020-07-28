@@ -69,6 +69,7 @@ export default function AboutUs({navigation}) {
             ></TeamCard>
             <TeamCard name="Pranaya Jajoo" role="Project Manager"></TeamCard>
             <TeamCard name="Sandy Lee" role="Product Designer"></TeamCard>
+            <TeamCard name="Kimberly Ezeama" role="Product Designer"></TeamCard>
             <TeamCard name="Cody Um" role="Lead Engineer"></TeamCard>
             <TeamCard name="Yasir Azizi" role="Front-end Developer"></TeamCard>
             <TeamCard name="Alex Chao" role="Front-end Developer"></TeamCard>
