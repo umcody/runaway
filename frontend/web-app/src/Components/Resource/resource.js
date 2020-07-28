@@ -65,7 +65,9 @@ class Resource extends React.Component {
     }
 
     render() {
-        let checkBoxArray = ['Happy','Sad','Upset'];
+        // Can be changed to add or subtract categories
+        let checkBoxArray = ['General Resources','LGBTQIA+','Kids and Teens', 'Substance Related Disorders', 'Mood Related Disorders', 'Anxiety and Trauma Related Disorders', 'Psychotic Disorders',
+                             'Deliberate Self Harm', 'Eating Disorders', 'Domestic and Sexual Violence'];
         let outputCheckboxes = checkBoxArray.map(function(string, i){
         	return (<div><CheckBox value={string} id={'string_' + i} onChange={this.changeEvent.bind(this)} /><label htmlFor={'string_' + i}>{string}</label></div>)
         }, this);
