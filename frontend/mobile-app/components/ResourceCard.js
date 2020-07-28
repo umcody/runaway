@@ -11,6 +11,7 @@ const NewsCard = ({item, HandlePress}) => {
             >
                 <Text style={styles.title}>{item.title}</Text>
                 <Text style={styles.title}>{item.url}</Text>
+                <Text style={styles.title}>{item.url}</Text>
             </TouchableOpacity>           
         </View>
     )
@@ -18,24 +19,26 @@ const NewsCard = ({item, HandlePress}) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'white',        
+        backgroundColor: '#fff',        
         alignItems: 'center',
+        flex:1,
     },
     cardView: {
         backgroundColor: 'white',
         margin: 10,
-        borderRadius: 30,
+        borderRadius: 10,
         borderColor: '#FF9EDA',
-        borderWidth: 1,
-        width: 300,
+        borderWidth: 0,
+        width: 330,
+        height: 100,
+        backgroundColor:"#ACDAFF",
+        justifyContent:'center',
+        paddingLeft:10
     },
     title: {
         width: '100%',
-        marginVertical: '10%',
-        color: "#2E5F85",
-        fontSize: 20,
-        fontWeight: 'bold',
-        textAlign: "center",
+        color: "#000",
+        fontSize: 16,
     },
   });
 

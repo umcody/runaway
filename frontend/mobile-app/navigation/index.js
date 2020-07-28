@@ -301,8 +301,6 @@ const styles = StyleSheet.create({
     height: windowH / 9,
     borderBottomColor: "#ACDAFF",
     elevation:0,
-    
-    
   },
   profilePic: {
     borderLeftWidth: 10,

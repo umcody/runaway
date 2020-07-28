@@ -29,12 +29,12 @@ export default function ChatScreen({ navigation }) {
 
   // conditional header depending on if user is in waiting screen or chat room
   //right now waiting screen wont show for testing purposes
-  if (volunteerJoined){
+  if (volunteerJoined==false){
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity
           style={{ paddingRight: 25 }}
-          onPress={() => navigation.navigate("Resources")}
+          onPress={() => navigation.navigate("EmergencyResources")}
         >
           <AntDesign name="exclamationcircleo" size={30} color="#FF9EDA" />
         </TouchableOpacity>
@@ -264,7 +264,7 @@ export default function ChatScreen({ navigation }) {
   }
   return (
     <SafeAreaView style={{ flex:1, backgroundColor: "#fff" }}>
-    {volunteerJoined ? 
+    {volunteerJoined==false ? 
       <GiftedChat
         messages={messages}
         //quickReply={setQuickReply} NOT WORKING FOR NOW...
