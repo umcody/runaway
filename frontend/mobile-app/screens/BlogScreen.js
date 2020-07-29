@@ -45,7 +45,7 @@ export default function BlogScreen({navigation,route}) {
             <Text style={styles.author}>{(ConvertDate(blog.date))}</Text>
             <Text style={styles.author}>{blog.readTime} min read</Text>
           </View>
-          <HTML baseFontStyle= {{color: colors.foreground,fontFamily:fonts.tertiary, fontSize:fonts.sm}} html={blog.content} containerStyle={styles.content} /> 
+          <HTML baseFontStyle= {{color: colors.foreground,fontFamily:fonts.text, fontSize:fonts.sm}} html={blog.content} containerStyle={styles.content} /> 
         </View>}
       </ScrollView>
       <Text>{error && 'Server Connection Error'}</Text>
@@ -55,7 +55,7 @@ export default function BlogScreen({navigation,route}) {
 const styles = StyleSheet.create({
   title: {
     fontSize:fonts.lg,
-    fontFamily:fonts.primary,
+    fontFamily:fonts.main,
     paddingTop:padding.md,
     paddingLeft: padding.md,
     paddingBottom:padding.sm
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     resizeMode:'contain'
   },
   author: {
-    fontFamily:fonts.tertiary,
+    fontFamily:fonts.text,
     paddingTop: 5,
     paddingLeft: 20,
     fontSize:fonts.sm,

@@ -77,7 +77,7 @@ export default function BlogFeed({navigation,fromHelp}) {
 
   return (
     <View style={styles.home}>
-      {!!error ? <Text>Server Connection Error</Text> :  loading ? <ActivityIndicator /> :
+      {!!error ? <Text>Server Connection Error</Text> :  loading ? <ActivityIndicator style={{paddingTop:padding.md}}/> :
       <FlatList 
       ListHeaderComponent={
         <View>
@@ -140,6 +140,6 @@ const styles = StyleSheet.create({
       fontSize: fonts.lg,
       lineHeight: fonts.lgLineHeight,
       paddingVertical:padding.md,
-      fontFamily:fonts.primary
+      fontFamily:fonts.main
   }
 });

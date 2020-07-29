@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
         width: dimensions.fullWidth,
         color: colors.foreground,
         fontSize: fonts.md,
-        fontFamily: fonts.tertiary
+        fontFamily: fonts.text
     },
   });
 

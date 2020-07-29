@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
     height:dimensions.fullHeight/8,
     elevation:0,
-    shadowColor:colors.background
+    shadowColor:colors.background,
   },
 }
 )

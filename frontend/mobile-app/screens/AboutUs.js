@@ -31,7 +31,7 @@ export default function AboutUs({navigation}) {
           <TouchableOpacity activeOpacity={0.9} style={styles.button} onPress={() => {
           WebBrowser.openBrowserAsync("https://www.runawayapp.com/");
         }}>
-            <Text style={{ color: colors.background, fontWeight: "bold", fontSize: fonts.md,fontFamily:fonts.secondary }}>
+            <Text style={{ color: colors.background, fontWeight: "bold", fontSize: fonts.md,fontFamily:fonts.subheader }}>
               Visit Our Site
             </Text>
           </TouchableOpacity>
@@ -70,7 +70,7 @@ export default function AboutUs({navigation}) {
               role="Project Manager"
             ></TeamCard>
             <TeamCard name="Pranaya Jajoo" role="Project Manager"></TeamCard>
-            <TeamCard name="Sandy Lee" role="Product Designer"></TeamCard>
+            <TeamCard name="Hojung Lee" role="Product Designer"></TeamCard>
             <TeamCard name="Kimberly Ezeama" role="Product Designer"></TeamCard>
             <TeamCard name="Cody Um" role="Lead Engineer"></TeamCard>
             <TeamCard name="Yasir Azizi" role="Front-end Developer"></TeamCard>
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   title: {
-    fontFamily: fonts.primary,
+    fontFamily: fonts.main,
     fontSize: fonts.lg,
     lineHeight: fonts.lgLineHeight,
     color: colors.background,
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     textDecorationLine: "underline",
   },
   subtitle: {
-    fontFamily: fonts.primary,
+    fontFamily: fonts.main,
     fontSize: fonts.lg,
     lineHeight: fonts.lgLineHeight,
     color: colors.tertiary,
@@ -119,15 +119,14 @@ const styles = StyleSheet.create({
     color: colors.background,
     paddingBottom: padding.sm,
     fontSize: fonts.sm,
-    fontFamily:fonts.tertiary
+    fontFamily:fonts.text
   },
   text2: {
     color: colors.tertiary,
     paddingBottom: padding.sm,
     fontSize: fonts.sm,
-    fontFamily:fonts.tertiary
+    fontFamily:fonts.text
   },
-
   team: {
     backgroundColor: "#E3F1FC",
     width: "100%",

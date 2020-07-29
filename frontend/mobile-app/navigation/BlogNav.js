@@ -45,19 +45,10 @@ export default function BlogNav({navigation}){
         
     )
 }
-const windowW = Dimensions.get("window").width;
 const windowH = Dimensions.get("window").height;
 const styles = StyleSheet.create({
 	container: {
     flex:1,
-  },
-  headerTitleStyle: {
-    fontFamily: "Lato",
-    fontStyle: "normal",
-    fontWeight: "normal",
-    fontSize: 24,
-    lineHeight: 30,
-    color: "#2E5F85",
   },
   headerStyle: {
     borderBottomWidth: 0,

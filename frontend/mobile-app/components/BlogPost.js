@@ -21,7 +21,7 @@ export default function BlogPost({title,author,date,readTime,imageURL,HandlePres
         return d.toString().substr(4,7)
     }
     return(
-        <View style={{paddingBottom:padding.sm}}>
+        <View style={{marginBottom:padding.sm}}>
             <TouchableOpacity activeOpacity={.8} style ={styles.container} onPress={HandlePress}>
             <View style = {styles.text}>
                     <Text style = {styles.title}>{title}</Text>
@@ -32,7 +32,7 @@ export default function BlogPost({title,author,date,readTime,imageURL,HandlePres
                             <Text style ={styles.info}>· {readTime} min</Text>
                         </View>
                         <Text style={styles.info}>{ConvertDate(date)}</Text>
-                        <AntDesign style={{position:'absolute',bottom:0}}name="ellipsis1" size={30} color={colors.foreground} />
+                        <AntDesign style={{position:'absolute',bottom:0}}name="ellipsis1" size={icon.md} color={colors.foreground} />
                     </View>
             </View>
             <View style={styles.image}>
@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
         justifyContent:'space-between',
         overflow:'hidden',
         flexDirection:'row',
-        paddingBottom:padding.sm
     },
     text:{
         backgroundColor:colors.background,
@@ -59,7 +58,7 @@ const styles = StyleSheet.create({
     title:{
         color:colors.foreground,
         fontSize:fonts.md,
-        fontFamily:fonts.secondary,
+        fontFamily:fonts.subheader,
         lineHeight:fonts.mdLineHeight,
         paddingBottom:padding.sm,
     },
@@ -70,14 +69,13 @@ const styles = StyleSheet.create({
         color:colors.foreground,
         paddingRight:padding.sm,
         paddingBottom:padding.sm,
-        fontFamily:fonts.tertiary,
+        fontFamily:fonts.text,
         fontSize:fonts.sm
     },
     image: {
         width:100,
         height:100,
         borderRadius:borderRadius.sm
-        
       },
   });
   

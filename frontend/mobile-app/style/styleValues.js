@@ -48,17 +48,17 @@ export const fonts = {
   sm: 16,
   md: 18,
   lg: 21,
-  primary: 'Lato',
-  secondary:'Raleway',
-  tertiary:'Avenir',
-  secondaryBold:'Raleway-Bold',
+  main: 'Lato',
+  subheader:'Raleway',
+  text:'Avenir',
+  subheaderBold:'Raleway-Bold',
   lgLineHeight: 25,
   mdLineHeight: 21
 }
 // default style for screen headers
 export const stylesDefault = StyleSheet.create({
   headerTitleStyle: {
-    fontFamily: fonts.primary,
+    fontFamily: fonts.main,
     fontSize: fonts.lg,
     lineHeight: fonts.lgLineHeight,
     color: colors.tertiary,
@@ -78,13 +78,13 @@ export const stylesDefault = StyleSheet.create({
     shadowRadius: 3.84,
   },
   subheading: {
-    fontFamily: fonts.secondary,
+    fontFamily: fonts.subheader,
     fontSize: fonts.md,
     lineHeight: fonts.mdLineHeight,
     color:colors.tertiary
   },
   text: {
-    fontFamily: fonts.tertiary,
+    fontFamily: fonts.text,
     fontSize: fonts.sm,
     lineHeight: fonts.mdLineHeight,
   },

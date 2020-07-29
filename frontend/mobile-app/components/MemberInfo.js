@@ -23,7 +23,7 @@ const TeamCard = ({ name, role }) => (
           color: colors.tertiary,
           fontSize: fonts.md,
           fontWeight: "bold",
-          fontFamily:fonts.secondaryBold,
+          fontFamily:fonts.subheaderBold,
           paddingBottom: padding.sm,
         }}
       >
