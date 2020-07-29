@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react'
-import {SafeAreaView, FlatList, Text} from 'react-native'
+import {SafeAreaView, FlatList, Text,View} from 'react-native'
 import ResourceAPI from '../APIs/ResourceAPI'
 import ResourceCard from '../components/ResourceCard'
 //import Fuse from 'fuse.js'
 import DropDownPicker from 'react-native-dropdown-picker';
 import { SearchBar,Icon } from 'react-native-elements';
+import {colors, fonts, padding, dimensions,margin,borderRadius, icon} from '../style/styleValues.js'
 
 export default function OfResources({ route, navigation }) {
     //const { endPoint } = route.params;
@@ -47,15 +48,15 @@ export default function OfResources({ route, navigation }) {
       };
     return (
         
-        <SafeAreaView style={{flex:1,backgroundColor:"#fff"}}>
+        <SafeAreaView style={{flex:1,backgroundColor:colors.background}}>
             <SearchBar
                   placeholder="Search (e.g. Anxiety)"
                   value={Search}
                   onChangeText={updateSearch}
-                  containerStyle={{marginVertical:10,marginHorizontal:20,width:330,height:35,borderRadius: 40,
+                  containerStyle={{marginVertical:margin.sm,marginHorizontal:margin.md,width:dimensions.fullWidth*.9,height:35,borderRadius: borderRadius.lg,
                     overflow:"hidden",justifyContent:'center',backgroundColor:'#E3F1FC',
                 borderTopWidth:0,borderBottomWidth:0}}
-                    inputStyle={{backgroundColor:"#E3F1FC",fontSize:16}}
+                    inputStyle={{backgroundColor:colors.secondary,fontSize:16}}
                   inputContainerStyle={{backgroundColor:'transparent',height:25,borderWidth:0}}
                   searchIcon={props=>{return(<Icon {...props} name='search' color='#2E5F85'/>)}}
                 />
@@ -74,26 +75,31 @@ export default function OfResources({ route, navigation }) {
                 ]}
                 defaultValue={EndPoint}
                 placeholder="Filter"
-                containerStyle={{height: 40,borderWidth:0}}
-                style={{backgroundColor: '#fff',borderWidth:0}}
+                containerStyle={{height: 40,borderTopWidth:0}}
+                style={{backgroundColor: colors.background,borderWidth:0}}
                 itemStyle={{
                     justifyContent: 'flex-start'
                 }}
-                dropDownStyle={{backgroundColor: '#fff'}}
+                dropDownStyle={{backgroundColor: colors.background}}
                 onChangeItem={item =>{
                     getResourcesFromAPI(item.value)
                 }}
                 labelStyle={{
-                    paddingLeft:10,
-                    fontSize: 16,
+                    paddingLeft:padding.sm,
+                    fontSize: fonts.md,
                     textAlign: 'left',
-                    color: '#000'
+                    color: colors.foreground,
+                    fontFamily:fonts.primary,
+
                 }} 
-                dropDownStyle={{backgroundColor: '#fff',}}
+                dropDownStyle={{backgroundColor: colors.background,}}
             />
+            <View style={{borderBottomWidth:1,borderColor:colors.secondary}}>
+                <Text style={{paddingBottom:padding.sm,paddingLeft:padding.md-1,color: '#C4C4C4',fontFamily:fonts.tertiary}}>{Resources.length} {(Resources.length>1)? "Results" : "Result"}</Text>
+            </View>
             <FlatList data={Resources}
             nestedScrollEnabled={true}
-            ListHeaderComponent={<Text style={{paddingLeft:20,color: '#C4C4C4'}}>{Resources.length} {(Resources.length>1)? "Results" : "Result"}</Text>}
+            
                 keyExtractor={(item, index) => 'key' + index}
                 renderItem={({item}) => {
                     return (

@@ -5,7 +5,7 @@ import BlogFeed from '../screens/BlogFeed';
 import BlogScreen from '../screens/BlogScreen';
 import { Ionicons,Feather} from "@expo/vector-icons";
 import {colors, fonts, padding, dimensions,margin,borderRadius, icon} from '../style/styleValues.js'
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+
 // stack nav for blog post to blog page 
 //for now this is used as the homepage
 export default function BlogNav({navigation}){
