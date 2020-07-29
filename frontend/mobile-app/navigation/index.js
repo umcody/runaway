@@ -36,7 +36,7 @@ import SignInPage from "../screens/SignInPage";
 import ResourceNav from "./ResourceNav";
 
 //styling
-import {stylesDefault} from '../style/styleValues'
+import {stylesDefault, icon, colors, dimensions} from '../style/styleValues'
 
 const BottomTabNavigation = createBottomTabNavigator();
 const ChatStack = createStackNavigator();
@@ -101,14 +101,14 @@ const BottomTab = ({ navigation }) => {
     <BottomTabNavigation.Navigator
       tabBarOptions={{
         showLabel: false,
-        inactiveTintColor: "#ACDAFF",
-        activeTintColor: "#2E5F85",
+        inactiveTintColor: colors.primary,
+        activeTintColor: colors.tertiary,
         style: {
-          backgroundColor: "white",
-          height: windowH * 0.085,
-          borderTopColor: "#ACDAFF",
-          borderTopWidth: .7,
-          elevation:0
+          backgroundColor: colors.background,
+          height: dimensions.fullHeight * 0.085,
+          borderTopColor: colors.secondary,
+          borderTopWidth: 1,
+          elevation:1
         },
       }}
     >
@@ -121,7 +121,7 @@ const BottomTab = ({ navigation }) => {
             <MaterialCommunityIcons
               name="home-outline"
               color={color}
-              size={33}
+              size={icon.lg}
             />
           ),
         }}
@@ -133,7 +133,7 @@ const BottomTab = ({ navigation }) => {
           tabBarVisible: false,
           tabBarLabel: "Chat",
           tabBarIcon: ({ color }) => (
-            <MaterialIcons name="chat-bubble-outline" color={color} size={28} />
+            <MaterialIcons name="chat-bubble-outline" color={color} size={icon.md} />
           ),
         }}
 />
@@ -143,7 +143,7 @@ const BottomTab = ({ navigation }) => {
         options={{
           tabBarLabel: "Resources",
           tabBarIcon: ({ color }) => (
-            <Feather name="book-open" color={color} size={28} />
+            <Feather name="book-open" color={color} size={icon.md} />
           ),
         }}
       />
@@ -167,9 +167,6 @@ const Chat = ({ navigation }) => {
           options={{
             headerTitle: "PreChat Survey",
             headerTitleAlign: "center",
-            headerTitleStyle: {
-              color: "#2E5F85",
-            },
             headerLeft: () => (
               <HeaderBackButton
                 labelVisible={false}
@@ -273,31 +270,7 @@ export default function MyDrawer() {
 }
 
 const styles = StyleSheet.create({
-  homeIndicator: {
-    backgroundColor: "#FF9EDA",
-    position: "absolute",
-    height: 5,
-    top: windowH - 13,
-    left: windowW / 2 - 67.5,
-    width: 135,
-    borderRadius: 2.5,
-  },
-  profile: {
-    position: "absolute",
-    left: 15,
-    top: 25,
-    width: 32,
-    height: 32,
-  },
   headerTitleStyle: stylesDefault.headerTitleStyle,
 
   headerStyle: stylesDefault.headerStyle,
-  
-  profilePic: {
-    borderLeftWidth: 10,
-  },
-  profileTitle: {
-    color: "#ACDAFF",
-    fontSize: 20,
-  },
 });

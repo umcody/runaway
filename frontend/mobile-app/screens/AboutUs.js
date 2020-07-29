@@ -38,7 +38,7 @@ export default function AboutUs({navigation}) {
         </View>
         <View style={styles.team} activeOpacity={0.9}>
           <Text style={styles.subtitle}>Team</Text>
-          <Text style={{ fontSize: 18, color: "#2E5F85", paddingBottom: 20 }}>
+          <Text style={styles.text2}>
             Meet the team behind Runaway.
           </Text>
           <View style={{ alignItems: "center", width: "100%" }}>
@@ -121,6 +121,13 @@ const styles = StyleSheet.create({
     fontSize: fonts.sm,
     fontFamily:fonts.tertiary
   },
+  text2: {
+    color: colors.tertiary,
+    paddingBottom: padding.sm,
+    fontSize: fonts.sm,
+    fontFamily:fonts.tertiary
+  },
+
   team: {
     backgroundColor: "#E3F1FC",
     width: "100%",
