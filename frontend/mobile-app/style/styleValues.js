@@ -7,19 +7,39 @@ export const dimensions = {
   fullWidth: Dimensions.get('window').width
 }
  // primary is blue, secondary is light blue, tertiary is dark blue 
+ // background is white, foreground is black, button is pink
 export const colors  = {
   primary: '#ACDAFF',
   secondary: '#E3F1FC',
   tertiary: '#2E5F85',
-  black: "#000",
-  white: "#fff",
-  pink: "#FF9EDA"
+  foreground: "#000",
+  background: "#fff",
+  button: "#FF9EDA"
 }
 /* Text Groupings - Every Major grouping is 32 pts apart - 
 individual feature is 8 pts apart - maintain 20 pts on either side of the app */
 export const padding = {
   sm: 8,
   md: 20,
+  lg: 32,
+}
+
+export const margin = {
+  sm: 8,
+  md: 20,
+  lg: 32,
+}
+
+export const borderRadius = {
+  sm: 10,
+  md: 20,
+  lg: 30,
+}
+
+export const icon = {
+  xs:18,
+  sm: 25,
+  md: 28,
   lg: 32,
 }
 // headings use lg and primary, subheading use md and secondary, text use sm and tertiary
@@ -31,29 +51,31 @@ export const fonts = {
   primary: 'Lato',
   secondary:'Raleway',
   tertiary:'Avenir',
+  secondaryBold:'Raleway-Bold',
   lgLineHeight: 25,
   mdLineHeight: 21
 }
 // default style for screen headers
-const stylesDefault = StyleSheet.create({
-  header: {
+export const stylesDefault = StyleSheet.create({
+  headerTitleStyle: {
+    fontFamily: fonts.primary,
+    fontSize: fonts.lg,
+    lineHeight: fonts.lgLineHeight,
+    color: colors.tertiary,
+  },
+  headerStyle: {
     borderBottomWidth: 0,
     shadowColor: colors.primary,
-    backgroundColor: colors.white,
-    height: dimensions.fullHeight / 9,
+    borderBottomColor:colors.primary,
+    backgroundColor: colors.background,
+    height:dimensions.fullHeight/8,
     elevation:2,
     shadowOffset: {
       width: 0,
       height: 2,
     },
-    shadowOpacity: 0.25,
+    shadowOpacity: 0.3,
     shadowRadius: 3.84,
-  },
-  headerTitle: {
-    fontFamily: fonts.primary,
-    fontSize: fonts.lg,
-    lineHeight: fonts.lgLineHeight,
-    color:colors.tertiary
   },
   subheading: {
     fontFamily: fonts.secondary,
@@ -71,7 +93,7 @@ const stylesDefault = StyleSheet.create({
     borderRadius: 30,
     width:dimensions.fullWidth/2
   },
-  //next three based off of the disclaimer modal and its style.
+  /*next three based off of the disclaimer modal and its style.
   modalMessage: {
     color: darkBlue,
     fontStyle: "normal",
@@ -99,5 +121,5 @@ const stylesDefault = StyleSheet.create({
     width: 100,
     alignItems: "center",
     textAlign: "center",
-  },
+  },*/
 });

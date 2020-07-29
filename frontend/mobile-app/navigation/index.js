@@ -35,6 +35,9 @@ import SiteMapNav from "./SiteMapNav";
 import SignInPage from "../screens/SignInPage";
 import ResourceNav from "./ResourceNav";
 
+//styling
+import {stylesDefault} from '../style/styleValues'
+
 const BottomTabNavigation = createBottomTabNavigator();
 const ChatStack = createStackNavigator();
 const SettingsDrawer = createDrawerNavigator();
@@ -286,22 +289,10 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
   },
-  headerTitleStyle: {
-    fontFamily: "System",
-    fontStyle: "normal",
-    fontWeight: "normal",
-    fontSize: 24,
-    lineHeight: 30,
-    color: "#2E5F85",
-  },
-  headerStyle: {
-    borderBottomWidth: 0,
-    shadowColor: "transparent",
-    backgroundColor: "#fff",
-    height: windowH / 8,
-    borderBottomColor: "#ACDAFF",
-    elevation:0,
-  },
+  headerTitleStyle: stylesDefault.headerTitleStyle,
+
+  headerStyle: stylesDefault.headerStyle,
+  
   profilePic: {
     borderLeftWidth: 10,
   },

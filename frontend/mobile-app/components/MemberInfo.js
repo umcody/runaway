@@ -6,7 +6,7 @@ import {
   SafeAreaView,
   SectionList,
 } from "react-native";
-
+import {colors, fonts, padding, dimensions,margin,borderRadius, icon} from '../style/styleValues.js'
 // Card component for each member
 const TeamCard = ({ name, role }) => (
   <View
@@ -20,15 +20,16 @@ const TeamCard = ({ name, role }) => (
     <View style={{ padding: 10 }}>
       <Text
         style={{
-          color: "#2E5F85",
-          fontSize: 18,
+          color: colors.tertiary,
+          fontSize: fonts.md,
           fontWeight: "bold",
-          paddingBottom: 5,
+          fontFamily:fonts.secondaryBold,
+          paddingBottom: padding.sm,
         }}
       >
         {name}
       </Text>
-      <Text style={{ color: "#2E5F85" }}>{role}</Text>
+      <Text style={{ color: colors.tertiary,fontSize: fonts.sm,fontFamily:fonts.tertiary }}>{role}</Text>
     </View>
   </View>
 );

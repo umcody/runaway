@@ -12,6 +12,7 @@ async function getFonts(){
   await Font.loadAsync({
     "Lato": require('./assets/fonts/Lato-Regular.ttf'),
     "Raleway": require('./assets/fonts/Raleway-Medium.ttf'),
+    "Raleway-Bold": require('./assets/fonts/Raleway-Bold.ttf'),
     "Avenir": require('./assets/fonts/Avenir-Book.otf')
   })
 }

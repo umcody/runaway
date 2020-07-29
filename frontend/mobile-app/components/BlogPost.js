@@ -8,9 +8,9 @@ import {
     Text,
     SafeAreaView,
   } from "react-native";
-  import { MaterialCommunityIcons,AntDesign } from '@expo/vector-icons'; 
-  
-const {width,height}= Dimensions.get('window') 
+import { MaterialCommunityIcons,AntDesign } from '@expo/vector-icons'; 
+import {colors, fonts, padding, dimensions,margin,borderRadius, icon} from '../style/styleValues.js'
+
 /*Blog post element
 This goes into the flatlist
 Each post shows the author and title*/
@@ -21,22 +21,22 @@ export default function BlogPost({title,author,date,readTime,imageURL,HandlePres
         return d.toString().substr(4,7)
     }
     return(
-        <View>
+        <View style={{paddingBottom:padding.sm}}>
             <TouchableOpacity activeOpacity={.8} style ={styles.container} onPress={HandlePress}>
             <View style = {styles.text}>
                     <Text style = {styles.title}>{title}</Text>
                     <View style = {styles.extras}>
                         <View style={{flexDirection:'row'}}>
                             <Text style = {styles.info}>{author}</Text>
-                            <MaterialCommunityIcons name="feather" size={14} color="#FF9EDA" />
+                            <MaterialCommunityIcons name="feather" size={14} color={colors.button} />
                             <Text style ={styles.info}>· {readTime} min</Text>
                         </View>
                         <Text style={styles.info}>{ConvertDate(date)}</Text>
-                        <AntDesign style={{position:'absolute',bottom:0}}name="ellipsis1" size={30} color="#000" />
+                        <AntDesign style={{position:'absolute',bottom:0}}name="ellipsis1" size={30} color={colors.foreground} />
                     </View>
             </View>
             <View style={styles.image}>
-                <Image source={{uri:imageURL}} style={{flex:1,height:undefined,width:undefined,borderRadius:10}}/>
+                <Image source={{uri:imageURL}} style={{flex:1,height:undefined,width:undefined,borderRadius:borderRadius.sm}}/>
             </View>             
         </TouchableOpacity>
         </View>
@@ -45,37 +45,38 @@ export default function BlogPost({title,author,date,readTime,imageURL,HandlePres
 
 const styles = StyleSheet.create({
     container:{
-        height:height/5.5,
-        width:width*.9,
-        borderWidth:1,
-        borderColor: '#fff',
+        height:dimensions.fullHeight/5.5,
+        width:dimensions.fullWidth*.9,
+        borderWidth:0,
         justifyContent:'space-between',
         overflow:'hidden',
-        flexDirection:'row'
+        flexDirection:'row',
+        paddingBottom:padding.sm
     },
     text:{
-        backgroundColor:'#fff',
+        backgroundColor:colors.background,
     },
     title:{
-        color:'#000',
-        fontSize:18,
-        paddingBottom:10,
+        color:colors.foreground,
+        fontSize:fonts.md,
+        fontFamily:fonts.secondary,
+        lineHeight:fonts.mdLineHeight,
+        paddingBottom:padding.sm,
     },
     extras:{
        flex:1
     },
-    profile:{
-       
-    },
     info:{
-        color:'#000',
-        paddingRight:5,
-        paddingBottom:5
+        color:colors.foreground,
+        paddingRight:padding.sm,
+        paddingBottom:padding.sm,
+        fontFamily:fonts.tertiary,
+        fontSize:fonts.sm
     },
     image: {
         width:100,
         height:100,
-        borderRadius:20
+        borderRadius:borderRadius.sm
         
       },
   });

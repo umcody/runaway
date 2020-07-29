@@ -13,7 +13,7 @@ import {
 import {SafeAreaView } from 'react-native-safe-area-context';
 import BlogPost from "../components/BlogPost"
 import useBlogPage from "../components/useBlogPage"
-
+import {colors, fonts, padding, dimensions,margin,borderRadius} from '../style/styleValues.js'
 // Sample data for events/announcement
 
 const AN =[
@@ -88,15 +88,10 @@ export default function BlogFeed({navigation,fromHelp}) {
             nestedScrollEnabled={true}
             keyExtractor={item => item.key}
             showsHorizontalScrollIndicator={false}/>
-          <Text style={{
-            fontSize: 21,
-            lineHeight: 25,
-            paddingVertical:18,
-            fontFamily:"Lato"
-          }}>Recent Posts</Text>
+          <Text style={styles.recentPosts}>Recent Posts</Text>
           </View>
       }
-        style={{paddingLeft:20,paddingTop:10}}
+        style={{paddingLeft:padding.md,paddingTop:padding.sm}}
         nestedScrollEnabled={true}
         data={blogs}
         renderItem={({ item }) => {
@@ -124,23 +119,27 @@ export default function BlogFeed({navigation,fromHelp}) {
     </View>
   );
 }
-const windowW = Dimensions.get("window").width;
-const windowH = Dimensions.get("window").height;
 
 const styles = StyleSheet.create({
   home: {
     flex: 1,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: colors.background,
     alignItems:'center',
   },
   announcement:{
-    height:100,
-    width:80,
-    backgroundColor:'#e3f1fc',
-    borderRadius:30,
-    marginTop:9,
-    marginRight:16,
+    height:dimensions.fullHeight/7,
+    width:dimensions.fullWidth*.21,
+    backgroundColor:colors.secondary,
+    borderRadius:borderRadius.lg,
+    marginTop:margin.sm,
+    marginRight:margin.md,
     justifyContent:'center',
     alignItems:'center'
+  },
+  recentPosts:{
+      fontSize: fonts.lg,
+      lineHeight: fonts.lgLineHeight,
+      paddingVertical:padding.md,
+      fontFamily:fonts.primary
   }
 });

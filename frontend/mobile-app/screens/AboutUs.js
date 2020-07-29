@@ -11,12 +11,14 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import * as WebBrowser from "expo-web-browser";
 import { Feather,Ionicons } from "@expo/vector-icons";
 import TeamCard from "../components/MemberInfo";
+import {colors, fonts, padding, dimensions,margin,borderRadius, icon} from '../style/styleValues.js'
+
 // about us page 
 
 export default function AboutUs({navigation}) {
   navigation.setOptions(
     {headerLeft: () => (
-    <Ionicons name="ios-arrow-back" size={30} color="#FF9EDA" style={{ paddingLeft: 25 }} onPress={() => navigation.goBack()}/>
+    <Ionicons name="ios-arrow-back" size={icon.md} color="#FF9EDA" style={{ paddingLeft: padding.md }} onPress={() => navigation.goBack()}/>
   ),})
   return (
     <View style={styles.container}>
@@ -29,7 +31,7 @@ export default function AboutUs({navigation}) {
           <TouchableOpacity activeOpacity={0.9} style={styles.button} onPress={() => {
           WebBrowser.openBrowserAsync("https://www.runawayapp.com/");
         }}>
-            <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 18 }}>
+            <Text style={{ color: colors.background, fontWeight: "bold", fontSize: fonts.md,fontFamily:fonts.secondary }}>
               Visit Our Site
             </Text>
           </TouchableOpacity>
@@ -87,50 +89,37 @@ export default function AboutUs({navigation}) {
     </View>
   );
 }
-const windowW = Dimensions.get("window").width;
-const windowH = Dimensions.get("window").height;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: colors.background,
   },
   title: {
-    fontFamily: "System",
-    fontStyle: "normal",
-    fontWeight: "normal",
-    fontSize: windowW * 0.08,
-    lineHeight: 30,
-    color: "#fff",
-    paddingBottom: 10,
+    fontFamily: fonts.primary,
+    fontSize: fonts.lg,
+    lineHeight: fonts.lgLineHeight,
+    color: colors.background,
+    paddingBottom: padding.sm,
     textDecorationLine: "underline",
   },
   subtitle: {
-    fontFamily: "System",
-    fontStyle: "normal",
-    fontWeight: "normal",
-    fontSize: windowW * 0.08,
-    lineHeight: 30,
-    color: "#2E5F85",
-    paddingBottom: 10,
+    fontFamily: fonts.primary,
+    fontSize: fonts.lg,
+    lineHeight: fonts.lgLineHeight,
+    color: colors.tertiary,
+    paddingBottom: padding.sm,
     textDecorationLine: "underline",
   },
-  pSubtitle: {
-    fontFamily: "System",
-    fontStyle: "normal",
-    fontWeight: "normal",
-    fontSize: windowW * 0.07,
-    lineHeight: 40,
-    color: "#2E5F85",
-  },
   about: {
-    padding: 20,
-    backgroundColor: "#2E5F85",
+    padding: padding.md,
+    backgroundColor: colors.tertiary,
   },
   text: {
-    color: "#fff",
-    paddingBottom: 10,
-    fontSize: 18,
+    color: colors.background,
+    paddingBottom: padding.sm,
+    fontSize: fonts.sm,
+    fontFamily:fonts.tertiary
   },
   team: {
     backgroundColor: "#E3F1FC",
@@ -155,8 +144,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   teamTitle: {
-    fontSize: 24,
-    color: "#2E5F85",
-    paddingVertical: 10,
+    fontFamily: fonts.primary,
+    fontSize: fonts.lg,
+    lineHeight: fonts.lgLineHeight,
+    color: colors.tertiary,
+    paddingVertical: padding.sm,
   },
 });
