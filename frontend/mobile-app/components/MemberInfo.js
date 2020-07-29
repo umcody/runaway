@@ -17,7 +17,7 @@ const TeamCard = ({ name, role }) => (
       marginBottom: 10,
     }}
   >
-    <View style={{ padding: 10 }}>
+    <View style={{ padding: padding.sm }}>
       <Text
         style={{
           color: colors.tertiary,
