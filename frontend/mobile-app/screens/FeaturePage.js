@@ -68,7 +68,7 @@ export default function FeaturePage({navigation,route}) {
     )
   }
   return (
-    <SafeAreaView style={{ flex: 1,backgroundColor:'#fff'}}>
+    <View style={{ flex: 1,backgroundColor:'#fff'}}>
       <ScrollView style={{ flex: 1, }} contentContainerStyle={{alignItems:'baseline'}}  >
           <View style={styles.content}>
               <Text style ={styles.title}>{category}</Text>
@@ -90,7 +90,7 @@ export default function FeaturePage({navigation,route}) {
 
       </ScrollView>
       
-    </SafeAreaView>
+    </View>
   );
 }
 

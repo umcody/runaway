@@ -36,7 +36,8 @@ import SignInPage from "../screens/SignInPage";
 import ResourceNav from "./ResourceNav";
 
 //styling
-import {stylesDefault, icon, colors, dimensions} from '../style/styleValues'
+import {stylesDefault, icon, colors, dimensions,padding,fonts, margin} from '../style/styleValues'
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
 const BottomTabNavigation = createBottomTabNavigator();
 const ChatStack = createStackNavigator();
@@ -51,13 +52,14 @@ function CustomDrawerContent(props) {
     <DrawerContentScrollView {...props}>
     <View
       style={{
-        backgroundColor: '#fff',
-        height: 50,
+        backgroundColor: colors.background,
         alignItems: 'center',
         justifyContent: 'center',
       }}
     >
-      <Text style={{ color: '#000', fontSize: 26 }}>
+      <Text style={{ fontSize:fonts.lg,
+        fontFamily:fonts.main,
+        paddingVertical:padding.md, }}>
         Information Pane
       </Text>
     </View>
@@ -67,29 +69,33 @@ function CustomDrawerContent(props) {
           Linking.openURL("https://www.instagram.com/runaway.app/");
         }}
         label="Instagram"
-        icon={() => <AntDesign name="instagram" size={32} color="#FF9EDA" />}
+        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm}}
+        icon={() => <AntDesign name="instagram" size={icon.md} color={colors.button} />}
       />
       <DrawerItem
         onPress={() => {
           Linking.openURL("https://www.facebook.com/runawayapp/");
         }}
         label="Facebook"
-        icon={() => <Feather name="facebook" size={32} color="#FF9EDA" />}
+        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm}}
+        icon={() => <Feather name="facebook" size={icon.md} color={colors.button} />}
       />
       <DrawerItem
         onPress={() => {
           Linking.openURL("https://twitter.com/runaway_app");
         }}
         label="Twitter"
-        icon={() => <Feather name="twitter" size={32} color="#FF9EDA" />}
+        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm}}
+        icon={() => <Feather name="twitter" size={icon.md} color={colors.button} />}
       />
       <DrawerItem
         onPress={() => {
           WebBrowser.openBrowserAsync("https://www.runawayapp.com/");
         }}
+        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm}}
         label="Website"
         icon={() => (
-          <MaterialCommunityIcons name="web" size={32} color="#FF9EDA" />
+          <MaterialCommunityIcons name="web" size={icon.md} color={colors.button} />
         )}
       />
     </DrawerContentScrollView>
@@ -251,6 +257,13 @@ export default function MyDrawer() {
       <SettingsDrawer.Navigator
         drawerContent={(props) => <CustomDrawerContent {...props} />}
         edgeWidth={0}
+        drawerContentOptions={{
+          activeTintColor: colors.tertiary,
+          activeBackgroundColor:colors.secondary,
+          inactiveBackgroundColor: colors.background,
+          itemStyle: { marginBottom: margin.sm },
+          labelStyle:{fontSize:fonts.sm,fontFamily:fonts.text}
+        }}
       >
         <SettingsDrawer.Screen
           name="Home"
