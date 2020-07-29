@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     flex:1,
   },
   headerTitleStyle: {
-    fontFamily: "System",
+    fontFamily: "Lato",
     fontStyle: "normal",
     fontWeight: "normal",
     fontSize: 24,

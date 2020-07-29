@@ -1,27 +1,34 @@
-import React from "react";
+import React, {useState} from "react";
 import Navigation from "./navigation/index";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import {
-  StyleSheet,
   StatusBar,
   Platform
 } from "react-native";
-import { WebView } from "react-native-webview";
-import { Instagram, Twitter, Facebook } from "react-native-openanything";
+import * as Font from 'expo-font'
+import {AppLoading} from 'expo'
 
-import { AntDesign, Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+async function getFonts(){
+  await Font.loadAsync({
+    "Lato": require('./assets/fonts/Lato-Regular.ttf'),
+    "Raleway": require('./assets/fonts/Raleway-Medium.ttf'),
+    "Avenir": require('./assets/fonts/Avenir-Book.otf')
+  })
+}
 
 export default function App() {
-  return (
-    <SafeAreaProvider>
-      {(Platform.OS === 'ios')  ? <StatusBar  barStyle="dark-content" translucent={true} />:null}
-      <Navigation/>
-    </SafeAreaProvider>
-  )
+  const [fontLoaded,setFontLoaded] =useState(false)
+
+  if (fontLoaded){
+    return (
+      <SafeAreaProvider>
+        {(Platform.OS === 'ios')  ? <StatusBar  barStyle="dark-content" translucent={true} />:null}
+        <Navigation/>
+      </SafeAreaProvider>
+    )
+  }
+  else {
+return(<AppLoading startAsync = {getFonts} onFinish={()=> setFontLoaded(true)}/>)
+  }
   
 }
-const styles = StyleSheet.create({
-  socialBar: {
-    flexDirection: "row",
-  },
-});

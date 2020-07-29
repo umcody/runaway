@@ -13,8 +13,6 @@ import {
 import {SafeAreaView } from 'react-native-safe-area-context';
 import BlogPost from "../components/BlogPost"
 import useBlogPage from "../components/useBlogPage"
-import data from "../SampleData"
-
 
 // Sample data for events/announcement
 
@@ -93,7 +91,8 @@ export default function BlogFeed({navigation,fromHelp}) {
           <Text style={{
             fontSize: 21,
             lineHeight: 25,
-            paddingVertical:18
+            paddingVertical:18,
+            fontFamily:"Lato"
           }}>Recent Posts</Text>
           </View>
       }

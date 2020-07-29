@@ -1,7 +1,7 @@
 import React from "react";
 import {StyleSheet, Dimensions} from 'react-native'
 // Creating a main style doc for consistency.
-
+import * as Font from 'expo-font';
 export const dimensions = {
   fullHeight: Dimensions.get('window').height,
   fullWidth: Dimensions.get('window').width
@@ -23,13 +23,14 @@ export const padding = {
   lg: 32,
 }
 // headings use lg and primary, subheading use md and secondary, text use sm and tertiary
+
 export const fonts = {
   sm: 16,
   md: 18,
   lg: 21,
   primary: 'Lato',
-  secondary:'Raleway Medium',
-  tertiary:'Avenir Book',
+  secondary:'Raleway',
+  tertiary:'Avenir',
   lgLineHeight: 25,
   mdLineHeight: 21
 }
