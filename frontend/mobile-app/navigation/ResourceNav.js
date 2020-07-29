@@ -23,7 +23,7 @@ function ResourceNav({navigation}) {
           name='Links'
           component={OfResources}
           options={{ title: "Resources", headerTitleStyle: stylesDefault.headerTitleStyle,
-          headerStyle: stylesDefault.headerStyle,
+          headerStyle: styles.headerStyle,
           headerTitleAlign: "center",
           headerTitle: props => <LogoTitle {...props} /> ,
           headerLeft: () => (
@@ -41,4 +41,17 @@ function ResourceNav({navigation}) {
       </Stack.Navigator>
   );
 }
+
 export default ResourceNav;
+
+const styles = StyleSheet.create({
+  headerStyle: {
+    borderWidth: 0,
+    borderBottomColor:colors.background,
+    backgroundColor: colors.background,
+    height:dimensions.fullHeight/8,
+    elevation:0,
+    shadowColor:colors.background
+  },
+}
+)

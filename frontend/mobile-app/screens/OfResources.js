@@ -53,7 +53,7 @@ export default function OfResources({ route, navigation }) {
                   placeholder="Search (e.g. Anxiety)"
                   value={Search}
                   onChangeText={updateSearch}
-                  containerStyle={{marginVertical:margin.sm,marginHorizontal:margin.md,width:dimensions.fullWidth*.9,height:35,borderRadius: borderRadius.lg,
+                  containerStyle={{borderWidth:0,marginVertical:margin.sm,marginHorizontal:margin.md,width:dimensions.fullWidth*.9,height:35,borderRadius: borderRadius.lg,
                     overflow:"hidden",justifyContent:'center',backgroundColor:'#E3F1FC',
                 borderTopWidth:0,borderBottomWidth:0}}
                     inputStyle={{backgroundColor:colors.secondary,fontSize:16}}
