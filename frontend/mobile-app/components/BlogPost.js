@@ -32,7 +32,7 @@ export default function BlogPost({title,author,date,readTime,imageURL,HandlePres
                             <Text style ={styles.info}>· {readTime} min</Text>
                         </View>
                         <Text style={styles.info}>{ConvertDate(date)}</Text>
-                        <AntDesign style={{position:'absolute',bottom:0}}name="ellipsis1" size={icon.md} color={colors.foreground} />
+                        <AntDesign name="ellipsis1" size={icon.md} color={colors.foreground} />
                     </View>
             </View>
             <View style={styles.image}>
@@ -45,7 +45,7 @@ export default function BlogPost({title,author,date,readTime,imageURL,HandlePres
 
 const styles = StyleSheet.create({
     container:{
-        height:dimensions.fullHeight/5.5,
+        height:(dimensions.fullHeight >800) ? dimensions.fullHeight/7: dimensions.fullHeight/5,
         width:dimensions.fullWidth*.9,
         borderWidth:0,
         justifyContent:'space-between',

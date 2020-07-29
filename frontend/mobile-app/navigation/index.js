@@ -111,7 +111,7 @@ const BottomTab = ({ navigation }) => {
         activeTintColor: colors.tertiary,
         style: {
           backgroundColor: colors.background,
-          height: dimensions.fullHeight * 0.085,
+          height: (dimensions.fullHeight >800) ? dimensions.fullHeight*.1: dimensions.fullHeight * 0.085,
           borderTopColor: colors.secondary,
           borderTopWidth: 1,
           elevation:1
