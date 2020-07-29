@@ -8,7 +8,7 @@ const NewsCard = ({item}) => {
             <TouchableOpacity
                 style={styles.cardView}
                 onPress={() => {
-                    Linking.openURL("item.url");
+                    Linking.openURL("https://www." +item.url);
                   }}
  >
                 <Text style={styles.title}>{item.title}</Text>
