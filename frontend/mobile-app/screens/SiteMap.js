@@ -48,6 +48,7 @@ export default function SiteMap({navigation}) {
     keyExtractor={item => item.id}
     showsHorizontalScrollIndicator={false}
     showsVerticalScrollIndicator={false}
+    contentContainerStyle={{paddingBottom:20}}
 	/>
     
     </View>

@@ -96,15 +96,15 @@ export default function FeaturePage({navigation,route}) {
 
 const styles = StyleSheet.create({
   title: {
-    color:'#fff',
-    fontSize:30,
+    color:'#000',
+    fontSize:21,
     paddingTop:30,
     paddingLeft:30,
-    fontWeight:'bold',
+    
   },
   content: {
-    height:height/3,width:width,
-    backgroundColor:'#2E5F85',
+    height:height/4,width:width,
+    backgroundColor:'#ACDAFF',
     justifyContent:'space-between',
     alignItems:'flex-start',
     overflow:'hidden',

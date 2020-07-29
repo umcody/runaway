@@ -15,35 +15,40 @@ This goes into the flatlist
 Each post shows the author and title*/
 export default function FeatureCard({category,HandlePress}){
     return(
-        <SafeAreaView>
+        <View style={{elevation:2,
+            shadowOffset: {
+            width: 0,
+            height: 1,
+            },
+            shadowOpacity: 0.2,
+            shadowRadius: 4,}}>
         <TouchableOpacity activeOpacity={.95} style ={styles.container} onPress={HandlePress}>
                     <Text style = {styles.title}>{category}</Text>
         </TouchableOpacity>
-        </SafeAreaView>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
     container:{
-        marginTop:50,
+        marginTop:16,
         borderRadius:10,
-        height:height/3,
+        height:height/4,
         width:width*.9,
-        borderWidth:1,
-        borderColor: '#e5e6e9',
-        justifyContent:'flex-start',
+        borderWidth:0,
+        justifyContent:'center',
         alignItems:'flex-start',
         overflow:'hidden',
         flex:1,
-        backgroundColor:'#2E5F85',
+        backgroundColor:'#ACDAFF',
         
     },
     title:{
-        color:'#fff',
-        fontSize:30,
-        paddingTop:30,
+        color:'#000',
+        fontSize:21,
+        
         paddingLeft:30,
-        fontWeight:'bold',
+        
     },
     extras:{
        

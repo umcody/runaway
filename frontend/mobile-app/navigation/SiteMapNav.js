@@ -22,7 +22,7 @@ export default function SiteMapNav({navigation}){
           ),}}
         />
         <Stack.Screen name="Features" component={FeaturePage}
-        options={{cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,gestureDirection:'vertical',
+        options={{cardStyleInterpolator: CardStyleInterpolators.forModalPresentationIOS,gestureDirection:'vertical',
         gestureResponseDistance:height/2,headerShown:false,cardOverlayEnabled:true}} />
         <Stack.Screen
           name="Feature"

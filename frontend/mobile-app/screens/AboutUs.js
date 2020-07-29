@@ -22,7 +22,7 @@ export default function AboutUs({navigation}) {
     <View style={styles.container}>
       <ScrollView style={{flex:1}}>
         <View style={styles.about}>
-          <Text style={styles.title}>About Us</Text>
+          <Text style={styles.title}>Runaway</Text>
           <Text style={styles.text}>
             Runaway is a social entrepreneurial venture that aims to spread
             mental health awareness and make the world happier. </Text>

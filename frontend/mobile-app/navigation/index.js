@@ -54,7 +54,7 @@ function CustomDrawerContent(props) {
         justifyContent: 'center',
       }}
     >
-      <Text style={{ color: '#ACDAFF', fontSize: 26 }}>
+      <Text style={{ color: '#000', fontSize: 26 }}>
         Information Pane
       </Text>
     </View>
@@ -236,7 +236,7 @@ const About = () => {
         name="About"
         component={AboutUs}
         options={{
-          title: "",
+          title: "About Us",
           headerTitleAlign: "center",
           headerTitleStyle: styles.headerTitleStyle,
           headerStyle: styles.headerStyle,
@@ -260,7 +260,7 @@ export default function MyDrawer() {
           }}
         />
         <SettingsDrawer.Screen name="About Us" component={About} />
-        <SettingsDrawer.Screen name="FAQs" component={BottomTab} />
+        {/*<SettingsDrawer.Screen name="FAQs" component={BottomTab} />*/}
         <SettingsDrawer.Screen name="Privacy Policy" component={BottomTab} />
         <SettingsDrawer.Screen name="Help" component={SiteMapNav} />
         <SettingsDrawer.Screen name="Sign In" component={SignInPage} />

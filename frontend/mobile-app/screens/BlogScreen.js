@@ -59,7 +59,6 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingLeft: 20,
     fontSize:14,
-    fontStyle:'italic'
   },
   content: {
     paddingTop: 20,
@@ -71,10 +70,10 @@ const styles = StyleSheet.create({
   },
   shadow:{
     position: 'absolute', zIndex:1,shadowColor: 'black',
-    shadowOpacity: 0.5,
+    shadowOpacity: 0.3,
     textShadowRadius: 4,
     textShadowOffset: {
-        width: 2,
+        width: 0,
         height: 2,  
     },
   }

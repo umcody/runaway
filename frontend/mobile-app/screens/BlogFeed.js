@@ -116,6 +116,7 @@ export default function BlogFeed({navigation,fromHelp}) {
     initialNumToRender={5}
     onEndReached={handleLoadMore}
     onEndReachedThreshold={5}
+    contentContainerStyle={{paddingBottom:20}}
     refreshControl={
       <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
     }
