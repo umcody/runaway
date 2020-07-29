@@ -23,6 +23,7 @@ function ResourceNav({navigation}) {
           component={OfResources}
           options={{ title: "Resources", headerTitleStyle: styles.headerTitleStyle,
           headerStyle: styles.headerStyle,
+          headerTitleAlign: "center",
           headerTitle: props => <LogoTitle {...props} /> ,
           headerLeft: () => (
             <Feather

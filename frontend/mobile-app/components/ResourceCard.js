@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         backgroundColor:"#ACDAFF",
         justifyContent:'center',
         paddingLeft:10,
-        elevation:1,
+        elevation:2,
         shadowOffset: {
         width: 0,
         height: 1,
