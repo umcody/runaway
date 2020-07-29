@@ -1,7 +1,7 @@
 import React, { useRef,useEffect } from "react";
 import { Animated, Text, View, StyleSheet, Button, ImageBackground,Dimensions} from "react-native";
 import * as Progress from 'react-native-progress';
-
+import {colors, fonts, padding, dimensions,margin,borderRadius, icon} from '../style/styleValues.js'
 // animated waiting screen. This will show until a volunteer joins.
 // need to implement waiting time
 const WaitingPage = () => {
@@ -98,8 +98,7 @@ const WaitingPage = () => {
     </View>
   );
 }
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -107,17 +106,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   imageContainer:{
-     flex: 1, flexDirection: 'column',  alignItems: 'center',width:"100%"
+     flex: 1, flexDirection: 'column',  alignItems: 'center',width:dimensions.fullWidth
   },
   fadingContainer: {
-    marginTop:windowHeight*.2,
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-  },
-  fadingText: {
-    fontSize: 28,
-    textAlign: "center",
-    margin: 10
+    marginTop:dimensions.fullHeight*.2,
+    paddingVertical: padding.sm,
+    paddingHorizontal: padding.md,
   },
   walk:{
     flexDirection:'row',
@@ -126,12 +120,13 @@ const styles = StyleSheet.create({
     marginBottom:10
   },
   text:{
-    fontSize: 24,
-    lineHeight: 24,
+    fontSize: fonts.lg,
+    fontFamily: fonts.main,
+    lineHeight: fonts.lgLineHeight,
     textAlign: 'center',
-    color: "#2E5F85",
-    paddingHorizontal:12,
-    marginTop:windowHeight*.2
+    color: colors.tertiary,
+    paddingHorizontal:padding.md,
+    marginTop:dimensions.fullHeight*.2
   }
 });
 
