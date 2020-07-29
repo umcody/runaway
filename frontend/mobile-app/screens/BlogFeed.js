@@ -15,6 +15,27 @@ import BlogPost from "../components/BlogPost"
 import useBlogPage from "../components/useBlogPage"
 import data from "../SampleData"
 
+
+// Sample data for events/announcement
+
+const AN =[
+  {
+  key:'1',
+  title:"Event 1"
+  },
+  {
+    key:'2',
+    title:"Event 2"
+  },
+  {
+  key:'3',
+  title:"Event 3"
+  },
+  {
+    key:'4',
+    title:"Event 4"
+  }
+]
 //This file is the blog feed component that allows infinite scrolling
 export default function BlogFeed({navigation,fromHelp}) {
 
@@ -47,13 +68,39 @@ export default function BlogFeed({navigation,fromHelp}) {
       wait(2000).then(() => setRefreshing(false));
     }, [refreshing]);
 
+    // render horizontal
+  const renderAn = ({item}) => {
+      return (
+        <View style={styles.announcement}>
+          <Text>{/*item.title*/}</Text>
+        </View>
+      );
+    };
+
   return (
     <View style={styles.home}>
       {!!error ? <Text>Server Connection Error</Text> :  loading ? <ActivityIndicator /> :
       <FlatList 
-      style={{paddingTop:10}}
-	  data={blogs}
-	  renderItem={({ item }) => {
+      ListHeaderComponent={
+        <View>
+          <FlatList 
+            data={AN}
+            renderItem={renderAn}
+            horizontal={true}
+            nestedScrollEnabled={true}
+            keyExtractor={item => item.key}
+            showsHorizontalScrollIndicator={false}/>
+          <Text style={{
+            fontSize: 21,
+            lineHeight: 25,
+            paddingVertical:18
+          }}>Recent Posts</Text>
+          </View>
+      }
+        style={{paddingLeft:20,paddingTop:10}}
+        nestedScrollEnabled={true}
+        data={blogs}
+        renderItem={({ item }) => {
         return(
           <BlogPost title={item.title} key={item._id} author={item.author} date={item.date} url ={item.url} imageURL={item.imageURL}
             readTime={item.readTime}
@@ -66,7 +113,7 @@ export default function BlogFeed({navigation,fromHelp}) {
     keyExtractor={item => item._id}
     showsHorizontalScrollIndicator={false}
     showsVerticalScrollIndicator={false}
-    initialNumToRender={20}
+    initialNumToRender={5}
     onEndReached={handleLoadMore}
     onEndReachedThreshold={5}
     refreshControl={
@@ -85,6 +132,15 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#FFFFFF",
     alignItems:'center',
-    
   },
+  announcement:{
+    height:100,
+    width:80,
+    backgroundColor:'#e3f1fc',
+    borderRadius:30,
+    marginTop:9,
+    marginRight:16,
+    justifyContent:'center',
+    alignItems:'center'
+  }
 });

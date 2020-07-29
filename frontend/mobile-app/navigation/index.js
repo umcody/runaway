@@ -104,7 +104,7 @@ const BottomTab = ({ navigation }) => {
           backgroundColor: "white",
           height: windowH * 0.085,
           borderTopColor: "#ACDAFF",
-          borderTopWidth: 0,
+          borderTopWidth: .7,
           elevation:0
         },
       }}
@@ -298,7 +298,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0,
     shadowColor: "transparent",
     backgroundColor: "#fff",
-    height: windowH / 9,
+    height: windowH / 8,
     borderBottomColor: "#ACDAFF",
     elevation:0,
   },

@@ -12,7 +12,7 @@ function ResourceNav({navigation}) {
   //header logo
   function LogoTitle() {
     return (
-      <Image source={require('../assets/RunawayLogo.png')} resizeMode="contain" style={{ width: 60}}/>
+      <Image source={require('../assets/RunawayLogo.png')} resizeMode="contain" style={{ width: 55}}/>
     );
   }
   return (
@@ -27,12 +27,12 @@ function ResourceNav({navigation}) {
           headerTitle: props => <LogoTitle {...props} /> ,
           headerLeft: () => (
             <Feather
-              style={{ paddingLeft: 25 }}
-              onPress={() => navigation.openDrawer()}
-              name="menu"
-              size={30}
-              color="#FF9EDA"
-            />
+            style={{ paddingLeft: 25,paddingTop:5 }}
+            onPress={() => navigation.openDrawer()}
+            name="menu"
+            size={25}
+            color="#000"
+          />
             
           ),
               }}
@@ -52,13 +52,27 @@ const styles = StyleSheet.create({
     lineHeight: 30,
     color: "#2E5F85",
   },
+  headerTitleStyle: {
+    fontFamily: "System",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: 24,
+    lineHeight: 30,
+    color: "#2E5F85",
+  },
   headerStyle: {
     borderBottomWidth: 0,
-    shadowColor: "transparent",
+    shadowColor: "#ACDAFF",
     backgroundColor: "#fff",
-    height: windowH / 9,
+    height: windowH / 8,
     borderBottomColor: "#ACDAFF",
-    elevation:0
+    elevation:2,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
   },
 });
 export default ResourceNav;
