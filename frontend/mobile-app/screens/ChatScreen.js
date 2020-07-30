@@ -34,20 +34,20 @@ export default function ChatScreen({ navigation }) {
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity
-          style={{ paddingRight: 25 }}
+          style={{ paddingRight: padding.lg }}
           onPress={() => navigation.navigate("EmergencyResources")}
         >
-          <AntDesign name="exclamationcircleo" size={30} color="#FF9EDA" />
+          <AntDesign name="exclamationcircleo" size={icon.md} color={colors.button} />
         </TouchableOpacity>
       ),
       headerLeft: () => (
         <TouchableOpacity
-          style={{ paddingLeft: 25 }}
+          style={{ paddingLeft: padding.lg }}
           onPress={() => {
             return navigation.navigate("PostSurvey", { messages: messages });
           }}
         >
-          <Feather name="x" size={35} color="#FF9EDA" />
+          <Feather name="x" size={icon.lg} color={colors.button} />
         </TouchableOpacity>
       ),
     });
@@ -56,12 +56,12 @@ export default function ChatScreen({ navigation }) {
     navigation.setOptions({
       headerLeft: () => (
         <TouchableOpacity
-          style={{ paddingLeft: 25 }}
+          style={{ paddingLeft: padding.lg  }}
           onPress={() => {
             return navigation.pop(1);
           }}
         >
-          <Feather name="x" size={35} color="#FF9EDA" />
+          <Feather name="x" size={icon.lg} color={colors.button} />
         </TouchableOpacity>
       ),
       headerTitle:'',
@@ -76,32 +76,36 @@ export default function ChatScreen({ navigation }) {
         //text styling
         textStyle={{
           left: {
-            color: "white",
+            color: colors.background,
+            fontSize:fonts.sm,
+            fontFamily:fonts.text
           },
           right: {
-            color: "#2E5F85",
+            color: colors.tertiary,
+            fontSize:fonts.sm,
+            fontFamily:fonts.text
           },
         }}
         //bubble styling
         wrapperStyle={{
           left: {
-            backgroundColor: "#2E5F85",
-            borderTopLeftRadius: 30,
-            borderTopRightRadius: 30,
-            borderBottomRightRadius: 30,
+            backgroundColor: colors.tertiary,
+            borderTopLeftRadius: borderRadius.lg,
+            borderTopRightRadius: borderRadius.lg,
+            borderBottomRightRadius: borderRadius.lg,
             borderBottomLeftRadius: 0,
-            padding: 8,
-            marginBottom: 5,
+            padding: padding.sm,
+            marginBottom: margin.sm,
           },
           right: {
-            backgroundColor: "#E3F1FC",
-            padding: 8,
-            marginRight:20,
-            borderTopLeftRadius: 30,
-            borderTopRightRadius: 30,
+            backgroundColor: colors.secondary,
+            padding: padding.sm,
+            marginRight:margin.md,
+            borderTopLeftRadius: borderRadius.lg,
+            borderTopRightRadius: borderRadius.lg,
             borderBottomRightRadius: 0,
-            borderBottomLeftRadius: 30,
-            marginBottom: 5,
+            borderBottomLeftRadius: borderRadius.lg,
+            marginBottom: padding.sm,
           },
         }}
       />
@@ -112,7 +116,7 @@ export default function ChatScreen({ navigation }) {
     return (
       <Send {...props}>
         <View style={styles.sendingContainer}>
-          <FontAwesome5 name="arrow-alt-circle-up" size={30} color="#FF9EDA" />
+          <FontAwesome5 name="arrow-alt-circle-up" size={icon.lg} color={colors.button} />
         </View>
       </Send>
     );
@@ -124,11 +128,11 @@ export default function ChatScreen({ navigation }) {
       <InputToolbar
         {...props}
         containerStyle={{
-          paddingBottom: 10,
-          backgroundColor: "#fff",
+          paddingBottom: padding.sm,
+          backgroundColor: colors.background,
           alignItems: "center",
           justifyContent: "center",
-          borderTopColor: "#E3F1FC",
+          borderTopColor: colors.secondary,
         }}
         primaryStyle={{ width: 330 }}
       />
@@ -258,14 +262,14 @@ export default function ChatScreen({ navigation }) {
 // it is set that when # of messages > 1, they dissapear
   const renderQuickReplies = (props) => {
     return(
-      <QuickReplies color='#2E5F85'{...props} style={{
+      <QuickReplies color={colors.tertiary}{...props} style={{
         container: {justifyContent:'flex-end'}}}
         />
     )
   }
   return (
     <SafeAreaView style={{ flex:1, backgroundColor: "#fff"}}>
-    {volunteerJoined ? 
+    {volunteerJoined==false ? 
       <GiftedChat
         messages={messages}
         //quickReply={setQuickReply} NOT WORKING FOR NOW...
@@ -273,11 +277,11 @@ export default function ChatScreen({ navigation }) {
         onSend={(messages) => onSend(messages)}
         renderInputToolbar={(props) => customInputToolbar(props)}
         placeholder="New Message"
-        placeholderTextColor="#2E5F85"
+        placeholderTextColor={colors.tertiary}
         textInputStyle={styles.composer} //styling of text input
         minInputToolbarHeight={60}
         messagesContainerStyle={{
-          backgroundColor: "#fff",
+          backgroundColor: colors.background,
         }}
         user={{
           _id: 1,
@@ -287,7 +291,7 @@ export default function ChatScreen({ navigation }) {
         listViewProps={{
           // styling of the list of messages to have a white background
           style: {
-            backgroundColor: "white",
+            backgroundColor: colors.background,
           },
         }}
         renderBubble={renderBubble}
@@ -304,8 +308,8 @@ export default function ChatScreen({ navigation }) {
         renderQuickReplies={
           (props) => {if(messages.length ===1){return(renderQuickReplies(props))} else{return(null)}}}
         quickReplyStyle={{
-          marginLeft:101,
-          width:170,
+          marginLeft:110,
+          width:160,
           flexDirection:'row',
           justifyContent:'flex-start',
           alignItems:'center',
