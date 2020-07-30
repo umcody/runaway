@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   teamTitle: {
-    fontFamily: fonts.primary,
+    fontFamily: fonts.main,
     fontSize: fonts.lg,
     lineHeight: fonts.lgLineHeight,
     color: colors.tertiary,

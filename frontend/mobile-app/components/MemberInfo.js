@@ -29,7 +29,7 @@ const TeamCard = ({ name, role }) => (
       >
         {name}
       </Text>
-      <Text style={{ color: colors.tertiary,fontSize: fonts.sm,fontFamily:fonts.tertiary }}>{role}</Text>
+      <Text style={{ color: colors.tertiary,fontSize: fonts.sm,fontFamily:fonts.subheader }}>{role}</Text>
     </View>
   </View>
 );
