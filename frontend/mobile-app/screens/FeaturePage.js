@@ -59,7 +59,7 @@ export default function FeaturePage({navigation,route}) {
       <View style ={styles.cardContainer}>
         <Text style={styles.featureTitle}>{title}</Text>
         <Text style={styles.featureDescription}>
-        {TEXT[0].text}
+        {TEXT[1].text}
         </Text>
         <TouchableOpacity onPress={()=>navigation.navigate('Feed')} style={styles.navigate}>
         <Text style={styles.link}>Go to Feed</Text>
