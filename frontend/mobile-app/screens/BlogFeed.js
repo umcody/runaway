@@ -7,15 +7,12 @@ import {
   Text,
   RefreshControl,
   ActivityIndicator,
-  TouchableOpacity,
-  Image
+  StatusBar
 } from "react-native";
 import {SafeAreaView } from 'react-native-safe-area-context';
 import BlogPost from "../components/BlogPost"
 import useBlogPage from "../components/useBlogPage"
-import data from "../SampleData"
-
-
+import {colors, fonts, padding, dimensions,margin,borderRadius} from '../style/styleValues.js'
 // Sample data for events/announcement
 
 const AN =[
@@ -38,7 +35,6 @@ const AN =[
 ]
 //This file is the blog feed component that allows infinite scrolling
 export default function BlogFeed({navigation,fromHelp}) {
-
   //default page number is 1 which is the first page of blogs
   const [pageNumber,setPageNumber] = useState(1)
   // returns the blogs data and other variables regarding the blogs from the custom hook, useBlogPage
@@ -79,7 +75,7 @@ export default function BlogFeed({navigation,fromHelp}) {
 
   return (
     <View style={styles.home}>
-      {!!error ? <Text>Server Connection Error</Text> :  loading ? <ActivityIndicator /> :
+      {!!error ? <Text>Server Connection Error</Text> :  loading ? <ActivityIndicator style={{paddingTop:padding.md}}/> :
       <FlatList 
       ListHeaderComponent={
         <View>
@@ -90,14 +86,10 @@ export default function BlogFeed({navigation,fromHelp}) {
             nestedScrollEnabled={true}
             keyExtractor={item => item.key}
             showsHorizontalScrollIndicator={false}/>
-          <Text style={{
-            fontSize: 21,
-            lineHeight: 25,
-            paddingVertical:18
-          }}>Recent Posts</Text>
+          <Text style={styles.recentPosts}>Recent Posts</Text>
           </View>
       }
-        style={{paddingLeft:20,paddingTop:10}}
+        style={{paddingLeft:padding.md,paddingTop:padding.sm}}
         nestedScrollEnabled={true}
         data={blogs}
         renderItem={({ item }) => {
@@ -116,6 +108,7 @@ export default function BlogFeed({navigation,fromHelp}) {
     initialNumToRender={5}
     onEndReached={handleLoadMore}
     onEndReachedThreshold={5}
+    contentContainerStyle={{paddingBottom:20}}
     refreshControl={
       <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
     }
@@ -124,23 +117,27 @@ export default function BlogFeed({navigation,fromHelp}) {
     </View>
   );
 }
-const windowW = Dimensions.get("window").width;
-const windowH = Dimensions.get("window").height;
 
 const styles = StyleSheet.create({
   home: {
     flex: 1,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: colors.background,
     alignItems:'center',
   },
   announcement:{
-    height:100,
-    width:80,
-    backgroundColor:'#e3f1fc',
-    borderRadius:30,
-    marginTop:9,
-    marginRight:16,
+    height:dimensions.fullHeight/7,
+    width:dimensions.fullWidth*.21,
+    backgroundColor:colors.secondary,
+    borderRadius:borderRadius.lg,
+    marginTop:margin.sm,
+    marginRight:margin.md,
     justifyContent:'center',
     alignItems:'center'
+  },
+  recentPosts:{
+      fontSize: fonts.lg,
+      lineHeight: fonts.lgLineHeight,
+      paddingVertical:padding.md,
+      fontFamily:fonts.main
   }
 });

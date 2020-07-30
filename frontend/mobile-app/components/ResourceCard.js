@@ -1,16 +1,16 @@
 import React from 'react';
 import { StyleSheet, Text, View, Dimensions,Linking } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-
+import {colors, fonts, padding, dimensions,margin,borderRadius, icon} from '../style/styleValues.js'
+import * as WebBrowser from "expo-web-browser";
 const NewsCard = ({item}) => {
     return (
         <View style={styles.container}>
             <TouchableOpacity
                 style={styles.cardView}
                 onPress={() => {
-                    Linking.openURL("https://www." +item.url);
-                  }}
- >
+                    WebBrowser.openBrowserAsync("https://www." +item.url)
+                  }}>
                 <Text style={styles.title}>{item.title}</Text>
                 <Text style={styles.title}>{item.url}</Text>
                 <Text style={styles.title}>{item.url}</Text>
@@ -21,21 +21,20 @@ const NewsCard = ({item}) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#fff',        
+        backgroundColor: colors.background,        
         alignItems: 'center',
         flex:1,
     },
     cardView: {
-        backgroundColor: 'white',
-        margin: 10,
+        backgroundColor: colors.background,
+        margin: margin.sm,
         borderRadius: 10,
-        borderColor: '#FF9EDA',
         borderWidth: 0,
-        width: 330,
-        height: 100,
-        backgroundColor:"#ACDAFF",
+        width: dimensions.fullWidth* .9,
+        height: dimensions.fullHeight/6,
+        backgroundColor:colors.primary,
         justifyContent:'center',
-        paddingLeft:10,
+        paddingLeft:padding.sm,
         elevation:2,
         shadowOffset: {
         width: 0,
@@ -45,9 +44,10 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         },
     title: {
-        width: '100%',
-        color: "#000",
-        fontSize: 16,
+        width: dimensions.fullWidth,
+        color: colors.foreground,
+        fontSize: fonts.md,
+        fontFamily: fonts.text
     },
   });
 

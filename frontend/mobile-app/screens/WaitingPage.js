@@ -1,7 +1,7 @@
 import React, { useRef,useEffect } from "react";
 import { Animated, Text, View, StyleSheet, Button, ImageBackground,Dimensions} from "react-native";
 import * as Progress from 'react-native-progress';
-
+import {colors, fonts, padding, dimensions,margin,borderRadius, icon} from '../style/styleValues.js'
 // animated waiting screen. This will show until a volunteer joins.
 // need to implement waiting time
 const WaitingPage = () => {
@@ -92,46 +92,42 @@ const WaitingPage = () => {
           </Animated.Image>
           
         </View>
-          <Progress.Bar progress={0} height={5} width={300} indeterminate={true} indeterminateAnimationDuration={9000} animationType='timing' 
+          <Progress.Bar progress={0} height={5} width={dimensions.fullWidth*.9} indeterminate={true} indeterminateAnimationDuration={9000} animationType='timing' 
           borderColor='#E3F1FC' color="#ACDAFF" unfilledColor='#E3F1FC'/>
       </ImageBackground>
     </View>
   );
 }
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor:colors.background
   },
   imageContainer:{
-     flex: 1, flexDirection: 'column',  alignItems: 'center',width:"100%"
+     flex: 1, flexDirection: 'column',  alignItems: 'center',width:dimensions.fullWidth,height:dimensions.fullHeight*.95
   },
   fadingContainer: {
-    marginTop:windowHeight*.2,
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-  },
-  fadingText: {
-    fontSize: 28,
-    textAlign: "center",
-    margin: 10
+    marginTop:dimensions.fullHeight*.25,
+    paddingVertical: padding.sm,
+    paddingHorizontal: padding.md,
   },
   walk:{
     flexDirection:'row',
-    width:300,
+    width:dimensions.fullWidth*.9,
     justifyContent:'space-between', 
-    marginBottom:10
+    marginBottom:margin.sm
   },
   text:{
-    fontSize: 24,
-    lineHeight: 24,
+    fontSize: fonts.lg,
+    fontFamily: fonts.main,
+    lineHeight: fonts.lgLineHeight,
     textAlign: 'center',
-    color: "#2E5F85",
-    paddingHorizontal:12,
-    marginTop:windowHeight*.2
+    color: colors.tertiary,
+    paddingHorizontal:padding.md,
+    marginTop:dimensions.fullHeight*.22
   }
 });
 
