@@ -7,8 +7,7 @@ import {
   Text,
   RefreshControl,
   ActivityIndicator,
-  TouchableOpacity,
-  Image
+  StatusBar
 } from "react-native";
 import {SafeAreaView } from 'react-native-safe-area-context';
 import BlogPost from "../components/BlogPost"
@@ -36,7 +35,6 @@ const AN =[
 ]
 //This file is the blog feed component that allows infinite scrolling
 export default function BlogFeed({navigation,fromHelp}) {
-
   //default page number is 1 which is the first page of blogs
   const [pageNumber,setPageNumber] = useState(1)
   // returns the blogs data and other variables regarding the blogs from the custom hook, useBlogPage

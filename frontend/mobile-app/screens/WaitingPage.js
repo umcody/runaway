@@ -92,7 +92,7 @@ const WaitingPage = () => {
           </Animated.Image>
           
         </View>
-          <Progress.Bar progress={0} height={5} width={300} indeterminate={true} indeterminateAnimationDuration={9000} animationType='timing' 
+          <Progress.Bar progress={0} height={5} width={dimensions.fullWidth*.9} indeterminate={true} indeterminateAnimationDuration={9000} animationType='timing' 
           borderColor='#E3F1FC' color="#ACDAFF" unfilledColor='#E3F1FC'/>
       </ImageBackground>
     </View>
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   imageContainer:{
-     flex: 1, flexDirection: 'column',  alignItems: 'center',width:dimensions.fullWidth
+     flex: 1, flexDirection: 'column',  alignItems: 'center',width:dimensions.fullWidth,height:dimensions.fullHeight*.87,
   },
   fadingContainer: {
     marginTop:dimensions.fullHeight*.2,
@@ -115,9 +115,9 @@ const styles = StyleSheet.create({
   },
   walk:{
     flexDirection:'row',
-    width:300,
+    width:dimensions.fullWidth*.9,
     justifyContent:'space-between', 
-    marginBottom:10
+    marginBottom:margin.sm
   },
   text:{
     fontSize: fonts.lg,

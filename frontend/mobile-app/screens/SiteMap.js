@@ -6,9 +6,12 @@ import {
   FlatList,
   Text,
   RefreshControl,
-  ActivityIndicator
+  ActivityIndicator,
+  StatusBar
 } from "react-native";
+import { useIsFocused } from '@react-navigation/native';
 import FeatureCard from "../components/FeatureCard";
+import { colors } from "../style/styleValues";
 
 const DATA = [
     {
@@ -28,10 +31,17 @@ const DATA = [
         title: "FAQ",
       },
     ];
+    
+function FocusAwareStatusBar(props) {
+  const isFocused = useIsFocused();
+    
+  return isFocused ? <StatusBar {...props} /> : null;
+}
 //This file is the sitemap that lists features
 export default function SiteMap({navigation}) {
   return (
     <View style={styles.home}>
+      <FocusAwareStatusBar barStyle="light-content"/>
       <FlatList
 	  data={DATA}
 	  renderItem={({ item }) => {
@@ -54,13 +64,11 @@ export default function SiteMap({navigation}) {
     </View>
   );
 }
-const windowW = Dimensions.get("window").width;
-const windowH = Dimensions.get("window").height;
 
 const styles = StyleSheet.create({
   home: {
     flex: 1,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: colors.background,
     alignItems:'center'
   },
 });

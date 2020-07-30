@@ -12,6 +12,7 @@ import { AntDesign, FontAwesome5, Feather } from "@expo/vector-icons";
 import {SafeAreaView } from 'react-native-safe-area-context';
 import QuickReplies from 'react-native-gifted-chat/lib/QuickReplies';
 import WaitingPage from './WaitingPage';
+import {colors, fonts, padding, dimensions,margin,borderRadius, icon} from '../style/styleValues.js'
 
 //This is the chat screen and messaging components
 export default function ChatScreen({ navigation }) {
@@ -63,7 +64,7 @@ export default function ChatScreen({ navigation }) {
           <Feather name="x" size={35} color="#FF9EDA" />
         </TouchableOpacity>
       ),
-      headerTitle:''
+      headerTitle:'',
     });
   }
 
@@ -263,7 +264,7 @@ export default function ChatScreen({ navigation }) {
     )
   }
   return (
-    <SafeAreaView style={{ flex:1, backgroundColor: "#fff" }}>
+    <SafeAreaView style={{ flex:1, backgroundColor: "#fff"}}>
     {volunteerJoined ? 
       <GiftedChat
         messages={messages}

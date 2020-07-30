@@ -9,7 +9,8 @@ import {
     SafeAreaView,
   } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
-const {width,height}= Dimensions.get('window') 
+import { dimensions, margin, borderRadius,colors, padding, fonts } from '../style/styleValues';
+ 
 /*Blog post element
 This goes into the flatlist
 Each post shows the author and title*/
@@ -31,33 +32,23 @@ export default function FeatureCard({category,HandlePress}){
 
 const styles = StyleSheet.create({
     container:{
-        marginTop:16,
-        borderRadius:10,
-        height:height/4,
-        width:width*.9,
+        marginTop:margin.md,
+        borderRadius:borderRadius.sm,
+        height:(dimensions.fullHeight >800) ? dimensions.fullHeight/5: dimensions.fullHeight/4,
+        width:dimensions.fullWidth*.9,
         borderWidth:0,
         justifyContent:'center',
         alignItems:'flex-start',
         overflow:'hidden',
         flex:1,
-        backgroundColor:'#ACDAFF',
+        backgroundColor:colors.primary,
         
     },
     title:{
-        color:'#000',
-        fontSize:21,
+        color:colors.foreground,
+        fontFamily:fonts.main,
+        fontSize:fonts.lg,
+        paddingLeft:padding.lg,
         
-        paddingLeft:30,
-        
     },
-    extras:{
-       
-    },
-    profile:{
-       
-    },
-    info:{
-        color:'#9E9EA7'
-    },
-
   });

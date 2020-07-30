@@ -1,6 +1,7 @@
 import React from "react";
 import {StyleSheet, Dimensions} from 'react-native'
 // Creating a main style doc for consistency.
+// import {colors, fonts, padding, dimensions,margin,borderRadius, icon} from '../style/styleValues.js' for all files using styling
 import * as Font from 'expo-font';
 export const dimensions = {
   fullHeight: Dimensions.get('window').height,
