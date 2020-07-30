@@ -99,7 +99,7 @@ export default function FeaturePage({navigation,route}) {
       <ScrollView style={{ flex: 1, }} contentContainerStyle={{alignItems:'baseline'}}  >
           <View style={styles.content}>
               <Text style ={styles.title}>{category}</Text>
-              <TouchableOpacity onPress={()=>navigation.goBack()} style={{paddingTop:padding.lg,paddingRight:padding.sm}}>
+              <TouchableOpacity onPress={()=>navigation.goBack()} style={{paddingTop:padding.lg,paddingRight:padding.md}}>
                <AntDesign name="close" size={icon.md} color={colors.background} />
               </TouchableOpacity>
           </View>

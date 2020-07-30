@@ -19,7 +19,7 @@ export default function SiteMapNav({navigation}){
           component={SiteMap}
           options={{ title: 'App Features', headerTitleStyle: styles.headerTitleStyle, headerStyle:styles.headerStyle,
           headerLeft: () => (
-            <Ionicons name="ios-arrow-back" size={icon.md} color={colors.background} style={{ paddingLeft: 25 }} onPress={() => navigation.goBack()}/>
+            <Ionicons name="ios-arrow-back" size={icon.md} color={colors.background} style={{ paddingLeft: padding.md }} onPress={() => navigation.goBack()}/>
           ),}}
         />
         <Stack.Screen name="Features" component={FeaturePage}

@@ -13,6 +13,7 @@ import {SafeAreaView } from 'react-native-safe-area-context';
 import QuickReplies from 'react-native-gifted-chat/lib/QuickReplies';
 import WaitingPage from './WaitingPage';
 import {colors, fonts, padding, dimensions,margin,borderRadius, icon} from '../style/styleValues.js'
+import { color } from "react-native-reanimated";
 
 //This is the chat screen and messaging components
 export default function ChatScreen({ navigation }) {
@@ -65,6 +66,7 @@ export default function ChatScreen({ navigation }) {
         </TouchableOpacity>
       ),
       headerTitle:'',
+      headerStyle:styles.headerStyle
     });
   }
 
@@ -268,8 +270,8 @@ export default function ChatScreen({ navigation }) {
     )
   }
   return (
-    <SafeAreaView style={{ flex:1, backgroundColor: "#fff"}}>
-    {volunteerJoined==false ? 
+    <View style={{ flex:1, backgroundColor: colors.background}}>
+    {volunteerJoined ? 
       <GiftedChat
         messages={messages}
         //quickReply={setQuickReply} NOT WORKING FOR NOW...
@@ -318,7 +320,7 @@ export default function ChatScreen({ navigation }) {
     :
           <WaitingPage/>
     }
-    </SafeAreaView> 
+    </View> 
   );
 }
 const styles = StyleSheet.create({
@@ -338,5 +340,12 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingLeft: 5,
     alignItems: "flex-start",
+  },
+  headerStyle: {
+    borderBottomWidth: 0,
+    shadowColor: 'transparent',
+    height:dimensions.fullHeight/8,
+    elevation:0,
+    backgroundColor:colors.background
   },
 });

@@ -104,12 +104,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor:colors.background
   },
   imageContainer:{
-     flex: 1, flexDirection: 'column',  alignItems: 'center',width:dimensions.fullWidth,height:dimensions.fullHeight*.87,
+     flex: 1, flexDirection: 'column',  alignItems: 'center',width:dimensions.fullWidth,height:dimensions.fullHeight*.95
   },
   fadingContainer: {
-    marginTop:dimensions.fullHeight*.2,
+    marginTop:dimensions.fullHeight*.25,
     paddingVertical: padding.sm,
     paddingHorizontal: padding.md,
   },
@@ -126,7 +127,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: colors.tertiary,
     paddingHorizontal:padding.md,
-    marginTop:dimensions.fullHeight*.2
+    marginTop:dimensions.fullHeight*.22
   }
 });
 

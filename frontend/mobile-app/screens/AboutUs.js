@@ -31,7 +31,7 @@ export default function AboutUs({navigation}) {
           <TouchableOpacity activeOpacity={0.9} style={styles.button} onPress={() => {
           WebBrowser.openBrowserAsync("https://www.runawayapp.com/");
         }}>
-            <Text style={{ color: colors.background, fontWeight: "bold", fontSize: fonts.md,fontFamily:fonts.subheader }}>
+            <Text style={{ color: colors.background, fontSize: fonts.md,fontFamily:fonts.subheader }}>
               Visit Our Site
             </Text>
           </TouchableOpacity>
