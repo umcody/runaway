@@ -161,7 +161,7 @@ export default function ChatScreen({ navigation }) {
 
       let temp = [
         {
-          _id: 1,
+          _id: Math.round(Math.random() * 1000000),
           text: message,
           createdAt: new Date(),
           user: {
