@@ -3,7 +3,7 @@ import { SafeAreaView, Text, View, StyleSheet,Image,Dimensions} from "react-nati
 import {TouchableOpacity,ScrollView } from 'react-native-gesture-handler';
 import { AntDesign } from "@expo/vector-icons";
 import BlogNavFromHelp from "../navigation/BlogNavFromHelp";
-import ResourceNav from "../navigation/ResourceNav";
+import OfResources from "../screens/OfResources";
 
 const {width,height}= Dimensions.get('window') 
 // directs to feature pages
@@ -12,7 +12,7 @@ export default function Feature({navigation,route}) {
 
   return (
     <View style={{ flex: 1,backgroundColor:'#fff'}}>
-    {category=="Feed" ? <BlogNavFromHelp navigation={navigation}/> :  category=="Resources" ? <ResourceNav/> : <Text>FAQ PAGE</Text>}
+    {category=="Feed" ? <BlogNavFromHelp navigation={navigation}/> :  category=="Resources" ? <OfResources/> : <Text>FAQ PAGE</Text>}
     </View>
   );
 }
