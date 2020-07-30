@@ -43,6 +43,7 @@ const BottomTabNavigation = createBottomTabNavigator();
 const ChatStack = createStackNavigator();
 const SettingsDrawer = createDrawerNavigator();
 const AboutStack = createStackNavigator();
+const RootStack = createStackNavigator();
 
 const windowW = Dimensions.get("window").width;
 const windowH = Dimensions.get("window").height;
@@ -133,10 +134,9 @@ const BottomTab = ({ navigation }) => {
         }}
       />
       <BottomTabNavigation.Screen
-        name="Chat"
+        name="PreChat"
         component={Chat}
         options={{
-          tabBarVisible: false,
           tabBarLabel: "Chat",
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="chat-bubble-outline" color={color} size={icon.md} />
@@ -204,32 +204,6 @@ const Chat = ({ navigation }) => {
             ),
           }}
         />
-        <ChatStack.Screen
-          name="Chat"
-          component={ChatScreen}
-          options={{
-            title: "Chat",
-            headerTitleAlign: "center",
-            headerTitleStyle: styles.headerTitleStyle,
-            headerStyle: styles.headerStyle,
-            gestureEnabled:false
-          }}
-        />
-        <ChatStack.Screen
-          name="PostSurvey"
-          component={PostChatSurvey}
-          options={{ headerShown: false,gestureEnabled:false}}
-          
-        />
-        <ChatStack.Screen
-          name="EmergencyResources"
-          component={EmergencyHotlinesScreen}
-          options={{
-            title: "Emergency Resources",
-            headerTitleStyle: styles.headerTitleStyle,
-            headerStyle: styles.headerStyle,
-          }}
-        />
       </ChatStack.Navigator>
     </>
   );
@@ -251,9 +225,9 @@ const About = () => {
     </AboutStack.Navigator>
   );
 };
-export default function MyDrawer() {
+const MyDrawer = () =>{
   return (
-    <NavigationContainer>
+    
       <SettingsDrawer.Navigator
         drawerContent={(props) => <CustomDrawerContent {...props} />}
         edgeWidth={0}
@@ -278,10 +252,51 @@ export default function MyDrawer() {
         <SettingsDrawer.Screen name="Help" component={SiteMapNav} />
         <SettingsDrawer.Screen name="Sign In" component={SignInPage} />
       </SettingsDrawer.Navigator>
-    </NavigationContainer>
+    
   );
 }
 
+export default function MyApp(){
+  return(
+    <NavigationContainer>
+      <RootStack.Navigator>
+      <RootStack.Screen
+        name="App"
+        component={MyDrawer}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <RootStack.Screen
+          name="Chat"
+          component={ChatScreen}
+          options={{
+            title: "Chat",
+            headerTitleAlign: "center",
+            headerTitleStyle: styles.headerTitleStyle,
+            headerStyle: styles.headerStyle,
+            gestureEnabled:false
+          }}
+        />
+        <RootStack.Screen
+          name="PostSurvey"
+          component={PostChatSurvey}
+          options={{ headerShown: false,gestureEnabled:false}}
+          
+        />
+        <RootStack.Screen
+          name="EmergencyResources"
+          component={EmergencyHotlinesScreen}
+          options={{
+            title: "Emergency Resources",
+            headerTitleStyle: styles.headerTitleStyle,
+            headerStyle: styles.headerStyle,
+          }}
+        />
+      </RootStack.Navigator>
+    </NavigationContainer>
+  )
+}
 const styles = StyleSheet.create({
   headerTitleStyle: stylesDefault.headerTitleStyle,
 

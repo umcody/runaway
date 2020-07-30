@@ -48,7 +48,7 @@ export default function FeaturePage({navigation,route}) {
         <Text style={styles.featureDescription}>
         {TEXT[0].text}
         </Text>
-        <TouchableOpacity onPress={()=>navigation.navigate('Chat')} style={styles.navigate}>
+        <TouchableOpacity onPress={()=>navigation.navigate('PreChat')} style={styles.navigate}>
         <Text style={styles.link}>Go to Messaging</Text>
         </TouchableOpacity>
       </View>
@@ -96,7 +96,6 @@ export default function FeaturePage({navigation,route}) {
   }
   return (
     <View style={{ flex: 1,backgroundColor:colors.background}}>
-      <ScrollView style={{ flex: 1, }} contentContainerStyle={{alignItems:'baseline'}}  >
           <View style={styles.content}>
               <Text style ={styles.title}>{category}</Text>
               <TouchableOpacity onPress={()=>navigation.goBack()} style={{paddingTop:padding.lg,paddingRight:padding.md}}>
@@ -114,7 +113,6 @@ export default function FeaturePage({navigation,route}) {
             :
               <FAQFeatureCard title="FAQs"/>
           }
-      </ScrollView>
     </View>
   );
 }

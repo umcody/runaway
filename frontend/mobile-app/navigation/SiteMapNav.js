@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, View ,Text,SafeAreaView,Dimensions} from "react-native";
-import { createStackNavigator,CardStyleInterpolators,} from '@react-navigation/stack';
+import { createStackNavigator,CardStyleInterpolators} from '@react-navigation/stack';
 import FeaturePage from '../screens/FeaturePage';
 import SiteMap from '../screens/SiteMap';
 import FAQ from '../screens/FAQ';
@@ -24,7 +24,8 @@ export default function SiteMapNav({navigation}){
         />
         <Stack.Screen name="Features" component={FeaturePage}
         options={{cardStyleInterpolator: CardStyleInterpolators.forModalPresentationIOS,gestureDirection:'vertical',
-        gestureResponseDistance:height/2,headerShown:false,cardOverlayEnabled:true}} />
+        gestureResponseDistance:height/2,headerShown:false,cardOverlayEnabled:true,
+        }} />
         <Stack.Screen
           name="FAQ"
           component={FAQ}
