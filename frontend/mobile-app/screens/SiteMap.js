@@ -7,7 +7,8 @@ import {
   Text,
   RefreshControl,
   ActivityIndicator,
-  StatusBar
+  StatusBar,
+  Platform
 } from "react-native";
 import { useIsFocused } from '@react-navigation/native';
 import FeatureCard from "../components/FeatureCard";
@@ -35,13 +36,13 @@ const DATA = [
 function FocusAwareStatusBar(props) {
   const isFocused = useIsFocused();
     
-  return isFocused ? <StatusBar {...props} /> : null;
+  return isFocused ? <StatusBar {...props} backgroundColor={colors.tertiary}/> : null;
 }
 //This file is the sitemap that lists features
 export default function SiteMap({navigation}) {
   return (
     <View style={styles.home}>
-      <FocusAwareStatusBar barStyle="light-content"/>
+      <FocusAwareStatusBar barStyle="light-content" />
       <FlatList
 	  data={DATA}
 	  renderItem={({ item }) => {

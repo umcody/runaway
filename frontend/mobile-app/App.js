@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import * as Font from 'expo-font'
 import {AppLoading} from 'expo'
-
+import {colors} from "./style/styleValues"
 async function getFonts(){
   await Font.loadAsync({
     "Lato": require('./assets/fonts/Lato-Regular.ttf'),
@@ -23,7 +23,7 @@ export default function App() {
   if (fontLoaded){
     return (
       <SafeAreaProvider>
-        {(Platform.OS === 'ios')  ? <StatusBar  barStyle="dark-content" translucent={true} />:null}
+         <StatusBar barStyle="dark-content" backgroundColor={colors.background} translucent={true} />
         <Navigation/>
       </SafeAreaProvider>
     )
