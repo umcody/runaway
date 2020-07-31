@@ -16,32 +16,32 @@ const WaitingPage = () => {
         Animated.sequence([
           Animated.timing(fadeAnim1, {
             toValue: 1,
-            duration: 1500,
+            duration: 1000,
             useNativeDriver: true
           }),
           Animated.timing(fadeAnim1, {
             toValue: 0,
-            duration: 1500,
+            duration: 1000,
             useNativeDriver: true
           }),
           Animated.timing(fadeAnim2, {
             toValue: 1,
-            duration: 1500,
+            duration: 1000,
             useNativeDriver: true
           }),
           Animated.timing(fadeAnim2, {
             toValue: 0,
-            duration: 1500,
+            duration: 1000,
             useNativeDriver: true
           }),
           Animated.timing(fadeAnim3, {
             toValue: 1,
-            duration: 1500,
+            duration: 1000,
             useNativeDriver: true
           }),
           Animated.timing(fadeAnim3, {
             toValue: 0,
-            duration: 1400,
+            duration: 900,
             useNativeDriver: true
           }),
         ]),
@@ -92,8 +92,8 @@ const WaitingPage = () => {
           </Animated.Image>
           
         </View>
-          <Progress.Bar progress={0} height={5} width={dimensions.fullWidth*.9} indeterminate={true} indeterminateAnimationDuration={9000} animationType='timing' 
-          borderColor='#E3F1FC' color="#ACDAFF" unfilledColor='#E3F1FC'/>
+          <Progress.Bar progress={0} height={5} width={dimensions.fullWidth*.9} indeterminate={true} indeterminateAnimationDuration={6000} animationType='timing' 
+          borderColor={colors.secondary} color={colors.primary} unfilledColor={colors.secondary}/>
       </ImageBackground>
     </View>
   );
