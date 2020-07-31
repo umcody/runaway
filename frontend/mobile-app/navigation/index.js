@@ -45,8 +45,6 @@ const SettingsDrawer = createDrawerNavigator();
 const AboutStack = createStackNavigator();
 const RootStack = createStackNavigator();
 
-const windowW = Dimensions.get("window").width;
-const windowH = Dimensions.get("window").height;
 
 function CustomDrawerContent(props) {
   return (
@@ -54,8 +52,8 @@ function CustomDrawerContent(props) {
     <View
       style={{
         backgroundColor: colors.background,
-        alignItems: 'center',
         justifyContent: 'center',
+        paddingLeft:15
       }}
     >
       <Text style={{ fontSize:fonts.lg,
@@ -227,12 +225,11 @@ const About = () => {
 };
 const MyDrawer = () =>{
   return (
-    
       <SettingsDrawer.Navigator
         drawerContent={(props) => <CustomDrawerContent {...props} />}
         edgeWidth={0}
         drawerContentOptions={{
-          activeTintColor: colors.tertiary,
+          activeTintColor: colors.foreground,
           activeBackgroundColor:colors.secondary,
           inactiveBackgroundColor: colors.background,
           itemStyle: { marginBottom: margin.sm },
@@ -260,8 +257,15 @@ export default function MyApp(){
   return(
     <NavigationContainer>
       <RootStack.Navigator>
+      {/* <RootStack.Screen
+        name="Sign"
+        component={SignInPage}
+        options={{
+          headerShown: false,
+        }}
+      /> */}
       <RootStack.Screen
-        name="App"
+        name="Home"
         component={MyDrawer}
         options={{
           headerShown: false,

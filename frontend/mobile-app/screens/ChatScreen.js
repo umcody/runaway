@@ -264,14 +264,13 @@ export default function ChatScreen({ navigation }) {
 // it is set that when # of messages > 1, they dissapear
   const renderQuickReplies = (props) => {
     return(
-      <QuickReplies color={colors.tertiary}{...props} style={{
-        container: {justifyContent:'flex-end'}}}
+      <QuickReplies color={colors.tertiary}{...props} 
         />
     )
   }
   return (
     <View style={{ flex:1, backgroundColor: colors.background}}>
-    {volunteerJoined ? 
+    {volunteerJoined? 
       <GiftedChat
         messages={messages}
         //quickReply={setQuickReply} NOT WORKING FOR NOW...
@@ -315,6 +314,7 @@ export default function ChatScreen({ navigation }) {
           flexDirection:'row',
           justifyContent:'flex-start',
           alignItems:'center',
+        
         }}
       />
     :
