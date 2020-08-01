@@ -95,6 +95,7 @@ const BottomTab = ({ navigation }) => {
           borderTopWidth: 1,
         },
       }}
+      screenOptions={{ gestureEnabled: false }}
     >
       <BottomTabNavigation.Screen
         name="Feed"
@@ -139,7 +140,10 @@ const Chat = ({ navigation }) => {
   return (
     <>
       <StatusBar barStyle="dark-content" translucent={true} />
-      <ChatStack.Navigator initialRouteName="Feels">
+      <ChatStack.Navigator
+        initialRouteName="Feels"
+        screenOptions={{ gestureEnabled: false }}
+      >
         <ChatStack.Screen
           name="PreChatModal"
           component={PreChatModal}
@@ -218,7 +222,7 @@ const Chat = ({ navigation }) => {
 
 const About = () => {
   return (
-    <AboutStack.Navigator>
+    <AboutStack.Navigator screenOptions={{ gestureEnabled: false }}>
       <AboutStack.Screen
         name="About"
         component={AboutUs}
@@ -235,6 +239,7 @@ export default function MyDrawer() {
   return (
     <NavigationContainer>
       <SettingsDrawer.Navigator
+        screenOptions={{ gestureEnabled: false, swipeEnabled: false }}
         drawerContent={(props) => <CustomDrawerContent {...props} />}
       >
         <SettingsDrawer.Screen
