@@ -1,5 +1,5 @@
 import React, { useRef,useEffect } from "react";
-import { Animated, Text, View, StyleSheet, Button, ImageBackground,Dimensions} from "react-native";
+import { Animated, Text, View, StyleSheet, Button, ImageBackground,Easing} from "react-native";
 import * as Progress from 'react-native-progress';
 import {colors, fonts, padding, dimensions,margin,borderRadius, icon} from '../style/styleValues.js'
 import LottieView from 'lottie-react-native';
@@ -61,6 +61,7 @@ useEffect(() => {
       Animated.timing(x, {
         toValue: 300,
         duration: 8000,
+        easing:Easing.linear,
         useNativeDriver: true
       }),
       Animated.timing(x, {
