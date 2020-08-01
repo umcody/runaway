@@ -188,9 +188,8 @@ const Chat = ({ navigation }) => {
           options={{
             headerTitle: "How are you feeling?",
             headerTitleAlign: "center",
-            headerTitleStyle: {
-              color: colors.tertiary,
-            },
+            headerStyle: stylesDefault.headerStyle,
+            headerTitleStyle: stylesDefault.headerTitleStyle,
             headerLeft: () => (
               <HeaderBackButton
                 labelVisible={false}
