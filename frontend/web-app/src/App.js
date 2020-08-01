@@ -15,7 +15,6 @@ function App() {
   return (
     <div className="App">
       <h2 style = {{"color":"#ACD1E9"}}>RunAway</h2>
-      <div style = {{"color":"fffff","font-size":"60px","font-weight":"700"}}>RunAway</div>
       <link rel="stylesheet" href="//cdn.quilljs.com/1.2.6/quill.snow.css"></link>
       <Route exact path = "/login" component = {Login}/>
       <Route exact path = "/register" component = {Register}/>
