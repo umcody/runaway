@@ -9,6 +9,7 @@ import {
   TextInput,
   ImageBackground,
 } from "react-native";
+import { colors, dimensions, padding, margin,borderRadius, fonts } from "../style/styleValues";
 //import axios from "axios";
 
 export default function SignInPage({ navigation }) {
@@ -21,29 +22,36 @@ export default function SignInPage({ navigation }) {
         <Image
           style={styles.runawayLogo}
           source={require("../images/RunawayLogo.png")}
+          resizeMode="contain"
         />
-        <Text style={styles.Welcome}>Welcome</Text>
-        <TextInput
-          style={styles.userName}
-          clearButtonMode="always"
-          placeholder="Username or Email"
-        ></TextInput>
-        <TextInput
-          style={styles.password}
-          clearButtonMode="always"
-          placeholder="Password"
-        ></TextInput>
-        <TouchableOpacity style={styles.forgotContainer}>
-          <Text style={styles.forgot}>Forgot Username/Password</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.signInButton}
-          onPress={() => {
-            navigation.navigate("Home");
-          }}
-        >
-          <Text style={styles.signIn}>Sign In</Text>
-        </TouchableOpacity>
+        <Text style={styles.Welcome}>RUNAWAY.APP</Text>
+        <Text style={styles.sign}>Sign In</Text>
+        <View style={styles.inputs}>
+          <TextInput
+            style={styles.userName}
+            clearButtonMode="always"
+            placeholder="Username/Email"
+          ></TextInput>
+          <TextInput
+            style={styles.password}
+            clearButtonMode="always"
+            placeholder="Password"
+          ></TextInput>
+          <TouchableOpacity
+            style={styles.signInButton}
+            onPress={() => {
+              navigation.navigate("Home");
+            }}
+          >
+            <Text style={styles.enter}>Enter</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.forgotContainer}>
+            <Text style={styles.forgot}>Forgot Username/Password</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.forgotContainer}>
+            <Text style={styles.forgot}>New to Runaway? Sign Up</Text>
+          </TouchableOpacity>
+        </View>
         <TouchableOpacity
           style={styles.newtoRunawayContainer}
           onPress={() => {
@@ -57,94 +65,114 @@ export default function SignInPage({ navigation }) {
   );
 }
 
-const WelcomeHeight = 300;
+const WelcomeHeight = dimensions.fullHeight/5;
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {justifyContent:'center',flex:1,alignItems:'center'},
   runawayLogo: {
     position: "absolute",
     justifyContent: "center",
     alignSelf: "center",
-    top: 100,
-    width: 175,
-    height: 181,
+    top: 30,
+    width: 120,
+    height: 120,
   },
   Welcome: {
     top: WelcomeHeight,
-    color: "#2E5F85",
-    fontStyle: "normal",
-    fontSize: 24,
+    color: colors.foreground,
+    fontSize: 26,
+    fontFamily:fonts.main,
     alignItems: "center",
     textAlign: "center",
-    padding: 10,
+    padding: padding.sm,
+  },
+  sign: {
+    top: WelcomeHeight,
+    color: colors.foreground,
+    fontSize: fonts.lg,
+    fontFamily:fonts.subheader,
+    alignItems: "center",
+    textAlign: "center",
+    padding: padding.sm
+  },
+  inputs:{
+    marginTop: WelcomeHeight + 25,
+    backgroundColor:colors.background,
+    width:dimensions.fullWidth-padding.md*4,
+    padding:padding.lg,
+    marginHorizontal:margin.md*2,
+    borderRadius:borderRadius.sm
   },
   userName: {
-    top: WelcomeHeight + 25,
     alignSelf: "center",
-    width: "60%",
+    width: dimensions.fullWidth*.6,
     borderWidth: 1,
     height: 40,
     borderRadius: 5,
-    backgroundColor: "#FFFFFF",
-    paddingHorizontal: 5,
-    borderColor: "#2E5F85",
+    backgroundColor: colors.background,
+    paddingHorizontal: padding.sm,
+    borderColor: '#C4C4C4',
+    marginVertical:padding.sm,
+    fontFamily:fonts.subheader,
+    fontSize:fonts.md
   },
   password: {
-    top: WelcomeHeight + 50,
     alignSelf: "center",
-    width: "60%",
+    width: dimensions.fullWidth*.6,
     borderWidth: 1,
     height: 40,
     borderRadius: 5,
-    backgroundColor: "#FFFFFF",
-    paddingHorizontal: 5,
-    borderColor: "#2E5F85",
+    backgroundColor: colors.background,
+    paddingHorizontal: padding.sm,
+    borderColor: '#C4C4C4',
+    marginVertical:padding.sm,
+    fontFamily:fonts.subheader,
+    fontSize:fonts.md
   },
   forgotContainer: {
-    top: WelcomeHeight + 75,
-    width: "60%",
+    width: dimensions.fullWidth*.6,
     height: 25,
     alignSelf: "center",
     justifyContent: "center",
   },
   forgot: {
-    color: "#2E5F85",
+    color: colors.foreground,
     fontStyle: "normal",
+    fontFamily:fonts.subheader,
     fontSize: 14,
     alignItems: "center",
     textAlign: "center",
-    textDecorationLine: "underline",
   },
   signInButton: {
-    borderRadius: 30,
-    borderWidth: 2,
-    backgroundColor: "#FF9EDA",
-    borderColor: "#FF9EDA",
-    height: 35,
-    width: 100,
+    borderRadius: 5,
+    backgroundColor: colors.primary,
+    height: 40,
+    width: dimensions.fullWidth*.6,
     alignSelf: "center",
-    top: WelcomeHeight + 100,
+    justifyContent: "center",
+    marginVertical:margin.md
   },
-  signIn: {
-    color: "#FFFFFF",
-    fontSize: 24,
+  enter: {
+    color: colors.background,
     justifyContent: "center",
     alignSelf: "center",
+    fontFamily:fonts.subheader,
+    fontSize:fonts.md
   },
   newtoRunawayContainer: {
-    top: WelcomeHeight + 125,
-    width: "62%",
+    width: dimensions.fullWidth*.6,
     height: 25,
     alignSelf: "center",
     justifyContent: "center",
+    marginVertical:margin.sm
   },
   newtoRunaway: {
-    color: "#2E5F85",
+    color: colors.foreground,
     fontStyle: "normal",
-    fontSize: 14,
+    fontSize: fonts.md,
     alignItems: "center",
     textAlign: "center",
-    textDecorationLine: "underline",
+    fontFamily:fonts.subheader,
   },
   background: {
     width: "100%",

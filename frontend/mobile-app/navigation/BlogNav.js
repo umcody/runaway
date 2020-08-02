@@ -4,6 +4,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import BlogFeed from '../screens/BlogFeed';
 import BlogScreen from '../screens/BlogScreen';
 import { Ionicons,Feather} from "@expo/vector-icons";
+import {colors, fonts, padding, stylesDefault, icon} from '../style/styleValues.js'
+
 // stack nav for blog post to blog page 
 //for now this is used as the homepage
 export default function BlogNav({navigation}){
@@ -11,26 +13,26 @@ export default function BlogNav({navigation}){
     //header logo
     function LogoTitle() {
       return (
-        <Image source={require('../assets/RunawayLogo.png')} resizeMode="contain" style={{ width: 60}}/>
+        <Image source={require('../assets/RunawayLogo.png')} resizeMode="contain" style={{ width: 55}}/>
       );
     }
     return (
-        <View style = {styles.container}>
+        <View style = {{flex:1}}>
             <Stack.Navigator>
             <Stack.Screen
           name="Feed"
           component={BlogFeed}
-          options={{ title: "Blogs", headerTitleStyle: styles.headerTitleStyle,
-          headerStyle: styles.headerStyle,
+          options={{ title: "Blogs", headerTitleStyle: stylesDefault.headerTitleStyle,
+          headerStyle: stylesDefault.headerStyle,
           headerTitleAlign: "center",
           headerTitle: props => <LogoTitle {...props} /> ,
           headerLeft: () => (
             <Feather
-              style={{ paddingLeft: 25 }}
+              style={{ paddingLeft: padding.md,paddingTop:padding.sm }}
               onPress={() => navigation.openDrawer()}
               name="menu"
-              size={30}
-              color="#FF9EDA"
+              size={icon.sm}
+              color={colors.foreground}
             />
             
           ),
@@ -43,26 +45,3 @@ export default function BlogNav({navigation}){
         
     )
 }
-const windowW = Dimensions.get("window").width;
-const windowH = Dimensions.get("window").height;
-const styles = StyleSheet.create({
-	container: {
-    flex:1,
-  },
-  headerTitleStyle: {
-    fontFamily: "System",
-    fontStyle: "normal",
-    fontWeight: "normal",
-    fontSize: 24,
-    lineHeight: 30,
-    color: "#2E5F85",
-  },
-  headerStyle: {
-    borderBottomWidth: 0,
-    shadowColor: "transparent",
-    backgroundColor: "#fff",
-    height: windowH / 9,
-    borderBottomColor: "#ACDAFF",
-    elevation:0
-  },
-});

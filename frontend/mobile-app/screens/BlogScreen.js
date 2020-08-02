@@ -4,7 +4,11 @@ import {TouchableOpacity,ScrollView } from 'react-native-gesture-handler';
 import { Ionicons,MaterialCommunityIcons } from "@expo/vector-icons";
 import HTML from 'react-native-render-html';
 import useBlogUrl from "../components/useBlogUrl"
-import { TextInput } from 'react-native-paper';
+import {colors, fonts, padding, dimensions,margin,borderRadius, icon} from '../style/styleValues.js'
+import { color } from 'react-native-reanimated';
+import { createIconSet } from 'react-native-vector-icons';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+
 // shows the blog page 
 export default function BlogScreen({navigation,route}) {
   //sends in url prop
@@ -22,25 +26,26 @@ export default function BlogScreen({navigation,route}) {
       var d = new Date(parseInt(date.substr(0,4)),parseInt(date.substr(6,7)),parseInt(date.substr(9,10)));
       return d.toString().substr(4,7)
   }
+  
   return (
-    <SafeAreaView style={{ flex: 1,backgroundColor:'#fff'}}>
+    <SafeAreaView style={{ flex: 1,backgroundColor:colors.background}}>
       <ScrollView style={{ flex: 1, }} contentContainerStyle={{flex:1,alignItems:'flex-start'}}>
         {/* loading indicator if the page is loading
         else show html content from database, uses HTML parser to convert into jsx*/}
         {loading ? <ActivityIndicator /> : <View>
-          <ImageBackground source={{uri:blog.imageURL}} style={{width:"100%",height:250,resizeMode:'contain'}}>
+          <ImageBackground source={{uri:blog.imageURL}} style={styles.image}>
           <TouchableOpacity onPress={()=>navigation.goBack()} style={styles.back}>
-              <Ionicons name="ios-arrow-back" size={32} color="white" style={styles.shadow} />
+              <Ionicons name="ios-arrow-back" size={icon.lg} color={colors.background} style={styles.shadow} />
           </TouchableOpacity>
           </ImageBackground>
           <Text style={styles.title}>{blog.title}</Text>
           <View style={{flexDirection:'row'}}>
             <Text style={styles.author}>{blog.author}</Text>
-            <MaterialCommunityIcons name="feather" size={18} color="#FF9EDA" style={{paddingHorizontal:5,marginTop:3}} />
+            <MaterialCommunityIcons name="feather" size={icon.xs} color={colors.button} />
             <Text style={styles.author}>{(ConvertDate(blog.date))}</Text>
             <Text style={styles.author}>{blog.readTime} min read</Text>
           </View>
-          <HTML html={blog.content} containerStyle={styles.content} /> 
+          <HTML baseFontStyle= {{color: colors.foreground,fontFamily:fonts.text, fontSize:fonts.sm}} html={blog.content} containerStyle={styles.content} /> 
         </View>}
       </ScrollView>
       <Text>{error && 'Server Connection Error'}</Text>
@@ -49,32 +54,37 @@ export default function BlogScreen({navigation,route}) {
 }
 const styles = StyleSheet.create({
   title: {
-    fontSize:30,
-    fontWeight:'bold',
-    paddingTop:20,
-    paddingLeft: 20,
-    paddingBottom:10
+    fontSize:fonts.lg,
+    fontFamily:fonts.main,
+    paddingTop:padding.md,
+    paddingLeft: padding.md,
+    paddingBottom:padding.sm
+  },
+  image:{
+    width:dimensions.fullWidth,
+    height:dimensions.fullHeight*.4,
+    resizeMode:'contain'
   },
   author: {
+    fontFamily:fonts.text,
     paddingTop: 5,
     paddingLeft: 20,
-    fontSize:14,
-    fontStyle:'italic'
+    fontSize:fonts.sm,
   },
   content: {
     paddingTop: 20,
     paddingLeft: 20,
   },
   back:{
-    width:35,height:35,
-    marginLeft:20,marginTop:30, 
+    width:icon.lg,height:icon.lg,
+    marginLeft:margin.md,marginTop:margin.lg, 
   },
   shadow:{
-    position: 'absolute', zIndex:1,shadowColor: 'black',
-    shadowOpacity: 0.5,
+    position: 'absolute', zIndex:1,
+    shadowOpacity: 0.3,
     textShadowRadius: 4,
     textShadowOffset: {
-        width: 2,
+        width: 0,
         height: 2,  
     },
   }
