@@ -1,17 +1,18 @@
 import React, { useRef,useEffect } from "react";
-import { Animated, Text, View, StyleSheet, Button, ImageBackground,Dimensions} from "react-native";
+import { Animated, Text, View, StyleSheet, Button, ImageBackground,Easing} from "react-native";
 import * as Progress from 'react-native-progress';
 import {colors, fonts, padding, dimensions,margin,borderRadius, icon} from '../style/styleValues.js'
+import LottieView from 'lottie-react-native';
 // animated waiting screen. This will show until a volunteer joins.
 // need to implement waiting time
 const WaitingPage = () => {
   // fadeAnim will be used as the value for opacity. Initial Value: 0
-  const fadeAnim1 = useRef(new Animated.Value(0)).current;
-  const fadeAnim2 = useRef(new Animated.Value(0)).current;
-  const fadeAnim3 = useRef(new Animated.Value(0)).current;
-  
+  //const fadeAnim1 = useRef(new Animated.Value(0)).current;
+  //const fadeAnim2 = useRef(new Animated.Value(0)).current;
+  //const fadeAnim3 = useRef(new Animated.Value(0)).current;
+  const x = useRef(new Animated.Value(-220)).current
   // animation for woman fading in n out
-  useEffect(() => {
+  /*useEffect(() => {
       Animated.loop(
         Animated.sequence([
           Animated.timing(fadeAnim1, {
@@ -52,14 +53,41 @@ const WaitingPage = () => {
       ).start()
   
       })
+*/
 
+useEffect(() => {
+  Animated.loop(
+    Animated.sequence([
+      Animated.timing(x, {
+        toValue: 300,
+        duration: 8000,
+        easing:Easing.linear,
+        useNativeDriver: true
+      }),
+      Animated.timing(x, {
+        toValue: -250,
+        duration: 0,
+        useNativeDriver: true
+      }),
+      
+    ]),
+    {
+      //hopefully they wont have to wait for this long 
+      iterations: 100000000000
+    }
+  ).start()
+
+  })
   return (
     <View style={styles.container}>
       <ImageBackground source={require('../assets/waitingBackground.png')} style={styles.imageContainer}>
         <Text style={styles.text}>
         Thank you for your patience. You’ll be paired with your volunteer shortly.
         </Text>
-        <View style={styles.walk}>
+        <Animated.View style={{ transform: [{translateX: x}] }}>
+        <LottieView source={require('../assets/walkdog.json')} autoPlay loop style={{width:130}} />
+        </Animated.View>
+        {/* <View style={styles.walk}>
           <Animated.Image
           source={require('../assets/standing23.png')}
             style={[
@@ -91,8 +119,9 @@ const WaitingPage = () => {
           >
           </Animated.Image>
           
-        </View>
-          <Progress.Bar progress={0} height={5} width={dimensions.fullWidth*.9} indeterminate={true} indeterminateAnimationDuration={6000} animationType='timing' 
+        </View> */}
+       
+          <Progress.Bar progress={0} height={5} width={dimensions.fullWidth*.9} indeterminate={true} indeterminateAnimationDuration={8000} animationType='timing' 
           borderColor={colors.secondary} color={colors.primary} unfilledColor={colors.secondary}/>
       </ImageBackground>
     </View>
