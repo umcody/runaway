@@ -138,6 +138,7 @@ const styles = StyleSheet.create({
       fontSize: fonts.lg,
       lineHeight: fonts.lgLineHeight,
       paddingVertical:padding.md,
-      fontFamily:fonts.main
+      fontFamily:fonts.main,
+      color:colors.foreground
   }
 });

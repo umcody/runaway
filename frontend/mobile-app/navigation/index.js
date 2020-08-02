@@ -58,7 +58,7 @@ function CustomDrawerContent(props) {
     >
       <Text style={{ fontSize:fonts.lg,
         fontFamily:fonts.main,
-        paddingVertical:padding.md, }}>
+        paddingVertical:padding.md, color:colors.foreground}}>
         Information Pane
       </Text>
     </View>
@@ -68,7 +68,7 @@ function CustomDrawerContent(props) {
           Linking.openURL("https://www.instagram.com/runaway.app/");
         }}
         label="Instagram"
-        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm}}
+        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm-2}}
         icon={() => <AntDesign name="instagram" size={icon.md} color={colors.button} />}
       />
       <DrawerItem
@@ -76,7 +76,7 @@ function CustomDrawerContent(props) {
           Linking.openURL("https://www.facebook.com/runawayapp/");
         }}
         label="Facebook"
-        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm}}
+        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm-2}}
         icon={() => <Feather name="facebook" size={icon.md} color={colors.button} />}
       />
       <DrawerItem
@@ -84,14 +84,14 @@ function CustomDrawerContent(props) {
           Linking.openURL("https://twitter.com/runaway_app");
         }}
         label="Twitter"
-        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm}}
+        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm-2}}
         icon={() => <Feather name="twitter" size={icon.md} color={colors.button} />}
       />
       <DrawerItem
         onPress={() => {
           WebBrowser.openBrowserAsync("https://www.runawayapp.com/");
         }}
-        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm}}
+        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm-2}}
         label="Website"
         icon={() => (
           <MaterialCommunityIcons name="web" size={icon.md} color={colors.button} />
@@ -228,11 +228,12 @@ const MyDrawer = () =>{
         drawerContent={(props) => <CustomDrawerContent {...props} />}
         edgeWidth={0}
         drawerContentOptions={{
-          activeTintColor: colors.foreground,
+          backgroundColor:colors.background,
+          activeTintColor: colors.tertiary,
           activeBackgroundColor:colors.secondary,
           inactiveBackgroundColor: colors.background,
           itemStyle: { marginBottom: margin.sm },
-          labelStyle:{fontSize:fonts.sm,fontFamily:fonts.text}
+          labelStyle:{fontSize:fonts.sm,fontFamily:fonts.text,}
         }}
       >
         <SettingsDrawer.Screen

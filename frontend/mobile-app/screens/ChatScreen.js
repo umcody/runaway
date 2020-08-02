@@ -35,7 +35,7 @@ export default function ChatScreen({ navigation }) {
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity
-          style={{ paddingRight: padding.lg }}
+          style={{ paddingRight: padding.md }}
           onPress={() => navigation.navigate("EmergencyResources")}
         >
           <AntDesign name="exclamationcircleo" size={icon.md} color={colors.button} />
@@ -43,7 +43,7 @@ export default function ChatScreen({ navigation }) {
       ),
       headerLeft: () => (
         <TouchableOpacity
-          style={{ paddingLeft: padding.lg }}
+          style={{ paddingLeft: padding.md }}
           onPress={() => {
             return navigation.navigate("PostSurvey", { messages: messages });
           }}
@@ -57,7 +57,7 @@ export default function ChatScreen({ navigation }) {
     navigation.setOptions({
       headerLeft: () => (
         <TouchableOpacity
-          style={{ paddingLeft: padding.lg  }}
+          style={{ paddingLeft: padding.md  }}
           onPress={() => {
             return navigation.pop(1);
           }}
