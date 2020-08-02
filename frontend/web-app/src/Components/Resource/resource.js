@@ -93,7 +93,6 @@ class Resource extends React.Component {
             </div>
         )
     }
-
 }
 
 export default Resource;
