@@ -56,6 +56,7 @@ class BlogEditor extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                
                 <Text style = {styles.newPost}>
                     New Post
                 </Text>
