@@ -8,6 +8,8 @@ import Resource from './Components/Resource/resource';
 import Admin from "./Components/Admin/admin.js"
 import ChatObservation from './Components/Chat/chatObserve';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 import './App.css';
 
