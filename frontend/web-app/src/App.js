@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route} from 'react-router-dom';
-import BlogEditor from './Components/Blog/blogEditor';
+import BlogPage from './Components/Page/blogPage';
 
 import Register from './Components/Auth/register';
 import Login from './Components/Auth/login';
@@ -21,7 +21,7 @@ function App() {
       <Route exact path = "/login" component = {Login}/>
       <Route exact path = "/register" component = {Register}/>
       <Route exact path = "/chat/observe" component = {ChatObservation}/>
-      <Route exact path = "/blog/write" component = {BlogEditor}/>
+      <Route exact path = "/blog/write" component = {BlogPage}/>
       <Route exact path = "/resource/write" component = {Resource}/>
       <Route exact path = "/admin/overview" component = {Admin}/>
       <Route exact path = "/" component = {Login}/>

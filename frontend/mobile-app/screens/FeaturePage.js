@@ -6,6 +6,7 @@ import {TouchableOpacity,ScrollView } from 'react-native-gesture-handler';
 import { AntDesign } from "@expo/vector-icons";
 import { Link } from '@react-navigation/native';
 import {SafeAreaView } from 'react-native-safe-area-context';
+import { colors,fonts,padding,margin,icon, dimensions } from '../style/styleValues';
 const {width,height}= Dimensions.get('window') 
 // shows the feature category
 export default function FeaturePage({navigation,route}) {
@@ -43,84 +44,109 @@ export default function FeaturePage({navigation,route}) {
   const ChatFeatureCard = ({title}) => {
     return(
       <View style ={styles.cardContainer}>
-        <Text style={styles.featureTitle}>Chat</Text>
-        <Text>
+        <Text style={styles.featureTitle}>{title}</Text>
+        <Text style={styles.featureDescription}>
         {TEXT[0].text}
         </Text>
-        <TouchableOpacity onPress={()=>navigation.navigate('Chat')} style={styles.navigate}>
-        <Text style={{fontSize:16,color : "#2E5F85" }}>Go to {title}</Text>
+        <TouchableOpacity onPress={()=>navigation.navigate('PreChat')} style={styles.navigate}>
+        <Text style={styles.link}>Go to Messaging</Text>
+        </TouchableOpacity>
+      </View>
+    )
+  }
+  const FeedFeatureCard = ({title}) => {
+    return(
+      <View style ={styles.cardContainer}>
+        <Text style={styles.featureTitle}>{title}</Text>
+        <Text style={styles.featureDescription}>
+        {TEXT[1].text}
+        </Text>
+        <TouchableOpacity onPress={()=>navigation.navigate('Feed')} style={styles.navigate}>
+        <Text style={styles.link}>Go to Feed</Text>
         </TouchableOpacity>
       </View>
     )
   }
 
-  const FeatureCard = ({title,category,index}) => {
+  const ResourcesFeatureCard = ({title}) => {
     return(
       <View style ={styles.cardContainer}>
         <Text style={styles.featureTitle}>{title}</Text>
-        <Text>
-        {TEXT[index].text}
+        <Text style={styles.featureDescription}>
+        {TEXT[3].text}
         </Text>
-        <TouchableOpacity onPress={()=>navigation.replace('Feature',{category:category})} style={styles.navigate}>
-               <Text style={{fontSize:16,color : "#2E5F85" }}>Go to {title}</Text>
+        <TouchableOpacity onPress={()=>navigation.navigate("Resources")} style={styles.navigate}>
+               <Text style={styles.link}>Go to {title}</Text>
+          </TouchableOpacity>
+      </View>
+    )
+  }
+  const FAQFeatureCard = ({title}) => {
+    return(
+      <View style ={styles.cardContainer}>
+        <Text style={styles.featureTitle}>{title}</Text>
+        <Text style={styles.featureDescription}>
+        {TEXT[3].text}
+        </Text>
+        <TouchableOpacity onPress={()=>navigation.navigate("FAQ")} style={styles.navigate}>
+               <Text style={styles.link}>Go to {title}</Text>
           </TouchableOpacity>
       </View>
     )
   }
   return (
-    <SafeAreaView style={{ flex: 1,backgroundColor:'#fff'}}>
-      <ScrollView style={{ flex: 1, }} contentContainerStyle={{alignItems:'baseline'}}  >
+    <View style={{ flex: 1,backgroundColor:colors.background}}>
           <View style={styles.content}>
               <Text style ={styles.title}>{category}</Text>
-              <TouchableOpacity onPress={()=>navigation.goBack()} style={{paddingTop:30,paddingRight:20}}>
-               <AntDesign name="close" size={30} color="#fff" />
+              <TouchableOpacity onPress={()=>navigation.goBack()} style={{paddingTop:padding.lg,paddingRight:padding.md}}>
+               <AntDesign name="close" size={icon.md} color={colors.background} />
               </TouchableOpacity>
           </View>
           {category =="Messaging" ? 
               <ChatFeatureCard title="Chat"/>
             :
           category =="Feed" ?
-              (<View><FeatureCard title="Runaway Blogs" category ={category} index={1}/><FeatureCard title="Media" category ={category} index = {2}/></View>)
+             <FeedFeatureCard title="Runaway Blogs"/>
             :
           category =="Resources" ?
-              <FeatureCard title="Resources" category ={category} index={3}/>
+              <ResourcesFeatureCard title="Resources"/>
             :
-              <FeatureCard title="FAQs" category ={category} index={4}/>
+              <FAQFeatureCard title="FAQs"/>
           }
-
-      </ScrollView>
-      
-    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   title: {
-    color:'#fff',
-    fontSize:30,
-    paddingTop:30,
-    paddingLeft:30,
-    fontWeight:'bold',
+    color:colors.foreground,
+    fontSize:fonts.lg,
+    fontFamily:fonts.main,
+    paddingTop:padding.lg,
+    paddingLeft:padding.lg,
+    
   },
   content: {
-    height:height/3,width:width,
-    backgroundColor:'#2E5F85',
+    height:dimensions.fullHeight/4,width:dimensions.fullWidth,
+    backgroundColor:colors.primary,
     justifyContent:'space-between',
     alignItems:'flex-start',
     overflow:'hidden',
     flexDirection:'row'
   },
   cardContainer: {
-    padding:30,
-    borderBottomWidth:1,width:"100%",borderColor:"#ACDAFF"
+    padding:padding.lg,width:dimensions.fullWidth,borderColor:colors.primary
   },
   featureTitle:{
-    fontSize:24, fontWeight:'bold', color : "#2E5F85",paddingBottom:10
+    fontSize:fonts.lg, fontFamily:fonts.main, color : colors.tertiary,paddingBottom:padding.sm
   },
   featureDescription:{
-   
+   fontSize:fonts.sm,fontFamily:fonts.text
   },
   navigate:{
-    paddingTop:30,paddingRight:20
+    paddingTop:padding.lg,paddingRight:padding.md
+  },
+  link:{
+    fontSize:fonts.sm,color : colors.tertiary,fontFamily:fonts.text,textDecorationLine:'underline'
   }
 });

@@ -9,7 +9,9 @@ import {
 } from "react-native";
 import { CheckBox, Rating, AirbnbRating } from "react-native-elements";
 import { StackActions } from "@react-navigation/native";
+import {fonts,padding,margin,borderRadius,colors,icon,dimensions} from "../style/styleValues"
 import axios from "axios";
+
 //need to still get the current ChatScreen that way messages has the actual messages.
 //import { messages } from "./ChatScreen.js";
 
@@ -31,7 +33,7 @@ export default function PreChatSurvey({ route, navigation }) {
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <View style={styles.container}>
           {/* message for the data collection */}
-          <Text style={styles.message}>
+          <Text allowFontScaling={false} style={styles.message}>
             If you liked our service and would like to help us improve in the
             future, please consider letting us anonymously save chat data by
             pressing this button. Thank you!
@@ -50,14 +52,14 @@ export default function PreChatSurvey({ route, navigation }) {
             containerStyle={styles.checkBoxContainer}
           />
           {/* this text and then the AirbnbRating after it are the rating function for after the chat */}
-          <Text style={styles.message}>Rate Your Chat:</Text>
+          <Text style={styles.check}>Rate Your Chat:</Text>
 
           <View style={styles.starRating}>
             <AirbnbRating
-              defaultRating={3}
-              size={30}
-              selectedColor={"#FF9EDA"}
-              reviewColor={"#2E5F85"}
+              defaultRating={0}
+              size={icon.lg}
+              selectedColor={colors.button}
+              reviewColor={colors.tertiary}
               showRating={false}
               onFinishRating={ratingFun}
             />
@@ -92,7 +94,7 @@ export default function PreChatSurvey({ route, navigation }) {
                 navigation.dispatch(StackActions.replace("Feels"));
               }}
             >
-              <Text style={{ color: "#FFFFFF", fontSize: 24 }}>Submit</Text>
+              <Text style={{ color: "#FFFFFF", fontSize: fonts.lg,fontFamily:fonts.subheader}}>Submit</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -101,8 +103,6 @@ export default function PreChatSurvey({ route, navigation }) {
   );
 }
 
-const windowW = Dimensions.get("window").width;
-const windowH = Dimensions.get("window").height;
 
 const heightModal = 475;
 const widthModal = 270;
@@ -111,15 +111,16 @@ const widthModal = 270;
 const styles = StyleSheet.create({
   message: {
     color: "#2E5F85",
-    fontStyle: "normal",
-    fontSize: 24,
+    fontFamily:fonts.main,
+    fontSize: fonts.lg,
+    lineHeight:fonts.lgLineHeight,
     alignItems: "center",
     textAlign: "center",
-    padding: 10,
+    padding: padding.sm,
   },
   fullContainer: {
     flex: 1,
-    backgroundColor: "#E3F1FC",
+    backgroundColor: colors.secondary,
   },
   container: {
     alignSelf: "center",
@@ -127,27 +128,29 @@ const styles = StyleSheet.create({
     width: widthModal,
     alignItems: "center",
     height: heightModal,
-    marginTop: windowH / 2 - heightModal / 2,
+    marginTop: dimensions.fullHeight / 2 - heightModal / 2,
 
     borderRadius: 30,
   },
   buttonDismiss: {
-    borderRadius: 30,
-    borderWidth: 2,
-    backgroundColor: "#FF9EDA",
-    borderColor: "#FF9EDA",
+    borderRadius: borderRadius.lg,
+    borderWidth: 1,
+    backgroundColor: colors.button,
+    borderColor: colors.button,
     height: 35,
     width: 100,
     alignItems: "center",
     textAlign: "center",
+    justifyContent:'center'
   },
   shareCheck: {
     flexDirection: "row",
   },
   check: {
-    fontSize: 24,
-    color: "#2E5F85",
-    fontWeight: "normal",
+    fontSize: fonts.lg,
+    color: colors.tertiary,
+    fontFamily:fonts.subheader,
+    padding: padding.sm,
   },
   checkBoxContainer: {
     backgroundColor: "#FFFFFF",
@@ -157,10 +160,9 @@ const styles = StyleSheet.create({
     marginVertical: 0,
   },
   starRating: {
-    marginBottom: 15,
-    marginTop: 15,
+    marginVertical: margin.md,
   },
   buttonContainer: {
-    marginTop: 20,
+    marginTop: margin.md,
   },
 });

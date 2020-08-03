@@ -11,32 +11,34 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import * as WebBrowser from "expo-web-browser";
 import { Feather,Ionicons } from "@expo/vector-icons";
 import TeamCard from "../components/MemberInfo";
+import {colors, fonts, padding, dimensions,margin,borderRadius, icon} from '../style/styleValues.js'
+
 // about us page 
 
 export default function AboutUs({navigation}) {
   navigation.setOptions(
     {headerLeft: () => (
-    <Ionicons name="ios-arrow-back" size={30} color="#FF9EDA" style={{ paddingLeft: 25 }} onPress={() => navigation.goBack()}/>
+    <Ionicons name="ios-arrow-back" size={icon.md} color="#FF9EDA" style={{ paddingLeft: padding.md }} onPress={() => navigation.goBack()}/>
   ),})
   return (
     <View style={styles.container}>
       <ScrollView style={{flex:1}}>
         <View style={styles.about}>
-          <Text style={styles.title}>About Us</Text>
+          <Text style={styles.title}>Runaway</Text>
           <Text style={styles.text}>
             Runaway is a social entrepreneurial venture that aims to spread
             mental health awareness and make the world happier. </Text>
           <TouchableOpacity activeOpacity={0.9} style={styles.button} onPress={() => {
           WebBrowser.openBrowserAsync("https://www.runawayapp.com/");
         }}>
-            <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 18 }}>
+            <Text style={{ color: colors.background, fontSize: fonts.md,fontFamily:fonts.subheader }}>
               Visit Our Site
             </Text>
           </TouchableOpacity>
         </View>
         <View style={styles.team} activeOpacity={0.9}>
           <Text style={styles.subtitle}>Team</Text>
-          <Text style={{ fontSize: 18, color: "#2E5F85", paddingBottom: 20 }}>
+          <Text style={styles.text2}>
             Meet the team behind Runaway.
           </Text>
           <View style={{ alignItems: "center", width: "100%" }}>
@@ -68,7 +70,8 @@ export default function AboutUs({navigation}) {
               role="Project Manager"
             ></TeamCard>
             <TeamCard name="Pranaya Jajoo" role="Project Manager"></TeamCard>
-            <TeamCard name="Sandy Lee" role="Product Designer"></TeamCard>
+            <TeamCard name="Hojung Lee" role="Product Designer"></TeamCard>
+            <TeamCard name="Kimberly Ezeama" role="Product Designer"></TeamCard>
             <TeamCard name="Cody Um" role="Lead Engineer"></TeamCard>
             <TeamCard name="Yasir Azizi" role="Front-end Developer"></TeamCard>
             <TeamCard name="Alex Chao" role="Front-end Developer"></TeamCard>
@@ -86,76 +89,71 @@ export default function AboutUs({navigation}) {
     </View>
   );
 }
-const windowW = Dimensions.get("window").width;
-const windowH = Dimensions.get("window").height;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: colors.background,
   },
   title: {
-    fontFamily: "System",
-    fontStyle: "normal",
-    fontWeight: "normal",
-    fontSize: windowW * 0.08,
-    lineHeight: 30,
-    color: "#fff",
-    paddingBottom: 10,
+    fontFamily: fonts.main,
+    fontSize: fonts.lg,
+    lineHeight: fonts.lgLineHeight,
+    color: colors.background,
+    paddingBottom: padding.sm,
     textDecorationLine: "underline",
   },
   subtitle: {
-    fontFamily: "System",
-    fontStyle: "normal",
-    fontWeight: "normal",
-    fontSize: windowW * 0.08,
-    lineHeight: 30,
-    color: "#2E5F85",
-    paddingBottom: 10,
+    fontFamily: fonts.main,
+    fontSize: fonts.lg,
+    lineHeight: fonts.lgLineHeight,
+    color: colors.tertiary,
+    paddingBottom: padding.sm,
     textDecorationLine: "underline",
   },
-  pSubtitle: {
-    fontFamily: "System",
-    fontStyle: "normal",
-    fontWeight: "normal",
-    fontSize: windowW * 0.07,
-    lineHeight: 40,
-    color: "#2E5F85",
-  },
   about: {
-    padding: 20,
-    backgroundColor: "#2E5F85",
+    padding: padding.md,
+    backgroundColor: colors.tertiary,
   },
   text: {
-    color: "#fff",
-    paddingBottom: 10,
-    fontSize: 18,
+    color: colors.background,
+    paddingBottom: padding.sm,
+    fontSize: fonts.sm,
+    fontFamily:fonts.text
+  },
+  text2: {
+    color: colors.tertiary,
+    paddingBottom: padding.sm,
+    fontSize: fonts.sm,
+    fontFamily:fonts.text
   },
   team: {
-    backgroundColor: "#E3F1FC",
-    width: "100%",
-    padding: 20,
+    backgroundColor: colors.secondary,
+    width: dimensions.fullWidth,
+    padding: padding.md,
     flexDirection: "column",
     alignItems: "baseline",
   },
   button: {
-    backgroundColor: "#FF9EDA",
+    backgroundColor: colors.button,
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 12,
-    borderRadius: 20,
-    marginTop: 20,
+    paddingVertical: padding.sm,
+    borderRadius: borderRadius.md,
+    marginTop: margin.md,
     marginHorizontal:50
   },
   partners: {
-    padding: 20,
-    backgroundColor: "#E3F1FC",
+    padding: padding.md,
+    backgroundColor: colors.secondary,
     flexDirection: "row",
     alignItems: "center",
   },
   teamTitle: {
-    fontSize: 24,
-    color: "#2E5F85",
-    paddingVertical: 10,
+    fontFamily: fonts.main,
+    fontSize: fonts.lg,
+    lineHeight: fonts.lgLineHeight,
+    color: colors.tertiary,
+    paddingVertical: padding.sm,
   },
 });

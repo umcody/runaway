@@ -1,47 +1,48 @@
 import React, { useRef,useEffect } from "react";
-import { Animated, Text, View, StyleSheet, Button, ImageBackground,Dimensions} from "react-native";
+import { Animated, Text, View, StyleSheet, Button, ImageBackground,Easing} from "react-native";
 import * as Progress from 'react-native-progress';
-
+import {colors, fonts, padding, dimensions,margin,borderRadius, icon} from '../style/styleValues.js'
+import LottieView from 'lottie-react-native';
 // animated waiting screen. This will show until a volunteer joins.
 // need to implement waiting time
 const WaitingPage = () => {
   // fadeAnim will be used as the value for opacity. Initial Value: 0
-  const fadeAnim1 = useRef(new Animated.Value(0)).current;
-  const fadeAnim2 = useRef(new Animated.Value(0)).current;
-  const fadeAnim3 = useRef(new Animated.Value(0)).current;
-  
+  //const fadeAnim1 = useRef(new Animated.Value(0)).current;
+  //const fadeAnim2 = useRef(new Animated.Value(0)).current;
+  //const fadeAnim3 = useRef(new Animated.Value(0)).current;
+  const x = useRef(new Animated.Value(-220)).current
   // animation for woman fading in n out
-  useEffect(() => {
+  /*useEffect(() => {
       Animated.loop(
         Animated.sequence([
           Animated.timing(fadeAnim1, {
             toValue: 1,
-            duration: 1500,
+            duration: 1000,
             useNativeDriver: true
           }),
           Animated.timing(fadeAnim1, {
             toValue: 0,
-            duration: 1500,
+            duration: 1000,
             useNativeDriver: true
           }),
           Animated.timing(fadeAnim2, {
             toValue: 1,
-            duration: 1500,
+            duration: 1000,
             useNativeDriver: true
           }),
           Animated.timing(fadeAnim2, {
             toValue: 0,
-            duration: 1500,
+            duration: 1000,
             useNativeDriver: true
           }),
           Animated.timing(fadeAnim3, {
             toValue: 1,
-            duration: 1500,
+            duration: 1000,
             useNativeDriver: true
           }),
           Animated.timing(fadeAnim3, {
             toValue: 0,
-            duration: 1400,
+            duration: 900,
             useNativeDriver: true
           }),
         ]),
@@ -52,14 +53,41 @@ const WaitingPage = () => {
       ).start()
   
       })
+*/
 
+useEffect(() => {
+  Animated.loop(
+    Animated.sequence([
+      Animated.timing(x, {
+        toValue: 300,
+        duration: 8000,
+        easing:Easing.linear,
+        useNativeDriver: true
+      }),
+      Animated.timing(x, {
+        toValue: -250,
+        duration: 0,
+        useNativeDriver: true
+      }),
+      
+    ]),
+    {
+      //hopefully they wont have to wait for this long 
+      iterations: 100000000000
+    }
+  ).start()
+
+  })
   return (
     <View style={styles.container}>
       <ImageBackground source={require('../assets/waitingBackground.png')} style={styles.imageContainer}>
         <Text style={styles.text}>
         Thank you for your patience. You’ll be paired with your volunteer shortly.
         </Text>
-        <View style={styles.walk}>
+        <Animated.View style={{ transform: [{translateX: x}] }}>
+        <LottieView source={require('../assets/walkdog.json')} autoPlay loop style={{width:130}} />
+        </Animated.View>
+        {/* <View style={styles.walk}>
           <Animated.Image
           source={require('../assets/standing23.png')}
             style={[
@@ -91,47 +119,44 @@ const WaitingPage = () => {
           >
           </Animated.Image>
           
-        </View>
-          <Progress.Bar progress={0} height={5} width={300} indeterminate={true} indeterminateAnimationDuration={9000} animationType='timing' 
-          borderColor='#E3F1FC' color="#ACDAFF" unfilledColor='#E3F1FC'/>
+        </View> */}
+       
+          <Progress.Bar progress={0} height={5} width={dimensions.fullWidth*.9} indeterminate={true} indeterminateAnimationDuration={8000} animationType='timing' 
+          borderColor={colors.secondary} color={colors.primary} unfilledColor={colors.secondary}/>
       </ImageBackground>
     </View>
   );
 }
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor:colors.background
   },
   imageContainer:{
-     flex: 1, flexDirection: 'column',  alignItems: 'center',width:"100%"
+     flex: 1, flexDirection: 'column',  alignItems: 'center',width:dimensions.fullWidth,height:dimensions.fullHeight*.95
   },
   fadingContainer: {
-    marginTop:windowHeight*.2,
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-  },
-  fadingText: {
-    fontSize: 28,
-    textAlign: "center",
-    margin: 10
+    marginTop:dimensions.fullHeight*.25,
+    paddingVertical: padding.sm,
+    paddingHorizontal: padding.md,
   },
   walk:{
     flexDirection:'row',
-    width:300,
+    width:dimensions.fullWidth*.9,
     justifyContent:'space-between', 
-    marginBottom:10
+    marginBottom:margin.sm
   },
   text:{
-    fontSize: 24,
-    lineHeight: 24,
+    fontSize: fonts.lg,
+    fontFamily: fonts.main,
+    lineHeight: fonts.lgLineHeight,
     textAlign: 'center',
-    color: "#2E5F85",
-    paddingHorizontal:12,
-    marginTop:windowHeight*.2
+    color: colors.tertiary,
+    paddingHorizontal:padding.md,
+    marginTop:dimensions.fullHeight*.22
   }
 });
 

@@ -107,6 +107,7 @@ class BlogEditor extends React.Component {
                 <div class='row'>
                     <div class='col text-left'>
                     <h4> Text: </h4>
+
                     <ReactQuill
                         style={blogStyle}
                         value={this.state.blogContent}

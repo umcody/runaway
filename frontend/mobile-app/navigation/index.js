@@ -35,26 +35,30 @@ import SiteMapNav from "./SiteMapNav";
 import SignInPage from "../screens/SignInPage";
 import ResourceNav from "./ResourceNav";
 
+//styling
+import {stylesDefault, icon, colors, dimensions,padding,fonts, margin} from '../style/styleValues'
+import { Colors } from "react-native/Libraries/NewAppScreen";
+
 const BottomTabNavigation = createBottomTabNavigator();
 const ChatStack = createStackNavigator();
 const SettingsDrawer = createDrawerNavigator();
 const AboutStack = createStackNavigator();
+const RootStack = createStackNavigator();
 
-const windowW = Dimensions.get("window").width;
-const windowH = Dimensions.get("window").height;
 
 function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props}>
     <View
       style={{
-        backgroundColor: '#fff',
-        height: 50,
-        alignItems: 'center',
+        backgroundColor: colors.background,
         justifyContent: 'center',
+        paddingLeft:15
       }}
     >
-      <Text style={{ color: '#ACDAFF', fontSize: 26 }}>
+      <Text style={{ fontSize:fonts.lg,
+        fontFamily:fonts.main,
+        paddingVertical:padding.md, color:colors.foreground}}>
         Information Pane
       </Text>
     </View>
@@ -64,29 +68,33 @@ function CustomDrawerContent(props) {
           Linking.openURL("https://www.instagram.com/runaway.app/");
         }}
         label="Instagram"
-        icon={() => <AntDesign name="instagram" size={32} color="#FF9EDA" />}
+        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm-2}}
+        icon={() => <AntDesign name="instagram" size={icon.md} color={colors.button} />}
       />
       <DrawerItem
         onPress={() => {
           Linking.openURL("https://www.facebook.com/runawayapp/");
         }}
         label="Facebook"
-        icon={() => <Feather name="facebook" size={32} color="#FF9EDA" />}
+        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm-2}}
+        icon={() => <Feather name="facebook" size={icon.md} color={colors.button} />}
       />
       <DrawerItem
         onPress={() => {
           Linking.openURL("https://twitter.com/runaway_app");
         }}
         label="Twitter"
-        icon={() => <Feather name="twitter" size={32} color="#FF9EDA" />}
+        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm-2}}
+        icon={() => <Feather name="twitter" size={icon.md} color={colors.button} />}
       />
       <DrawerItem
         onPress={() => {
           WebBrowser.openBrowserAsync("https://www.runawayapp.com/");
         }}
+        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm-2}}
         label="Website"
         icon={() => (
-          <MaterialCommunityIcons name="web" size={32} color="#FF9EDA" />
+          <MaterialCommunityIcons name="web" size={icon.md} color={colors.button} />
         )}
       />
     </DrawerContentScrollView>
@@ -98,14 +106,14 @@ const BottomTab = ({ navigation }) => {
     <BottomTabNavigation.Navigator
       tabBarOptions={{
         showLabel: false,
-        inactiveTintColor: "#ACDAFF",
-        activeTintColor: "#2E5F85",
+        inactiveTintColor: colors.primary,
+        activeTintColor: colors.tertiary,
         style: {
-          backgroundColor: "white",
-          height: windowH * 0.085,
-          borderTopColor: "#ACDAFF",
-          borderTopWidth: 0,
-          elevation:0
+          backgroundColor: colors.background,
+          height: (dimensions.fullHeight >800) ? dimensions.fullHeight*.1: dimensions.fullHeight * 0.085,
+          borderTopColor: colors.secondary,
+          borderTopWidth: 1,
+          elevation:1
         },
       }}
     >
@@ -118,19 +126,18 @@ const BottomTab = ({ navigation }) => {
             <MaterialCommunityIcons
               name="home-outline"
               color={color}
-              size={33}
+              size={icon.lg}
             />
           ),
         }}
       />
       <BottomTabNavigation.Screen
-        name="Chat"
+        name="PreChat"
         component={Chat}
         options={{
-          tabBarVisible: false,
           tabBarLabel: "Chat",
           tabBarIcon: ({ color }) => (
-            <MaterialIcons name="chat-bubble-outline" color={color} size={28} />
+            <MaterialIcons name="chat-bubble-outline" color={color} size={icon.md} />
           ),
         }}
 />
@@ -140,7 +147,7 @@ const BottomTab = ({ navigation }) => {
         options={{
           tabBarLabel: "Resources",
           tabBarIcon: ({ color }) => (
-            <Feather name="book-open" color={color} size={28} />
+            <Feather name="book-open" color={color} size={icon.md} />
           ),
         }}
       />
@@ -164,9 +171,6 @@ const Chat = ({ navigation }) => {
           options={{
             headerTitle: "PreChat Survey",
             headerTitleAlign: "center",
-            headerTitleStyle: {
-              color: "#2E5F85",
-            },
             headerLeft: () => (
               <HeaderBackButton
                 labelVisible={false}
@@ -184,9 +188,8 @@ const Chat = ({ navigation }) => {
           options={{
             headerTitle: "How are you feeling?",
             headerTitleAlign: "center",
-            headerTitleStyle: {
-              color: "#2E5F85",
-            },
+            headerStyle: stylesDefault.headerStyle,
+            headerTitleStyle: stylesDefault.headerTitleStyle,
             headerLeft: () => (
               <HeaderBackButton
                 labelVisible={false}
@@ -196,32 +199,6 @@ const Chat = ({ navigation }) => {
                 }}
               />
             ),
-          }}
-        />
-        <ChatStack.Screen
-          name="Chat"
-          component={ChatScreen}
-          options={{
-            title: "Chat",
-            headerTitleAlign: "center",
-            headerTitleStyle: styles.headerTitleStyle,
-            headerStyle: styles.headerStyle,
-            gestureEnabled:false
-          }}
-        />
-        <ChatStack.Screen
-          name="PostSurvey"
-          component={PostChatSurvey}
-          options={{ headerShown: false,gestureEnabled:false}}
-          
-        />
-        <ChatStack.Screen
-          name="EmergencyResources"
-          component={EmergencyHotlinesScreen}
-          options={{
-            title: "Emergency Resources",
-            headerTitleStyle: styles.headerTitleStyle,
-            headerStyle: styles.headerStyle,
           }}
         />
       </ChatStack.Navigator>
@@ -236,7 +213,7 @@ const About = () => {
         name="About"
         component={AboutUs}
         options={{
-          title: "",
+          title: "About Us",
           headerTitleAlign: "center",
           headerTitleStyle: styles.headerTitleStyle,
           headerStyle: styles.headerStyle,
@@ -245,12 +222,19 @@ const About = () => {
     </AboutStack.Navigator>
   );
 };
-export default function MyDrawer() {
+const MyDrawer = () =>{
   return (
-    <NavigationContainer>
       <SettingsDrawer.Navigator
         drawerContent={(props) => <CustomDrawerContent {...props} />}
         edgeWidth={0}
+        drawerContentOptions={{
+          backgroundColor:colors.background,
+          activeTintColor: colors.tertiary,
+          activeBackgroundColor:colors.secondary,
+          inactiveBackgroundColor: colors.background,
+          itemStyle: { marginBottom: margin.sm },
+          labelStyle:{fontSize:fonts.sm,fontFamily:fonts.text,}
+        }}
       >
         <SettingsDrawer.Screen
           name="Home"
@@ -260,55 +244,65 @@ export default function MyDrawer() {
           }}
         />
         <SettingsDrawer.Screen name="About Us" component={About} />
-        <SettingsDrawer.Screen name="FAQs" component={BottomTab} />
+        {/*<SettingsDrawer.Screen name="FAQs" component={BottomTab} />*/}
         <SettingsDrawer.Screen name="Privacy Policy" component={BottomTab} />
         <SettingsDrawer.Screen name="Help" component={SiteMapNav} />
         <SettingsDrawer.Screen name="Sign In" component={SignInPage} />
       </SettingsDrawer.Navigator>
-    </NavigationContainer>
+    
   );
 }
 
+export default function MyApp(){
+  return(
+    <NavigationContainer>
+      <RootStack.Navigator>
+      {/* <RootStack.Screen
+        name="Sign"
+        component={SignInPage}
+        options={{
+          headerShown: false,
+        }}
+      /> */}
+      <RootStack.Screen
+        name="Home"
+        component={MyDrawer}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <RootStack.Screen
+          name="Chat"
+          component={ChatScreen}
+          options={{
+            title: "Chat",
+            headerTitleAlign: "center",
+            headerTitleStyle: styles.headerTitleStyle,
+            headerStyle: styles.headerStyle,
+            gestureEnabled:false
+          }}
+        />
+        <RootStack.Screen
+          name="PostSurvey"
+          component={PostChatSurvey}
+          options={{ headerShown: false,gestureEnabled:false}}
+          
+        />
+        <RootStack.Screen
+          name="EmergencyResources"
+          component={EmergencyHotlinesScreen}
+          options={{
+            title: "Emergency Resources",
+            headerTitleStyle: styles.headerTitleStyle,
+            headerStyle: styles.headerStyle,
+          }}
+        />
+      </RootStack.Navigator>
+    </NavigationContainer>
+  )
+}
 const styles = StyleSheet.create({
-  homeIndicator: {
-    backgroundColor: "#FF9EDA",
-    position: "absolute",
-    height: 5,
-    top: windowH - 13,
-    left: windowW / 2 - 67.5,
-    width: 135,
-    borderRadius: 2.5,
-  },
-  profile: {
-    position: "absolute",
-    left: 15,
-    top: 25,
-    width: 32,
-    height: 32,
-  },
-  headerTitleStyle: {
-    fontFamily: "System",
-    fontStyle: "normal",
-    fontWeight: "normal",
-    fontSize: 24,
-    lineHeight: 30,
-    color: "#2E5F85",
-  },
-  headerStyle: {
-    borderBottomWidth: 0,
-    shadowColor: "transparent",
-    backgroundColor: "#fff",
-    height: windowH / 9,
-    borderBottomColor: "#ACDAFF",
-    elevation:0,
-    
-    
-  },
-  profilePic: {
-    borderLeftWidth: 10,
-  },
-  profileTitle: {
-    color: "#ACDAFF",
-    fontSize: 20,
-  },
+  headerTitleStyle: stylesDefault.headerTitleStyle,
+
+  headerStyle: stylesDefault.headerStyle,
 });
