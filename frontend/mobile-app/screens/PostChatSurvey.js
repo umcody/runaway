@@ -54,7 +54,7 @@ export default function PreChatSurvey({ route, navigation }) {
 
           <View style={styles.starRating}>
             <AirbnbRating
-              defaultRating={3}
+              defaultRating={0}
               size={30}
               selectedColor={"#FF9EDA"}
               reviewColor={"#2E5F85"}
@@ -92,7 +92,7 @@ export default function PreChatSurvey({ route, navigation }) {
                 navigation.dispatch(StackActions.replace("Feels"));
               }}
             >
-              <Text style={{ color: "#FFFFFF", fontSize: 24 }}>Submit</Text>
+              <Text style={{ color: "#FFFFFF", fontSize: 24 }}>Exit</Text>
             </TouchableOpacity>
           </View>
         </View>

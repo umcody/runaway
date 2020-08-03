@@ -9,6 +9,7 @@ import {
   ScrollView,
 } from "react-native";
 import { CheckBox } from "react-native-elements";
+import axios from "axios";
 
 export default function Chat({ navigation }) {
   const [agree, setAgree] = useState(false);
@@ -87,116 +88,128 @@ export default function Chat({ navigation }) {
             }}
           />
           <Text style={styles.question}>How are you feeling?</Text>
-          <CheckBox
-            title="Happy"
-            checked={happy}
-            onPress={() => {
-              setHappy(!happy);
-            }}
-            textStyle={styles.check}
-            uncheckedColor="#ACDAFF"
-            checkedColor="#FF9EDA"
-            containerStyle={styles.questionCheckContainer}
-          />
-          <CheckBox
-            title="Sad"
-            checked={sad}
-            onPress={() => {
-              setSad(!sad);
-            }}
-            textStyle={styles.check}
-            uncheckedColor="#ACDAFF"
-            checkedColor="#FF9EDA"
-            containerStyle={styles.questionCheckContainer}
-          />
-          <CheckBox
-            title="Fearful"
-            checked={fearful}
-            onPress={() => {
-              setFearful(!fearful);
-            }}
-            textStyle={styles.check}
-            uncheckedColor="#ACDAFF"
-            checkedColor="#FF9EDA"
-            containerStyle={styles.questionCheckContainer}
-          />
-          <CheckBox
-            title="Angry"
-            checked={angry}
-            onPress={() => {
-              setAngry(!angry);
-            }}
-            textStyle={styles.check}
-            uncheckedColor="#ACDAFF"
-            checkedColor="#FF9EDA"
-            containerStyle={styles.questionCheckContainer}
-          />
-          <CheckBox
-            title="Shameful"
-            checked={shameful}
-            onPress={() => {
-              setShameful(!shameful);
-            }}
-            textStyle={styles.check}
-            uncheckedColor="#ACDAFF"
-            checkedColor="#FF9EDA"
-            containerStyle={styles.questionCheckContainer}
-          />
-          <CheckBox
-            title="Frustrated"
-            checked={frustrated}
-            onPress={() => {
-              setFrustated(!frustrated);
-            }}
-            textStyle={styles.check}
-            uncheckedColor="#ACDAFF"
-            checkedColor="#FF9EDA"
-            containerStyle={styles.questionCheckContainer}
-          />
-          <CheckBox
-            title="Embarrassed"
-            checked={embarrassed}
-            onPress={() => {
-              setEmbarrassed(!embarrassed);
-            }}
-            textStyle={styles.check}
-            uncheckedColor="#ACDAFF"
-            checkedColor="#FF9EDA"
-            containerStyle={styles.questionCheckContainer}
-          />
-          <CheckBox
-            title="Stressed"
-            checked={stressed}
-            onPress={() => {
-              setStressed(!stressed);
-            }}
-            textStyle={styles.check}
-            uncheckedColor="#ACDAFF"
-            checkedColor="#FF9EDA"
-            containerStyle={styles.questionCheckContainer}
-          />
-          <CheckBox
-            title="Disgusted"
-            checked={disgusted}
-            onPress={() => {
-              setDisgusted(!disgusted);
-            }}
-            textStyle={styles.check}
-            uncheckedColor="#ACDAFF"
-            checkedColor="#FF9EDA"
-            containerStyle={styles.questionCheckContainer}
-          />
-          <CheckBox
-            title="Surprised"
-            checked={surprised}
-            onPress={() => {
-              setSurprised(!surprised);
-            }}
-            textStyle={styles.check}
-            uncheckedColor="#ACDAFF"
-            checkedColor="#FF9EDA"
-            containerStyle={styles.questionCheckContainer}
-          />
+          {/* //
+          //
+          // */}
+          <View style={styles.feels}>
+            <View>
+              <CheckBox
+                title="Happy"
+                checked={happy}
+                onPress={() => {
+                  setHappy(!happy);
+                }}
+                textStyle={styles.check}
+                uncheckedColor="#ACDAFF"
+                checkedColor="#FF9EDA"
+                containerStyle={styles.questionCheckContainer}
+              />
+              <CheckBox
+                title="Sad"
+                checked={sad}
+                onPress={() => {
+                  setSad(!sad);
+                }}
+                textStyle={styles.check}
+                uncheckedColor="#ACDAFF"
+                checkedColor="#FF9EDA"
+                containerStyle={styles.questionCheckContainer}
+              />
+              <CheckBox
+                title="Fearful"
+                checked={fearful}
+                onPress={() => {
+                  setFearful(!fearful);
+                }}
+                textStyle={styles.check}
+                uncheckedColor="#ACDAFF"
+                checkedColor="#FF9EDA"
+                containerStyle={styles.questionCheckContainer}
+              />
+              <CheckBox
+                title="Angry"
+                checked={angry}
+                onPress={() => {
+                  setAngry(!angry);
+                }}
+                textStyle={styles.check}
+                uncheckedColor="#ACDAFF"
+                checkedColor="#FF9EDA"
+                containerStyle={styles.questionCheckContainer}
+              />
+              <CheckBox
+                title="Shameful"
+                checked={shameful}
+                onPress={() => {
+                  setShameful(!shameful);
+                }}
+                textStyle={styles.check}
+                uncheckedColor="#ACDAFF"
+                checkedColor="#FF9EDA"
+                containerStyle={styles.questionCheckContainer}
+              />
+            </View>
+            {/* //
+          //
+          // */}
+            <View>
+              <CheckBox
+                title="Frustrated"
+                checked={frustrated}
+                onPress={() => {
+                  setFrustated(!frustrated);
+                }}
+                textStyle={styles.check}
+                uncheckedColor="#ACDAFF"
+                checkedColor="#FF9EDA"
+                containerStyle={styles.questionCheckContainer}
+              />
+              <CheckBox
+                title="Embarrassed"
+                checked={embarrassed}
+                onPress={() => {
+                  setEmbarrassed(!embarrassed);
+                }}
+                textStyle={styles.check}
+                uncheckedColor="#ACDAFF"
+                checkedColor="#FF9EDA"
+                containerStyle={styles.questionCheckContainer}
+              />
+              <CheckBox
+                title="Stressed"
+                checked={stressed}
+                onPress={() => {
+                  setStressed(!stressed);
+                }}
+                textStyle={styles.check}
+                uncheckedColor="#ACDAFF"
+                checkedColor="#FF9EDA"
+                containerStyle={styles.questionCheckContainer}
+              />
+              <CheckBox
+                title="Disgusted"
+                checked={disgusted}
+                onPress={() => {
+                  setDisgusted(!disgusted);
+                }}
+                textStyle={styles.check}
+                uncheckedColor="#ACDAFF"
+                checkedColor="#FF9EDA"
+                containerStyle={styles.questionCheckContainer}
+              />
+              <CheckBox
+                title="Surprised"
+                checked={surprised}
+                onPress={() => {
+                  setSurprised(!surprised);
+                }}
+                textStyle={styles.check}
+                uncheckedColor="#ACDAFF"
+                checkedColor="#FF9EDA"
+                containerStyle={styles.questionCheckContainer}
+              />
+            </View>
+          </View>
           <Text style={styles.question}>What brings you to this chat?</Text>
           <CheckBox
             title="Understanding Emotions/Feelings"
@@ -297,8 +310,82 @@ export default function Chat({ navigation }) {
             disabled={skipNext}
             onPress={() => {
               navigation.navigate("Chat");
+              if (yes == true) {
+                axios
+                  .post(
+                    //need address for this
+                    "https://runaway-practicum.herokuapp.com/api/volunteer/survey",
+                    {
+                      Happy: happy,
+                      Sad: sad,
+                      Fearful: fearful,
+                      Angry: angry,
+                      Shameful: shameful,
+                      Frustrated: frustrated,
+                      Embarrassed: embarrassed,
+                      Stressed: stressed,
+                      Disgusted: disgusted,
+                      Surprised: surprised,
+                      Emotions_Feelings: checkedOne,
+                      Life_Challenges: checkedTwo,
+                      Use_Abuse: checkedThree,
+                      Anxiety_Depression: checkedFour,
+                      Frienship_Relationship: checkedFive,
+                      Unhealthy_Behaviors: checkedSix,
+                      Suicidal_Thoughts: true,
+                    }
+                  )
+                  .then(
+                    (response) => {
+                      console.log(response);
+                    },
+                    (error) => {
+                      console.log(error);
+                    }
+                  );
+              }
+              if (no == true || (yes == false && no == false)) {
+                axios
+                  .post(
+                    //need address for this
+                    "https://runaway-practicum.herokuapp.com/api/volunteer/survey",
+                    {
+                      Happy: happy,
+                      Sad: sad,
+                      Fearful: fearful,
+                      Angry: angry,
+                      Shameful: shameful,
+                      Frustrated: frustrated,
+                      Embarrassed: embarrassed,
+                      Stressed: stressed,
+                      Disgusted: disgusted,
+                      Surprised: surprised,
+                      Emotions_Feelings: checkedOne,
+                      Life_Challenges: checkedTwo,
+                      Use_Abuse: checkedThree,
+                      Anxiety_Depression: checkedFour,
+                      Frienship_Relationship: checkedFive,
+                      Unhealthy_Behaviors: checkedSix,
+                      Suicidal_Thoughts: false,
+                    }
+                  )
+                  .then(
+                    (response) => {
+                      console.log(response);
+                    },
+                    (error) => {
+                      console.log(error);
+                    }
+                  );
+              }
+              //console.log("Happy: " + happy);
             }}
           />
+          <Text></Text>
+          <Text></Text>
+          <Text></Text>
+          <Text></Text>
+          <Text></Text>
         </ScrollView>
       </View>
     </>
@@ -386,9 +473,13 @@ const styles = StyleSheet.create({
     color: "red",
   },
   questionCheckContainer: {
+    flexDirection: "column",
     backgroundColor: "#FFFFFF",
     borderColor: "#FFFFFF",
-    // width: "50%",
-    marginVertical: 0,
+    width: "90%",
+    marginVertical: 3,
+  },
+  feels: {
+    flexDirection: "row",
   },
 });

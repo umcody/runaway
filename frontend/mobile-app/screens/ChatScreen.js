@@ -6,11 +6,19 @@ import {
   Send,
   Bubble,
 } from "react-native-gifted-chat";
-import { StyleSheet, View, TouchableOpacity, Modal, Text } from "react-native";
+import {
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  Modal,
+  Text,
+  Dimensions,
+} from "react-native";
+import { AirbnbRating } from "react-native-elements";
 import axios from "axios";
 import { AntDesign, FontAwesome5, Feather } from "@expo/vector-icons";
-import {SafeAreaView } from 'react-native-safe-area-context';
-import QuickReplies from 'react-native-gifted-chat/lib/QuickReplies';
+import { SafeAreaView } from "react-native-safe-area-context";
+import QuickReplies from "react-native-gifted-chat/lib/QuickReplies";
 
 //This is the chat screen and messaging components
 export default function ChatScreen({ navigation }) {
@@ -19,7 +27,7 @@ export default function ChatScreen({ navigation }) {
   const [roomNum, setRoomNum] = useState(0);
   const [messages, setMessages] = useState([]);
   const [queue, setQueue] = useState([]);
-  const [modalVisible, setModalVisible] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
   const [text, setText] = useState("");
   let socket;
   navigation.setOptions({
@@ -35,7 +43,7 @@ export default function ChatScreen({ navigation }) {
       <TouchableOpacity
         style={{ paddingLeft: 25 }}
         onPress={() => {
-          return navigation.navigate("PostSurvey", { messages: messages });
+          setModalVisible(true);
         }}
       >
         <Feather name="x" size={35} color="#FF9EDA" />
@@ -198,40 +206,95 @@ export default function ChatScreen({ navigation }) {
     sendMessage(messages[0].text);
   }, []);
 
-   // dont know how this works but when quickreplies are pressed it sends a messages
-   const onQuickReply = replies => {
-    const createdAt = new Date()
+  // dont know how this works but when quickreplies are pressed it sends a messages
+  const onQuickReply = (replies) => {
+    const createdAt = new Date();
     if (replies.length === 1) {
       onSend([
         {
           createdAt,
           _id: Math.round(Math.random() * 1000000),
           text: replies[0].title,
-          user:{_id:1},
+          user: { _id: 1 },
         },
-      ])
+      ]);
     } else if (replies.length > 1) {
       onSend([
         {
           createdAt,
           _id: Math.round(Math.random() * 1000000),
-          text: replies.map(reply => reply.title).join(', '),
-          user:{_id:1},
+          text: replies.map((reply) => reply.title).join(", "),
+          user: { _id: 1 },
         },
-      ])
+      ]);
     } else {
-      console.warn('replies param is not set correctly')
+      console.warn("replies param is not set correctly");
     }
-  }
-// this renders the quick reply buttons
-// it is set that when # of messages > 1, they dissapear
+  };
+  // this renders the quick reply buttons
+  // it is set that when # of messages > 1, they dissapear
   const renderQuickReplies = (props) => {
-    return(
-      <QuickReplies color='#2E5F85' {...props} />
-    )
-  }
+    return <QuickReplies color="#2E5F85" {...props} />;
+  };
   return (
-    <SafeAreaView style={{ flex:1, backgroundColor: "#fff" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+      <Modal animationType="slide" transparent={true} visible={modalVisible}>
+        <View style={styles.container}>
+          {/* this text and then the AirbnbRating after it are the rating function for after the chat */}
+          <Text style={styles.message}>Are you sure you want to exit?</Text>
+          <View style={styles.buttons}>
+            <TouchableOpacity
+              style={styles.buttonDismiss}
+              onPress={() => {
+                setModalVisible(false);
+                // This is all for testing purposes
+                setMessages([
+                  {
+                    _id: 1,
+                    text:
+                      "Hello, my name is Ronnie. \n \nAre you seeking for advice from this session? I’m more than happy to just listen as well.",
+                    createdAt: new Date(),
+                    user: {
+                      _id: 2,
+                      name: "React Native",
+                      avatar: require("../assets/exampleAvatar.png"),
+                    },
+                    //quick reply- where user can click on the bubble to reply a message.
+                    quickReplies: {
+                      type: "radio", // or 'checkbox',
+                      keepIt: true,
+                      values: [
+                        {
+                          title: "I would like advice.",
+                          value: "advice",
+                        },
+                        {
+                          title: "I would love to have a listener.",
+                          value: "listen",
+                        },
+                      ],
+                    },
+                  },
+                ]);
+                return navigation.navigate("PostSurvey", {
+                  messages: messages,
+                });
+              }}
+            >
+              <Text style={{ color: "#FFFFFF", fontSize: 24 }}>Yes</Text>
+            </TouchableOpacity>
+            <Text> </Text>
+            <TouchableOpacity
+              style={styles.buttonDismiss}
+              onPress={() => {
+                setModalVisible(false);
+              }}
+            >
+              <Text style={{ color: "#FFFFFF", fontSize: 24 }}>No</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
       <GiftedChat
         messages={messages}
         //quickReply={setQuickReply} NOT WORKING FOR NOW...
@@ -267,12 +330,24 @@ export default function ChatScreen({ navigation }) {
           },
         }}
         onQuickReply={onQuickReply}
-        renderQuickReplies={
-          (props) => {if(messages.length ===1){return(renderQuickReplies(props))} else{return(null)}}}
+        renderQuickReplies={(props) => {
+          if (messages.length === 1) {
+            return renderQuickReplies(props);
+          } else {
+            return null;
+          }
+        }}
       />
     </SafeAreaView>
   );
 }
+
+const windowW = Dimensions.get("window").width;
+const windowH = Dimensions.get("window").height;
+
+const heightModal = 150;
+const widthModal = 250;
+
 const styles = StyleSheet.create({
   composer: {
     backgroundColor: "#E3F1FC",
@@ -290,5 +365,43 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingLeft: 5,
     alignItems: "flex-start",
+  },
+  message: {
+    color: "#2E5F85",
+    fontStyle: "normal",
+    fontSize: 24,
+    alignItems: "center",
+    textAlign: "center",
+    padding: 15,
+  },
+  fullContainer: {
+    flex: 1,
+    backgroundColor: "#E3F1FC",
+  },
+  buttons: {
+    flexDirection: "row",
+    paddingHorizontal: 10,
+    padding: 5,
+  },
+  container: {
+    alignSelf: "center",
+    backgroundColor: "#FFFFFF",
+    borderColor: "#2E5F85",
+    borderWidth: 1,
+    width: widthModal,
+    alignItems: "center",
+    height: heightModal,
+    marginTop: windowH / 2 - heightModal / 2,
+    borderRadius: 30,
+  },
+  buttonDismiss: {
+    borderRadius: 30,
+    borderWidth: 2,
+    backgroundColor: "#FF9EDA",
+    borderColor: "#FF9EDA",
+    height: 35,
+    width: 100,
+    alignItems: "center",
+    textAlign: "center",
   },
 });
