@@ -128,24 +128,24 @@ const styles = StyleSheet.create({
     fontFamily:fonts.text
   },
   team: {
-    backgroundColor: "#E3F1FC",
-    width: "100%",
-    padding: 20,
+    backgroundColor: colors.secondary,
+    width: dimensions.fullWidth,
+    padding: padding.md,
     flexDirection: "column",
     alignItems: "baseline",
   },
   button: {
-    backgroundColor: "#FF9EDA",
+    backgroundColor: colors.button,
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 12,
-    borderRadius: 20,
-    marginTop: 20,
+    paddingVertical: padding.sm,
+    borderRadius: borderRadius.md,
+    marginTop: margin.md,
     marginHorizontal:50
   },
   partners: {
-    padding: 20,
-    backgroundColor: "#E3F1FC",
+    padding: padding.md,
+    backgroundColor: colors.secondary,
     flexDirection: "row",
     alignItems: "center",
   },

@@ -58,7 +58,8 @@ const styles = StyleSheet.create({
     fontFamily:fonts.main,
     paddingTop:padding.md,
     paddingLeft: padding.md,
-    paddingBottom:padding.sm
+    paddingBottom:padding.sm,
+    color:colors.foreground
   },
   image:{
     width:dimensions.fullWidth,
@@ -66,14 +67,15 @@ const styles = StyleSheet.create({
     resizeMode:'contain'
   },
   author: {
-    fontFamily:fonts.text,
-    paddingTop: 5,
-    paddingLeft: 20,
+    fontFamily:fonts.subheader,
+    paddingTop: padding.sm,
+    paddingLeft: padding.md,
     fontSize:fonts.sm,
+    color:colors.foreground
   },
   content: {
-    paddingTop: 20,
-    paddingLeft: 20,
+    paddingTop: padding.md,
+    paddingLeft: padding.md,
   },
   back:{
     width:icon.lg,height:icon.lg,
@@ -81,11 +83,11 @@ const styles = StyleSheet.create({
   },
   shadow:{
     position: 'absolute', zIndex:1,
-    shadowOpacity: 0.3,
-    textShadowRadius: 4,
+    shadowOpacity: 0.2,
+    textShadowRadius: 1,
     textShadowOffset: {
-        width: 0,
-        height: 2,  
+        width: 1,
+        height: 0,  
     },
   }
 });

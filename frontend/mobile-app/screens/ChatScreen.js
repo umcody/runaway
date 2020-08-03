@@ -35,7 +35,7 @@ export default function ChatScreen({ navigation }) {
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity
-          style={{ paddingRight: padding.lg }}
+          style={{ paddingRight: padding.md }}
           onPress={() => navigation.navigate("EmergencyResources")}
         >
           <AntDesign name="exclamationcircleo" size={icon.md} color={colors.button} />
@@ -43,7 +43,7 @@ export default function ChatScreen({ navigation }) {
       ),
       headerLeft: () => (
         <TouchableOpacity
-          style={{ paddingLeft: padding.lg }}
+          style={{ paddingLeft: padding.md }}
           onPress={() => {
             return navigation.navigate("PostSurvey", { messages: messages });
           }}
@@ -57,7 +57,7 @@ export default function ChatScreen({ navigation }) {
     navigation.setOptions({
       headerLeft: () => (
         <TouchableOpacity
-          style={{ paddingLeft: padding.lg  }}
+          style={{ paddingLeft: padding.md  }}
           onPress={() => {
             return navigation.pop(1);
           }}
@@ -264,14 +264,13 @@ export default function ChatScreen({ navigation }) {
 // it is set that when # of messages > 1, they dissapear
   const renderQuickReplies = (props) => {
     return(
-      <QuickReplies color={colors.tertiary}{...props} style={{
-        container: {justifyContent:'flex-end'}}}
+      <QuickReplies color={colors.tertiary}{...props} 
         />
     )
   }
   return (
     <View style={{ flex:1, backgroundColor: colors.background}}>
-    {volunteerJoined ? 
+    {volunteerJoined? 
       <GiftedChat
         messages={messages}
         //quickReply={setQuickReply} NOT WORKING FOR NOW...
@@ -315,6 +314,7 @@ export default function ChatScreen({ navigation }) {
           flexDirection:'row',
           justifyContent:'flex-start',
           alignItems:'center',
+        
         }}
       />
     :

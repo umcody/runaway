@@ -45,8 +45,6 @@ const SettingsDrawer = createDrawerNavigator();
 const AboutStack = createStackNavigator();
 const RootStack = createStackNavigator();
 
-const windowW = Dimensions.get("window").width;
-const windowH = Dimensions.get("window").height;
 
 function CustomDrawerContent(props) {
   return (
@@ -54,13 +52,13 @@ function CustomDrawerContent(props) {
     <View
       style={{
         backgroundColor: colors.background,
-        alignItems: 'center',
         justifyContent: 'center',
+        paddingLeft:15
       }}
     >
       <Text style={{ fontSize:fonts.lg,
         fontFamily:fonts.main,
-        paddingVertical:padding.md, }}>
+        paddingVertical:padding.md, color:colors.foreground}}>
         Information Pane
       </Text>
     </View>
@@ -70,7 +68,7 @@ function CustomDrawerContent(props) {
           Linking.openURL("https://www.instagram.com/runaway.app/");
         }}
         label="Instagram"
-        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm}}
+        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm-2}}
         icon={() => <AntDesign name="instagram" size={icon.md} color={colors.button} />}
       />
       <DrawerItem
@@ -78,7 +76,7 @@ function CustomDrawerContent(props) {
           Linking.openURL("https://www.facebook.com/runawayapp/");
         }}
         label="Facebook"
-        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm}}
+        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm-2}}
         icon={() => <Feather name="facebook" size={icon.md} color={colors.button} />}
       />
       <DrawerItem
@@ -86,14 +84,14 @@ function CustomDrawerContent(props) {
           Linking.openURL("https://twitter.com/runaway_app");
         }}
         label="Twitter"
-        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm}}
+        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm-2}}
         icon={() => <Feather name="twitter" size={icon.md} color={colors.button} />}
       />
       <DrawerItem
         onPress={() => {
           WebBrowser.openBrowserAsync("https://www.runawayapp.com/");
         }}
-        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm}}
+        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm-2}}
         label="Website"
         icon={() => (
           <MaterialCommunityIcons name="web" size={icon.md} color={colors.button} />
@@ -190,9 +188,8 @@ const Chat = ({ navigation }) => {
           options={{
             headerTitle: "How are you feeling?",
             headerTitleAlign: "center",
-            headerTitleStyle: {
-              color: colors.tertiary,
-            },
+            headerStyle: stylesDefault.headerStyle,
+            headerTitleStyle: stylesDefault.headerTitleStyle,
             headerLeft: () => (
               <HeaderBackButton
                 labelVisible={false}
@@ -227,16 +224,16 @@ const About = () => {
 };
 const MyDrawer = () =>{
   return (
-    
       <SettingsDrawer.Navigator
         drawerContent={(props) => <CustomDrawerContent {...props} />}
         edgeWidth={0}
         drawerContentOptions={{
+          backgroundColor:colors.background,
           activeTintColor: colors.tertiary,
           activeBackgroundColor:colors.secondary,
           inactiveBackgroundColor: colors.background,
           itemStyle: { marginBottom: margin.sm },
-          labelStyle:{fontSize:fonts.sm,fontFamily:fonts.text}
+          labelStyle:{fontSize:fonts.sm,fontFamily:fonts.text,}
         }}
       >
         <SettingsDrawer.Screen
@@ -260,8 +257,15 @@ export default function MyApp(){
   return(
     <NavigationContainer>
       <RootStack.Navigator>
+      {/* <RootStack.Screen
+        name="Sign"
+        component={SignInPage}
+        options={{
+          headerShown: false,
+        }}
+      /> */}
       <RootStack.Screen
-        name="App"
+        name="Home"
         component={MyDrawer}
         options={{
           headerShown: false,
