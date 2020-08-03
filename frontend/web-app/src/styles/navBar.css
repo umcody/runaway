@@ -1,5 +1,5 @@
 .navBar{
-    position: absolute;;
+    position: relative;;
     left:0;
     width : fit-content;
     height: 100%;
@@ -8,6 +8,10 @@
     border-radius: 0px 20px 20px 0px;
     box-shadow: 4px 0px 15px rgba(172, 218, 255, 0.3);
 border-radius: 0px 30px 30px 0px;
+}
+
+.con{
+    max-width:100% !important;
 }
 
 .navCell{

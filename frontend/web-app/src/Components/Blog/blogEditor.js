@@ -66,7 +66,7 @@ class BlogEditor extends React.Component {
             boxShadow: 'none'
         };
         return (
-            <div class="container">
+            <div class="container col-9" style = {{"margin-top":"30px"}}>
                 <div class='row'>
                     <h2> New Post </h2>
                 </div>
