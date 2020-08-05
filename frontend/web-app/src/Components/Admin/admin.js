@@ -16,7 +16,7 @@ class Admin extends React.Component {
     e.preventDefault();
     axios
       .get(
-        `http://localhost:7000/api/volunteer?search=${encodeURIComponent(
+        `https://runaway-practicum.herokuapp.com/api/volunteer?search=${encodeURIComponent(
           this.state.search
         )}`
       )
@@ -29,7 +29,7 @@ class Admin extends React.Component {
   // Delete volunteer from database
   handleClick(id) {
     axios
-      .delete(`http://localhost:7000/api/volunteer/${id}`)
+      .delete(`https://runaway-practicum.herokuapp.com/api/volunteer/${id}`)
       .then((response) => {
         if (response.status === 200) {
           console.log("deleted");
