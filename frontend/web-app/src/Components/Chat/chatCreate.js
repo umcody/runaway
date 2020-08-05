@@ -22,7 +22,7 @@ function ChatCreation() {
 
 
     useEffect(() => {
-        socket = socketioclient("http://localhost:7000");
+        socket = socketioclient("https://runaway-practicum.herokuapp.com/");
         //generate random #
         let random_room = Math.floor((Math.random() * 1000) + 1);
         
