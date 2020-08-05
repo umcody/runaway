@@ -1,13 +1,10 @@
-import React, { useState } from 'react'
-import { SafeAreaView, Text, View, StyleSheet,Image,ActivityIndicator,ImageBackground,StatusBar,} from "react-native";
+import React from 'react'
+import { SafeAreaView, Text, View, StyleSheet,ActivityIndicator,ImageBackground} from "react-native";
 import {TouchableOpacity,ScrollView } from 'react-native-gesture-handler';
 import { Ionicons,MaterialCommunityIcons } from "@expo/vector-icons";
 import HTML from 'react-native-render-html';
 import useBlogUrl from "../components/useBlogUrl"
-import {colors, fonts, padding, dimensions,margin,borderRadius, icon} from '../style/styleValues.js'
-import { color } from 'react-native-reanimated';
-import { createIconSet } from 'react-native-vector-icons';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import {colors, fonts, padding, dimensions,margin, icon} from '../style/styleValues.js'
 
 // shows the blog page 
 export default function BlogScreen({navigation,route}) {

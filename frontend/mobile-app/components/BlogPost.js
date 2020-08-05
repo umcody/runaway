@@ -22,22 +22,21 @@ export default function BlogPost({title,author,date,readTime,imageURL,HandlePres
     }
     return(
         <View style={{marginBottom:padding.sm}}>
-            <TouchableOpacity activeOpacity={.8} style ={styles.container} onPress={HandlePress}>
-            <View style = {styles.text}>
-                    <Text style = {styles.title}>{title}</Text>
-                    <View style = {styles.extras}>
-                        <View style={{flexDirection:'row'}}>
-                            <Text style = {styles.info}>{author}</Text>
-                            <MaterialCommunityIcons name="feather" size={14} color={colors.button} />
-                            <Text style ={styles.info}>· {readTime} min</Text>
+            <TouchableOpacity style ={styles.container} onPress={HandlePress}>
+                <View style = {styles.text}>
+                        <Text style = {styles.title}>{title}</Text>
+                        <View style = {styles.extras}>
+                            <View style={{flexDirection:'row'}}>
+                                <Text style = {styles.info}>{author}</Text>
+                                <MaterialCommunityIcons name="feather" size={14} color={colors.button} style={{paddingTop:padding.sm}} />
+                                <Text style ={styles.info}>· {readTime} min</Text>
+                            </View>
+                            <Text style={styles.info}>{ConvertDate(date)}</Text>
                         </View>
-                        <Text style={styles.info}>{ConvertDate(date)}</Text>
-                        <AntDesign name="ellipsis1" size={icon.md} color={colors.foreground} />
-                    </View>
-            </View>
-            <View style={styles.image}>
-                <Image source={{uri:imageURL}} style={{flex:1,height:undefined,width:undefined,borderRadius:borderRadius.sm}}/>
-            </View>             
+                </View>
+                <View style={styles.image}>
+                    <Image source={{uri:imageURL}} style={{flex:1,height:undefined,width:undefined,borderRadius:borderRadius.sm}}/>
+                </View>             
         </TouchableOpacity>
         </View>
     )
@@ -57,7 +56,7 @@ const styles = StyleSheet.create({
     },
     title:{
         color:colors.foreground,
-        fontSize:fonts.md,
+        fontSize:fonts.sm,
         fontFamily:fonts.subheader,
         lineHeight:fonts.mdLineHeight,
         paddingBottom:padding.sm,
@@ -68,9 +67,9 @@ const styles = StyleSheet.create({
     info:{
         color:colors.foreground,
         paddingRight:padding.sm,
-        paddingBottom:padding.sm,
+        paddingTop:padding.sm,
         fontFamily:fonts.text,
-        fontSize:fonts.sm
+        fontSize:fonts.sm-2
     },
     image: {
         width:100,
