@@ -20,9 +20,11 @@ function ChatObservation(props) {
         setJoinedRoomSize(joinedRoomSize+1);
         console.log(joinedRoom.concat([[room, joinedRoomSize]]));
     }
-
+//
     useEffect(() => {
-        socket = socketioclient("https://runaway-practicum.herokuapp.com/");
+        //socket = socketioclient("https://runaway-practicum.herokuapp.com/");
+        socket = socketioclient("localhost:7000");
+
         socket.emit("observeQueue", "joining General");
 
         socket.on("updateQueue", queue => {

@@ -1,57 +1,71 @@
 import React, { useEffect, useState } from "react";
 import socketioclient from "socket.io-client";
-import {Widget,addResponseMessage, toggleWidget} from "react-chat-widget";
-import 'react-chat-widget/lib/styles.css';
+import { Launcher } from 'react-chat-window';
 import "./chat.css";
 
-let socket;
-function ChatComponent(props) {
-    console.log(props);
+class ChatComponent extends React.Component {
+    constructor(props) {
+        super(props);
+        this.props = props;
+        this.state = {
+            messages: [],
+            socket: socketioclient("localhost:7000")
+        }
+        
+        this._onMessageUpdate = this._onMessageUpdate.bind(this);
+    }
 
-    const [queue, setQueue] = useState([0]);
-    const [roomNum, setRoomNum] = useState(0);
 
-
-    function socket_joinRoom(room) {
-        setRoomNum(room);
-        socket.emit("joinRoom", room);
-        socket.emit("volunteerJoined","dummy");
+    socket_joinRoom(room) {
+        this.state.socket.emit("joinRoom", room);
+        this.state.socket.emit("volunteerJoined", "dummy");
         console.log("volunteerJoined sent");
     }
 
-    useEffect(() => {
-        toggleWidget();
-        socket = socketioclient("https://runaway-practicum.herokuapp.com/");
 
-        socket_joinRoom(props[0])
-
-        socket.on("updateMessage", function (message) {
-
+    componentDidMount() {
+        //socket = socketioclient("https://runaway-practicum.herokuapp.com/");
+        console.log(this.props.props[0]);
+        this.socket_joinRoom(parseInt(this.props.props[0],10))
+        this.state.socket.on = this.state.socket.on.bind(this);
+        this.state.socket.on("updateMessage", function (message) {
             console.log("message recieved");
-            addResponseMessage(message);
+            this._onMessageUpdate(message);
         })
+    }// eslint-disable-line react-hooks/exhaustive-deps
 
-        /* ToDo: When volunteer closes chat, socket.disconnect with data showing the volunteer is volunteer */
-
-    }, [])// eslint-disable-line react-hooks/exhaustive-deps
-
-    
-    function handleNewUserMessage(message){
-        socket.emit("sendMessage",message);
+    _onMessageUpdate(message){
+        this.setState({messages:[...this.state.messages, {
+            author: 'them',
+            type: 'text',
+            data: { message }
+        }]}
+        );
     }
-    
-    function nothing(){}
+    _onMessageWasSent(message) {
+        this.setState({
+            messages: [...this.state.messages, message]
+        });
+        console.log(this.state.messages);
+        this.state.socket.emit("sendMessage", message.data.text);
+    }
 
-    return (
-        <div style = {{"z-index": props[1]}}>
-            <Widget
-                handleNewUserMessage = {handleNewUserMessage}
-                title={`Room #${roomNum}`}
-                subtitle="lets start"
-                lancher={handleToggle => nothing(handleToggle)}
-            />
-        </div>
-    )
+
+    render() {
+        return (
+            <div style={{ "z-index": this.props.props[1] }}>
+                <Launcher
+                    agentProfile={{
+                        teamName: 'react-chat-window',
+                        imageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png'
+                    }}
+                    onMessageWasSent={this._onMessageWasSent.bind(this)}
+                    messageList={this.state.messages}
+                    showEmoji
+                />
+            </div >
+        )
+    }
 }
 
 export default ChatComponent;
