@@ -48,8 +48,9 @@ export default function BlogNav({navigation}){
           name ="Announcement"
           component={Announcement}
           options={{ headerShown:false, gestureResponseDistance:{horizontal: 500},
-            cardStyleInterpolator: CardStyleInterpolators.forModalPresentationIOS,gestureDirection:'vertical',
+            cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,gestureDirection:'vertical',
             gestureResponseDistance:dimensions.fullHeight,cardOverlayEnabled:true,
+            
           }}
           />
             </Stack.Navigator>

@@ -17,25 +17,6 @@ import useAn from "../components/useAnnouncement"
 import {colors, fonts, padding, dimensions,margin,borderRadius} from '../style/styleValues.js'
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-// Sample data for events/announcement in case call fails
-const AN =[
-  {
-    _id:'1',
-    name:""
-  },
-  {
-    _id:'2',
-    name:""
-  },
-  {
-    _id:'3',
-    name:""
-  },
-  {
-    _id:'4',
-    name:""
-  }
-]
 //This file is the blog feed component that allows infinite scrolling
 export default function BlogFeed({navigation}) {
   //default page number is 1 which is the first page of blogs
@@ -80,7 +61,7 @@ export default function BlogFeed({navigation}) {
         <TouchableOpacity style={styles.announcement} onPress={()=> navigation.navigate('Announcement',{
           item:item})}>
             <ImageBackground style={{flex:1,width:"100%",alignContent:'flex-end',justifyContent:'flex-end'}} resizeMode="cover" source={{uri:item.image}}>
-            <View style={{backgroundColor:"rgba(0, 0, 0, 0.3)"}}>
+            <View style={{flex:'1',backgroundColor:"rgba(0, 0, 0, 0.2)",justifyContent:'center'}}>
             <Text style={{textAlign:'center', color:"#fff",fontSize:fonts.sm-2,fontFamily:fonts.subheader,paddingBottom:5}}>{item.name}</Text>
             </View>
             </ImageBackground>
@@ -95,7 +76,7 @@ export default function BlogFeed({navigation}) {
       ListHeaderComponent={
         <View>
           <FlatList 
-            data={errorAn ? AN : announcements}
+            data={announcements}
             renderItem={renderAn}
             horizontal={true}
             nestedScrollEnabled={true}

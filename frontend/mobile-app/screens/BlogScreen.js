@@ -31,9 +31,11 @@ export default function BlogScreen({navigation,route}) {
         else show html content from database, uses HTML parser to convert into jsx*/}
         {loading ? <ActivityIndicator /> : <View>
           <ImageBackground source={{uri:blog.imageURL}} style={styles.image}>
+          <View style={{flex:'1',backgroundColor:"rgba(0, 0, 0, 0.1)"}}>
           <TouchableOpacity onPress={()=>navigation.goBack()} style={styles.back}>
-              <Ionicons name="ios-arrow-back" size={icon.lg} color={colors.background} style={styles.shadow} />
+              <Ionicons name="ios-arrow-back" size={icon.lg} color={colors.background} />
           </TouchableOpacity>
+          </View>
           </ImageBackground>
           <Text style={styles.title}>{blog.title}</Text>
           <View style={{flexDirection:'row'}}>
@@ -78,13 +80,5 @@ const styles = StyleSheet.create({
     width:icon.lg,height:icon.lg,
     marginLeft:margin.md,marginTop:margin.lg, 
   },
-  shadow:{
-    position: 'absolute', zIndex:1,
-    shadowOpacity: 0.2,
-    textShadowRadius: 1,
-    textShadowOffset: {
-        width: 1,
-        height: 0,  
-    },
-  }
+
 });

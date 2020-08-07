@@ -14,11 +14,9 @@ export default function Announcement({navigation,route}) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ImageBackground source={{uri:item.image}} style={styles.image}>
         <TouchableOpacity onPress={()=>navigation.goBack()} style={styles.back}>
-                <Feather name="x" size={icon.lg} color={colors.background} style={styles.shadow} />
+                <Feather name="x" size={icon.lg} color={colors.foreground}/>
         </TouchableOpacity>
-      </ImageBackground>
       <Text style={styles.title}>{item.name}</Text>
       <Text style={styles.content}>{item.content}</Text>
     </SafeAreaView>
@@ -50,15 +48,6 @@ const styles = StyleSheet.create({
     },
     back:{
         width:icon.lg,height:icon.lg,
-        marginRight:margin.md,marginTop:margin.lg, 
+        marginLeft:margin.md,marginTop:margin.md, 
     },
-    shadow:{
-        position: 'absolute', zIndex:1,
-        shadowOpacity: 0.2,
-        textShadowRadius: 1,
-        textShadowOffset: {
-            width: 1,
-            height: 0,  
-        },
-    }
 });
