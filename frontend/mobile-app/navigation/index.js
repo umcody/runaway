@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useCallback} from "react";
 import "react-native-gesture-handler";
 import { Linking, StyleSheet, StatusBar, Dimensions,View,Text } from "react-native";
 
@@ -45,20 +45,21 @@ const SettingsDrawer = createDrawerNavigator();
 const AboutStack = createStackNavigator();
 const RootStack = createStackNavigator();
 
-const handlePress= ()=> {
-  // Checking if the link is supported for links with custom URL scheme.
-  const supported = Linking.canOpenURL("fb://page/1789760617938894");
 
-  if (supported) {
-    // Opening the link with some app, if the URL scheme is "http" the web link should be opened
-    // by some browser in the mobile
-     Linking.openURL("fb://page/1789760617938894");
-  } else {
-    Linking.openURL("https://www.facebook.com/runawayapp/");
-  }
-};
 function CustomDrawerContent(props) {
   const supported = Linking.canOpenURL("fb://page/1789760617938894");
+  const handlePress = useCallback(async () => {
+    // Checking if the link is supported for links with custom URL scheme.
+    const supported = await Linking.canOpenURL("fb://page/1789760617938894");
+  
+    if (supported) {
+      // Opening the link with some app, if the URL scheme is "http" the web link should be opened
+      // by some browser in the mobile
+      await Linking.openURL("fb://page/1789760617938894");
+    } else {
+      Linking.openURL("https://www.facebook.com/runawayapp/");
+    }
+  });
   return (
     <DrawerContentScrollView {...props}>
     <View
