@@ -73,7 +73,7 @@ function CustomDrawerContent(props) {
       />
       <DrawerItem
         onPress={() => {
-          Linking.openURL("https://www.facebook.com/runawayapp/");
+          Linking.openURL("fb://page/1789760617938894");
         }}
         label="Facebook"
         labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm-2}}
