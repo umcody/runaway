@@ -45,8 +45,20 @@ const SettingsDrawer = createDrawerNavigator();
 const AboutStack = createStackNavigator();
 const RootStack = createStackNavigator();
 
+const handlePress= ()=> {
+  // Checking if the link is supported for links with custom URL scheme.
+  const supported = Linking.canOpenURL("fb://page/1789760617938894");
 
+  if (supported) {
+    // Opening the link with some app, if the URL scheme is "http" the web link should be opened
+    // by some browser in the mobile
+     Linking.openURL("fb://page/1789760617938894");
+  } else {
+    Linking.openURL("https://www.facebook.com/runawayapp/");
+  }
+};
 function CustomDrawerContent(props) {
+  const supported = Linking.canOpenURL("fb://page/1789760617938894");
   return (
     <DrawerContentScrollView {...props}>
     <View
@@ -72,9 +84,7 @@ function CustomDrawerContent(props) {
         icon={() => <AntDesign name="instagram" size={icon.md} color={colors.button} />}
       />
       <DrawerItem
-        onPress={() => {
-          Linking.openURL("fb://page/1789760617938894");
-        }}
+        onPress={handlePress}
         label="Facebook"
         labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm-2}}
         icon={() => <Feather name="facebook" size={icon.md} color={colors.button} />}
