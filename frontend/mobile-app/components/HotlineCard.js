@@ -11,7 +11,7 @@ import {colors, fonts, padding, dimensions,margin,borderRadius, icon} from '../s
 import * as WebBrowser from "expo-web-browser";
 
 
-const HotlineCard = ({hotline}) => {
+const HotlineCard = ({item}) => {
     return (
         <View style={styles.container}>
             <TouchableOpacity
@@ -19,11 +19,11 @@ const HotlineCard = ({hotline}) => {
                 onPress={() => {
                     WebBrowser.openBrowserAsync("https://www." +item.url)
                   }}>
-                <Text style={styles.title}>{hotline.title}</Text>
-                <Text style={styles.title}>{hotline.phoneNumber}</Text>
-                <Text style={styles.title}>{hotline.textNumber}</Text>                
-                <Text style={styles.title}>{hotline.website}</Text>
-                <Text style={styles.title}>{hotline.meantFor}</Text>
+                <Text style={styles.title}>{item.title}</Text>
+                <Text style={styles.title}>{item.phoneNumber}</Text>
+                <Text style={styles.title}>{item.textNumber}</Text>                
+                <Text style={styles.title}>{item.website}</Text>
+                <Text style={styles.title}>{item.meantFor}</Text>
             </TouchableOpacity>           
         </View>
     )

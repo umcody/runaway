@@ -23,7 +23,7 @@ import {
   DrawerItem,
 } from "@react-navigation/drawer";
 
-import EmergencyHotlinesScreen from "../screens/EmergencyHotline";
+import EmergencyHotlinesScreen from "../screens/OfHotline";
 import ChatScreen from "../screens/ChatScreen";
 import Feels from "../screens/Feels";
 import PostChatSurvey from "../screens/PostChatSurvey";

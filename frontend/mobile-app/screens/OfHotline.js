@@ -1,7 +1,7 @@
 import "react-native-gesture-handler";
 
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity,SectionList,SafeAreaView } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity,SafeAreaView,FlatList } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import HotlineCard from "../components/HotlineCard";
 
@@ -84,28 +84,16 @@ export default function EmergencyHotlinesScreen({ navigation }) {
     }
   ];
 
-  const Item = ({ title }) => (
-    <TouchableOpacity
-      style={styles.emergencyButton}
-      onPress={() => {
-        alert("you clicked me");
-      }}
-    >
-      <Text style={styles.emergencyText}>{title}</Text>
-    </TouchableOpacity>
-  );
-
   return (
     <SafeAreaView style={styles.container}>
 
-            <FlatList data={Resources}
+            <FlatList data={supportLines}
             nestedScrollEnabled={true}
             
-                keyExtractor={(hotline, index) => 'key' + index}
-                renderItem={({hotline}) => {
+                keyExtractor={(item, index) => 'key' + index}
+                renderItem={({item}) => {
                     return (
-                        <HotlineCard hotline = {hotline}
-                        />
+                        <HotlineCard item = {item}/>
                     ) 
                 }}
                 showsVerticalScrollIndicator={false}
