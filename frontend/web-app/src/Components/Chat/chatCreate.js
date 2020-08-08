@@ -37,7 +37,7 @@ function ChatCreation() {
         })
         //when exiting the component
         return () => {
-            socket.disconnect();
+            socket.emit("disconnectUser", "user");
         }
     },[])
 

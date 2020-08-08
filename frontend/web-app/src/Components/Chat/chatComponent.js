@@ -9,7 +9,8 @@ class ChatComponent extends React.Component {
         this.props = props;
         this.state = {
             messages: [],
-            socket: socketioclient("localhost:7000")
+            //socket: socketioclient("localhost:7000")
+            socket: socketioclient("https://runaway-practicum.herokuapp.com/")
         }
         
         this._onMessageUpdate = this._onMessageUpdate.bind(this);
@@ -24,14 +25,9 @@ class ChatComponent extends React.Component {
 
 
     componentDidMount() {
-        //socket = socketioclient("https://runaway-practicum.herokuapp.com/");
+        
         console.log(this.props.props[0]);
         this.socket_joinRoom(parseInt(this.props.props[0],10))
-        this.state.socket.on = this.state.socket.on.bind(this);
-        this.state.socket.on("updateMessage", function (message) {
-            console.log("message recieved");
-            this._onMessageUpdate(message);
-        })
     }// eslint-disable-line react-hooks/exhaustive-deps
 
     _onMessageUpdate(message){
@@ -52,15 +48,20 @@ class ChatComponent extends React.Component {
 
 
     render() {
+        this.state.socket.on = this.state.socket.on.bind(this);
+        this.state.socket.on("updateMessage", function (message) {
+            console.log("message recieved");
+            this._onMessageUpdate(message);
+        })
         return (
-            <div style={{ "z-index": this.props.props[1] }}>
+            <div className ="chatComponent" style={{ "z-index": this.props.props[1],"height":"100%"}}>
                 <Launcher
                     agentProfile={{
-                        teamName: 'react-chat-window',
-                        imageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png'
+                        teamName: `Ongoing: Room #${this.props.props[0]}`
                     }}
                     onMessageWasSent={this._onMessageWasSent.bind(this)}
                     messageList={this.state.messages}
+                    isOpen = {true}
                     showEmoji
                 />
             </div >

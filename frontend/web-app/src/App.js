@@ -6,7 +6,7 @@ import Register from './Components/Auth/register';
 import Login from './Components/Auth/login';
 import Resource from './Components/Resource/resource';
 import Admin from "./Components/Admin/admin.js"
-import ChatObservation from './Components/Chat/chatQueue';
+import ChatObservation from './Components/Page/chatPage';
 import ChatCreation from "./Components/Chat/chatCreate";
 
 import 'bootstrap/dist/css/bootstrap.min.css';

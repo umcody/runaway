@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import socketioclient from "socket.io-client";
 import {Widget,addResponseMessage, toggleWidget} from "react-chat-widget";
-import ChatComponent from "./chatComponent";
+import ChatComponent from "./chatComponent copy";
 import 'react-chat-widget/lib/styles.css';
 import "./chat.css";
 
@@ -41,7 +41,7 @@ function ChatObservation(props) {
         console.log(event.target)
     }
     return (
-        <div>
+        <div className = "col-10" >
             <h3>Chat Room Queues ( click to join )</h3>
             <div>{queue.map((room) => {
                 return (
@@ -52,14 +52,11 @@ function ChatObservation(props) {
             })}</div>
 
             {/******************************************************/}
-            <div>
+            <div style = {{"height":"90%"}}>
                 {joinedRoom.map((item)=>{
                     return (<ChatComponent props = {item}/>);
                 })}
             </div>
-            
-
-            <img src= "/asset/background-deco.png" alt="graphics" style = {{position: "absolute", left:"-200px", height:"500px",opacity:"0.8"}}/>
         </div>
     )
 }
