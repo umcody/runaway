@@ -51,8 +51,12 @@ class Login extends React.Component{
         }
 
         //POST METHOD
-        axios.post("/api/volunteer/login", credentials)
+        axios.post("https://runaway-practicum.herokuapp.com/api/volunteer/login", credentials)
         .then(res => {
+            console.log(res.data);
+            if(res.data.auth){
+                localStorage.setItem("JWT",res.data.token);
+            }
             this.navigate(res.data.access)
         });
         
