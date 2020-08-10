@@ -6,7 +6,8 @@ import Register from './Components/Auth/register';
 import Login from './Components/Auth/login';
 import Resource from './Components/Resource/resource';
 import Admin from "./Components/Admin/admin.js"
-import ChatObservation from './Components/Chat/chatObserve';
+import ChatObservation from './Components/Page/chatPage';
+import ChatCreation from "./Components/Chat/chatCreate";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -20,6 +21,7 @@ function App() {
       <Route exact path = "/login" component = {Login}/>
       <Route exact path = "/register" component = {Register}/>
       <Route exact path = "/chat/observe" component = {ChatObservation}/>
+      <Route exact path = "/chat/test" component = {ChatCreation}/>
       <Route exact path = "/blog/write" component = {BlogPage}/>
       <Route exact path = "/resource/write" component = {Resource}/>
       <Route exact path = "/admin/overview" component = {Admin}/>
