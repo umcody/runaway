@@ -6,11 +6,18 @@ import Register from "./Components/Auth/register";
 import Login from "./Components/Auth/login";
 import Resource from "./Components/Resource/resource";
 import Admin from "./Components/Admin/admin.js";
+<<<<<<< HEAD
 import ChatObservation from './Components/Page/chatPage';
 import ChatCreation from "./Components/Chat/chatCreate";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
+=======
+import ChatObservation from "./Components/Chat/chatObserve";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+
+>>>>>>> ff1a5f35984f4ac3795257bdf08bd9c2f689ddab
 import "./App.css";
 
 function App() {
@@ -21,6 +28,7 @@ function App() {
       <Route exact path="/register" component={Register} />
       <Route exact path="/chat/observe" component={ChatObservation} />
       <Route exact path = "/chat/test" component = {ChatCreation}/>
+<<<<<<< HEAD
       <Route exact path="/blog/write" component={BlogPage} />
       <Route exact path="/blogs" component={Blogs} />
       <Route exact path="/resource/write" component={Resource} />
@@ -30,6 +38,16 @@ function App() {
 
 
       
+=======
+      <Route exact path = "/blog/write" component = {BlogPage}/>
+      <Route exact path="/blogs" component={Blogs} />
+      <Route exact path = "/resource/write" component = {Resource}/>
+      <Route exact path = "/admin/overview" component = {Admin}/>
+      <Route exact path = "/" component = {Login}/>
+
+
+
+>>>>>>> ff1a5f35984f4ac3795257bdf08bd9c2f689ddab
     </div>
   );
 }
