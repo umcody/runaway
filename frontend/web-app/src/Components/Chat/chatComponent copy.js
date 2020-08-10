@@ -29,6 +29,7 @@ function ChatComponent(props){
             socket.off("updateMessage");
             socket.disconnect();
           };
+          // eslint-disable-next-line react-hooks/exhaustive-deps
     },[parseInt(props.props[0],10)]);
 
     useEffect(()=>{
@@ -42,6 +43,7 @@ function ChatComponent(props){
             }]
             );
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
 
 
