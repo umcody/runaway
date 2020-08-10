@@ -83,6 +83,8 @@ export default function BlogFeed({navigation}) {
             keyExtractor={(item,index) => 'key'+index}
             showsHorizontalScrollIndicator={false}
             style={{paddingBottom:padding.md}}
+            initialNumToRender={5}
+            windowSize={5}
             />
           <Text style={styles.recentPosts}>Recent Posts</Text>
           </View>
@@ -104,6 +106,7 @@ export default function BlogFeed({navigation}) {
     showsHorizontalScrollIndicator={false}
     showsVerticalScrollIndicator={false}
     initialNumToRender={5}
+    windowSize={9}
     onEndReached={handleLoadMore}
     onEndReachedThreshold={5}
     contentContainerStyle={{paddingBottom:20}}
