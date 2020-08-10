@@ -7,8 +7,7 @@ function ChatComponent(props){
 
     const[messages,setMessages] = useState([]);
     const[temp, setTemp] = useState([]);
-    const[tracker, setTracker] = useState(0);
-    const [socket,setSocket] = useState(socketioclient("https://runaway-practicum.herokuapp.com/"));
+    const socket=socketioclient("https://runaway-practicum.herokuapp.com/");
    // const [socket,setSocket] = useState(socketioclient("localhost:7000"));
 
     function socket_joinRoom(room) {
@@ -30,7 +29,7 @@ function ChatComponent(props){
             socket.off("updateMessage");
             socket.disconnect();
           };
-    },[props.props[0],10]);
+    },[parseInt(props.props[0],10)]);
 
     useEffect(()=>{
         console.log("YEET");
