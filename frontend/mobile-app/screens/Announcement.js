@@ -48,6 +48,6 @@ const styles = StyleSheet.create({
     },
     back:{
         width:icon.lg,height:icon.lg,
-        marginLeft:margin.md,marginTop:margin.md, 
+        marginLeft:margin.md,marginTop:margin.lg, 
     },
 });

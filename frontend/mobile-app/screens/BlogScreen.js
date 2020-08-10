@@ -31,7 +31,7 @@ export default function BlogScreen({navigation,route}) {
         else show html content from database, uses HTML parser to convert into jsx*/}
         {loading ? <ActivityIndicator /> : <View>
           <ImageBackground source={{uri:blog.imageURL}} style={styles.image}>
-          <View style={{flex:'1',backgroundColor:"rgba(0, 0, 0, 0.1)"}}>
+          <View style={{flex:1,backgroundColor:"rgba(0, 0, 0, 0.1)"}}>
           <TouchableOpacity onPress={()=>navigation.navigate('Feed')} style={styles.back}>
               <Ionicons name="ios-arrow-back" size={icon.lg} color={colors.background} />
           </TouchableOpacity>
