@@ -11,6 +11,7 @@ export default function ChatPage(props) {
                 window.location = "/login";
             }
         }
+        checkAccess();
     }
     );
     return (
