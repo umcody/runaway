@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import socketioclient from "socket.io-client";
-import {Widget,addResponseMessage, toggleWidget} from "react-chat-widget";
 import ChatComponent from "./chatComponent copy";
 import 'react-chat-widget/lib/styles.css';
 import "./chat.css";
@@ -9,7 +8,6 @@ let socket;
 function ChatObservation(props) {
 
     const [queue, setQueue] = useState([0]);
-    const [roomNum, setRoomNum] = useState(0);
     const [joinedRoom, setJoinedRoom] = useState([]);
     const [joinedRoomSize, setJoinedRoomSize] = useState(0);
 
