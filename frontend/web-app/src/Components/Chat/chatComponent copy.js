@@ -6,9 +6,10 @@ import "./chat.css";
 function ChatComponent(props){
 
     const[messages,setMessages] = useState([]);
-    const[temp, setTemp] = useState([])
-   // const [socket,setSocket] = useState(socketioclient("https://runaway-practicum.herokuapp.com/"));
-    const [socket,setSocket] = useState(socketioclient("localhost:7000"));
+    const[temp, setTemp] = useState([]);
+    const[tracker, setTracker] = useState(0);
+    const [socket,setSocket] = useState(socketioclient("https://runaway-practicum.herokuapp.com/"));
+   // const [socket,setSocket] = useState(socketioclient("localhost:7000"));
 
     function socket_joinRoom(room) {
         socket.emit("joinRoom", room);
@@ -17,33 +18,35 @@ function ChatComponent(props){
     }
 
 
-    function _onMessageUpdate(message){
-        console.log(message);
-        console.log(temp);
-        setMessages([...temp, {
-            author: 'them',
-            type: 'text',
-            data: {text:message}
-        }]
-        );
-
-    }
-
+ 
     useEffect(()=>{
         console.log(props);
         console.log("HEHHRHERHHER");
         socket_joinRoom(parseInt(props.props[0],10));
         console.log(messages);
 
-        socket.on("updateMessage", message => {
-            console.log(messages);
-            _onMessageUpdate(message);
-        });
+        
         return () => {
             socket.off("updateMessage");
             socket.disconnect();
           };
-},[])// eslint-disable-line react-hooks/exhaustive-deps
+    },[props.props[0],10]);
+
+    useEffect(()=>{
+        console.log("YEET");
+        socket.on("updateMessage", message => {
+            console.log(messages);
+            setMessages((currentMessages)=>[...currentMessages, {
+                author: 'them',
+                type: 'text',
+                data: {text:message}
+            }]
+            );
+        });
+    },[]);
+
+
+// eslint-disable-line react-hooks/exhaustive-deps
 
     function _onMessageWasSent(message) {
         setMessages([...messages, message]);

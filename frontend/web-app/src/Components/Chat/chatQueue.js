@@ -22,8 +22,8 @@ function ChatObservation(props) {
     }
 //
     useEffect(() => {
-        //socket = socketioclient("https://runaway-practicum.herokuapp.com/");
-        socket = socketioclient("localhost:7000");
+        socket = socketioclient("https://runaway-practicum.herokuapp.com/");
+        //socket = socketioclient("localhost:7000");
 
         socket.emit("observeQueue", "joining General");
 
