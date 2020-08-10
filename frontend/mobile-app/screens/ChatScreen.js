@@ -41,6 +41,7 @@ export default function ChatScreen({ navigation }) {
           <AntDesign name="exclamationcircleo" size={icon.md} color={colors.button} />
         </TouchableOpacity>
       ),
+      headerTitle:'Chat',
       headerLeft: () => (
         <TouchableOpacity
           style={{ paddingLeft: padding.md }}
@@ -59,7 +60,7 @@ export default function ChatScreen({ navigation }) {
         <TouchableOpacity
           style={{ paddingLeft: padding.md  }}
           onPress={() => {
-            return navigation.pop(1);
+            return navigation.navigate('Feed');
           }}
         >
           <Feather name="x" size={icon.lg} color={colors.button} />
