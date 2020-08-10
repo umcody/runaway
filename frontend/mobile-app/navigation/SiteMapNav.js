@@ -12,7 +12,7 @@ export default function SiteMapNav({navigation}){
     const Stack = createStackNavigator();
     return (
         <View style = {styles.container}>
-            <Stack.Navigator>
+            <Stack.Navigator mode="modal">
             <Stack.Screen
           name="SiteMap"
           component={SiteMap}

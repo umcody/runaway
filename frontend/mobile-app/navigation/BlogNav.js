@@ -3,12 +3,14 @@ import { StyleSheet, View ,Text,SafeAreaView,Dimensions,Image} from "react-nativ
 import { createStackNavigator,CardStyleInterpolators } from '@react-navigation/stack';
 import BlogFeed from '../screens/BlogFeed';
 import BlogScreen from '../screens/BlogScreen';
-import Announcement from '../components/Announcement';
+import Announcement from '../screens/Announcement';
 import { Ionicons,Feather} from "@expo/vector-icons";
 import {colors, fonts, padding, stylesDefault, icon,dimensions} from '../style/styleValues.js';
 
 // stack nav for blog post to blog page 
 //for now this is used as the homepage
+
+
 export default function BlogNav({navigation}){
     const Stack = createStackNavigator();
     //header logo

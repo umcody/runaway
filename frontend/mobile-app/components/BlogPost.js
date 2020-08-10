@@ -22,7 +22,7 @@ export default function BlogPost({title,author,date,readTime,imageURL,HandlePres
     }
     return(
         <View style={{marginBottom:padding.sm}}>
-            <TouchableOpacity style ={styles.container} onPress={HandlePress}>
+            <TouchableOpacity activeOpacity={.6} style ={styles.container} onPress={HandlePress}>
                 <View style = {styles.text}>
                         <Text style = {styles.title}>{title}</Text>
                         <View style = {styles.extras}>

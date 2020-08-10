@@ -58,7 +58,7 @@ export default function BlogFeed({navigation}) {
 
   const renderAn = ({item}) => {
       return (
-        <TouchableOpacity style={styles.announcement} onPress={()=> navigation.navigate('Announcement',{
+        <TouchableOpacity activeOpacity={.8} style={styles.announcement} onPress={()=> navigation.navigate('Announcement',{
           item:item})}>
             <ImageBackground style={{flex:1,width:"100%",alignContent:'flex-end',justifyContent:'flex-end'}} resizeMode="cover" source={{uri:item.image}}>
             <View style={{flex:'1',backgroundColor:"rgba(0, 0, 0, 0.2)",justifyContent:'center'}}>

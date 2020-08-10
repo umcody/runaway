@@ -14,7 +14,7 @@ export default function Announcement({navigation,route}) {
 
   return (
     <SafeAreaView style={styles.container}>
-        <TouchableOpacity onPress={()=>navigation.goBack()} style={styles.back}>
+        <TouchableOpacity onPress={()=>navigation.navigate('Feed')} style={styles.back}>
                 <Feather name="x" size={icon.lg} color={colors.foreground}/>
         </TouchableOpacity>
       <Text style={styles.title}>{item.name}</Text>
