@@ -20,9 +20,9 @@ export default function useBlogPage(pageNumber) {
         cancelToken: new axios.CancelToken(c=> cancel =c)
     }).then(res =>{ 
         // ... to add previous blogs as well as the new ones
-        setBlogs([...blogs,...res.data])
+        setBlogs([...blogs,...res.data.blogs])
         // if the data is 20 blogs then there is likely more blogs
-        setHasMore(res.data.length ==20)
+        setHasMore(res.data.blogs.length ==20)
         setLoading(false)
     })
     .catch(e=> {
