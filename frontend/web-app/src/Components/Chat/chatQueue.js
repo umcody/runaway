@@ -1,25 +1,28 @@
 import React, { useEffect, useState } from "react";
 import socketioclient from "socket.io-client";
-import {Widget,addResponseMessage, toggleWidget} from "react-chat-widget";
+import ChatComponent from "./chatComponent copy";
 import 'react-chat-widget/lib/styles.css';
 import "./chat.css";
 
 let socket;
-function ChatObservation() {
+function ChatObservation(props) {
 
     const [queue, setQueue] = useState([0]);
-    const [roomNum, setRoomNum] = useState(0);
+    const [joinedRoom, setJoinedRoom] = useState([]);
+    const [joinedRoomSize, setJoinedRoomSize] = useState(0);
 
 
     function socket_joinRoom(room) {
-        setRoomNum(room);
-        socket.emit("joinRoom", room);
-        socket.emit("volunteerJoined","dummy");
-        console.log("volunteerJoined sent");
+        console.log(joinedRoom instanceof Array);
+        setJoinedRoom(joinedRoom => joinedRoom.concat([[room, joinedRoomSize]]));
+        setJoinedRoomSize(joinedRoomSize+1);
+        console.log(joinedRoom.concat([[room, joinedRoomSize]]));
     }
-
+//
     useEffect(() => {
         socket = socketioclient("https://runaway-practicum.herokuapp.com/");
+        //socket = socketioclient("localhost:7000");
+
         socket.emit("observeQueue", "joining General");
 
         socket.on("updateQueue", queue => {
@@ -27,30 +30,16 @@ function ChatObservation() {
             setQueue(queue);
         });
 
-        socket.on("updateMessage", function (message) {
-
-            console.log("message recieved");
-            addResponseMessage(message);
-        })
-
         /* ToDo: When volunteer closes chat, socket.disconnect with data showing the volunteer is volunteer */
 
     }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
     function joinRoom(event) {
         socket_joinRoom(event.target.innerHTML);
-        toggleWidget();
         console.log(event.target)
     }
-    
-    function handleNewUserMessage(message){
-        socket.emit("sendMessage",message);
-    }
-    
-    function nothing(){}
-
     return (
-        <div>
+        <div className = "col-10" >
             <h3>Chat Room Queues ( click to join )</h3>
             <div>{queue.map((room) => {
                 return (
@@ -61,15 +50,11 @@ function ChatObservation() {
             })}</div>
 
             {/******************************************************/}
-
-            <Widget
-                handleNewUserMessage = {handleNewUserMessage}
-                title={`Room #${roomNum}`}
-                subtitle="lets start"
-                lancher={handleToggle => nothing(handleToggle)}
-            />
-
-            <img src= "/asset/background-deco.png" alt="graphics" style = {{position: "absolute", left:"-200px", height:"500px",opacity:"0.8"}}/>
+            <div style = {{"height":"90%"}}>
+                {joinedRoom.map((item)=>{
+                    return (<ChatComponent props = {item}/>);
+                })}
+            </div>
         </div>
     )
 }

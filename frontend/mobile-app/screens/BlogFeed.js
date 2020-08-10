@@ -7,34 +7,18 @@ import {
   Text,
   RefreshControl,
   ActivityIndicator,
-  StatusBar
+  StatusBar,
+  ImageBackground
 } from "react-native";
 import {SafeAreaView } from 'react-native-safe-area-context';
 import BlogPost from "../components/BlogPost"
 import useBlogPage from "../components/useBlogPage"
+import useAn from "../components/useAnnouncement"
 import {colors, fonts, padding, dimensions,margin,borderRadius} from '../style/styleValues.js'
-// Sample data for events/announcement
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-const AN =[
-  {
-  key:'1',
-  title:"Event 1"
-  },
-  {
-    key:'2',
-    title:"Event 2"
-  },
-  {
-  key:'3',
-  title:"Event 3"
-  },
-  {
-    key:'4',
-    title:"Event 4"
-  }
-]
 //This file is the blog feed component that allows infinite scrolling
-export default function BlogFeed({navigation,fromHelp}) {
+export default function BlogFeed({navigation}) {
   //default page number is 1 which is the first page of blogs
   const [pageNumber,setPageNumber] = useState(1)
   // returns the blogs data and other variables regarding the blogs from the custom hook, useBlogPage
@@ -64,12 +48,24 @@ export default function BlogFeed({navigation,fromHelp}) {
       wait(2000).then(() => setRefreshing(false));
     }, [refreshing]);
 
+    //get announcements
+    const {
+      announcements,
+      loadingAn,
+      errorAn
+      }  = useAn()
     // render horizontal
+
   const renderAn = ({item}) => {
       return (
-        <View style={styles.announcement}>
-          <Text>{/*item.title*/}</Text>
-        </View>
+        <TouchableOpacity activeOpacity={.8} style={styles.announcement} onPress={()=> navigation.navigate('Announcement',{
+          item:item})}>
+            <ImageBackground style={{flex:1,width:"100%",alignContent:'flex-end',justifyContent:'flex-end'}} resizeMode="cover" source={{uri:item.image}}>
+            <View style={{flex:1,backgroundColor:"rgba(0, 0, 0, 0.2)",justifyContent:'center'}}>
+            <Text style={{textAlign:'center', color:"#fff",fontSize:fonts.sm-2,fontFamily:fonts.subheader,paddingBottom:5}}>{item.name}</Text>
+            </View>
+            </ImageBackground>
+        </TouchableOpacity>
       );
     };
 
@@ -80,16 +76,20 @@ export default function BlogFeed({navigation,fromHelp}) {
       ListHeaderComponent={
         <View>
           <FlatList 
-            data={AN}
+            data={announcements}
             renderItem={renderAn}
             horizontal={true}
             nestedScrollEnabled={true}
-            keyExtractor={item => item.key}
-            showsHorizontalScrollIndicator={false}/>
+            keyExtractor={(item,index) => 'key'+index}
+            showsHorizontalScrollIndicator={false}
+            style={{paddingBottom:padding.md}}
+            initialNumToRender={5}
+            windowSize={5}
+            />
           <Text style={styles.recentPosts}>Recent Posts</Text>
           </View>
       }
-        style={{paddingLeft:padding.md,paddingTop:padding.sm}}
+        style={{paddingLeft:padding.md,paddingRight:padding.md,paddingTop:padding.sm}}
         nestedScrollEnabled={true}
         data={blogs}
         renderItem={({ item }) => {
@@ -102,10 +102,11 @@ export default function BlogFeed({navigation,fromHelp}) {
           />
         )
     }}
-    keyExtractor={item => item._id}
+    keyExtractor={(item,index) => 'key'+index}
     showsHorizontalScrollIndicator={false}
     showsVerticalScrollIndicator={false}
     initialNumToRender={5}
+    windowSize={9}
     onEndReached={handleLoadMore}
     onEndReachedThreshold={5}
     contentContainerStyle={{paddingBottom:20}}
@@ -125,14 +126,15 @@ const styles = StyleSheet.create({
     alignItems:'center',
   },
   announcement:{
-    height:dimensions.fullHeight/7,
-    width:dimensions.fullWidth*.21,
+    height:dimensions.fullHeight/5,
+    width:dimensions.fullWidth*.3,
     backgroundColor:colors.secondary,
     borderRadius:borderRadius.lg,
     marginTop:margin.sm,
     marginRight:margin.md,
     justifyContent:'center',
-    alignItems:'center'
+    alignItems:'center',
+    overflow:'hidden'
   },
   recentPosts:{
       fontSize: fonts.lg,
