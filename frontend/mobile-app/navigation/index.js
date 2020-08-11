@@ -1,6 +1,13 @@
 import React from "react";
 import "react-native-gesture-handler";
-import { Linking, StyleSheet, StatusBar, Dimensions,View,Text } from "react-native";
+import {
+  Linking,
+  StyleSheet,
+  StatusBar,
+  Dimensions,
+  View,
+  Text,
+} from "react-native";
 
 import {
   MaterialCommunityIcons,
@@ -36,7 +43,15 @@ import SignInPage from "../screens/SignInPage";
 import ResourceNav from "./ResourceNav";
 
 //styling
-import {stylesDefault, icon, colors, dimensions,padding,fonts, margin} from '../style/styleValues'
+import {
+  stylesDefault,
+  icon,
+  colors,
+  dimensions,
+  padding,
+  fonts,
+  margin,
+} from "../style/styleValues";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 
 const BottomTabNavigation = createBottomTabNavigator();
@@ -51,52 +66,66 @@ const windowH = Dimensions.get("window").height;
 function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props}>
-    <View
-      style={{
-        backgroundColor: colors.background,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <Text style={{ fontSize:fonts.lg,
-        fontFamily:fonts.main,
-        paddingVertical:padding.md, }}>
-        Information Pane
-      </Text>
-    </View>
+      <View
+        style={{
+          backgroundColor: colors.background,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Text
+          style={{
+            fontSize: fonts.lg,
+            fontFamily: fonts.main,
+            paddingVertical: padding.md,
+          }}
+        >
+          Information Pane
+        </Text>
+      </View>
       <DrawerItemList {...props} />
       <DrawerItem
         onPress={() => {
           Linking.openURL("https://www.instagram.com/runaway.app/");
         }}
         label="Instagram"
-        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm}}
-        icon={() => <AntDesign name="instagram" size={icon.md} color={colors.button} />}
+        labelStyle={{ fontFamily: fonts.text, fontSize: fonts.sm }}
+        icon={() => (
+          <AntDesign name="instagram" size={icon.md} color={colors.button} />
+        )}
       />
       <DrawerItem
         onPress={() => {
           Linking.openURL("https://www.facebook.com/runawayapp/");
         }}
         label="Facebook"
-        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm}}
-        icon={() => <Feather name="facebook" size={icon.md} color={colors.button} />}
+        labelStyle={{ fontFamily: fonts.text, fontSize: fonts.sm }}
+        icon={() => (
+          <Feather name="facebook" size={icon.md} color={colors.button} />
+        )}
       />
       <DrawerItem
         onPress={() => {
           Linking.openURL("https://twitter.com/runaway_app");
         }}
         label="Twitter"
-        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm}}
-        icon={() => <Feather name="twitter" size={icon.md} color={colors.button} />}
+        labelStyle={{ fontFamily: fonts.text, fontSize: fonts.sm }}
+        icon={() => (
+          <Feather name="twitter" size={icon.md} color={colors.button} />
+        )}
       />
       <DrawerItem
         onPress={() => {
           WebBrowser.openBrowserAsync("https://www.runawayapp.com/");
         }}
-        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm}}
+        labelStyle={{ fontFamily: fonts.text, fontSize: fonts.sm }}
         label="Website"
         icon={() => (
-          <MaterialCommunityIcons name="web" size={icon.md} color={colors.button} />
+          <MaterialCommunityIcons
+            name="web"
+            size={icon.md}
+            color={colors.button}
+          />
         )}
       />
     </DrawerContentScrollView>
@@ -112,10 +141,13 @@ const BottomTab = ({ navigation }) => {
         activeTintColor: colors.tertiary,
         style: {
           backgroundColor: colors.background,
-          height: (dimensions.fullHeight >800) ? dimensions.fullHeight*.1: dimensions.fullHeight * 0.085,
+          height:
+            dimensions.fullHeight > 800
+              ? dimensions.fullHeight * 0.1
+              : dimensions.fullHeight * 0.085,
           borderTopColor: colors.secondary,
           borderTopWidth: 1,
-          elevation:1
+          elevation: 1,
         },
       }}
     >
@@ -139,10 +171,14 @@ const BottomTab = ({ navigation }) => {
         options={{
           tabBarLabel: "Chat",
           tabBarIcon: ({ color }) => (
-            <MaterialIcons name="chat-bubble-outline" color={color} size={icon.md} />
+            <MaterialIcons
+              name="chat-bubble-outline"
+              color={color}
+              size={icon.md}
+            />
           ),
         }}
-/>
+      />
       <BottomTabNavigation.Screen
         name="Resources"
         component={ResourceNav}
@@ -225,49 +261,47 @@ const About = () => {
     </AboutStack.Navigator>
   );
 };
-const MyDrawer = () =>{
+const MyDrawer = () => {
   return (
-    
-      <SettingsDrawer.Navigator
-        drawerContent={(props) => <CustomDrawerContent {...props} />}
-        edgeWidth={0}
-        drawerContentOptions={{
-          activeTintColor: colors.tertiary,
-          activeBackgroundColor:colors.secondary,
-          inactiveBackgroundColor: colors.background,
-          itemStyle: { marginBottom: margin.sm },
-          labelStyle:{fontSize:fonts.sm,fontFamily:fonts.text}
-        }}
-      >
-        <SettingsDrawer.Screen
-          name="Home"
-          component={BottomTab}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <SettingsDrawer.Screen name="About Us" component={About} />
-        {/*<SettingsDrawer.Screen name="FAQs" component={BottomTab} />*/}
-        <SettingsDrawer.Screen name="Privacy Policy" component={BottomTab} />
-        <SettingsDrawer.Screen name="Help" component={SiteMapNav} />
-        <SettingsDrawer.Screen name="Sign In" component={SignInPage} />
-      </SettingsDrawer.Navigator>
-    
-  );
-}
-
-export default function MyApp(){
-  return(
-    <NavigationContainer>
-      <RootStack.Navigator>
-      <RootStack.Screen
-        name="App"
-        component={MyDrawer}
+    <SettingsDrawer.Navigator
+      drawerContent={(props) => <CustomDrawerContent {...props} />}
+      edgeWidth={0}
+      drawerContentOptions={{
+        activeTintColor: colors.tertiary,
+        activeBackgroundColor: colors.secondary,
+        inactiveBackgroundColor: colors.background,
+        itemStyle: { marginBottom: margin.sm },
+        labelStyle: { fontSize: fonts.sm, fontFamily: fonts.text },
+      }}
+    >
+      <SettingsDrawer.Screen
+        name="Home"
+        component={BottomTab}
         options={{
           headerShown: false,
         }}
       />
-      <RootStack.Screen
+      <SettingsDrawer.Screen name="About Us" component={About} />
+      {/*<SettingsDrawer.Screen name="FAQs" component={BottomTab} />*/}
+      <SettingsDrawer.Screen name="Privacy Policy" component={BottomTab} />
+      <SettingsDrawer.Screen name="Help" component={SiteMapNav} />
+      {/*<SettingsDrawer.Screen name="Sign In" component={SignInPage} />*/}
+    </SettingsDrawer.Navigator>
+  );
+};
+
+export default function MyApp() {
+  return (
+    <NavigationContainer>
+      <RootStack.Navigator>
+        <RootStack.Screen
+          name="App"
+          component={MyDrawer}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <RootStack.Screen
           name="Chat"
           component={ChatScreen}
           options={{
@@ -275,14 +309,13 @@ export default function MyApp(){
             headerTitleAlign: "center",
             headerTitleStyle: styles.headerTitleStyle,
             headerStyle: styles.headerStyle,
-            gestureEnabled:false
+            gestureEnabled: false,
           }}
         />
         <RootStack.Screen
           name="PostSurvey"
           component={PostChatSurvey}
-          options={{ headerShown: false,gestureEnabled:false}}
-          
+          options={{ headerShown: false, gestureEnabled: false }}
         />
         <RootStack.Screen
           name="EmergencyResources"
@@ -295,7 +328,7 @@ export default function MyApp(){
         />
       </RootStack.Navigator>
     </NavigationContainer>
-  )
+  );
 }
 const styles = StyleSheet.create({
   headerTitleStyle: stylesDefault.headerTitleStyle,
