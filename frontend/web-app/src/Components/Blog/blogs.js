@@ -16,7 +16,7 @@ class Blogs extends React.Component {
   }
 
   handlePageClick = page => {
-    axios.get(`http://localhost:3000/api/volunteer/blog/get/${page}`)
+    axios.get(`https://runaway-practicum.herokuapp.com/api/volunteer/blog/get/${page}`)
         .then((response) => {
             console.log(response.data);
             this.setState({

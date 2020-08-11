@@ -30,7 +30,7 @@ class Login extends React.Component{
     navigate(access){
         console.log(access);
         if(access === "blog editor"){
-            window.location = "/blog/write";
+            window.location = "/blog/allposts";
         }else if (access === "volunteer"){
             window.location = "/chat/observe";
         }else if (access === "admin"){
