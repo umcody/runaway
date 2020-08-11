@@ -285,7 +285,7 @@ const MyDrawer = () => {
       {/*<SettingsDrawer.Screen name="FAQs" component={BottomTab} />*/}
       <SettingsDrawer.Screen name="Privacy Policy" component={BottomTab} />
       <SettingsDrawer.Screen name="Help" component={SiteMapNav} />
-      {/*<SettingsDrawer.Screen name="Sign In" component={SignInPage} />*/}
+      {/*<SettingsDrawer.Screen name="Sign In" component={SignInPage} /> */}
     </SettingsDrawer.Navigator>
   );
 };
