@@ -1,7 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import BlogPage from "./Components/Page/blogPage";
-import Blogs from "./Components/Blog/blogs";
 import Register from "./Components/Auth/register";
 import Login from "./Components/Auth/login";
 import Resource from "./Components/Resource/resource";
@@ -21,8 +20,7 @@ function App() {
       <Route exact path="/register" component={Register} />
       <Route exact path="/chat/observe" component={ChatObservation} />
       <Route exact path = "/chat/test" component = {ChatCreation}/>
-      <Route exact path="/blog/write" component={BlogPage} />
-      <Route exact path="/blogs" component={Blogs} />
+      <Route exact path="/blog/:subPage" component={BlogPage} />
       <Route exact path="/resource/write" component={Resource} />
       <Route exact path="/admin/overview" component={Admin} />
       <Route exact path="/" component={Login} />

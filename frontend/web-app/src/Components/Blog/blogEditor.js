@@ -38,7 +38,7 @@ class BlogEditor extends React.Component {
         }
         console.log(blogData);
         //POST METHOD
-        axios.post("/api/volunteer/blog/post", blogData);
+        axios.post("https://runaway-practicum.herokuapp.com/api/volunteer/blog/post", blogData);
     }
 
     render() {
