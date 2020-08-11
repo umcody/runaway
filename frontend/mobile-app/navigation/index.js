@@ -60,9 +60,6 @@ const SettingsDrawer = createDrawerNavigator();
 const AboutStack = createStackNavigator();
 const RootStack = createStackNavigator();
 
-const windowW = Dimensions.get("window").width;
-const windowH = Dimensions.get("window").height;
-
 function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props}>
@@ -226,9 +223,8 @@ const Chat = ({ navigation }) => {
           options={{
             headerTitle: "How are you feeling?",
             headerTitleAlign: "center",
-            headerTitleStyle: {
-              color: colors.tertiary,
-            },
+            headerStyle: stylesDefault.headerStyle,
+            headerTitleStyle: stylesDefault.headerTitleStyle,
             headerLeft: () => (
               <HeaderBackButton
                 labelVisible={false}

@@ -42,33 +42,37 @@ export default function AboutUs({navigation}) {
             Meet the team behind Runaway.
           </Text>
           <View style={{ alignItems: "center", width: "100%" }}>
-            <Text style={styles.teamTitle}>Founder</Text>
-            <TeamCard
-              name="Satvik Sethi"
-              role="Chief Executive Officer"
-            ></TeamCard>
-            <Text style={styles.teamTitle}>Marketing Team</Text>
-            <TeamCard name="Danika Jensen" role="Marketing Advisor"></TeamCard>
-            <TeamCard
-              name="Megan Reilly"
-              role="Director of Marketing"
-            ></TeamCard>
 
-            <Text style={styles.teamTitle}>Content & Media Team</Text>
-            <TeamCard
-              name="Rebecca Gorman"
-              role="Director of Content & Media"
-            ></TeamCard>
-            <TeamCard name="Jacob West" role="Blogger"></TeamCard>
-            <TeamCard name="Willis Tang" role="Blogger"></TeamCard>
-            <TeamCard name="Jayant Singhal" role="Blogger"></TeamCard>
+            <Text style={styles.teamTitle}>Founder</Text>
+            <TeamCard name="Satvik Sethi" role="Chief Executive Officer"></TeamCard>
+
+            <Text style={styles.teamTitle}>Marketing</Text>
+            <TeamCard name="Megan Reilly" role="Director of Marketing"></TeamCard>
+            <TeamCard name="Joanna Lai" role="Social Media Manager"></TeamCard>
+            <TeamCard name="Tanvi Singh" role="Public Relations"></TeamCard>
+
+            <Text style={styles.teamTitle}>Content & Media</Text>
+            <TeamCard name="Jacob West" role="Director of Content "></TeamCard>
             <TeamCard name="Maggie Dunsford" role="Blogger"></TeamCard>
+            <TeamCard name="Jessica Goldman" role="Blogger"></TeamCard>
+            <TeamCard name="Antonia Geraci" role="Blogger"></TeamCard>
+            <TeamCard name="Cat Young" role="Blogger"></TeamCard>
+            <TeamCard name="Taylor Summerfield" role="Graphic Artist"></TeamCard>
+
+            <Text style={styles.teamTitle}>Ambassadors</Text>
+            <TeamCard name="Alea Watson" role="Director of Ambassador Program"></TeamCard>
+            <TeamCard name="Emily Erb" role="Student Ambassador"></TeamCard>
+            <TeamCard name="Matthew Arthur" role="Student Ambassador"></TeamCard>
+            <TeamCard name="Chrity Dey" role="Student Ambassador"></TeamCard>
+            <TeamCard name="Aditi Kapoor" role="Student Ambassador"></TeamCard>
+            <TeamCard name="Diego Martinez" role="Student Ambassador"></TeamCard>
+
+            <Text style={styles.teamTitle}>Volunteers</Text>
+            <TeamCard name="Smrithi Sampath" role="Director of Volunteer Program"></TeamCard>
+
             <Text style={styles.teamTitle}>Technology Team</Text>
             <TeamCard name="Will Hunter" role="Practicum Advisor"></TeamCard>
-            <TeamCard
-              name="Rithwik Nichenametla"
-              role="Project Manager"
-            ></TeamCard>
+            <TeamCard name="Rithwik Nichenametla" role="Project Manager"></TeamCard>
             <TeamCard name="Pranaya Jajoo" role="Project Manager"></TeamCard>
             <TeamCard name="Hojung Lee" role="Product Designer"></TeamCard>
             <TeamCard name="Kimberly Ezeama" role="Product Designer"></TeamCard>
@@ -128,24 +132,24 @@ const styles = StyleSheet.create({
     fontFamily:fonts.text
   },
   team: {
-    backgroundColor: "#E3F1FC",
-    width: "100%",
-    padding: 20,
+    backgroundColor: colors.secondary,
+    width: dimensions.fullWidth,
+    padding: padding.md,
     flexDirection: "column",
     alignItems: "baseline",
   },
   button: {
-    backgroundColor: "#FF9EDA",
+    backgroundColor: colors.button,
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 12,
-    borderRadius: 20,
-    marginTop: 20,
+    paddingVertical: padding.sm,
+    borderRadius: borderRadius.md,
+    marginTop: margin.md,
     marginHorizontal:50
   },
   partners: {
-    padding: 20,
-    backgroundColor: "#E3F1FC",
+    padding: padding.md,
+    backgroundColor: colors.secondary,
     flexDirection: "row",
     alignItems: "center",
   },

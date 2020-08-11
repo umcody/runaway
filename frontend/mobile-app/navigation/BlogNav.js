@@ -1,19 +1,22 @@
 import React, { Component } from 'react'
 import { StyleSheet, View ,Text,SafeAreaView,Dimensions,Image} from "react-native";
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator,CardStyleInterpolators } from '@react-navigation/stack';
 import BlogFeed from '../screens/BlogFeed';
 import BlogScreen from '../screens/BlogScreen';
+import Announcement from '../screens/Announcement';
 import { Ionicons,Feather} from "@expo/vector-icons";
-import {colors, fonts, padding, stylesDefault, icon} from '../style/styleValues.js'
+import {colors, fonts, padding, stylesDefault, icon,dimensions} from '../style/styleValues.js';
 
 // stack nav for blog post to blog page 
 //for now this is used as the homepage
+
+
 export default function BlogNav({navigation}){
     const Stack = createStackNavigator();
     //header logo
     function LogoTitle() {
       return (
-        <Image source={require('../assets/RunawayLogo.png')} resizeMode="contain" style={{ width: 55}}/>
+        <Image source={require('../assets/RunawayLogo.png')} resizeMode="contain" style={{ width: 55,height:55}}/>
       );
     }
     return (
@@ -38,8 +41,20 @@ export default function BlogNav({navigation}){
           ),
               }}
             />
-        <Stack.Screen name="Blog" component={BlogScreen} options={{ headerShown:false, gestureResponseDistance:{horizontal: 500}
+        <Stack.Screen 
+        name="Blog" 
+        component={BlogScreen} 
+        options={{ headerShown:false, gestureResponseDistance:{horizontal: 500}
           }}/>
+        <Stack.Screen 
+          name ="Announcement"
+          component={Announcement}
+          options={{ headerShown:false, gestureResponseDistance:{horizontal: 500},
+            cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,gestureDirection:'vertical',
+            gestureResponseDistance:dimensions.fullHeight,cardOverlayEnabled:true,
+            
+          }}
+          />
             </Stack.Navigator>
        </View>
         

@@ -1,13 +1,10 @@
-import React, { useState } from 'react'
-import { SafeAreaView, Text, View, StyleSheet,Image,ActivityIndicator,ImageBackground,StatusBar,} from "react-native";
+import React from 'react'
+import { SafeAreaView, Text, View, StyleSheet,ActivityIndicator,ImageBackground} from "react-native";
 import {TouchableOpacity,ScrollView } from 'react-native-gesture-handler';
 import { Ionicons,MaterialCommunityIcons } from "@expo/vector-icons";
 import HTML from 'react-native-render-html';
 import useBlogUrl from "../components/useBlogUrl"
-import {colors, fonts, padding, dimensions,margin,borderRadius, icon} from '../style/styleValues.js'
-import { color } from 'react-native-reanimated';
-import { createIconSet } from 'react-native-vector-icons';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import {colors, fonts, padding, dimensions,margin, icon} from '../style/styleValues.js'
 
 // shows the blog page 
 export default function BlogScreen({navigation,route}) {
@@ -34,9 +31,11 @@ export default function BlogScreen({navigation,route}) {
         else show html content from database, uses HTML parser to convert into jsx*/}
         {loading ? <ActivityIndicator /> : <View>
           <ImageBackground source={{uri:blog.imageURL}} style={styles.image}>
-          <TouchableOpacity onPress={()=>navigation.goBack()} style={styles.back}>
-              <Ionicons name="ios-arrow-back" size={icon.lg} color={colors.background} style={styles.shadow} />
+          <View style={{flex:1,backgroundColor:"rgba(0, 0, 0, 0.1)"}}>
+          <TouchableOpacity onPress={()=>navigation.navigate('Feed')} style={styles.back}>
+              <Ionicons name="ios-arrow-back" size={icon.lg} color={colors.background} />
           </TouchableOpacity>
+          </View>
           </ImageBackground>
           <Text style={styles.title}>{blog.title}</Text>
           <View style={{flexDirection:'row'}}>
@@ -58,7 +57,8 @@ const styles = StyleSheet.create({
     fontFamily:fonts.main,
     paddingTop:padding.md,
     paddingLeft: padding.md,
-    paddingBottom:padding.sm
+    paddingBottom:padding.sm,
+    color:colors.foreground
   },
   image:{
     width:dimensions.fullWidth,
@@ -66,26 +66,19 @@ const styles = StyleSheet.create({
     resizeMode:'contain'
   },
   author: {
-    fontFamily:fonts.text,
-    paddingTop: 5,
-    paddingLeft: 20,
+    fontFamily:fonts.subheader,
+    paddingTop: padding.sm,
+    paddingLeft: padding.md,
     fontSize:fonts.sm,
+    color:colors.foreground
   },
   content: {
-    paddingTop: 20,
-    paddingLeft: 20,
+    paddingTop: padding.md,
+    paddingLeft: padding.md,
   },
   back:{
     width:icon.lg,height:icon.lg,
     marginLeft:margin.md,marginTop:margin.lg, 
   },
-  shadow:{
-    position: 'absolute', zIndex:1,
-    shadowOpacity: 0.3,
-    textShadowRadius: 4,
-    textShadowOffset: {
-        width: 0,
-        height: 2,  
-    },
-  }
+
 });

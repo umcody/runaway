@@ -53,7 +53,7 @@ export default function Chat({ navigation }) {
             <Text
               style={styles.questionBold}
               onPress={() => {
-                navigation.navigate("Resources");
+                navigation.navigate("EmergencyResources");
               }}
             >
               (here)
