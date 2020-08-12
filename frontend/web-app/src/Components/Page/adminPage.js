@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import NavBar from "../NavBar/NavBar";
-import Chat from "../Chat/chatQueue";
+import Admin from "../Admin/admin";
 import check from "../Auth/check";
 
 export default function ChatPage(props) {
