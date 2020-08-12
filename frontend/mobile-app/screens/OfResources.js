@@ -100,6 +100,8 @@ export default function OfResources({ route, navigation }) {
                 <Text style={{paddingBottom:padding.sm,paddingLeft:padding.md-1,color: '#C4C4C4',fontFamily:fonts.text}}>
                     {Resources.length} {(Resources.length===1)? "Result" : "Results"}</Text>
             </View>
+
+            
             <FlatList data={Resources}
             nestedScrollEnabled={true}
             
