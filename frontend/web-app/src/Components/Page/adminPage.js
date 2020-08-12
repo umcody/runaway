@@ -6,7 +6,7 @@ import check from "../Auth/check";
 export default function ChatPage(props) {
   useEffect(() => {
     async function checkAccess() {
-      if (!(await check("volunteer"))) {
+      if (!(await check("admin"))) {
         window.location = "/login";
       }
     }
@@ -17,8 +17,8 @@ export default function ChatPage(props) {
       style={{ position: "absolute", width: "100%", height: "100%" }}
       className="con container row"
     >
-      <NavBar pages={["Dashboard", "Chat Room", "Resources"]} />
-      <Chat />
+      <NavBar pages={["Dashboard", "Resources", "Media"]} />
+      <Admin />
     </div>
   );
 }
