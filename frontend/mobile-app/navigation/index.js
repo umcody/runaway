@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useCallback} from "react";
 import "react-native-gesture-handler";
 import {
   Linking,
@@ -30,7 +30,7 @@ import {
   DrawerItem,
 } from "@react-navigation/drawer";
 
-import EmergencyHotlinesScreen from "../screens/EmergencyHotline";
+import EmergencyHotlinesScreen from "../screens/OfHotline";
 import ChatScreen from "../screens/ChatScreen";
 import Feels from "../screens/Feels";
 import PostChatSurvey from "../screens/PostChatSurvey";
@@ -61,6 +61,19 @@ const AboutStack = createStackNavigator();
 const RootStack = createStackNavigator();
 
 function CustomDrawerContent(props) {
+  const supported = Linking.canOpenURL("fb://page/1789760617938894");
+  const handlePress = useCallback(async () => {
+    // Checking if the link is supported for links with custom URL scheme.
+    const supported = await Linking.canOpenURL("fb://page/1789760617938894");
+  
+    if (supported) {
+      // Opening the link with some app, if the URL scheme is "http" the web link should be opened
+      // by some browser in the mobile
+      await Linking.openURL("fb://page/1789760617938894");
+    } else {
+      Linking.openURL("https://www.facebook.com/runawayapp/");
+    }
+  });
   return (
     <DrawerContentScrollView {...props}>
       <View
@@ -92,9 +105,7 @@ function CustomDrawerContent(props) {
         )}
       />
       <DrawerItem
-        onPress={() => {
-          Linking.openURL("https://www.facebook.com/runawayapp/");
-        }}
+        onPress={handlePress}
         label="Facebook"
         labelStyle={{ fontFamily: fonts.text, fontSize: fonts.sm }}
         icon={() => (
