@@ -6,8 +6,8 @@ import "./chat.css";
 function ChatComponent(props){
 
     const[messages,setMessages] = useState([]);
-    const[temp, setTemp] = useState([]);
-    const socket=socketioclient("https://runaway-practicum.herokuapp.com/");
+    // eslint-disable-next-line no-unused-vars
+    const[socket,setSocket]=useState(socketioclient("https://runaway-practicum.herokuapp.com/"));
    // const [socket,setSocket] = useState(socketioclient("localhost:7000"));
 
     function socket_joinRoom(room) {
@@ -51,9 +51,9 @@ function ChatComponent(props){
 
     function _onMessageWasSent(message) {
         setMessages([...messages, message]);
-        setTemp(messages);
-        console.log(temp);
+        console.log(message);
         socket.emit("sendMessage", message.data.text);
+        console.log(socket);
     }
 
         return (

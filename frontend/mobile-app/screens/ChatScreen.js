@@ -179,7 +179,7 @@ export default function ChatScreen({ navigation }) {
     //When the server responds with "updateMessage"
     socket.on("updateMessage", function (message) {
       console.log("message recieved");
-
+      console.log(message);
       let temp = [
         {
           _id: Math.round(Math.random() * 1000000),

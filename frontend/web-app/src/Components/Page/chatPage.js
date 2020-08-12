@@ -11,7 +11,7 @@ export default function ChatPage(props) {
       }
     }
     checkAccess();
-  });
+  }, []);
   return (
     <div
       style={{ position: "absolute", width: "100%", height: "100%" }}
