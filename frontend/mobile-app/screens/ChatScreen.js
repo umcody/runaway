@@ -9,11 +9,9 @@ import {
 import { StyleSheet, View, TouchableOpacity, Modal, Text } from "react-native";
 import axios from "axios";
 import { AntDesign, FontAwesome5, Feather } from "@expo/vector-icons";
-import {SafeAreaView } from 'react-native-safe-area-context';
 import QuickReplies from 'react-native-gifted-chat/lib/QuickReplies';
 import WaitingPage from './WaitingPage';
 import {colors, fonts, padding, dimensions,margin,borderRadius, icon} from '../style/styleValues.js'
-import { color } from "react-native-reanimated";
 
 //This is the chat screen and messaging components
 export default function ChatScreen({ navigation }) {
@@ -31,7 +29,7 @@ export default function ChatScreen({ navigation }) {
 
   // conditional header depending on if user is in waiting screen or chat room
   //right now waiting screen wont show for testing purposes
-  if (volunteerJoined==false){
+  if (volunteerJoined){
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity
@@ -271,11 +269,9 @@ export default function ChatScreen({ navigation }) {
   }
   return (
     <View style={{ flex:1, backgroundColor: colors.background}}>
-    {volunteerJoined ==false? 
+    {volunteerJoined ? 
       <GiftedChat
         messages={messages}
-        //quickReply={setQuickReply} NOT WORKING FOR NOW...
-        //onQuickReply={(quickReply) => onQuickReply(quickReply)}
         onSend={(messages) => onSend(messages)}
         renderInputToolbar={(props) => customInputToolbar(props)}
         placeholder="New Message"

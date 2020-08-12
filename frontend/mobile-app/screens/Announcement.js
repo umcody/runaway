@@ -1,9 +1,7 @@
 import React from 'react'
-import { SafeAreaView, Text, View, StyleSheet,ActivityIndicator,ImageBackground, Image} from "react-native";
-import {TouchableOpacity,ScrollView } from 'react-native-gesture-handler';
+import { SafeAreaView, Text, StyleSheet} from "react-native";
+import {TouchableOpacity } from 'react-native-gesture-handler';
 import { Feather } from "@expo/vector-icons";
-import HTML from 'react-native-render-html';
-import useBlogUrl from "../components/useBlogUrl"
 import {colors, fonts, padding, dimensions,margin, icon,borderRadius} from '../style/styleValues.js'
 
 // shows the announcement page 
