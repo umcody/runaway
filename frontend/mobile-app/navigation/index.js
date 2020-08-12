@@ -140,7 +140,7 @@ const BottomTab = ({ navigation }) => {
           backgroundColor: colors.background,
           height:
             dimensions.fullHeight > 800
-              ? dimensions.fullHeight * 0.1
+              ? dimensions.fullHeight * 0.09
               : dimensions.fullHeight * 0.085,
           borderTopColor: colors.secondary,
           borderTopWidth: 1,
