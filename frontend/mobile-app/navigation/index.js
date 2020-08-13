@@ -170,7 +170,7 @@ const Chat = ({ navigation }) => {
           name="Feels"
           component={Feels}
           options={{
-            headerTitle: "How are you feeling?",
+            headerTitle: "Let Us Get To Know You",
             headerTitleAlign: "center",
             headerTitleStyle: {
               color: "#2E5F85",
