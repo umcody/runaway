@@ -1,13 +1,29 @@
-import React from "react";
+import React,{useEffect} from "react";
+import {Route} from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 import BlogEditor from "../Blog/blogEditor";
+import AllBlogs from "../Blog/blogs";
+import check from "../Auth/check";
 
 
-export default function blogPage(props){
+
+
+export default function BlogPage(props){
+    useEffect(() => {
+        async function checkAccess() {
+            if (!(await check("blog editor"))) {
+                window.location = "/login";
+            }
+        }
+        checkAccess();
+    },[])
+
     return(
         <div style = {{position: "absolute",width:"100%", height:"100%"}} className="con container row">
-                <NavBar pages={["All Posts", "Your Posts", "Drafts"]}/>
-                <BlogEditor/>
+            <NavBar pages={["All Posts", "Your Posts", "Drafts"]}/>
+            <Route path="/blog/yourposts" component={BlogEditor}/>
+            <Route path="/blog/allposts" component={AllBlogs}/>
+                
         </div>
     )
 }
