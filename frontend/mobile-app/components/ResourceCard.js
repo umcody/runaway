@@ -5,6 +5,7 @@ import {colors, fonts, padding, dimensions,margin,borderRadius, icon} from '../s
 import * as WebBrowser from "expo-web-browser";
 import { LinearGradient } from "expo-linear-gradient";
 
+// card for each resource
 const NewsCard = ({item}) => {
     return (
         <View style={styles.container}>
