@@ -54,7 +54,7 @@ export default function BlogScreen({navigation,route}) {
 const styles = StyleSheet.create({
   title: {
     fontSize:fonts.lg,
-    fontFamily:fonts.main,
+    fontFamily:fonts.mainBold,
     paddingTop:padding.md,
     paddingLeft: padding.md,
     paddingBottom:padding.sm,

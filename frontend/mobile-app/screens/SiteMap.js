@@ -27,10 +27,10 @@ const DATA = [
         id: "3",
         title: "Messaging",
       },
-      {
+      /*{
         id: "4",
         title: "FAQ",
-      },
+      },*/
     ];
     
 function FocusAwareStatusBar(props) {

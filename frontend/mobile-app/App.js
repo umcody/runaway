@@ -11,6 +11,7 @@ import {colors} from "./style/styleValues"
 async function getFonts(){
   await Font.loadAsync({
     "Lato": require('./assets/fonts/Lato-Regular.ttf'),
+    "Lato-Black": require('./assets/fonts/Lato-Black.ttf'),
     "Raleway": require('./assets/fonts/Raleway-Medium.ttf'),
     "Raleway-Bold": require('./assets/fonts/Raleway-Bold.ttf'),
     "Avenir": require('./assets/fonts/Avenir-Book.otf')
