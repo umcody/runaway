@@ -56,7 +56,9 @@ class Login extends React.Component{
             console.log(res.data);
             if(res.data.auth){
                 localStorage.setItem("JWT",res.data.token);
+                localStorage.setItem("USER",res.data.user);
             }
+            
             this.navigate(res.data.access)
         });
         
