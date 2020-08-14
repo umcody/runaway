@@ -13,17 +13,6 @@ import {colors, fonts, padding, dimensions,margin,borderRadius, icon} from '../s
 import { SafeAreaView } from "react-native-safe-area-context";
 import QuickReplies from "react-native-gifted-chat/lib/QuickReplies";
 import WaitingPage from "./WaitingPage";
-import {
-  colors,
-  fonts,
-  padding,
-  dimensions,
-  margin,
-  borderRadius,
-  icon,
-} from "../style/styleValues.js";
-import { color } from "react-native-reanimated";
-
 
 //This is the chat screen and messaging components
 export default function ChatScreen({ navigation }) {
@@ -111,11 +100,13 @@ export default function ChatScreen({ navigation }) {
             borderBottomRightRadius: borderRadius.lg,
             borderBottomLeftRadius: 0,
             padding: padding.sm,
+            paddingBottom:0,
             marginBottom: margin.sm,
           },
           right: {
             backgroundColor: colors.secondary,
             padding: padding.sm,
+            paddingBottom:0,
             marginRight: margin.md,
             borderTopLeftRadius: borderRadius.lg,
             borderTopRightRadius: borderRadius.lg,
@@ -282,9 +273,11 @@ export default function ChatScreen({ navigation }) {
   const renderQuickReplies = (props) => {
     return <QuickReplies color={colors.tertiary} {...props} />;
   };
+
+  // show wait page or chat page depending on if volunteer joined
   return (
     <View style={{ flex:1, backgroundColor: colors.background}}>
-    {volunteerJoined ? 
+    {volunteerJoined ==false? 
       <GiftedChat
         messages={messages}
         onSend={(messages) => onSend(messages)}
@@ -333,21 +326,21 @@ export default function ChatScreen({ navigation }) {
             alignItems: "center",
           }}
         />
-      ) : (
+      : 
         <WaitingPage />
-      )}
+      }
     </View>
   );
 }
 const styles = StyleSheet.create({
   composer: {
-    backgroundColor: "#E3F1FC",
+    backgroundColor: colors.secondary,
     borderRadius: 30,
     borderWidth: 5,
-    borderColor: "#E3F1FC",
+    borderColor: colors.secondary,
     paddingLeft: 10,
     paddingRight: 20,
-    color: "#2E5F85",
+    color: colors.tertiary,
     minHeight: 35,
     alignItems: "center",
   },
