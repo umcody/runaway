@@ -10,13 +10,16 @@ function ChatObservation(props) {
     const [queue, setQueue] = useState([0]);
     const [joinedRoom, setJoinedRoom] = useState([]);
     const [joinedRoomSize, setJoinedRoomSize] = useState(0);
+    //const [numRoom, setNumRoom] = useState(0);
 
 
     function socket_joinRoom(room) {
         console.log(joinedRoom instanceof Array);
-        setJoinedRoom(joinedRoom => joinedRoom.concat([[room, joinedRoomSize]]));
-        setJoinedRoomSize(joinedRoomSize+1);
-        console.log(joinedRoom.concat([[room, joinedRoomSize]]));
+        if(joinedRoomSize<3){
+            setJoinedRoom(joinedRoom => joinedRoom.concat([[room, joinedRoomSize]]));
+            setJoinedRoomSize(joinedRoomSize+1);
+            console.log(joinedRoom.concat([[room, joinedRoomSize]]));
+        }
     }
 //
     useEffect(() => {
@@ -38,6 +41,17 @@ function ChatObservation(props) {
         socket_joinRoom(event.target.innerHTML);
         console.log(event.target)
     }
+    // this delete room is called in the child component
+    function deleteRoom(index){
+        console.log(index);
+        let temp = joinedRoom; 
+        console.log(joinedRoom);
+        temp.splice(index,1)
+        setJoinedRoom(temp);
+        setJoinedRoomSize(joinedRoomSize-1);
+        console.log(joinedRoom);
+    }
+
     return (
         <div className = "col-10" >
             <h3>Chat Room Queues ( click to join )</h3>
@@ -52,7 +66,7 @@ function ChatObservation(props) {
             {/******************************************************/}
             <div style = {{"height":"90%"}}>
                 {joinedRoom.map((item)=>{
-                    return (<ChatComponent props = {item}/>);
+                    return (<ChatComponent deleteRoom = {deleteRoom} joinedRoom = {joinedRoom} props = {item}/>);
                 })}
             </div>
         </div>
