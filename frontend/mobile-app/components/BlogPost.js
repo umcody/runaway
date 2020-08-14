@@ -28,7 +28,7 @@ export default function BlogPost({title,author,date,readTime,imageURL,HandlePres
                         <View style = {styles.extras}>
                             <View style={{flexDirection:'row'}}>
                                 <Text style = {styles.info}>{author}</Text>
-                                <MaterialCommunityIcons name="feather" size={14} color={colors.button} style={{paddingTop:padding.sm}} />
+                                <MaterialCommunityIcons name="feather" size={14} color={colors.button} />
                                 <Text style ={styles.info}>· {readTime} min</Text>
                             </View>
                             <Text style={styles.info}>{ConvertDate(date)}</Text>
@@ -44,7 +44,7 @@ export default function BlogPost({title,author,date,readTime,imageURL,HandlePres
 
 const styles = StyleSheet.create({
     container:{
-        height:(dimensions.fullHeight >800) ? dimensions.fullHeight/7: dimensions.fullHeight/5,
+        height:(dimensions.fullHeight >800) ? dimensions.fullHeight/8.5: dimensions.fullHeight/6.7,
         width:dimensions.fullWidth*.9,
         borderWidth:0,
         justifyContent:'space-between',
@@ -65,15 +65,14 @@ const styles = StyleSheet.create({
        flex:1
     },
     info:{
+        
         color:colors.foreground,
-        paddingRight:padding.sm,
-        paddingTop:padding.sm,
         fontFamily:fonts.text,
         fontSize:fonts.sm-2
     },
     image: {
-        width:100,
-        height:100,
+        width:80,
+        height:80,
         borderRadius:borderRadius.sm
       },
   });

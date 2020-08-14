@@ -36,8 +36,7 @@ export default function BlogNav({navigation}){
               name="menu"
               size={icon.sm}
               color={colors.foreground}
-            />
-            
+            />  
           ),
               }}
             />

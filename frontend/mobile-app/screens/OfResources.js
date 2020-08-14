@@ -75,6 +75,7 @@ export default function OfResources({ route, navigation }) {
                     {label: 'Eating Disorders', value: 'api/volunteer/resource?filter=Eating%20Disorders'},
                     {label: 'Domestic and Sexual Violence', value: 'api/volunteer/resource?filter=Domestic%20and%20Sexual%20Violence'},
                 ]}
+                dropDownMaxHeight={300}
                 defaultValue={EndPoint}
                 placeholder="Filter"
                 containerStyle={{height: 40,borderTopWidth:0}}
@@ -94,7 +95,6 @@ export default function OfResources({ route, navigation }) {
                     fontFamily:fonts.main,
 
                 }} 
-                dropDownStyle={{backgroundColor: colors.background,}}
             />
             <View style={{borderBottomWidth:1,borderColor:colors.secondary}}>
                 <Text style={{paddingBottom:padding.sm,paddingLeft:padding.md-1,color: '#C4C4C4',fontFamily:fonts.text}}>

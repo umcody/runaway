@@ -86,9 +86,9 @@ export default function AboutUs({navigation}) {
             <TeamCard name="Dongjoo Lee" role="Back-end Developer"></TeamCard>
           </View>
         </View>
-        <View style={styles.partners}>
+        {/*<View style={styles.partners}>
           <Text style={styles.subtitle}>Our Partners</Text>
-        </View>
+      </View>*/}
       </ScrollView>
     </View>
   );

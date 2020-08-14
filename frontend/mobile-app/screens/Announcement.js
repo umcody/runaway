@@ -1,9 +1,7 @@
 import React from 'react'
-import { SafeAreaView, Text, View, StyleSheet,ActivityIndicator,ImageBackground, Image} from "react-native";
-import {TouchableOpacity,ScrollView } from 'react-native-gesture-handler';
+import { SafeAreaView, Text, StyleSheet, ImageBackground} from "react-native";
+import {TouchableOpacity } from 'react-native-gesture-handler';
 import { Feather } from "@expo/vector-icons";
-import HTML from 'react-native-render-html';
-import useBlogUrl from "../components/useBlogUrl"
 import {colors, fonts, padding, dimensions,margin, icon,borderRadius} from '../style/styleValues.js'
 
 // shows the announcement page 
@@ -14,9 +12,11 @@ export default function Announcement({navigation,route}) {
 
   return (
     <SafeAreaView style={styles.container}>
+        <ImageBackground source={{uri:item.image}} style={styles.image}>
         <TouchableOpacity onPress={()=>navigation.navigate('Feed')} style={styles.back}>
-                <Feather name="x" size={icon.lg} color={colors.foreground}/>
+                <Feather name="x" size={icon.lg} color={colors.background}/>
         </TouchableOpacity>
+        </ImageBackground>
       <Text style={styles.title}>{item.name}</Text>
       <Text style={styles.content}>{item.content}</Text>
     </SafeAreaView>
@@ -25,7 +25,7 @@ export default function Announcement({navigation,route}) {
 const styles = StyleSheet.create({
     container:{ 
         flex: 1,
-        backgroundColor:colors.secondary,
+        backgroundColor:colors.background,
     },
     title: {
         fontSize:fonts.lg,
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     },
     image:{
         height:250,width:'100%',
-        alignItems:'flex-end'
+        alignItems:'flex-start'
     },
     content: {
         fontSize:fonts.md,

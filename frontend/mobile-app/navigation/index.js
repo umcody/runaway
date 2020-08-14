@@ -90,7 +90,7 @@ function CustomDrawerContent(props) {
             paddingVertical: padding.md,
           }}
         >
-          Information Pane
+          RUNAWAY
         </Text>
       </View>
       <DrawerItemList {...props} />
@@ -151,8 +151,8 @@ const BottomTab = ({ navigation }) => {
           backgroundColor: colors.background,
           height:
             dimensions.fullHeight > 800
-              ? dimensions.fullHeight * 0.1
-              : dimensions.fullHeight * 0.085,
+              ? dimensions.fullHeight * 0.09
+              : 50,
           borderTopColor: colors.secondary,
           borderTopWidth: 1,
           elevation: 1,

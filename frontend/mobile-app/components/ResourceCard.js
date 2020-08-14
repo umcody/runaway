@@ -3,17 +3,37 @@ import { StyleSheet, Text, View, Dimensions,Linking } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import {colors, fonts, padding, dimensions,margin,borderRadius, icon} from '../style/styleValues.js'
 import * as WebBrowser from "expo-web-browser";
+import { LinearGradient } from "expo-linear-gradient";
+
+// card for each resource
 const NewsCard = ({item}) => {
     return (
         <View style={styles.container}>
-            <TouchableOpacity
-                style={styles.cardView}
+            
+            <TouchableOpacity 
+            style={{elevation:2,
+                shadowOffset: {
+                width: 0,
+                height: 1.5,
+                },
+                shadowOpacity: 0.2,
+                shadowRadius: 1,}}
                 onPress={() => {
                     WebBrowser.openBrowserAsync("https://www." +item.url)
                   }}>
-                <Text style={styles.title}>{item.title}</Text>
+                <LinearGradient start={[0, 0.5]}
+                  end={[1, 0.5]}
+                  colors={['#ACDAFF', '#FF9EDA','#E3F1FC']}
+                  style={{borderRadius: 10,marginVertical:margin.sm,
+                }}>
+                      <View style={styles.cardView}>
+                      <Text style={styles.title}>{item.title}</Text>
                 <Text style={styles.title}>{item.url}</Text>
                 <Text style={styles.title}>{item.url}</Text>
+                      </View>
+                
+                  </LinearGradient>
+                
             </TouchableOpacity>           
         </View>
     )
@@ -24,25 +44,20 @@ const styles = StyleSheet.create({
         backgroundColor: colors.background,        
         alignItems: 'center',
         flex:1,
+        
+        
     },
     cardView: {
         backgroundColor: colors.background,
-        margin: margin.sm,
+        margin: 1,
         borderRadius: 10,
         borderWidth: 0,
         width: dimensions.fullWidth* .9,
         height: dimensions.fullHeight/6,
-        backgroundColor:colors.primary,
+        backgroundColor:colors.background,
         justifyContent:'center',
         paddingLeft:padding.sm,
-        elevation:2,
-        shadowOffset: {
-        width: 0,
-        height: 1,
-        },
-        shadowOpacity: 0.2,
-        shadowRadius: 4,
-        },
+    },
     title: {
         width: dimensions.fullWidth,
         color: colors.foreground,
