@@ -16,7 +16,10 @@ function ChatComponent(props){
         console.log("volunteerJoined sent");
     }
 
-
+    function handleClick(){
+        let index = props.joinedRoom.indexOf(props.props);
+        props.deleteRoom(index);
+    }
  
     useEffect(()=>{
         console.log(props);
@@ -64,6 +67,7 @@ function ChatComponent(props){
                     }}
                     onMessageWasSent={_onMessageWasSent}
                     messageList={messages}
+                    handleClick = {handleClick}
                     isOpen = {true}
                     showEmoji
                 />

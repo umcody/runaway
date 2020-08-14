@@ -1,0 +1,22 @@
+.accountBar{
+    width:100%;
+    border-bottom: 1px lightgray solid;
+    height: 8%;
+    position: relative;
+}
+
+.avatar{
+    margin-left: 20px;
+    width: 55px;
+    height: 55px;
+    padding: 5px;
+    border-radius:50%;
+    border: 1px lightblue solid;
+}
+
+.accountContainer{
+    position: absolute;
+    right: 2%;
+    top:50%;
+    transform: translate(0,-50%);
+}

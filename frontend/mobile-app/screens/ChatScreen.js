@@ -25,13 +25,11 @@ export default function ChatScreen({ navigation }) {
   const [queue, setQueue] = useState([]);
   const [modalVisible, setModalVisible] = useState(true);
   const [text, setText] = useState("");
+  const [socket, setSocket] = useState(socketioclient("https://runaway-practicum.herokuapp.com/"));
 
-
-  let socket;
 
   // conditional header depending on if user is in waiting screen or chat room
-  //right now waiting screen wont show for testing purposes
-  if (volunteerJoined == false){
+  if (volunteerJoined){
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity
@@ -46,6 +44,7 @@ export default function ChatScreen({ navigation }) {
         <TouchableOpacity
           style={{ paddingLeft: padding.md }}
           onPress={() => {
+            disconnectSocket();
             return navigation.navigate("PostSurvey", { messages: messages });
           }}
         >
@@ -150,7 +149,6 @@ export default function ChatScreen({ navigation }) {
   }
 
   useEffect(() => {
-    socket = socketioclient("https://runaway-practicum.herokuapp.com/");
     //generate random #
     let random_room = Math.floor(Math.random() * 1000 + 1);
 
@@ -219,9 +217,15 @@ export default function ChatScreen({ navigation }) {
     ]);
     //when exiting the component
     return () => {
+      console.log("LOG2");
       socket.disconnect();
     };
   }, []);
+
+  function disconnectSocket(){
+    console.log("LOG");
+    socket.emit("disconnectUser","user");
+  }
 
   //When clicked, call sendMessage function to send message to the server
   function sendMessage(message) {
@@ -271,7 +275,7 @@ export default function ChatScreen({ navigation }) {
   }
   return (
     <View style={{ flex:1, backgroundColor: colors.background}}>
-    {volunteerJoined == false? 
+    {(volunteerJoined == true)? 
       <GiftedChat
         messages={messages}
         //quickReply={setQuickReply} NOT WORKING FOR NOW...
