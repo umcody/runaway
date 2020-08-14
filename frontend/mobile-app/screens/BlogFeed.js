@@ -10,11 +10,9 @@ import {
   StatusBar,
   ImageBackground
 } from "react-native";
-import {SafeAreaView } from 'react-native-safe-area-context';
 import BlogPost from "../components/BlogPost"
 import useBlogPage from "../components/useBlogPage"
 import ResourceAPI from '../APIs/ResourceAPI'
-import useAn from "../components/useAnnouncement"
 import {colors, fonts, padding, dimensions,margin,borderRadius} from '../style/styleValues.js'
 import { TouchableOpacity } from "react-native-gesture-handler";
 
