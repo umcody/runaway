@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Dimensions,Linking, Modal, TouchableHighlight,Alert } from 'react-native';
+import { StyleSheet, Text, View, Dimensions,Linking, Modal, TouchableHighlight,Alert, Platform } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import {colors, fonts, padding, dimensions,margin,borderRadius, icon} from '../style/styleValues.js'
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
@@ -9,8 +9,11 @@ import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 
 
 
-import * as WebBrowser from "expo-web-browser";
 
+import * as WebBrowser from "expo-web-browser";
+function getSMSDivider(): string {
+    return Platform.OS === "ios" ? "&" : "?";
+  }
 
 const HotlineCard = ({item}) => {
     const [modalVisible, setModalVisible] = useState(false);
@@ -19,11 +22,12 @@ const HotlineCard = ({item}) => {
         //     <TouchableOpacity
         //         style={styles.cardView}
         //         onPress={() => {
-        //             WebBrowser.openBrowserAsync("https://www." +item.url)
+        //             WebBrowser.openBrowserAsync("https://www." +item.website)
         //           }}>
         //         <Text style={styles.title}>{item.title}</Text>
         //         <Text style={styles.title}>{item.phoneNumber}</Text>
-        //         <Text style={styles.title}>{item.textNumber}</Text>                
+        //         <Text style={styles.title}>{item.textNumber}</Text>
+        //         <Text style={styles.title}>{item.firstText}</Text>              
         //         <Text style={styles.title}>{item.website}</Text>
         //         <Text style={styles.title}>{item.meantFor}</Text>
         //     </TouchableOpacity>           
@@ -36,14 +40,18 @@ const HotlineCard = ({item}) => {
           animationType="slide"
           transparent={true}
           visible={modalVisible}
-          onRequestClose={() => {
-            Alert.alert("Modal has been closed.");
-          }}
+          onRequestClose={() => {this.setModalVisible(false)}}
         >
           <View style={styles.centeredView}>
           
             <View style={styles.modalView}>
-            <View style={{alignSelf: "flex-end"}}><TouchableOpacity onPress={() => {setModalVisible(!modalVisible);}}><Feather name="x" size={30} color="red" /></TouchableOpacity></View>
+            <View style={{alignSelf: "flex-end"}}>
+                <TouchableOpacity 
+                onPress={() => {
+                    setModalVisible(!modalVisible);}}>
+                    <Feather name="x" size={60} color="red" />
+                </TouchableOpacity>
+            </View>
               <Text style={styles.modalText}>Name</Text>
   
   
@@ -53,7 +61,7 @@ const HotlineCard = ({item}) => {
               <TouchableHighlight
                 style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
                 onPress={() => {
-                  setModalVisible(!modalVisible);
+                    Linking.openURL(`tel:${item.phoneNumber}`)
                 }}
               >
                 
@@ -68,7 +76,7 @@ const HotlineCard = ({item}) => {
               <TouchableHighlight
                 style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
                 onPress={() => {
-                  setModalVisible(!modalVisible);
+                    Linking.openUrl(`sms:${item.textNumber}?sms_body=${item.firstText}`)
                 }}
               >
                 
@@ -83,7 +91,7 @@ const HotlineCard = ({item}) => {
               <TouchableHighlight
                 style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
                 onPress={() => {
-                  setModalVisible(!modalVisible);
+                    WebBrowser.openBrowserAsync(item.website)
                 }}
               >
                 
