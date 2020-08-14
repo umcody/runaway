@@ -1,4 +1,4 @@
-import React,{useState,useCallback} from "react";
+import React,{useState,useEffect,useCallback} from "react";
 import {
   StyleSheet,
   View,
@@ -13,12 +13,15 @@ import {
 import {SafeAreaView } from 'react-native-safe-area-context';
 import BlogPost from "../components/BlogPost"
 import useBlogPage from "../components/useBlogPage"
+import ResourceAPI from '../APIs/ResourceAPI'
 import useAn from "../components/useAnnouncement"
 import {colors, fonts, padding, dimensions,margin,borderRadius} from '../style/styleValues.js'
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 //This file is the blog feed component that allows infinite scrolling
 export default function BlogFeed({navigation}) {
+  const [announcements, setAnnouncements] = useState([]);
+  const [EndPoint,setEndPoint] = useState('api/announcement/get')
   //default page number is 1 which is the first page of blogs
   const [pageNumber,setPageNumber] = useState(1)
   // returns the blogs data and other variables regarding the blogs from the custom hook, useBlogPage
@@ -49,11 +52,21 @@ export default function BlogFeed({navigation}) {
     }, [refreshing]);
 
     //get announcements
-    const {
-      announcements,
-      loadingAn,
-      errorAn
-      }  = useAn()
+    useEffect(() => {
+      getAnnouncements(EndPoint)
+  },[])
+  function getAnnouncements(endPoint) {
+    ResourceAPI.get((endPoint))
+        .then(async function (response) {
+            setAnnouncements(response.data);
+        })
+        .catch(function (error) {
+            console.log(error)
+        })
+}
+if (!announcements) {
+    return null
+}
     // render horizontal
 
   const renderAn = ({item}) => {

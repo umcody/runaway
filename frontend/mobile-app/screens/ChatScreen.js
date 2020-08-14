@@ -29,7 +29,7 @@ export default function ChatScreen({ navigation }) {
 
   // conditional header depending on if user is in waiting screen or chat room
   //right now waiting screen wont show for testing purposes
-  if (volunteerJoined){
+  if (volunteerJoined ){
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity
