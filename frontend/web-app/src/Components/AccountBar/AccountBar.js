@@ -12,7 +12,7 @@ export default function(){
         <div className = "accountBar">
             <div className = "accountContainer">
                 {`Welcome Back, ${user.email}`}
-                <img className = "avatar" src = "/asset/avatar.svg"/>
+                <img className = "avatar" src = "/asset/avatar.svg" alt = "avatar img"/>
             </div>
         </div>
     )

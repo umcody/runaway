@@ -6,7 +6,6 @@ import "./chat.css";
 function ChatComponent(props){
 
     const[messages,setMessages] = useState([]);
-    const[isOpen,setIsOpen] = useState(true);
     // eslint-disable-next-line no-unused-vars
     const[socket,setSocket]=useState(socketioclient("https://runaway-practicum.herokuapp.com/"));
    // const [socket,setSocket] = useState(socketioclient("localhost:7000"));
