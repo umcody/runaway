@@ -9,9 +9,21 @@ import {
 import { StyleSheet, View, TouchableOpacity, Modal, Text } from "react-native";
 import axios from "axios";
 import { AntDesign, FontAwesome5, Feather } from "@expo/vector-icons";
-import QuickReplies from 'react-native-gifted-chat/lib/QuickReplies';
-import WaitingPage from './WaitingPage';
 import {colors, fonts, padding, dimensions,margin,borderRadius, icon} from '../style/styleValues.js'
+import { SafeAreaView } from "react-native-safe-area-context";
+import QuickReplies from "react-native-gifted-chat/lib/QuickReplies";
+import WaitingPage from "./WaitingPage";
+import {
+  colors,
+  fonts,
+  padding,
+  dimensions,
+  margin,
+  borderRadius,
+  icon,
+} from "../style/styleValues.js";
+import { color } from "react-native-reanimated";
+
 
 //This is the chat screen and messaging components
 export default function ChatScreen({ navigation }) {
@@ -24,11 +36,11 @@ export default function ChatScreen({ navigation }) {
   const [modalVisible, setModalVisible] = useState(true);
   const [text, setText] = useState("");
 
-
   let socket;
 
   // conditional header depending on if user is in waiting screen or chat room
   //right now waiting screen wont show for testing purposes
+
   if (volunteerJoined ){
     navigation.setOptions({
       headerRight: () => (
@@ -36,10 +48,14 @@ export default function ChatScreen({ navigation }) {
           style={{ paddingRight: padding.md }}
           onPress={() => navigation.navigate("EmergencyResources")}
         >
-          <AntDesign name="exclamationcircleo" size={icon.md} color={colors.button} />
+          <AntDesign
+            name="exclamationcircleo"
+            size={icon.md}
+            color={colors.button}
+          />
         </TouchableOpacity>
       ),
-      headerTitle:'Chat',
+      headerTitle: "Chat",
       headerLeft: () => (
         <TouchableOpacity
           style={{ paddingLeft: padding.md }}
@@ -51,21 +67,20 @@ export default function ChatScreen({ navigation }) {
         </TouchableOpacity>
       ),
     });
-  }
-  else {
+  } else {
     navigation.setOptions({
       headerLeft: () => (
         <TouchableOpacity
-          style={{ paddingLeft: padding.md  }}
+          style={{ paddingLeft: padding.md }}
           onPress={() => {
-            return navigation.navigate('Feed');
+            return navigation.navigate("Feed");
           }}
         >
           <Feather name="x" size={icon.lg} color={colors.button} />
         </TouchableOpacity>
       ),
-      headerTitle:'',
-      headerStyle:styles.headerStyle
+      headerTitle: "",
+      headerStyle: styles.headerStyle,
     });
   }
 
@@ -78,13 +93,13 @@ export default function ChatScreen({ navigation }) {
         textStyle={{
           left: {
             color: colors.background,
-            fontSize:fonts.sm,
-            fontFamily:fonts.text
+            fontSize: fonts.sm,
+            fontFamily: fonts.text,
           },
           right: {
             color: colors.tertiary,
-            fontSize:fonts.sm,
-            fontFamily:fonts.text
+            fontSize: fonts.sm,
+            fontFamily: fonts.text,
           },
         }}
         //bubble styling
@@ -101,7 +116,7 @@ export default function ChatScreen({ navigation }) {
           right: {
             backgroundColor: colors.secondary,
             padding: padding.sm,
-            marginRight:margin.md,
+            marginRight: margin.md,
             borderTopLeftRadius: borderRadius.lg,
             borderTopRightRadius: borderRadius.lg,
             borderBottomRightRadius: 0,
@@ -117,7 +132,11 @@ export default function ChatScreen({ navigation }) {
     return (
       <Send {...props}>
         <View style={styles.sendingContainer}>
-          <FontAwesome5 name="arrow-alt-circle-up" size={icon.lg} color={colors.button} />
+          <FontAwesome5
+            name="arrow-alt-circle-up"
+            size={icon.lg}
+            color={colors.button}
+          />
         </View>
       </Send>
     );
@@ -155,11 +174,10 @@ export default function ChatScreen({ navigation }) {
     socket_joinRoom(random_room);
 
     //When the volunteer enters the chat
-    socket.on("volunteerJoined",function(){
+    socket.on("false", function () {
       console.log("volunteer joined");
       setVolunteerJoined(true);
-    })
-
+    });
 
     //When the server responds with "updateMessage"
     socket.on("updateMessage", function (message) {
@@ -234,39 +252,36 @@ export default function ChatScreen({ navigation }) {
     sendMessage(messages[0].text);
   }, []);
 
-   // dont know how this works but when quickreplies are pressed it sends a messages
-   const onQuickReply = replies => {
-    const createdAt = new Date()
+  // dont know how this works but when quickreplies are pressed it sends a messages
+  const onQuickReply = (replies) => {
+    const createdAt = new Date();
     if (replies.length === 1) {
       onSend([
         {
           createdAt,
           _id: Math.round(Math.random() * 1000000),
           text: replies[0].title,
-          user:{_id:1},
+          user: { _id: 1 },
         },
-      ])
+      ]);
     } else if (replies.length > 1) {
       onSend([
         {
           createdAt,
           _id: Math.round(Math.random() * 1000000),
-          text: replies.map(reply => reply.title).join(', '),
-          user:{_id:1},
+          text: replies.map((reply) => reply.title).join(", "),
+          user: { _id: 1 },
         },
-      ])
+      ]);
     } else {
-      console.warn('replies param is not set correctly')
+      console.warn("replies param is not set correctly");
     }
-  }
-// this renders the quick reply buttons
-// it is set that when # of messages > 1, they dissapear
+  };
+  // this renders the quick reply buttons
+  // it is set that when # of messages > 1, they dissapear
   const renderQuickReplies = (props) => {
-    return(
-      <QuickReplies color={colors.tertiary}{...props} 
-        />
-    )
-  }
+    return <QuickReplies color={colors.tertiary} {...props} />;
+  };
   return (
     <View style={{ flex:1, backgroundColor: colors.background}}>
     {volunteerJoined ? 
@@ -288,36 +303,40 @@ export default function ChatScreen({ navigation }) {
         renderSend={renderSend}
         listViewProps={{
           // styling of the list of messages to have a white background
-          style: {
-            backgroundColor: colors.background,
-          },
-        }}
-        renderBubble={renderBubble}
-        timeTextStyle={{
-          //disable date and time
-          right: {
-            display: "none",
-          },
-          left: {
-            display: "none",
-          },
-        }}
-        onQuickReply={onQuickReply}
-        renderQuickReplies={
-          (props) => {if(messages.length ===1){return(renderQuickReplies(props))} else{return(null)}}}
-        quickReplyStyle={{
-          marginLeft:110,
-          width:160,
-          flexDirection:'row',
-          justifyContent:'flex-start',
-          alignItems:'center',
-        
-        }}
-      />
-    :
-          <WaitingPage/>
-    }
-    </View> 
+           style: {
+              backgroundColor: colors.background,
+            },
+          }}
+          renderBubble={renderBubble}
+          timeTextStyle={{
+            //disable date and time
+            right: {
+              display: "none",
+            },
+            left: {
+              display: "none",
+            },
+          }}
+          onQuickReply={onQuickReply}
+          renderQuickReplies={(props) => {
+            if (messages.length === 1) {
+              return renderQuickReplies(props);
+            } else {
+              return null;
+            }
+          }}
+          quickReplyStyle={{
+            marginLeft: 110,
+            width: 160,
+            flexDirection: "row",
+            justifyContent: "flex-start",
+            alignItems: "center",
+          }}
+        />
+      ) : (
+        <WaitingPage />
+      )}
+    </View>
   );
 }
 const styles = StyleSheet.create({
@@ -340,9 +359,9 @@ const styles = StyleSheet.create({
   },
   headerStyle: {
     borderBottomWidth: 0,
-    shadowColor: 'transparent',
-    height:dimensions.fullHeight/8,
-    elevation:0,
-    backgroundColor:colors.background
+    shadowColor: "transparent",
+    height: dimensions.fullHeight / 8,
+    elevation: 0,
+    backgroundColor: colors.background,
   },
 });
