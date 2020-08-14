@@ -6,7 +6,6 @@ import "./chat.css";
 function ChatComponent(props){
 
     const[messages,setMessages] = useState([]);
-    const[isOpen,setIsOpen] = useState(true);
     // eslint-disable-next-line no-unused-vars
     const[socket,setSocket]=useState(socketioclient("https://runaway-practicum.herokuapp.com/"));
    // const [socket,setSocket] = useState(socketioclient("localhost:7000"));
@@ -17,10 +16,7 @@ function ChatComponent(props){
         console.log("volunteerJoined sent");
     }
 
-    function handleClick(){
-        let index = props.joinedRoom.indexOf(props.props);
-        props.deleteRoom(index);
-    }
+
  
     useEffect(()=>{
         console.log(props);
@@ -68,7 +64,6 @@ function ChatComponent(props){
                     }}
                     onMessageWasSent={_onMessageWasSent}
                     messageList={messages}
-                    handleClick = {handleClick}
                     isOpen = {true}
                     showEmoji
                 />
