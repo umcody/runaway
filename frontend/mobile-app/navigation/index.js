@@ -10,6 +10,8 @@ import {
 } from "react-native";
 import RunawaySvg from "../components/svgs/Runaway"
 import {HomeGradient,HomeGray} from "../components/svgs/Home"
+import {ChatGradient,ChatGray} from "../components/svgs/Chat"
+import {ResGradient,ResGray} from "../components/svgs/Resources"
 import {Ig,Fb,Twitter,Web} from "../components/svgs/Social"
 import {
   MaterialCommunityIcons,
@@ -139,7 +141,7 @@ const BottomTab = ({ navigation }) => {
               ? dimensions.fullHeight * 0.09
               : 50,
           borderTopColor: colors.secondary,
-          borderTopWidth: 1,
+          borderTopWidth: .8,
           elevation: 1,
         },
       }}
@@ -149,7 +151,7 @@ const BottomTab = ({ navigation }) => {
         component={BlogNav}
         options={{
           tabBarLabel: "Feed",
-          tabBarIcon: ({ color,focused }) => focused ? (
+          tabBarIcon: ({ focused }) => focused ? (
               <HomeGradient/>) : <HomeGray/>,
         }}
       />
@@ -158,13 +160,8 @@ const BottomTab = ({ navigation }) => {
         component={Chat}
         options={{
           tabBarLabel: "Chat",
-          tabBarIcon: ({ color }) => (
-            <MaterialIcons
-              name="chat-bubble-outline"
-              color={color}
-              size={icon.md}
-            />
-          ),
+          tabBarIcon: ({focused }) => focused ? (
+            <ChatGradient/>) : <ChatGray/>,
         }}
       />
       <BottomTabNavigation.Screen
@@ -172,9 +169,8 @@ const BottomTab = ({ navigation }) => {
         component={ResourceNav}
         options={{
           tabBarLabel: "Resources",
-          tabBarIcon: ({ color }) => (
-            <Feather name="book-open" color={color} size={icon.md} />
-          ),
+          tabBarIcon: ({ focused }) => focused ? (
+            <ResGradient/>) : <ResGray/>,
         }}
       />
     </BottomTabNavigation.Navigator>

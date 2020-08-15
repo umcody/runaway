@@ -96,7 +96,7 @@ export default function OfResources({ route, navigation }) {
                 }} 
             />
             <View style={{borderBottomWidth:.5,borderColor:colors.secondary}}>
-                <Text style={{paddingBottom:padding.sm,paddingLeft:padding.md-1,color: '#C4C4C4',fontFamily:fonts.text}}>
+                <Text style={{paddingBottom:padding.sm,paddingLeft:padding.md-1,color: colors.tertiary,fontFamily:fonts.text}}>
                     {Resources.length} {(Resources.length===1)? "Result" : "Results"}</Text>
             </View>
 
