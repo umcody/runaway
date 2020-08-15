@@ -11,6 +11,10 @@ import {
 } from "react-native";
 import { CheckBox } from "react-native-elements";
 import axios from "axios";
+import WhatBringsYou from "./WhatBringsYouQuestions";
+import YesNo from "./SuicidalThoughtsQuestions";
+import Happy from "./Emojis/Happy.svg";
+import Svg from "react-native-svg";
 
 export default function Survey({ navigation }) {
   //screens
@@ -63,9 +67,46 @@ export default function Survey({ navigation }) {
       <Modal visible={modalTwo} fade={true}>
         <View style={styles.modalView}>
           <Text style={styles.questionText}>What brings you to this chat?</Text>
-          <Text></Text>
           <Text>(You can choose multiple)</Text>
 
+          <View style={styles.questions}>
+            <WhatBringsYou
+              question="Understanding Emotions/Feelings"
+              value={understand}
+              setValue={setUnderstand}
+            />
+            <WhatBringsYou
+              question="Life Challenges (e.g. illness or loss)"
+              value={challenges}
+              setValue={setChallenges}
+            />
+            <WhatBringsYou
+              question="Use or Abuse of Substance"
+              value={use}
+              setValue={setUse}
+            />
+            <WhatBringsYou
+              question="Anxiety/Depression"
+              value={anxiety}
+              setValue={setAnxiety}
+            />
+            <WhatBringsYou
+              question="Friendship"
+              value={friendship}
+              setValue={setFriendship}
+            />
+            <WhatBringsYou
+              question="Relationship"
+              value={relationship}
+              setValue={setRelationship}
+            />
+            <WhatBringsYou
+              question="Unhealthy Behaviors"
+              value={behaviors}
+              setValue={setBehaviors}
+            />
+            <WhatBringsYou question="Other" value={other} setValue={setOther} />
+          </View>
           <TouchableOpacity
             style={styles.nextButton}
             onPress={() => {
@@ -98,15 +139,36 @@ export default function Survey({ navigation }) {
 
       {/* Suicidal  */}
       <Modal visible={modalThree} fade={true}>
-        <TouchableOpacity
-          style={styles.prevButton}
-          onPress={() => {
-            setModalThree(false);
-            setModalTwo(true);
-          }}
-        >
-          <Text style={styles.skipText}>Back</Text>
-        </TouchableOpacity>
+        <View style={styles.modalView}>
+          <Text style={styles.suicidalQuestion}>
+            Have you had suicidal thoughts in the past 6 months?
+          </Text>
+          <View style={styles.questions}>
+            <YesNo
+              yesValue={yes}
+              setYesValue={setYes}
+              noValue={no}
+              setNoValue={setNo}
+            />
+          </View>
+          <TouchableOpacity
+            style={styles.prevButton}
+            onPress={() => {
+              setModalThree(false);
+              setModalTwo(true);
+            }}
+          >
+            <Text style={styles.skipText}>Back</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.nextButton}
+            onPress={() => {
+              //here will be sent to the chat
+            }}
+          >
+            <Text style={styles.buttonText}>Next</Text>
+          </TouchableOpacity>
+        </View>
       </Modal>
     </>
   );
@@ -116,7 +178,15 @@ const windowW = Dimensions.get("window").width;
 const windowH = Dimensions.get("window").height;
 
 const styles = StyleSheet.create({
-  //
+  nextButton: {
+    position: "absolute",
+    borderColor: "#FF9EDA",
+    borderWidth: 2,
+    top: windowH - 75,
+    justifyContent: "center",
+    borderRadius: 30,
+    backgroundColor: "#FF9EDA",
+  },
   skipButton: {
     position: "absolute",
     borderColor: "white",
@@ -153,8 +223,19 @@ const styles = StyleSheet.create({
   questionText: {
     fontSize: 21,
     textAlign: "center",
+    paddingBottom: 5,
+  },
+  suicidalQuestion: {
+    fontSize: 21,
+    textAlign: "center",
+    paddingBottom: 5,
+    width: 200,
   },
   questionContainer: {
     width: 250,
+  },
+  questions: {
+    padding: 20,
+    paddingBottom: 60,
   },
 });

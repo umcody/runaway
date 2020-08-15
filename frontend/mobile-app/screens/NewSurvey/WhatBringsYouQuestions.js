@@ -8,8 +8,8 @@ export default function WhatBringsYou({ question, value, setValue }) {
 
   const styles = StyleSheet.create({
     text: {
-      fontSize: 18,
-      paddingHorizontal: 40,
+      fontSize: 16,
+      paddingHorizontal: 20,
       paddingVertical: 9,
       color: textColor,
       textAlign: "center",
@@ -19,12 +19,13 @@ export default function WhatBringsYou({ question, value, setValue }) {
       borderRadius: 30,
       borderWidth: 1,
       backgroundColor: backColor,
-      width: 300,
+      width: 275,
       alignSelf: "center",
       justifyContent: "center",
     },
     overAll: {
       flexDirection: "row",
+      padding: 5,
     },
   });
 
@@ -35,11 +36,11 @@ export default function WhatBringsYou({ question, value, setValue }) {
         onPress={() => {
           setValue(!value);
           if (!value) {
-            setBackColor("#FFFFFF");
-            setTextColor("#2E5F85");
-          } else {
             setBackColor("#2E5F85");
             setTextColor("#FFFFFF");
+          } else {
+            setBackColor("#FFFFFF");
+            setTextColor("#2E5F85");
           }
         }}
       >
