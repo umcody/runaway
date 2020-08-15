@@ -127,7 +127,7 @@ function CustomDrawerContent(props) {
   );
 }
 
-const BottomTab = ({ navigation }) => {
+const BottomTab = () => {
   return (
     <BottomTabNavigation.Navigator
       tabBarOptions={{
@@ -140,8 +140,8 @@ const BottomTab = ({ navigation }) => {
             dimensions.fullHeight > 800
               ? dimensions.fullHeight * 0.09
               : 50,
-          borderTopColor: colors.secondary,
-          borderTopWidth: .8,
+          borderTopColor: '#DADADA',
+          borderTopWidth: .5,
           elevation: 1,
         },
       }}
@@ -254,7 +254,7 @@ const MyDrawer = () => {
         activeBackgroundColor: colors.background,
         inactiveBackgroundColor: colors.background,
         itemStyle: { marginBottom: margin.sm },
-        labelStyle: { fontSize: fonts.sm, fontFamily: fonts.text,color:colors.foreground },
+        labelStyle: { fontSize: fonts.sm, fontFamily: fonts.subheader,color:colors.foreground, lineHeight:fonts.lgLineHeight},
       }}
     >
       <SettingsDrawer.Screen

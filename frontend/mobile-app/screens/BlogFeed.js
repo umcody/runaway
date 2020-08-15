@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     height:dimensions.fullHeight/5,
     width:dimensions.fullWidth*.3,
     backgroundColor:colors.secondary,
-    borderRadius:borderRadius.lg,
+    borderRadius:borderRadius.md,
     marginTop:margin.sm,
     marginRight:margin.md,
     justifyContent:'center',
