@@ -13,7 +13,7 @@ import { CheckBox } from "react-native-elements";
 import axios from "axios";
 import WhatBringsYou from "./WhatBringsYouQuestions";
 import YesNo from "./SuicidalThoughtsQuestions";
-import Happy from "./Emojis/Happy.svg";
+import Feel from "./FeelQuestions";
 import Svg from "react-native-svg";
 
 export default function Survey({ navigation }) {
@@ -36,14 +36,55 @@ export default function Survey({ navigation }) {
   const [behaviors, setBehaviors] = useState(false);
   const [other, setOther] = useState(false);
 
+  //Feeling page
+  const [happy, setHappy] = useState(false);
+  const [worried, setWorried] = useState(false);
+  const [angry, setAngry] = useState(false);
+  const [content, setContent] = useState(false);
+  const [thankful, setThankful] = useState(false);
+  const [embarrased, setEmbarrased] = useState(false);
+  const [verySad, setVerySad] = useState(false);
+  const [shameful, setShameful] = useState(false);
+  const [anxious, setAnxious] = useState(false);
+  const [sad, setSad] = useState(false);
+  const [meh, setMeh] = useState(false);
+  const [confused, setConfused] = useState(false);
+
   return (
     <>
       {/* Feelings  */}
       <Modal visible={modalOne} fade={true}>
-        <View style={styles.modalView}>
-          <Text>Screen 1 - Feelings</Text>
+        <View style={styles.feelTitle}>
+          <Text style={styles.questionText}>How are you feeling?</Text>
+          <Text>(You can choose multiple)</Text>
+        </View>
+        <View style={styles.columns}>
+          <View style={styles.feelView}>
+            <Feel title="Happy" value={happy} setValue={setHappy} />
+            <Feel title="Worried" value={worried} setValue={setWorried} />
+            <Feel title="Angry" value={angry} setValue={setAngry} />
+            <Feel title="Content" value={content} setValue={setContent} />
+          </View>
+          <View style={styles.feelView}>
+            <Feel title="Thankful" value={thankful} setValue={setThankful} />
+            <Feel
+              title="Embarrased"
+              value={embarrased}
+              setValue={setEmbarrased}
+            />
+            <Feel title="Very Sad" value={verySad} setValue={setVerySad} />
+            <Feel title="Shameful" value={shameful} setValue={setShameful} />
+          </View>
+          <View style={styles.feelView}>
+            <Feel title="Anxious" value={anxious} setValue={setAnxious} />
+            <Feel title="Sad" value={sad} setValue={setSad} />
+            <Feel title="Meh" value={meh} setValue={setMeh} />
+            <Feel title="Confused" value={confused} setValue={setConfused} />
+          </View>
+        </View>
+        <View style={styles.bottomTray}>
           <TouchableOpacity
-            style={styles.nextButton}
+            style={styles.buttonNextFeels}
             onPress={() => {
               setModalOne(false);
               setModalTwo(true);
@@ -237,5 +278,57 @@ const styles = StyleSheet.create({
   questions: {
     padding: 20,
     paddingBottom: 60,
+  },
+  feelView: {
+    paddingTop: 100,
+  },
+  feelView1: {
+    position: "absolute",
+    top: 0,
+    left: 20,
+    paddingTop: 100,
+  },
+  feelView2: {
+    position: "absolute",
+    alignItems: "center",
+    alignSelf: "center",
+    alignContent: "center",
+    top: 0,
+    paddingTop: 100,
+  },
+  feelView3: {
+    position: "absolute",
+    top: 0,
+    left: windowW - 130,
+    paddingTop: 100,
+  },
+  feelTitle: {
+    flex: 1,
+    alignItems: "center",
+    top: 40,
+  },
+  bottomTray: {
+    position: "absolute",
+    justifyContent: "center",
+    flex: 1,
+    alignItems: "center",
+    alignSelf: "center",
+  },
+  buttonNextFeels: {
+    borderColor: "#FF9EDA",
+    borderWidth: 2,
+    top: windowH - 75,
+    justifyContent: "center",
+    borderRadius: 30,
+    backgroundColor: "#FF9EDA",
+    alignItems: "center",
+    alignSelf: "center",
+    alignContent: "center",
+  },
+  columns: {
+    flexDirection: "row",
+    flex: 1,
+    position: "absolute",
+    top: 0,
   },
 });

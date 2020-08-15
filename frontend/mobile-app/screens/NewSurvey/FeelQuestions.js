@@ -1,30 +1,38 @@
 import React, { useState } from "react";
+import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
 
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
-
-export default function Feel({ vector, value, setValue }) {
-  const [backColor, setBackColor] = useState("#FFFFFF");
+export default function Feel({ title, value, setValue }) {
+  const [borderColor, setBorderColor] = useState("#FFFFFF");
 
   const styles = StyleSheet.create({
     text: {
       fontSize: 16,
-      paddingHorizontal: 20,
-      paddingVertical: 9,
-      color: textColor,
+      paddingHorizontal: 10,
+      paddingVertical: 10,
+      color: "#2E5F85",
       textAlign: "center",
     },
     button: {
-      borderColor: "#ACDAFF",
+      borderColor: borderColor,
       borderRadius: 30,
-      borderWidth: 1,
-      backgroundColor: backColor,
-      width: 275,
-      alignSelf: "center",
+      borderWidth: 2,
+      backgroundColor: "#FFFFFF",
+      width: 115,
+      height: 100,
       justifyContent: "center",
+      alignContent: "center",
     },
     overAll: {
       flexDirection: "row",
-      padding: 5,
+      padding: 10,
+    },
+    picture: {
+      justifyContent: "center",
+      alignSelf: "center",
+      width: 50,
+      height: 50,
+      paddingTop: 10,
+      top: 10,
     },
   });
 
@@ -35,15 +43,14 @@ export default function Feel({ vector, value, setValue }) {
         onPress={() => {
           setValue(!value);
           if (!value) {
-            setBackColor("#2E5F85");
-            setTextColor("#FFFFFF");
+            setBorderColor("#2E5F85");
           } else {
-            setBackColor("#FFFFFF");
-            setTextColor("#2E5F85");
+            setBorderColor("#FFFFFF");
           }
         }}
       >
-        <Text style={styles.text}>{question}</Text>
+        <Image style={styles.picture} source={require("./Emojis/Happy.png")} />
+        <Text style={styles.text}>{title}</Text>
       </TouchableOpacity>
     </View>
   );
