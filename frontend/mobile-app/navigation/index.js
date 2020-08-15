@@ -8,7 +8,9 @@ import {
   View,
   Text,
 } from "react-native";
-
+import RunawaySvg from "../components/svgs/Runaway"
+import {HomeGradient,HomeGray} from "../components/svgs/Home"
+import {Ig,Fb,Twitter,Web} from "../components/svgs/Social"
 import {
   MaterialCommunityIcons,
   MaterialIcons,
@@ -83,57 +85,40 @@ function CustomDrawerContent(props) {
           justifyContent: "center",
         }}
       >
-        <Text
-          style={{
-            fontSize: fonts.lg,
-            fontFamily: fonts.main,
-            paddingVertical: padding.md,
-          }}
-        >
-          RUNAWAY
-        </Text>
+        <RunawaySvg style={{paddingVertical:40}}/>
       </View>
       <DrawerItemList {...props} />
       <DrawerItem
         onPress={() => {
           Linking.openURL("https://www.instagram.com/runaway.app/");
         }}
-        label="Instagram"
-        labelStyle={{ fontFamily: fonts.text, fontSize: fonts.sm }}
+        label=""
         icon={() => (
-          <AntDesign name="instagram" size={icon.md} color={colors.button} />
+          <Ig/>
         )}
       />
       <DrawerItem
         onPress={handlePress}
-        label="Facebook"
-        labelStyle={{ fontFamily: fonts.text, fontSize: fonts.sm }}
+        label=""
         icon={() => (
-          <Feather name="facebook" size={icon.md} color={colors.button} />
+          <Fb/>
         )}
       />
       <DrawerItem
         onPress={() => {
           Linking.openURL("https://twitter.com/runaway_app");
         }}
-        label="Twitter"
-        labelStyle={{ fontFamily: fonts.text, fontSize: fonts.sm }}
+        label=""
         icon={() => (
-          <Feather name="twitter" size={icon.md} color={colors.button} />
+          <Twitter />
         )}
       />
       <DrawerItem
         onPress={() => {
           WebBrowser.openBrowserAsync("https://www.runawayapp.com/");
         }}
-        labelStyle={{ fontFamily: fonts.text, fontSize: fonts.sm }}
-        label="Website"
-        icon={() => (
-          <MaterialCommunityIcons
-            name="web"
-            size={icon.md}
-            color={colors.button}
-          />
+        label=""
+        icon={() => (<Web/>
         )}
       />
     </DrawerContentScrollView>
@@ -165,15 +150,7 @@ const BottomTab = ({ navigation }) => {
         options={{
           tabBarLabel: "Feed",
           tabBarIcon: ({ color,focused }) => focused ? (
-              <MaterialCommunityIcons
-                name={"home"}
-                color={color}
-                size={icon.lg}
-              />) : <MaterialCommunityIcons
-              name={"home-outline"}
-              color={color}
-              size={icon.lg}
-            />,
+              <HomeGradient/>) : <HomeGray/>,
         }}
       />
       <BottomTabNavigation.Screen
@@ -277,11 +254,11 @@ const MyDrawer = () => {
       drawerContent={(props) => <CustomDrawerContent {...props} />}
       edgeWidth={0}
       drawerContentOptions={{
-        activeTintColor: colors.tertiary,
-        activeBackgroundColor: colors.secondary,
+        activeTintColor: colors.foreground,
+        activeBackgroundColor: colors.background,
         inactiveBackgroundColor: colors.background,
         itemStyle: { marginBottom: margin.sm },
-        labelStyle: { fontSize: fonts.sm, fontFamily: fonts.text },
+        labelStyle: { fontSize: fonts.sm, fontFamily: fonts.text,color:colors.foreground },
       }}
     >
       <SettingsDrawer.Screen
