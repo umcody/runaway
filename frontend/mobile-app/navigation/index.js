@@ -164,13 +164,16 @@ const BottomTab = ({ navigation }) => {
         component={BlogNav}
         options={{
           tabBarLabel: "Feed",
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              name="home-outline"
+          tabBarIcon: ({ color,focused }) => focused ? (
+              <MaterialCommunityIcons
+                name={"home"}
+                color={color}
+                size={icon.lg}
+              />) : <MaterialCommunityIcons
+              name={"home-outline"}
               color={color}
               size={icon.lg}
-            />
-          ),
+            />,
         }}
       />
       <BottomTabNavigation.Screen

@@ -13,7 +13,7 @@ export default function Announcement({navigation,route}) {
   return (
     <SafeAreaView style={styles.container}>
         <ImageBackground source={{uri:item.image}} style={styles.image}>
-        <TouchableOpacity onPress={()=>navigation.navigate('Feed')} style={styles.back}>
+        <TouchableOpacity onPress={()=>navigation.popToTop()} style={styles.back}>
                 <Feather name="x" size={icon.lg} color={colors.background}/>
         </TouchableOpacity>
         </ImageBackground>

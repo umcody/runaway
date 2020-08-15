@@ -33,8 +33,7 @@ export default function FeaturePage({navigation,route}) {
     },
     {
       id:4,
-      text: "Our goal is to make the world happier! We take part by offering public events and seminars to generate awareness for mental health, illness," +
-      "and other related disorders. "
+      text: "Our goal is to make the world happier! We have a collection of resources for  "
     },
     {
       id:5,
