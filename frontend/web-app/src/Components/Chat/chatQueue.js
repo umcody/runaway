@@ -53,7 +53,7 @@ function ChatObservation(props) {
     }
 
     return (
-        <div className = "col-10" >
+        <div className = "col-10" style = {{display:"block"}} >
             <h3>Chat Room Queues ( click to join )</h3>
             <div>{queue.map((room) => {
                 return (

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import NavBar from "../NavBar/NavBar";
 import Chat from "../Chat/chatQueue";
+import AccountBar from "../AccountBar/AccountBar";
 import check from "../Auth/check";
 
 export default function ChatPage(props) {
@@ -18,6 +19,7 @@ export default function ChatPage(props) {
       className="con container row"
     >
       <NavBar pages={["Dashboard", "Chat Room", "Resources"]} />
+      
       <Chat />
     </div>
   );
