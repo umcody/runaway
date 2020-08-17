@@ -1,10 +1,27 @@
 import "react-native-gesture-handler";
 
 import React, { Fragment } from "react";
-import { StyleSheet, Text, View, TouchableOpacity,SafeAreaView,FlatList } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  SafeAreaView,
+  FlatList,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import HotlineCard from "../components/HotlineCard";
 import * as WebBrowser from "expo-web-browser";
+import { LinearGradient } from "expo-linear-gradient";
+import {
+  colors,
+  fonts,
+  padding,
+  dimensions,
+  margin,
+  borderRadius,
+  icon,
+} from "../style/styleValues.js";
 
 export default function EmergencyHotlinesScreen({ navigation }) {
   navigation.setOptions({
@@ -18,8 +35,16 @@ export default function EmergencyHotlinesScreen({ navigation }) {
     ),
   });
   // null here means that the servive doesnt have the method of communication.
-  // will use this with a if statement to see if the button has to be rendered or not
   const supportLines = [
+    {
+      title: "National Warmline Directory",
+      phoneNumber: "null",
+      textNumber: "null",
+      firstText: "null",
+      website:
+        "https://www.nami.org/NAMI/media/NAMI-Media/BlogImageArchive/2020/NAMI-National-HelpLine-WarmLine-Directory-3-11-20.pdf",
+      meantFor: "Someone to call when the matter isn't too urgent",
+    },
     {
       title: "National Suicide Prevention Lifeline",
       phoneNumber: "8334564566",
@@ -74,7 +99,8 @@ export default function EmergencyHotlinesScreen({ navigation }) {
       textNumber: "678678", // you have to rext START to the number
       firstText: "START",
       website: "https://www.thetrevorproject.org/",
-      meantFor: "Crisis intervention and suicide prevention services for members of LGBTQ under 25",
+      meantFor:
+        "Crisis intervention and suicide prevention services for members of LGBTQ under 25",
     },
     {
       title: "Trans Lifeline",
@@ -91,73 +117,47 @@ export default function EmergencyHotlinesScreen({ navigation }) {
       firstText: "Hey, i need help",
       website: "https://www.samhsa.gov/",
       meantFor: "Substance abuse and mental health",
-    }
+    },
   ];
 
   return (
     <SafeAreaView style={styles.container}>
-<TouchableOpacity
-                          onPress={() => {
-                            WebBrowser.openBrowserAsync("https://www.nami.org/NAMI/media/NAMI-Media/BlogImageArchive/2020/NAMI-National-HelpLine-WarmLine-Directory-3-11-20.pdf");
-                          }}
-                        >
-                          <Text>National Warmline Directory</Text>  
-                        </TouchableOpacity>
-            <FlatList data={supportLines}
-            nestedScrollEnabled={true}
-            
-                keyExtractor={(item, index) => 'key' + index}
-                renderItem={({item}) => {
-                    return (
-                        
-                        
-                          <HotlineCard item = {item}/>
-                      
-                        
-                        
-                        
-                    ) 
-                }}
-                showsVerticalScrollIndicator={false}
-            />
-
-
-
-   
-  </SafeAreaView>
+      <FlatList
+        data={supportLines}
+        nestedScrollEnabled={true}
+        keyExtractor={(item, index) => "key" + index}
+        renderItem={({ item }) => {
+          return <HotlineCard item={item} />;
+        }}
+        showsVerticalScrollIndicator={false}
+      />
+    </SafeAreaView>
   );
 }
 
-
-
 const styles = StyleSheet.create({
   container: {
-    flex:1,
-    backgroundColor:"#fff",
-    justifyContent:'center',
-    alignItems:'center'
+    flex: 1,
+    backgroundColor: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
   },
-  emergencyButton: {
-    backgroundColor: 'white',
-    margin: 10,
-    borderRadius: 30,
-    borderColor: '#FF9EDA',
-    borderWidth: 1,
-    width: 300,
-    height:60,
-    justifyContent:'center'
+
+  cardView: {
+    backgroundColor: colors.background,
+    margin: 1,
+    borderRadius: 10,
+    borderWidth: 0,
+    width: dimensions.fullWidth * 0.9,
+    height: dimensions.fullHeight / 6,
+    backgroundColor: colors.background,
+    justifyContent: "center",
+    paddingLeft: padding.sm,
   },
-  emergencyText: {
-    color: "#2E5F85",
-    fontSize: 16,
-    fontFamily: "System",
-    textAlign: "center",
-    fontStyle: "normal",
+  title: {
+    width: dimensions.fullWidth,
+    color: colors.foreground,
+    fontSize: fonts.lg,
+    fontFamily: fonts.main,
   },
-  header:{
-    textAlign:'center',
-    color: "#2E5F85",
-    fontSize: 18,
-    paddingVertical:16
-  }
 });
