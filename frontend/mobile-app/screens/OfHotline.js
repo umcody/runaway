@@ -1,9 +1,10 @@
 import "react-native-gesture-handler";
 
-import React from "react";
+import React, { Fragment } from "react";
 import { StyleSheet, Text, View, TouchableOpacity,SafeAreaView,FlatList } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import HotlineCard from "../components/HotlineCard";
+import * as WebBrowser from "expo-web-browser";
 
 export default function EmergencyHotlinesScreen({ navigation }) {
   navigation.setOptions({
@@ -95,14 +96,26 @@ export default function EmergencyHotlinesScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-
+<TouchableOpacity
+                          onPress={() => {
+                            WebBrowser.openBrowserAsync("https://www.nami.org/NAMI/media/NAMI-Media/BlogImageArchive/2020/NAMI-National-HelpLine-WarmLine-Directory-3-11-20.pdf");
+                          }}
+                        >
+                          <Text>National Warmline Directory</Text>  
+                        </TouchableOpacity>
             <FlatList data={supportLines}
             nestedScrollEnabled={true}
             
                 keyExtractor={(item, index) => 'key' + index}
                 renderItem={({item}) => {
                     return (
-                        <HotlineCard item = {item}/>
+                        
+                        
+                          <HotlineCard item = {item}/>
+                      
+                        
+                        
+                        
                     ) 
                 }}
                 showsVerticalScrollIndicator={false}

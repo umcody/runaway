@@ -23,6 +23,48 @@ import {
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import sms from "react-native-sms-linking";
 import * as WebBrowser from "expo-web-browser";
+import { render } from "react-dom";
+
+
+
+
+
+
+/*
+  <Text style={styles.title}>{item.title}</Text>
+  <Text style={styles.title}>{item.phoneNumber}</Text>
+  <Text style={styles.title}>{item.textNumber}</Text>                
+  <Text style={styles.title}>{item.website}</Text>
+  <Text style={styles.title}>{item.meantFor}</Text>
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+// standard modal
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const HotlineCard = ({ item }) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -31,53 +73,20 @@ const HotlineCard = ({ item }) => {
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <View style={{ alignSelf: "flex-end" }}>
-              <TouchableHighlight
-                onPress={() => {
-                  setModalVisible(!modalVisible);
-                }}
-              >
-                <Feather name="x" size={60} color="red" />
-              </TouchableHighlight>
-            </View>
-            <Text style={styles.modalText}>Name</Text>
-
+                                <View style={{ alignSelf: "flex-end" }}>
+                                  <TouchableHighlight
+                                    onPress={() => {
+                                      setModalVisible(!modalVisible);
+                                    }}
+                                  >
+                                    <Feather name="x" size={60} color="red" />
+                                  </TouchableHighlight>
+                                </View>
+            <Text style={styles.modalText}>{item.title}</Text>
             <View style={styles.modalButtons}>
-              <TouchableHighlight
-                style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
-                onPress={() => {
-                  Linking.openURL(`tel:${item.phoneNumber}`);
-                }}
-              >
-                <View style={styles.modalButtons2}>
-                  <Feather name="phone-call" size={30} color="white" />
-                  <Text style={styles.textStyle}>Call</Text>
-                </View>
-              </TouchableHighlight>
-
-              <TouchableHighlight
-                style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
-                onPress={() => {
-                  sms(String(item.textNumber), String(item.firstText));
-                }}
-              >
-                <View style={styles.modalButtons2}>
-                  <Feather name="message-square" size={30} color="white" />
-                  <Text style={styles.textStyle}>Text</Text>
-                </View>
-              </TouchableHighlight>
-
-              <TouchableHighlight
-                style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
-                onPress={() => {
-                  WebBrowser.openBrowserAsync(item.website);
-                }}
-              >
-                <View style={styles.modalButtons2}>
-                  <MaterialCommunityIcons name="web" size={30} color="white" />
-                  <Text style={styles.textStyle}>Visit Site</Text>
-                </View>
-              </TouchableHighlight>
+              <CallButton item = {item}></CallButton>
+              <TextButton item = {item}></TextButton>
+              <WebsiteButton item = {item}></WebsiteButton>
             </View>
           </View>
         </View>
@@ -95,6 +104,121 @@ const HotlineCard = ({ item }) => {
     </View>
   );
 };
+
+
+
+
+
+
+
+
+// call 
+
+const CallButton = ({ item }) => {
+  if (String(item.phoneNumber) == "null") {
+    return null;
+  }
+  return (
+    <TouchableHighlight
+  style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+  onPress={() => {
+    Linking.openURL(`tel:${item.phoneNumber}`);
+  }}
+>
+  <View style={styles.modalButtons2}>
+    <Feather name="phone-call" size={30} color="white" />
+    <Text style={styles.textStyle}>Call</Text>
+  </View>
+</TouchableHighlight>
+  )
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// text button
+
+const TextButton = ({ item }) => {
+
+  if (String(item.textNumber) == "null") {
+    return null;
+  }
+  return (
+    <TouchableHighlight
+  style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+  onPress={() => {
+    sms(String(item.textNumber), String(item.firstText));
+  }}
+>
+  <View style={styles.modalButtons2}>
+    <Feather name="message-square" size={30} color="white" />
+    <Text style={styles.textStyle}>Text</Text>
+  </View>
+</TouchableHighlight>
+  )
+  
+}
+
+
+
+
+
+
+
+
+// website 
+
+
+const WebsiteButton = ({ item }) => {
+  if (String(item.website) == "null"){
+    return null;
+  }
+  return (
+    <TouchableHighlight
+    style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+    onPress={() => {
+      WebBrowser.openBrowserAsync(item.website);
+    }}
+    >
+    <View style={styles.modalButtons2}>
+      <MaterialCommunityIcons name="web" size={30} color="white" />
+      <Text style={styles.textStyle}>Visit Site</Text>
+    </View>
+    </TouchableHighlight>
+  )
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // <View>
 //     <Modal
