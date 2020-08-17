@@ -282,7 +282,7 @@ export default function ChatScreen({ navigation }) {
   // show wait page or chat page depending on if volunteer joined
   return (
     <View style={{ flex:1, backgroundColor: colors.background}}>
-    {volunteerJoined ==false? 
+    {volunteerJoined? 
       <GiftedChat
         messages={messages}
         onSend={(messages) => onSend(messages)}
