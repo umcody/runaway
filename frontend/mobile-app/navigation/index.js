@@ -56,7 +56,6 @@ import {
   fonts,
   margin,
 } from "../style/styleValues";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 
 const BottomTabNavigation = createBottomTabNavigator();
 const ChatStack = createStackNavigator();
@@ -140,7 +139,7 @@ const BottomTab = () => {
             dimensions.fullHeight > 800
               ? dimensions.fullHeight * 0.09
               : 50,
-          borderTopColor: '#DADADA',
+          borderTopColor: colors.primary,
           borderTopWidth: .5,
           elevation: 1,
         },
