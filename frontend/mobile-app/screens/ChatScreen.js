@@ -164,7 +164,7 @@ export default function ChatScreen({ navigation }) {
     socket_joinRoom(random_room);
 
     //When the volunteer enters the chat
-    socket.on("false", function () {
+    socket.on("volunteerJoined", function () {
       console.log("volunteer joined");
       setVolunteerJoined(true);
     });
