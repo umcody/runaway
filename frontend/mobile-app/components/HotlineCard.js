@@ -24,6 +24,7 @@ import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import sms from "react-native-sms-linking";
 import * as WebBrowser from "expo-web-browser";
 import { render } from "react-dom";
+import { LinearGradient } from "expo-linear-gradient";
 
 
 
@@ -92,15 +93,58 @@ const HotlineCard = ({ item }) => {
         </View>
       </Modal>
 
+
+
+
+
+
+
+
+
+
+
+
       <TouchableOpacity
-        style={styles.openButton}
+        //style={styles.cardView}
         onPress={() => {
           setModalVisible(true);
         }}
       >
-        <Text style={styles.textStyle}>{item.title}</Text>
+
+
+
+
+<LinearGradient start={[0, 0.5]}
+                  end={[1, 0.5]}
+                  colors={['#ACDAFF', '#FF9EDA','#E3F1FC']}
+                  style={{borderRadius: 10,marginVertical:margin.sm,
+                }}>
+                  
+                     <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.textStyle}>{item.meantFor}</Text>
+                  </LinearGradient>
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
       </TouchableOpacity>
+
+
+
+
+
+
     </View>
   );
 };
@@ -288,6 +332,46 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
+
+
+
+  cardView: {
+    backgroundColor: colors.background,
+    margin: margin.sm,
+    borderRadius: 10,
+    borderWidth: 0,
+    width: dimensions.fullWidth* .9,
+    height: dimensions.fullHeight/6,
+    backgroundColor:colors.primary,
+    justifyContent:'center',
+    paddingLeft:padding.sm,
+    elevation:2,
+    shadowOffset: {
+    width: 0,
+    height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    },
+    title: {
+      width: dimensions.fullWidth,
+      color: colors.foreground,
+      fontSize: fonts.md,
+      fontFamily: fonts.text
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
   modalButtons: {
     flexDirection: "row",
   },
