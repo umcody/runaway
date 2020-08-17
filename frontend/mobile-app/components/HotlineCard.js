@@ -9,8 +9,9 @@ import {
   TouchableHighlight,
   Alert,
   Platform,
+  TouchableWithoutFeedbackComponent,
 } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { TouchableOpacity, TouchableWithoutFeedback } from "react-native-gesture-handler";
 import {
   colors,
   fonts,
@@ -30,6 +31,7 @@ const HotlineCard = ({ item }) => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <View>
+      
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
@@ -51,8 +53,16 @@ const HotlineCard = ({ item }) => {
           </View>
         </View>
       </Modal>
+{/* <TouchableWithoutFeedback
+onPress={() => {
+  if (setModalVisible(true)){
+    setModalVisible(false);
+  }
 
-      <TouchableOpacity
+  
+}}
+> */}
+         <TouchableOpacity
         style={{
           elevation: 2,
           shadowOffset: {
@@ -78,6 +88,8 @@ const HotlineCard = ({ item }) => {
           </View>
         </LinearGradient>
       </TouchableOpacity>
+      {/* </TouchableWithoutFeedback> */}
+     
     </View>
   );
 };
@@ -153,9 +165,7 @@ const styles = StyleSheet.create({
     marginTop: 22,
     justifyContent: "flex-end",
   },
-  blue60: {
-    backgroundColor: "blue",
-  },
+  
 
   modalView: {
     margin: 20,
@@ -164,7 +174,7 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: "center",
     elevation: 5,
-    borderColor: colors.tertiary,
+    borderColor: colors.primary,
     borderWidth: 1,
     width: "95%",
   },
@@ -197,12 +207,14 @@ const styles = StyleSheet.create({
   },
   modalButtons2: {
     alignItems: "center",
+    
   },
   openButton: {
     borderRadius: 30,
     padding: 10,
     elevation: 2,
-    width: "30%",
+    width: "32%",
+    marginHorizontal: 3,
   },
 });
 
