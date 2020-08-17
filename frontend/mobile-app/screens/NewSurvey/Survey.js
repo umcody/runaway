@@ -8,6 +8,7 @@ import {
   Button,
   ScrollView,
   Modal,
+  Image,
 } from "react-native";
 import { CheckBox } from "react-native-elements";
 import axios from "axios";
@@ -15,6 +16,7 @@ import WhatBringsYou from "./WhatBringsYouQuestions";
 import YesNo from "./SuicidalThoughtsQuestions";
 import Feel from "./FeelQuestions";
 import Svg from "react-native-svg";
+import Happy from "./Emojis/Happy.js";
 
 export default function Survey({ navigation }) {
   //screens
@@ -92,16 +94,16 @@ export default function Survey({ navigation }) {
           >
             <Text style={styles.buttonText}>Next</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.skipButton}
-            onPress={() => {
-              setModalOne(false);
-              setModalTwo(true);
-            }}
-          >
-            <Text style={styles.skipText}>Skip</Text>
-          </TouchableOpacity>
         </View>
+        <TouchableOpacity
+          style={styles.skipButton2}
+          onPress={() => {
+            setModalOne(false);
+            setModalTwo(true);
+          }}
+        >
+          <Text style={styles.skipText}>Skip</Text>
+        </TouchableOpacity>
       </Modal>
 
       {/* What brings you  */}
@@ -236,6 +238,13 @@ const styles = StyleSheet.create({
     left: windowW - 100,
     justifyContent: "center",
   },
+  skipButton2: {
+    position: "absolute",
+    borderColor: "white",
+    borderWidth: 2,
+    top: windowH - 75,
+    left: windowW - 100,
+  },
   prevButton: {
     position: "absolute",
     borderColor: "white",
@@ -281,26 +290,7 @@ const styles = StyleSheet.create({
   },
   feelView: {
     paddingTop: 100,
-  },
-  feelView1: {
-    position: "absolute",
-    top: 0,
-    left: 20,
-    paddingTop: 100,
-  },
-  feelView2: {
-    position: "absolute",
-    alignItems: "center",
-    alignSelf: "center",
-    alignContent: "center",
-    top: 0,
-    paddingTop: 100,
-  },
-  feelView3: {
-    position: "absolute",
-    top: 0,
-    left: windowW - 130,
-    paddingTop: 100,
+    paddingHorizontal: 0,
   },
   feelTitle: {
     flex: 1,
@@ -313,6 +303,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     alignSelf: "center",
+    flexDirection: "row",
   },
   buttonNextFeels: {
     borderColor: "#FF9EDA",
@@ -330,5 +321,6 @@ const styles = StyleSheet.create({
     flex: 1,
     position: "absolute",
     top: 0,
+    alignSelf: "center",
   },
 });

@@ -51,6 +51,7 @@ export default function YesNo({ yesValue, setYesValue, noValue, setNoValue }) {
       <View style={styles.overAll}>
         <TouchableOpacity
           style={styles.yesButton}
+          disabled={noValue}
           onPress={() => {
             setYesValue(!yesValue);
             if (!yesValue) {
@@ -68,6 +69,7 @@ export default function YesNo({ yesValue, setYesValue, noValue, setNoValue }) {
       <View style={styles.overAll}>
         <TouchableOpacity
           style={styles.noButton}
+          disabled={yesValue}
           onPress={() => {
             setNoValue(!noValue);
             if (!noValue) {
