@@ -55,15 +55,15 @@ const HotlineCard = ({ item }) => {
           </View>
         </View>
       </Modal>
-      {/* <TouchableWithoutFeedback
+      <TouchableWithoutFeedback
 onPress={() => {
-  if (setModalVisible(true)){
-    setModalVisible(false);
+  if (setModalVisible(modalVisible)){
+    setModalVisible(!modalVisible);
   }
 
   
 }}
-> */}
+>
       <TouchableOpacity
         style={{
           elevation: 2,
@@ -90,12 +90,12 @@ onPress={() => {
           </View>
         </LinearGradient>
       </TouchableOpacity>
-      {/* </TouchableWithoutFeedback> */}
+      </TouchableWithoutFeedback>
     </View>
   );
 };
 
-// call
+
 
 const CallButton = ({ item }) => {
   if (String(item.phoneNumber) == "null") {
@@ -103,13 +103,13 @@ const CallButton = ({ item }) => {
   }
   return (
     <TouchableHighlight
-      style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+      style={{ ...styles.openButton, backgroundColor: "white" }}
       onPress={() => {
         Linking.openURL(`tel:${item.phoneNumber}`);
       }}
     >
       <View style={styles.modalButtons2}>
-        <Feather name="phone-call" size={30} color="white" />
+        <Feather name="phone-call" size={30} color="#FF9EDA" />
         <Text style={styles.subheading}>Call</Text>
       </View>
     </TouchableHighlight>
@@ -124,13 +124,13 @@ const TextButton = ({ item }) => {
   }
   return (
     <TouchableHighlight
-      style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+      style={{ ...styles.openButton, backgroundColor: "white" }}
       onPress={() => {
         sms(String(item.textNumber), String(item.firstText));
       }}
     >
       <View style={styles.modalButtons2}>
-        <Feather name="message-square" size={30} color="white" />
+        <Feather name="message-square" size={30} color="#FF9EDA" />
         <Text style={styles.subheading}>Text</Text>
       </View>
     </TouchableHighlight>
@@ -145,13 +145,13 @@ const WebsiteButton = ({ item }) => {
   }
   return (
     <TouchableHighlight
-      style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+      style={{ ...styles.openButton, backgroundColor: "white" }}
       onPress={() => {
         WebBrowser.openBrowserAsync(item.website);
       }}
     >
       <View style={styles.modalButtons2}>
-        <MaterialCommunityIcons name="web" size={30} color="white" />
+        <MaterialCommunityIcons name="web" size={30} color="#FF9EDA" />
         <Text style={styles.subheading}>Visit Site</Text>
       </View>
     </TouchableHighlight>
@@ -211,7 +211,6 @@ const styles = StyleSheet.create({
   openButton: {
     borderRadius: 30,
     padding: 10,
-    elevation: 2,
     width: "32%",
     marginHorizontal: 3,
   },
