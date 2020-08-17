@@ -59,7 +59,7 @@ export default function EmergencyHotlinesScreen({ navigation }) {
       textNumber: "741741", //you have to text HOME to the number
       firstText: "HOME",
       website: "https://www.crisistextline.org/",
-      meantFor: "trained Crisis Counselors supporting people in crisis",
+      meantFor: "Trained Crisis Counselors supporting people in crisis",
     },
     {
       title: "YouthLine",
@@ -91,7 +91,7 @@ export default function EmergencyHotlinesScreen({ navigation }) {
       textNumber: "null",
       firstText: "Hey, i need help",
       website: "https://www.rainn.org/",
-      meantFor: "anti-sexual assault organization",
+      meantFor: "Anti-sexual assault organization",
     },
     {
       title: "The Trevor Project",
