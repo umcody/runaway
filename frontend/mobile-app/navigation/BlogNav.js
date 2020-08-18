@@ -3,7 +3,7 @@ import { StyleSheet, View ,Text,SafeAreaView,Dimensions,Image} from "react-nativ
 import { createStackNavigator,CardStyleInterpolators } from '@react-navigation/stack';
 import BlogFeed from '../screens/BlogFeed';
 import BlogScreen from '../screens/BlogScreen';
-import Announcement from '../screens/Announcement';
+//import Announcement from '../screens/Announcement';
 import { Ionicons,Feather} from "@expo/vector-icons";
 import {colors, fonts, padding, stylesDefault, icon,dimensions} from '../style/styleValues.js';
 
@@ -21,7 +21,7 @@ export default function BlogNav({navigation}){
     }
     return (
         <View style = {{flex:1}}>
-            <Stack.Navigator>
+            <Stack.Navigator headerMode="screen">
             <Stack.Screen
           name="Feed"
           component={BlogFeed}
@@ -45,15 +45,7 @@ export default function BlogNav({navigation}){
         component={BlogScreen} 
         options={{ headerShown:false, gestureResponseDistance:{horizontal: 500}
           }}/>
-        <Stack.Screen 
-          name ="Announcement"
-          component={Announcement}
-          options={{ headerShown:false, gestureResponseDistance:{horizontal: 500},
-            cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,gestureDirection:'vertical',
-            gestureResponseDistance:dimensions.fullHeight,cardOverlayEnabled:true,
-            
-          }}
-          />
+        
             </Stack.Navigator>
        </View>
         

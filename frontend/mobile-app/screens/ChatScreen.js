@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect,useRef } from "react";
 import socketioclient from "socket.io-client";
 import {
   GiftedChat,
@@ -6,11 +6,9 @@ import {
   Send,
   Bubble,
 } from "react-native-gifted-chat";
-import { StyleSheet, View, TouchableOpacity, Modal, Text } from "react-native";
-import axios from "axios";
+import { StyleSheet, View, TouchableOpacity,BackHandler,AppState,Platform } from "react-native";
 import { AntDesign, FontAwesome5, Feather } from "@expo/vector-icons";
-import {colors, fonts, padding, dimensions,margin,borderRadius, icon} from '../style/styleValues.js'
-import { SafeAreaView } from "react-native-safe-area-context";
+import {colors, fonts, padding, dimensions,margin,borderRadius, icon,stylesDefault} from '../style/styleValues.js'
 import QuickReplies from "react-native-gifted-chat/lib/QuickReplies";
 import WaitingPage from "./WaitingPage";
 
@@ -26,10 +24,11 @@ export default function ChatScreen({ navigation }) {
   const [text, setText] = useState("");
   const [socket, setSocket] = useState(socketioclient("https://runaway-practicum.herokuapp.com/"));
 
-
+  //const appState = useRef(AppState.currentState);
   // conditional header depending on if user is in waiting screen or chat room
   if (volunteerJoined){
     navigation.setOptions({
+      headerStyle:stylesDefault.headerStyle,
       headerRight: () => (
         <TouchableOpacity
           style={{ paddingRight: padding.md }}
@@ -61,6 +60,7 @@ export default function ChatScreen({ navigation }) {
         <TouchableOpacity
           style={{ paddingLeft: padding.md }}
           onPress={() => {
+            disconnectSocket();
             return navigation.navigate("Feed");
           }}
         >
@@ -106,7 +106,7 @@ export default function ChatScreen({ navigation }) {
             backgroundColor: colors.secondary,
             padding: padding.sm,
             paddingBottom:0,
-            marginRight: margin.md,
+            marginRight: margin.lg,
             borderTopLeftRadius: borderRadius.lg,
             borderTopRightRadius: borderRadius.lg,
             borderBottomRightRadius: 0,
@@ -163,7 +163,7 @@ export default function ChatScreen({ navigation }) {
     socket_joinRoom(random_room);
 
     //When the volunteer enters the chat
-    socket.on("false", function () {
+    socket.on("volunteerJoined", function () {
       console.log("volunteer joined");
       setVolunteerJoined(true);
     });
@@ -277,18 +277,50 @@ export default function ChatScreen({ navigation }) {
   const renderQuickReplies = (props) => {
     return <QuickReplies color={colors.tertiary} {...props} />;
   };
+  //android back button should leave the room.
+  const backAction = () => {
+    disconnectSocket();
+    navigation.navigate("Feed")
+    return true;
+  };
 
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", backAction);
+
+    return () =>
+      BackHandler.removeEventListener("hardwareBackPress", backAction);
+  }, []);
+  // supposed to disconnect user if they exit the app
+  /*
+  useEffect(() => {
+    AppState.addEventListener('change', handleChange);  
+  
+    return () => {
+      AppState.removeEventListener('change', handleChange);  
+    }
+  }, []);
+  const handleChange = (appState) => {
+      
+    if (appState === "background") {
+      disconnectSocket();
+    }
+    if(appState ==="active"){
+      let random_room = Math.floor(Math.random() * 1000 + 1);
+      setVolunteerJoined(false)
+      socket_joinRoom(random_room);
+    }
+  }*/
   // show wait page or chat page depending on if volunteer joined
   return (
     <View style={{ flex:1, backgroundColor: colors.background}}>
     {volunteerJoined? 
-
       <GiftedChat
         messages={messages}
         onSend={(messages) => onSend(messages)}
         renderInputToolbar={(props) => customInputToolbar(props)}
         placeholder="New Message"
         placeholderTextColor={colors.tertiary}
+        //textInputProps={{multiline}}
         textInputStyle={styles.composer} //styling of text input
         minInputToolbarHeight={60}
         messagesContainerStyle={{
@@ -317,19 +349,16 @@ export default function ChatScreen({ navigation }) {
           }}
           onQuickReply={onQuickReply}
           renderQuickReplies={(props) => {
-            if (messages.length === 1) {
               return renderQuickReplies(props);
-            } else {
-              return null;
-            }
           }}
           quickReplyStyle={{
-            marginLeft: 110,
+            marginLeft: 120,
             width: 160,
             flexDirection: "row",
             justifyContent: "flex-start",
             alignItems: "center",
           }}
+          bottomOffset={7}
         />
       : 
         <WaitingPage />
@@ -340,14 +369,14 @@ export default function ChatScreen({ navigation }) {
 const styles = StyleSheet.create({
   composer: {
     backgroundColor: colors.secondary,
-    borderRadius: 30,
-    borderWidth: 5,
+    borderRadius: 20,
+    marginTop:5,
     borderColor: colors.secondary,
-    paddingLeft: 10,
+    paddingLeft: 20,
     paddingRight: 20,
     color: colors.tertiary,
-    minHeight: 35,
     alignItems: "center",
+    overflow:'hidden',
   },
   sendingContainer: {
     justifyContent: "center",
