@@ -18,7 +18,7 @@ export default function YesNo({ yesValue, setYesValue, noValue, setNoValue }) {
     },
     yesButton: {
       borderColor: "#ACDAFF",
-      borderRadius: 30,
+      borderRadius: 10,
       borderWidth: 1,
       backgroundColor: backColorYes,
       width: 125,
@@ -34,7 +34,7 @@ export default function YesNo({ yesValue, setYesValue, noValue, setNoValue }) {
     },
     noButton: {
       borderColor: "#ACDAFF",
-      borderRadius: 30,
+      borderRadius: 10,
       borderWidth: 1,
       backgroundColor: backColorNo,
       width: 125,

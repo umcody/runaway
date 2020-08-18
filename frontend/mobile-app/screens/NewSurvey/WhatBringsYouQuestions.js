@@ -16,7 +16,7 @@ export default function WhatBringsYou({ question, value, setValue }) {
     },
     button: {
       borderColor: "#ACDAFF",
-      borderRadius: 30,
+      borderRadius: 10,
       borderWidth: 1,
       backgroundColor: backColor,
       width: 275,

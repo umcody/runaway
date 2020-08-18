@@ -5,18 +5,12 @@ import {
   Text,
   TouchableOpacity,
   Dimensions,
-  Button,
-  ScrollView,
   Modal,
-  Image,
 } from "react-native";
-import { CheckBox } from "react-native-elements";
 import axios from "axios";
 import WhatBringsYou from "./WhatBringsYouQuestions";
 import YesNo from "./SuicidalThoughtsQuestions";
 import Feel from "./FeelQuestions";
-import Svg from "react-native-svg";
-import Happy from "./Emojis/Happy.js";
 
 export default function Survey({ navigation }) {
   //screens
@@ -51,6 +45,38 @@ export default function Survey({ navigation }) {
   const [sad, setSad] = useState(false);
   const [meh, setMeh] = useState(false);
   const [confused, setConfused] = useState(false);
+
+  function resetPage() {
+    //modalReset
+    setModalOne(true);
+    setModalTwo(false);
+    setModalThree(false);
+    //Page One Reset
+    setHappy(false);
+    setWorried(false);
+    setAngry(false);
+    setContent(false);
+    setThankful(false);
+    setEmbarrased(false);
+    setVerySad(false);
+    setShameful(false);
+    setAnxious(false);
+    setSad(false);
+    setMeh(false);
+    setConfused(false);
+    //Page Two Reset
+    setUnderstand(false);
+    setChallenges(false);
+    setUse(false);
+    setAnxiety(false);
+    setFriendship(false);
+    setRelationship(false);
+    setBehaviors(false);
+    setOther(false);
+    //Page Three Reset
+    setYes(false);
+    setNo(false);
+  }
 
   return (
     <>
@@ -90,12 +116,25 @@ export default function Survey({ navigation }) {
             onPress={() => {
               setModalOne(false);
               setModalTwo(true);
+              // console.log("The values for the feeling page are: ");
+              // console.log("Happy is: " + happy);
+              // console.log("Worried is: " + worried);
+              // console.log("Angry is: " + angry);
+              // console.log("Content is: " + content);
+              // console.log("Thankful is: " + thankful);
+              // console.log("Embarrasedd is: " + embarrased);
+              // console.log("Very Sad is: " + verySad);
+              // console.log("Shameful is: " + shameful);
+              // console.log("Anxious is: " + anxious);
+              // console.log("Sad is: " + sad);
+              // console.log("Meh is: " + meh);
+              // console.log("Confused is: " + confused);
             }}
           >
             <Text style={styles.buttonText}>Next</Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.skipButton2}
           onPress={() => {
             setModalOne(false);
@@ -103,15 +142,18 @@ export default function Survey({ navigation }) {
           }}
         >
           <Text style={styles.skipText}>Skip</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </Modal>
 
       {/* What brings you  */}
       <Modal visible={modalTwo} fade={true}>
-        <View style={styles.modalView}>
-          <Text style={styles.questionText}>What brings you to this chat?</Text>
-          <Text>(You can choose multiple)</Text>
-
+        <View style={styles.modalView2}>
+          <View style={styles.bringsYouTitle}>
+            <Text style={styles.questionText}>
+              What brings you to this chat?
+            </Text>
+            <Text>(You can choose multiple)</Text>
+          </View>
           <View style={styles.questions}>
             <WhatBringsYou
               question="Understanding Emotions/Feelings"
@@ -155,11 +197,20 @@ export default function Survey({ navigation }) {
             onPress={() => {
               setModalTwo(false);
               setModalThree(true);
+              // console.log("Values for the What brings you to chat page are: ");
+              // console.log("Understanding: " + understand);
+              // console.log("Challenges: " + challenges);
+              // console.log("Use: " + use);
+              // console.log("Anxiety: " + anxiety);
+              // console.log("Friendship: " + friendship);
+              // console.log("Relationship: " + relationship);
+              // console.log("Unhealthy Behaviors: " + behaviors);
+              // console.log("Other: " + other);
             }}
           >
             <Text style={styles.buttonText}>Next</Text>
           </TouchableOpacity>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={styles.skipButton}
             onPress={() => {
               setModalTwo(false);
@@ -176,16 +227,18 @@ export default function Survey({ navigation }) {
             }}
           >
             <Text style={styles.skipText}>Back</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </Modal>
 
       {/* Suicidal  */}
       <Modal visible={modalThree} fade={true}>
-        <View style={styles.modalView}>
-          <Text style={styles.suicidalQuestion}>
-            Have you had suicidal thoughts in the past 6 months?
-          </Text>
+        <View style={styles.modalView3}>
+          <View style={styles.suicidalTitle}>
+            <Text style={styles.suicidalQuestion}>
+              Have you had suicidal thoughts in the past 6 months?
+            </Text>
+          </View>
           <View style={styles.questions}>
             <YesNo
               yesValue={yes}
@@ -194,7 +247,7 @@ export default function Survey({ navigation }) {
               setNoValue={setNo}
             />
           </View>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={styles.prevButton}
             onPress={() => {
               setModalThree(false);
@@ -202,11 +255,45 @@ export default function Survey({ navigation }) {
             }}
           >
             <Text style={styles.skipText}>Back</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <TouchableOpacity
             style={styles.nextButton}
             onPress={() => {
-              //here will be sent to the chat
+              //send user into chat
+              axios.post(
+                "https://runaway-practicum.herokuapp.com/api/volunteer/survey", //might not be the right url
+                {
+                  FeelingPage: {
+                    Happy: happy,
+                    Thankful: thankful,
+                    Anxious: anxious,
+                    Worried: worried,
+                    Embarrased: embarrased,
+                    Sad: sad,
+                    Angry: angry,
+                    VerySad: verySad,
+                    Meh: meh,
+                    Content: content,
+                    Shameful: shameful,
+                    Confused: confused,
+                  },
+                  WhatBringsThem: {
+                    UnderstandingEmotions_Feelings: understand,
+                    LifeChallenges: challenges,
+                    UseOrAbuse_Substances: use,
+                    Anxiety_Depression: anxiety,
+                    Friendship: friendship,
+                    Relationship: relationship,
+                    UnhealthyBehaviors: behaviors,
+                    Other: other,
+                  },
+                  SuicidalThoughts: {
+                    HaveHadSuicidalThoughts: yes,
+                    HaveNotHadSuicidalThoughts: no,
+                  },
+                }
+              );
+              resetPage();
             }}
           >
             <Text style={styles.buttonText}>Next</Text>
@@ -265,10 +352,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 5,
   },
-  modalView: {
+  modalView3: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    alignSelf: "center",
+    padding: 80,
+  },
+  modalView2: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "center",
+    padding: 30,
   },
   questionText: {
     fontSize: 21,
@@ -285,7 +381,7 @@ const styles = StyleSheet.create({
     width: 250,
   },
   questions: {
-    padding: 20,
+    padding: 40,
     paddingBottom: 60,
   },
   feelView: {
@@ -296,6 +392,18 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     top: 40,
+  },
+  bringsYouTitle: {
+    flex: 1,
+    alignItems: "center",
+    top: 40,
+    position: "absolute",
+  },
+  suicidalTitle: {
+    flex: 1,
+    alignItems: "center",
+    top: 40,
+    position: "absolute",
   },
   bottomTray: {
     position: "absolute",

@@ -57,7 +57,7 @@ export default function Feel({ title, value, setValue }) {
 
   const styles = StyleSheet.create({
     text: {
-      fontSize: 16,
+      fontSize: 14,
       paddingHorizontal: 10,
       paddingVertical: 10,
       color: "#2E5F85",
