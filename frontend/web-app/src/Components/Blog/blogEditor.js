@@ -12,7 +12,8 @@ class BlogEditor extends React.Component {
             blogContent: '',
             imageURL: '',
             author: '',
-            readTime: ''
+            readTime: '',
+            announcement: false
         }
 
         //bind 'this'
@@ -21,7 +22,9 @@ class BlogEditor extends React.Component {
     }
 
     handleChange(event) {
-        if (event.target) {
+        if(event.target.name === 'announcement') {
+            this.setState({ [event.target.name]: event.target.checked })
+        } else if (event.target) {
             this.setState({ [event.target.name]: event.target.value })
         } else {
             this.setState({ blogContent: event })
@@ -38,7 +41,12 @@ class BlogEditor extends React.Component {
         }
         console.log(blogData);
         //POST METHOD
-        axios.post("/api/volunteer/blog/post", blogData);
+        if (this.state.announcement == true) {
+            // Create axios post statement here
+            console.log('this is an announcement');
+        } else {
+            axios.post("/api/volunteer/blog/post", blogData);
+        }
     }
 
     render() {
@@ -106,12 +114,19 @@ class BlogEditor extends React.Component {
                 </div>
                 <div class='row'>
                     <div class='col text-left'>
-                    <h4> Text: </h4>
-
-                    <ReactQuill
-                        style={blogStyle}
-                        value={this.state.blogContent}
-                        onChange={this.handleChange} />
+                        <h4> Text: </h4>
+                        <ReactQuill
+                            style={blogStyle}
+                            value={this.state.blogContent}
+                            onChange={this.handleChange} />
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col-4 text-left'>
+                        <h5> Is this an announcement? </h5>
+                    </div>
+                    <div class='col text-left'>
+                        <input type='checkbox' name='announcement' checked={this.state.announcement} onChange={this.handleChange} />
                     </div>
                 </div>
                 <div class ='row'>
@@ -124,4 +139,4 @@ class BlogEditor extends React.Component {
     }
 }
 
-export default BlogEditor;
+export default BlogEditor

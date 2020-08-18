@@ -65,6 +65,23 @@ class Resource extends React.Component {
     }
 
     render() {
+        const inputStyle = {
+            borderRadius: 6,
+            backgroundColor: 'rgba(172, 218, 255, 0.3)',
+            width: '80%',
+            marginBottom: '5%',
+            border: 'none',
+            boxShadow: 'none'
+        };
+
+        const buttonStyle = {
+            backgroundColor: "#FF9EDA",
+            borderRadius: 5,
+            height: '150%',
+            width: '10%',
+            border: 'none',
+            boxShadow: 'none'
+        };
         // Can be changed to add or subtract categories
         let checkBoxArray = ['General Resources','LGBTQIA+','Kids and Teens', 'Substance Related Disorders', 'Mood Related Disorders', 'Anxiety and Trauma Related Disorders', 'Psychotic Disorders',
                              'Deliberate Self Harm', 'Eating Disorders', 'Domestic and Sexual Violence'];
@@ -72,24 +89,40 @@ class Resource extends React.Component {
         	return (<div><CheckBox value={string} id={'string_' + i} onChange={this.changeEvent.bind(this)} /><label htmlFor={'string_' + i}>{string}</label></div>)
         }, this);
         return (
-            <div>
-            <input
-                type='text'
-                placeholder="title"
-                value={this.state.title}
-                onChange={this.handleChange}
-            />
-            <br></br>
-            <input
-                type='text'
-                placeholder="url"
-                value={this.state.author}
-                onChange={this.handleChange}
-            />
-            <div>
-                {outputCheckboxes}
-            </div>
-            <div onClick={this.handleClick}>SUBMIT</div>
+            <div class="container col-9" style = {{"margin-top":"30px"}}>   
+                <div class='row'>
+                    <h2> New Resource </h2>
+                </div>
+                <div class='row'>
+                    <div class='col-6 text-left'>
+                        <h4> Title: </h4>
+                        <input
+                            type='text'
+                            style={inputStyle}
+                            name="title"
+                            value={this.state.title}
+                            onChange={this.handleChange} />
+                    </div>
+                    <div class='col-6 text-left'>
+                        <h4> URL: </h4>
+                        <input
+                            type='text'
+                            style={inputStyle}
+                            name="url"
+                            value={this.state.author}
+                            onChange={this.handleChange} />
+                    </div>
+                </div>
+                <div class='row'>
+                    <div>
+                        {outputCheckboxes}
+                    </div>
+                </div>
+                <div class ='row'>
+                    <div class= 'col text-right'>
+                        <button type='button' onClick={this.handleClick} style={buttonStyle}> Submit </button>                    
+                    </div>
+                </div>
             </div>
         )
     }
