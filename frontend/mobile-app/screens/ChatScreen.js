@@ -7,7 +7,7 @@ import {
   Bubble,
   Composer
 } from "react-native-gifted-chat";
-import { StyleSheet, View, TouchableOpacity, Modal, Text,TextInput } from "react-native";
+import { StyleSheet, View, TouchableOpacity,BackHandler } from "react-native";
 import axios from "axios";
 import { AntDesign, FontAwesome5, Feather } from "@expo/vector-icons";
 import {colors, fonts, padding, dimensions,margin,borderRadius, icon,stylesDefault} from '../style/styleValues.js'
@@ -280,7 +280,19 @@ export default function ChatScreen({ navigation }) {
   const renderQuickReplies = (props) => {
     return <QuickReplies color={colors.tertiary} {...props} />;
   };
+  //android back button should leave the room.
+  const backAction = () => {
+    disconnectSocket();
+    navigation.navigate("Feed")
+    return true;
+  };
 
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", backAction);
+
+    return () =>
+      BackHandler.removeEventListener("hardwareBackPress", backAction);
+  }, []);
   // show wait page or chat page depending on if volunteer joined
   return (
     <View style={{ flex:1, backgroundColor: colors.background}}>
@@ -346,9 +358,8 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
     color: colors.tertiary,
-    minHeight: 35,
     alignItems: "center",
-    overflow:'hidden'
+    overflow:'hidden',
   },
   sendingContainer: {
     justifyContent: "center",
