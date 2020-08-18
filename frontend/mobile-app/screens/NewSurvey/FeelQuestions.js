@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import Happy from "./Emojis/Happy";
 import Thankful from "./Emojis/Thankful";
 import Anxious from "./Emojis/Anxious";

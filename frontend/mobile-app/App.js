@@ -28,8 +28,7 @@ export default function App() {
           backgroundColor={colors.background}
           translucent={true}
         />
-        {/* <Navigation/> */}
-        <Survey />
+        <Navigation />
       </SafeAreaProvider>
     );
   } else {
