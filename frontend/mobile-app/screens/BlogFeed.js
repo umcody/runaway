@@ -42,10 +42,11 @@ export default function BlogFeed({navigation}) {
       });
     }  
     const [refreshing, setRefreshing] = useState(false);
-  // function onRefreah to change refreshing state to true, wait, then to false
+  // function onRefresh to change refreshing state to true, wait, then to false
     const onRefresh = useCallback(() => {
       setRefreshing(true);
-  
+      // needs to be tested
+      setPageNumber(1);
       wait(2000).then(() => setRefreshing(false));
     }, [refreshing]);
 
@@ -97,7 +98,7 @@ if (!announcements) {
             initialNumToRender={5}
             windowSize={5}
             />
-          <Text style={styles.recentPosts}>Recent Posts</Text>
+          <Text style={styles.recentPosts}>Blog Posts</Text>
           </View>
       }
         style={{paddingLeft:padding.sm,paddingRight:padding.sm,paddingTop:padding.sm}}

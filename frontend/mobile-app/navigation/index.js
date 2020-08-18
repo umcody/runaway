@@ -25,6 +25,7 @@ import { NavigationContainer, StackActions } from "@react-navigation/native";
 import {
   createStackNavigator,
   HeaderBackButton,
+  CardStyleInterpolators
 } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
@@ -33,7 +34,7 @@ import {
   DrawerItemList,
   DrawerItem,
 } from "@react-navigation/drawer";
-
+import Announcement from '../screens/Announcement';
 import EmergencyHotlinesScreen from "../screens/OfHotline";
 import ChatScreen from "../screens/ChatScreen";
 import Feels from "../screens/Feels";
@@ -283,6 +284,15 @@ export default function MyApp() {
             headerShown: false,
           }}
         />
+        <RootStack.Screen 
+          name ="Announcement"
+          component={Announcement}
+          options={{ headerShown:false, gestureResponseDistance:{horizontal: 500},
+            cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,gestureDirection:'vertical',
+            gestureResponseDistance:dimensions.fullHeight,cardOverlayEnabled:true,
+            
+          }}
+          />
         <RootStack.Screen
           name="Chat"
           component={ChatScreen}

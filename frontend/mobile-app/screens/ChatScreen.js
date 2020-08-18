@@ -10,7 +10,7 @@ import {
 import { StyleSheet, View, TouchableOpacity, Modal, Text,TextInput } from "react-native";
 import axios from "axios";
 import { AntDesign, FontAwesome5, Feather } from "@expo/vector-icons";
-import {colors, fonts, padding, dimensions,margin,borderRadius, icon} from '../style/styleValues.js'
+import {colors, fonts, padding, dimensions,margin,borderRadius, icon,stylesDefault} from '../style/styleValues.js'
 import { SafeAreaView } from "react-native-safe-area-context";
 import QuickReplies from "react-native-gifted-chat/lib/QuickReplies";
 import WaitingPage from "./WaitingPage";
@@ -31,6 +31,7 @@ export default function ChatScreen({ navigation }) {
   // conditional header depending on if user is in waiting screen or chat room
   if (volunteerJoined){
     navigation.setOptions({
+      headerStyle:stylesDefault.headerStyle,
       headerRight: () => (
         <TouchableOpacity
           style={{ paddingRight: padding.md }}
@@ -62,6 +63,7 @@ export default function ChatScreen({ navigation }) {
         <TouchableOpacity
           style={{ paddingLeft: padding.md }}
           onPress={() => {
+            disconnectSocket();
             return navigation.navigate("Feed");
           }}
         >

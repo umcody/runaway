@@ -20,9 +20,9 @@ export default function BlogScreen({navigation,route}) {
 
   // creates time object and returns string format
   function ConvertDate(date){
-      var d = new Date(parseInt(date.substr(0,4)),parseInt(date.substr(6,7)),parseInt(date.substr(9,10)));
-      return d.toString().substr(4,7)
-  }
+    var d = new Date(parseInt(date.substr(0,5)),parseInt(date.substr(5,7))-1,parseInt(date.substr(8,10)));
+    return d.toDateString().substr(0,10)
+}
   
   return (
     <SafeAreaView style={{ flex: 1,backgroundColor:colors.background}}>
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     paddingTop: padding.sm,
     paddingLeft: padding.md,
     fontSize:fonts.sm,
-    color:colors.foreground
+    color:colors.foreground,
   },
   content: {
     paddingTop: padding.md,
