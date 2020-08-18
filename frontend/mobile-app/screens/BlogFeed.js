@@ -121,6 +121,7 @@ if (!announcements) {
     windowSize={9}
     onEndReached={handleLoadMore}
     onEndReachedThreshold={5}
+    nestedScrollEnabled={true}
     contentContainerStyle={{paddingBottom:20}}
     refreshControl={
       <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />

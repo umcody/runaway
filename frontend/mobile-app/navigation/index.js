@@ -57,6 +57,7 @@ import {
   fonts,
   margin,
 } from "../style/styleValues";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const BottomTabNavigation = createBottomTabNavigator();
 const ChatStack = createStackNavigator();
@@ -82,6 +83,7 @@ function CustomDrawerContent(props) {
     <DrawerContentScrollView {...props}>
       <View
         style={{
+          flex:1,
           backgroundColor: colors.background,
           alignItems: "center",
           justifyContent: "center",
@@ -90,39 +92,26 @@ function CustomDrawerContent(props) {
         <RunawaySvg style={{paddingVertical:40}}/>
       </View>
       <DrawerItemList {...props} />
-      <DrawerItem
-        onPress={() => {
+      <View style={{flexDirection:'row', justifyContent:'space-evenly',marginTop:150}}>
+      <TouchableOpacity style={styles.icon} onPress={() => {
           Linking.openURL("https://www.instagram.com/runaway.app/");
-        }}
-        label=""
-        icon={() => (
+        }}>
           <Ig/>
-        )}
-      />
-      <DrawerItem
-        onPress={handlePress}
-        label=""
-        icon={() => (
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.icon} onPress={handlePress}>
           <Fb/>
-        )}
-      />
-      <DrawerItem
-        onPress={() => {
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.icon} onPress={() => {
           Linking.openURL("https://twitter.com/runaway_app");
-        }}
-        label=""
-        icon={() => (
-          <Twitter />
-        )}
-      />
-      <DrawerItem
-        onPress={() => {
+        }}>
+          <Twitter/>
+        </TouchableOpacity>
+        <TouchableOpacity  onPress={() => {
           WebBrowser.openBrowserAsync("https://www.runawayapp.com/");
-        }}
-        label=""
-        icon={() => (<Web/>
-        )}
-      />
+        }}>
+          <Web/>
+        </TouchableOpacity >
+      </View>
     </DrawerContentScrollView>
   );
 }
@@ -251,7 +240,7 @@ const MyDrawer = () => {
       edgeWidth={0}
       drawerContentOptions={{
         activeTintColor: colors.foreground,
-        activeBackgroundColor: colors.background,
+        activeBackgroundColor: colors.secondary,
         inactiveBackgroundColor: colors.background,
         itemStyle: { marginBottom: margin.sm },
         labelStyle: { fontSize: fonts.sm, fontFamily: fonts.subheader,color:colors.foreground, lineHeight:fonts.lgLineHeight},
@@ -324,6 +313,8 @@ export default function MyApp() {
 }
 const styles = StyleSheet.create({
   headerTitleStyle: stylesDefault.headerTitleStyle,
-
   headerStyle: stylesDefault.headerStyle,
+  icons:{
+    marginTop:100
+  }
 });

@@ -3,7 +3,6 @@ import { SafeAreaView, Text, StyleSheet, ImageBackground,View} from "react-nativ
 import {TouchableOpacity } from 'react-native-gesture-handler';
 import { Feather } from "@expo/vector-icons";
 import {colors, fonts, padding,margin, icon} from '../style/styleValues.js'
-
 // shows the announcement page 
 export default function Announcement({navigation,route}) {
   //sends in url prop
@@ -11,17 +10,19 @@ export default function Announcement({navigation,route}) {
   //get request to obtain blog object
 
   return (
-    <SafeAreaView style={styles.container}>
-        <ImageBackground source={{uri:item.image}} style={styles.image} resizeMode="contain">
-        <TouchableOpacity onPress={()=>navigation.popToTop()} style={styles.back}>
-                <Feather name="x" size={icon.lg} color={colors.foreground}/>
-        </TouchableOpacity>
-        <View style={{justifyContent:'center'}}>
-            <Text style={styles.title}>{item.name}</Text>
-            <Text style={styles.content}>{item.content}</Text>
-        </View>
+    <View style={styles.container}>
+        <ImageBackground source={{uri:item.image}} style={{flex:1}} resizeMode="cover" blurRadius={50}>
+            <ImageBackground source={{uri:item.image}} style={styles.image} resizeMode="contain">
+                    <TouchableOpacity onPress={()=>navigation.popToTop()} style={styles.back}>
+                            <Feather name="x" size={icon.lg} color={colors.background}/>
+                    </TouchableOpacity>
+                    <View style={{justifyContent:'center'}}>
+                        <Text style={styles.title}>{item.name}</Text>
+                        <Text style={styles.content}>{item.content}</Text>
+                    </View>
+            </ImageBackground>
         </ImageBackground>
-    </SafeAreaView>
+    </View>
   );
 }
 const styles = StyleSheet.create({
@@ -31,11 +32,11 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize:fonts.lg,
-        fontFamily:fonts.main,
+        fontFamily:fonts.mainBold,
         paddingTop:padding.md,
         paddingLeft: padding.md,
         paddingBottom:padding.sm,
-        color:colors.foreground
+        color:colors.background
     },
     image:{
         flex:1,
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
         fontFamily:fonts.text,
         paddingTop: padding.md,
         paddingLeft: padding.md,
-        color:colors.foreground
+        color:colors.background
     },
     back:{
         width:icon.lg,height:icon.lg,

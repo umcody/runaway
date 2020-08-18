@@ -63,10 +63,8 @@ const styles = StyleSheet.create({
         paddingBottom:padding.sm,
         flexWrap:'wrap',
         flexShrink:1,
-        
     },
     info:{
-        
         color:colors.foreground,
         fontFamily:fonts.text,
         fontSize:fonts.sm-2
