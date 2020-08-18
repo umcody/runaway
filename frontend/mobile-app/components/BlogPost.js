@@ -17,8 +17,8 @@ Each post shows the author and title*/
 export default function BlogPost({title,author,date,readTime,imageURL,HandlePress}){
 
     function ConvertDate(date){
-        var d = new Date(parseInt(date.substr(0,4)),parseInt(date.substr(6,7)),parseInt(date.substr(9,10)));
-        return d.toString().substr(4,7)
+        var d = new Date(parseInt(date.substr(0,5)),parseInt(date.substr(5,7))-1,parseInt(date.substr(8,10)));
+        return d.toDateString().substr(0,10)
     }
     return(
         <View style={{marginBottom:padding.sm}}>
@@ -63,10 +63,8 @@ const styles = StyleSheet.create({
         paddingBottom:padding.sm,
         flexWrap:'wrap',
         flexShrink:1,
-        
     },
     info:{
-        
         color:colors.foreground,
         fontFamily:fonts.text,
         fontSize:fonts.sm-2

@@ -24,7 +24,7 @@ export default function App() {
   if (fontLoaded){
     return (
       <SafeAreaProvider>
-         <StatusBar barStyle="dark-content" backgroundColor={colors.background} translucent={true} />
+         <StatusBar barStyle="dark-content" backgroundColor={'transparent'} translucent={true} />
         <Navigation/>
       </SafeAreaProvider>
     )
