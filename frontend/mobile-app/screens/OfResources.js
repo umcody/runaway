@@ -55,10 +55,9 @@ export default function OfResources({ route, navigation }) {
                   placeholder="Search (e.g. Anxiety)"
                   value={Search}
                   onChangeText={updateSearch}
-                  containerStyle={{borderWidth:0,marginVertical:margin.sm,marginHorizontal:margin.md,width:dimensions.fullWidth*.9,height:35,borderRadius: borderRadius.lg,
-                    overflow:"hidden",justifyContent:'center',backgroundColor:colors.secondary,
-                borderTopWidth:0,borderBottomWidth:0}}
-                    inputStyle={{backgroundColor:colors.secondary,fontSize:fonts.sm,fontFamily:fonts.text}}
+                  containerStyle={{borderWidth:1,borderColor:colors.primary,borderTopColor:colors.primary,borderBottomColor:colors.primary, marginVertical:margin.sm,marginHorizontal:margin.md,width:dimensions.fullWidth*.9,height:35,borderRadius: borderRadius.lg,
+                    overflow:"hidden",justifyContent:'center',backgroundColor:colors.background,}}
+                    inputStyle={{backgroundColor:'transparent',fontSize:fonts.sm,fontFamily:fonts.text}}
                   inputContainerStyle={{backgroundColor:'transparent',height:25,borderWidth:0}}
                   searchIcon={props=>{return(<Icon {...props} name='search' color={colors.tertiary}/>)}}
                 />
@@ -96,8 +95,8 @@ export default function OfResources({ route, navigation }) {
 
                 }} 
             />
-            <View style={{borderBottomWidth:1,borderColor:colors.secondary}}>
-                <Text style={{paddingBottom:padding.sm,paddingLeft:padding.md-1,color: '#C4C4C4',fontFamily:fonts.text}}>
+            <View style={{borderBottomWidth:.5,borderColor:colors.primary}}>
+                <Text style={{paddingBottom:padding.sm,paddingLeft:padding.md-1,color: colors.tertiary,fontFamily:fonts.text}}>
                     {Resources.length} {(Resources.length===1)? "Result" : "Results"}</Text>
             </View>
 

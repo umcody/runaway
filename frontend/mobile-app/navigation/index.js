@@ -8,7 +8,11 @@ import {
   View,
   Text,
 } from "react-native";
-
+import RunawaySvg from "../components/svgs/Runaway"
+import {HomeGradient,HomeGray} from "../components/svgs/Home"
+import {ChatGradient,ChatGray} from "../components/svgs/Chat"
+import {ResGradient,ResGray} from "../components/svgs/Resources"
+import {Ig,Fb,Twitter,Web} from "../components/svgs/Social"
 import {
   MaterialCommunityIcons,
   MaterialIcons,
@@ -52,7 +56,6 @@ import {
   fonts,
   margin,
 } from "../style/styleValues";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 
 const BottomTabNavigation = createBottomTabNavigator();
 const ChatStack = createStackNavigator();
@@ -83,64 +86,47 @@ function CustomDrawerContent(props) {
           justifyContent: "center",
         }}
       >
-        <Text
-          style={{
-            fontSize: fonts.lg,
-            fontFamily: fonts.main,
-            paddingVertical: padding.md,
-          }}
-        >
-          RUNAWAY
-        </Text>
+        <RunawaySvg style={{paddingVertical:40}}/>
       </View>
       <DrawerItemList {...props} />
       <DrawerItem
         onPress={() => {
           Linking.openURL("https://www.instagram.com/runaway.app/");
         }}
-        label="Instagram"
-        labelStyle={{ fontFamily: fonts.text, fontSize: fonts.sm }}
+        label=""
         icon={() => (
-          <AntDesign name="instagram" size={icon.md} color={colors.button} />
+          <Ig/>
         )}
       />
       <DrawerItem
         onPress={handlePress}
-        label="Facebook"
-        labelStyle={{ fontFamily: fonts.text, fontSize: fonts.sm }}
+        label=""
         icon={() => (
-          <Feather name="facebook" size={icon.md} color={colors.button} />
+          <Fb/>
         )}
       />
       <DrawerItem
         onPress={() => {
           Linking.openURL("https://twitter.com/runaway_app");
         }}
-        label="Twitter"
-        labelStyle={{ fontFamily: fonts.text, fontSize: fonts.sm }}
+        label=""
         icon={() => (
-          <Feather name="twitter" size={icon.md} color={colors.button} />
+          <Twitter />
         )}
       />
       <DrawerItem
         onPress={() => {
           WebBrowser.openBrowserAsync("https://www.runawayapp.com/");
         }}
-        labelStyle={{ fontFamily: fonts.text, fontSize: fonts.sm }}
-        label="Website"
-        icon={() => (
-          <MaterialCommunityIcons
-            name="web"
-            size={icon.md}
-            color={colors.button}
-          />
+        label=""
+        icon={() => (<Web/>
         )}
       />
     </DrawerContentScrollView>
   );
 }
 
-const BottomTab = ({ navigation }) => {
+const BottomTab = () => {
   return (
     <BottomTabNavigation.Navigator
       tabBarOptions={{
@@ -153,8 +139,8 @@ const BottomTab = ({ navigation }) => {
             dimensions.fullHeight > 800
               ? dimensions.fullHeight * 0.09
               : 50,
-          borderTopColor: colors.secondary,
-          borderTopWidth: 1,
+          borderTopColor: colors.primary,
+          borderTopWidth: .5,
           elevation: 1,
         },
       }}
@@ -164,13 +150,8 @@ const BottomTab = ({ navigation }) => {
         component={BlogNav}
         options={{
           tabBarLabel: "Feed",
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              name="home-outline"
-              color={color}
-              size={icon.lg}
-            />
-          ),
+          tabBarIcon: ({ focused }) => focused ? (
+              <HomeGradient/>) : <HomeGray/>,
         }}
       />
       <BottomTabNavigation.Screen
@@ -178,13 +159,8 @@ const BottomTab = ({ navigation }) => {
         component={Chat}
         options={{
           tabBarLabel: "Chat",
-          tabBarIcon: ({ color }) => (
-            <MaterialIcons
-              name="chat-bubble-outline"
-              color={color}
-              size={icon.md}
-            />
-          ),
+          tabBarIcon: ({focused }) => focused ? (
+            <ChatGradient/>) : <ChatGray/>,
         }}
       />
       <BottomTabNavigation.Screen
@@ -192,9 +168,8 @@ const BottomTab = ({ navigation }) => {
         component={ResourceNav}
         options={{
           tabBarLabel: "Resources",
-          tabBarIcon: ({ color }) => (
-            <Feather name="book-open" color={color} size={icon.md} />
-          ),
+          tabBarIcon: ({ focused }) => focused ? (
+            <ResGradient/>) : <ResGray/>,
         }}
       />
     </BottomTabNavigation.Navigator>
@@ -274,11 +249,11 @@ const MyDrawer = () => {
       drawerContent={(props) => <CustomDrawerContent {...props} />}
       edgeWidth={0}
       drawerContentOptions={{
-        activeTintColor: colors.tertiary,
-        activeBackgroundColor: colors.secondary,
+        activeTintColor: colors.foreground,
+        activeBackgroundColor: colors.background,
         inactiveBackgroundColor: colors.background,
         itemStyle: { marginBottom: margin.sm },
-        labelStyle: { fontSize: fonts.sm, fontFamily: fonts.text },
+        labelStyle: { fontSize: fonts.sm, fontFamily: fonts.subheader,color:colors.foreground, lineHeight:fonts.lgLineHeight},
       }}
     >
       <SettingsDrawer.Screen

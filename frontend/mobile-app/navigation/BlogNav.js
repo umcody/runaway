@@ -21,7 +21,7 @@ export default function BlogNav({navigation}){
     }
     return (
         <View style = {{flex:1}}>
-            <Stack.Navigator>
+            <Stack.Navigator headerMode="screen">
             <Stack.Screen
           name="Feed"
           component={BlogFeed}
