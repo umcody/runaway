@@ -1,4 +1,4 @@
-import React,{useCallback} from "react";
+import React, { useCallback } from "react";
 import "react-native-gesture-handler";
 import {
   Linking,
@@ -8,11 +8,11 @@ import {
   View,
   Text,
 } from "react-native";
-import RunawaySvg from "../components/svgs/Runaway"
-import {HomeGradient,HomeGray} from "../components/svgs/Home"
-import {ChatGradient,ChatGray} from "../components/svgs/Chat"
-import {ResGradient,ResGray} from "../components/svgs/Resources"
-import {Ig,Fb,Twitter,Web} from "../components/svgs/Social"
+import RunawaySvg from "../components/svgs/Runaway";
+import { HomeGradient, HomeGray } from "../components/svgs/Home";
+import { ChatGradient, ChatGray } from "../components/svgs/Chat";
+import { ResGradient, ResGray } from "../components/svgs/Resources";
+import { Ig, Fb, Twitter, Web } from "../components/svgs/Social";
 import {
   MaterialCommunityIcons,
   MaterialIcons,
@@ -25,7 +25,7 @@ import { NavigationContainer, StackActions } from "@react-navigation/native";
 import {
   createStackNavigator,
   HeaderBackButton,
-  CardStyleInterpolators
+  CardStyleInterpolators,
 } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
@@ -34,13 +34,14 @@ import {
   DrawerItemList,
   DrawerItem,
 } from "@react-navigation/drawer";
-import Announcement from '../screens/Announcement';
+import Announcement from "../screens/Announcement";
 import EmergencyHotlinesScreen from "../screens/OfHotline";
 import ChatScreen from "../screens/ChatScreen";
-import Feels from "../screens/Feels";
+// import Feels from "../screens/Feels";
 import PostChatSurvey from "../screens/PostChatSurvey";
-import PreChatModal from "../screens/PreChatSurvey/ModalSurvey";
-import PreChatSurvey from "../screens/PreChatSurvey/Survey";
+import Survey from "../screens/NewSurvey/Survey";
+// import PreChatModal from "../screens/PreChatSurvey/ModalSurvey";
+// import PreChatSurvey from "../screens/PreChatSurvey/Survey";
 import AboutUs from "../screens/AboutUs";
 import BlogNav from "../navigation/BlogNav";
 import SiteMapNav from "./SiteMapNav";
@@ -70,7 +71,7 @@ function CustomDrawerContent(props) {
   const handlePress = useCallback(async () => {
     // Checking if the link is supported for links with custom URL scheme.
     const supported = await Linking.canOpenURL("fb://page/1789760617938894");
-  
+
     if (supported) {
       // Opening the link with some app, if the URL scheme is "http" the web link should be opened
       // by some browser in the mobile
@@ -83,34 +84,48 @@ function CustomDrawerContent(props) {
     <DrawerContentScrollView {...props}>
       <View
         style={{
-          flex:1,
+          flex: 1,
           backgroundColor: colors.background,
           alignItems: "center",
           justifyContent: "center",
         }}
       >
-        <RunawaySvg style={{paddingVertical:40}}/>
+        <RunawaySvg style={{ paddingVertical: 40 }} />
       </View>
       <DrawerItemList {...props} />
-      <View style={{flexDirection:'row', justifyContent:'space-evenly',marginTop:150}}>
-      <TouchableOpacity style={styles.icon} onPress={() => {
-          Linking.openURL("https://www.instagram.com/runaway.app/");
-        }}>
-          <Ig/>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-evenly",
+          marginTop: 150,
+        }}
+      >
+        <TouchableOpacity
+          style={styles.icon}
+          onPress={() => {
+            Linking.openURL("https://www.instagram.com/runaway.app/");
+          }}
+        >
+          <Ig />
         </TouchableOpacity>
         <TouchableOpacity style={styles.icon} onPress={handlePress}>
-          <Fb/>
+          <Fb />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.icon} onPress={() => {
-          Linking.openURL("https://twitter.com/runaway_app");
-        }}>
-          <Twitter/>
+        <TouchableOpacity
+          style={styles.icon}
+          onPress={() => {
+            Linking.openURL("https://twitter.com/runaway_app");
+          }}
+        >
+          <Twitter />
         </TouchableOpacity>
-        <TouchableOpacity  onPress={() => {
-          WebBrowser.openBrowserAsync("https://www.runawayapp.com/");
-        }}>
-          <Web/>
-        </TouchableOpacity >
+        <TouchableOpacity
+          onPress={() => {
+            WebBrowser.openBrowserAsync("https://www.runawayapp.com/");
+          }}
+        >
+          <Web />
+        </TouchableOpacity>
       </View>
     </DrawerContentScrollView>
   );
@@ -126,11 +141,9 @@ const BottomTab = () => {
         style: {
           backgroundColor: colors.background,
           height:
-            dimensions.fullHeight > 800
-              ? dimensions.fullHeight * 0.09
-              : 50,
+            dimensions.fullHeight > 800 ? dimensions.fullHeight * 0.09 : 50,
           borderTopColor: colors.primary,
-          borderTopWidth: .5,
+          borderTopWidth: 0.5,
           elevation: 1,
         },
       }}
@@ -140,8 +153,8 @@ const BottomTab = () => {
         component={BlogNav}
         options={{
           tabBarLabel: "Feed",
-          tabBarIcon: ({ focused }) => focused ? (
-              <HomeGradient/>) : <HomeGray/>,
+          tabBarIcon: ({ focused }) =>
+            focused ? <HomeGradient /> : <HomeGray />,
         }}
       />
       <BottomTabNavigation.Screen
@@ -149,8 +162,8 @@ const BottomTab = () => {
         component={Chat}
         options={{
           tabBarLabel: "Chat",
-          tabBarIcon: ({focused }) => focused ? (
-            <ChatGradient/>) : <ChatGray/>,
+          tabBarIcon: ({ focused }) =>
+            focused ? <ChatGradient /> : <ChatGray />,
         }}
       />
       <BottomTabNavigation.Screen
@@ -158,8 +171,8 @@ const BottomTab = () => {
         component={ResourceNav}
         options={{
           tabBarLabel: "Resources",
-          tabBarIcon: ({ focused }) => focused ? (
-            <ResGradient/>) : <ResGray/>,
+          tabBarIcon: ({ focused }) =>
+            focused ? <ResGradient /> : <ResGray />,
         }}
       />
     </BottomTabNavigation.Navigator>
@@ -170,42 +183,17 @@ const Chat = ({ navigation }) => {
   return (
     <>
       <StatusBar barStyle="dark-content" translucent={true} />
-      <ChatStack.Navigator initialRouteName="Feels">
+      <ChatStack.Navigator initialRouteName="Survey">
         <ChatStack.Screen
-          name="PreChatModal"
-          component={PreChatModal}
-          options={{ headerShown: false }}
-        />
-        <ChatStack.Screen
-          name="PreChatSurvey"
-          component={PreChatSurvey}
+          name="Survey"
+          component={Survey}
           options={{
-            headerTitle: "PreChat Survey",
-            headerTitleAlign: "center",
+            headerShown: false,
             headerLeft: () => (
               <HeaderBackButton
                 labelVisible={false}
                 onPress={() => {
-                  navigation.dispatch(StackActions.replace("Feels"));
-                  navigation.navigate("Feed");
-                }}
-              />
-            ),
-          }}
-        />
-        <ChatStack.Screen
-          name="Feels"
-          component={Feels}
-          options={{
-            headerTitle: "How are you feeling?",
-            headerTitleAlign: "center",
-            headerStyle: stylesDefault.headerStyle,
-            headerTitleStyle: stylesDefault.headerTitleStyle,
-            headerLeft: () => (
-              <HeaderBackButton
-                labelVisible={false}
-                onPress={() => {
-                  navigation.dispatch(StackActions.replace("Feels"));
+                  navigation.dispatch(StackActions.replace("Survey"));
                   navigation.navigate("Feed");
                 }}
               />
@@ -243,7 +231,12 @@ const MyDrawer = () => {
         activeBackgroundColor: colors.secondary,
         inactiveBackgroundColor: colors.background,
         itemStyle: { marginBottom: margin.sm },
-        labelStyle: { fontSize: fonts.sm, fontFamily: fonts.subheader,color:colors.foreground, lineHeight:fonts.lgLineHeight},
+        labelStyle: {
+          fontSize: fonts.sm,
+          fontFamily: fonts.subheader,
+          color: colors.foreground,
+          lineHeight: fonts.lgLineHeight,
+        },
       }}
     >
       <SettingsDrawer.Screen
@@ -273,15 +266,18 @@ export default function MyApp() {
             headerShown: false,
           }}
         />
-        <RootStack.Screen 
-          name ="Announcement"
+        <RootStack.Screen
+          name="Announcement"
           component={Announcement}
-          options={{ headerShown:false, gestureResponseDistance:{horizontal: 500},
-            cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,gestureDirection:'vertical',
-            gestureResponseDistance:dimensions.fullHeight,cardOverlayEnabled:true,
-            
+          options={{
+            headerShown: false,
+            gestureResponseDistance: { horizontal: 500 },
+            cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
+            gestureDirection: "vertical",
+            gestureResponseDistance: dimensions.fullHeight,
+            cardOverlayEnabled: true,
           }}
-          />
+        />
         <RootStack.Screen
           name="Chat"
           component={ChatScreen}
@@ -314,7 +310,7 @@ export default function MyApp() {
 const styles = StyleSheet.create({
   headerTitleStyle: stylesDefault.headerTitleStyle,
   headerStyle: stylesDefault.headerStyle,
-  icons:{
-    marginTop:100
-  }
+  icons: {
+    marginTop: 100,
+  },
 });

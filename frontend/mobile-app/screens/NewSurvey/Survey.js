@@ -7,14 +7,44 @@ import {
   Dimensions,
   Modal,
 } from "react-native";
+import { Feather } from "@expo/vector-icons";
 import axios from "axios";
 import WhatBringsYou from "./WhatBringsYouQuestions";
 import YesNo from "./SuicidalThoughtsQuestions";
 import Feel from "./FeelQuestions";
 
 export default function Survey({ navigation }) {
+  const [buttonColor, setButtonColor] = useState("#FF9EDA");
+  const [discColor, setDiscColor] = useState("#2E5F85");
+  //styles for disclaimer:
+  const disc = StyleSheet.create({
+    disclaimer: {
+      fontSize: 24,
+      color: discColor,
+      textAlign: "center",
+    },
+    nextButtonCenter: {
+      position: "absolute",
+      borderWidth: 0,
+      top: windowH - 115,
+      justifyContent: "center",
+      borderRadius: 30,
+      backgroundColor: buttonColor,
+      alignContent: "center",
+      alignSelf: "center",
+    },
+    disclaimerContainer: {
+      justifyContent: "center",
+      alignContent: "center",
+      alignSelf: "center",
+      flex: 1,
+      width: "100%",
+      backgroundColor: "#FFFFFF",
+    },
+  });
+
   //screens
-  const [modalOne, setModalOne] = useState(true);
+  const [modalOne, setModalOne] = useState(false);
   const [modalTwo, setModalTwo] = useState(false);
   const [modalThree, setModalThree] = useState(false);
 
@@ -48,7 +78,7 @@ export default function Survey({ navigation }) {
 
   function resetPage() {
     //modalReset
-    setModalOne(true);
+    setModalOne(false);
     setModalTwo(false);
     setModalThree(false);
     //Page One Reset
@@ -80,6 +110,32 @@ export default function Survey({ navigation }) {
 
   return (
     <>
+      <View style={disc.disclaimerContainer}>
+        <Text style={disc.disclaimer}>
+          By proceeding to use Runaway’s Chat feature, this is an action of
+          compliance that the user understands that they will be interacting
+          with volunteers, not medical professionals. (*Insert Terms of Service)
+        </Text>
+        <TouchableOpacity
+          style={disc.nextButtonCenter}
+          onPress={() => {
+            setModalOne(true);
+            setButtonColor("#FFFFFF");
+            setDiscColor("#FFFFFF");
+          }}
+        >
+          <Text style={styles.buttonText}>Next</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.feed}
+          onPress={() => {
+            resetPage();
+            return navigation.navigate("Feed");
+          }}
+        >
+          <Feather name="x" size={35} color={buttonColor} />
+        </TouchableOpacity>
+      </View>
       {/* Feelings  */}
       <Modal visible={modalOne} fade={true}>
         <View style={styles.feelTitle}>
@@ -259,7 +315,8 @@ export default function Survey({ navigation }) {
           <TouchableOpacity
             style={styles.nextButton}
             onPress={() => {
-              //send user into chat
+              setButtonColor("#FF9EDA");
+              setDiscColor("#2E5F85");
               axios.post(
                 "https://runaway-practicum.herokuapp.com/api/volunteer/survey", //might not be the right url
                 {
@@ -293,6 +350,7 @@ export default function Survey({ navigation }) {
                   },
                 }
               );
+              navigation.navigate("Chat");
               resetPage();
             }}
           >
@@ -310,8 +368,7 @@ const windowH = Dimensions.get("window").height;
 const styles = StyleSheet.create({
   nextButton: {
     position: "absolute",
-    borderColor: "#FF9EDA",
-    borderWidth: 2,
+    borderWidth: 0,
     top: windowH - 75,
     justifyContent: "center",
     borderRadius: 30,
@@ -414,8 +471,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   buttonNextFeels: {
-    borderColor: "#FF9EDA",
-    borderWidth: 2,
+    borderWidth: 0,
     top: windowH - 75,
     justifyContent: "center",
     borderRadius: 30,
@@ -430,5 +486,10 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 0,
     alignSelf: "center",
+  },
+  feed: {
+    position: "absolute",
+    top: 23,
+    left: 13,
   },
 });
