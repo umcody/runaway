@@ -56,46 +56,42 @@ const HotlineCard = ({ item }) => {
         </View>
       </Modal>
       <TouchableWithoutFeedback
-onPress={() => {
-  if (setModalVisible(modalVisible)){
-    setModalVisible(!modalVisible);
-  }
-
-  
-}}
->
-      <TouchableOpacity
-        style={{
-          elevation: 2,
-          shadowOffset: {
-            width: 0,
-            height: 1.5,
-          },
-          shadowOpacity: 0.2,
-          shadowRadius: 1,
-        }}
         onPress={() => {
-          setModalVisible(true);
+          if (setModalVisible(modalVisible)) {
+            setModalVisible(!modalVisible);
+          }
         }}
       >
-        <LinearGradient
-          start={[0, 0.5]}
-          end={[1, 0.5]}
-          colors={["#ACDAFF", "#FF9EDA", "#E3F1FC"]}
-          style={{ borderRadius: 10, marginVertical: margin.sm }}
+        <TouchableOpacity
+          style={{
+            elevation: 2,
+            shadowOffset: {
+              width: 0,
+              height: 1.5,
+            },
+            shadowOpacity: 0.2,
+            shadowRadius: 1,
+          }}
+          onPress={() => {
+            setModalVisible(true);
+          }}
         >
-          <View style={styles.cardView}>
-            <Text style={styles.title}>{item.title}</Text>
-            <Text style={styles.subheading}>{item.meantFor}</Text>
-          </View>
-        </LinearGradient>
-      </TouchableOpacity>
+          <LinearGradient
+            start={[0, 0.5]}
+            end={[1, 0.5]}
+            colors={["#ACDAFF", "#FF9EDA", "#E3F1FC"]}
+            style={{ borderRadius: 10, marginVertical: margin.sm }}
+          >
+            <View style={styles.cardView}>
+              <Text style={styles.title}>{item.title}</Text>
+              <Text style={styles.subheading}>{item.meantFor}</Text>
+            </View>
+          </LinearGradient>
+        </TouchableOpacity>
       </TouchableWithoutFeedback>
     </View>
   );
 };
-
-
 
 const CallButton = ({ item }) => {
   if (String(item.phoneNumber) == "null") {
@@ -103,6 +99,7 @@ const CallButton = ({ item }) => {
   }
   return (
     <TouchableHighlight
+      underlayColor="white"
       style={{ ...styles.openButton, backgroundColor: "white" }}
       onPress={() => {
         Linking.openURL(`tel:${item.phoneNumber}`);
@@ -124,6 +121,7 @@ const TextButton = ({ item }) => {
   }
   return (
     <TouchableHighlight
+      underlayColor="white"
       style={{ ...styles.openButton, backgroundColor: "white" }}
       onPress={() => {
         sms(String(item.textNumber), String(item.firstText));
@@ -145,6 +143,7 @@ const WebsiteButton = ({ item }) => {
   }
   return (
     <TouchableHighlight
+      underlayColor="white"
       style={{ ...styles.openButton, backgroundColor: "white" }}
       onPress={() => {
         WebBrowser.openBrowserAsync(item.website);

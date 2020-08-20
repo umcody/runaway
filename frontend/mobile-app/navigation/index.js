@@ -233,6 +233,28 @@ const About = () => {
     </AboutStack.Navigator>
   );
 };
+
+
+
+
+const  Emergency = () => {
+  return (
+    <AboutStack.Navigator>
+      <AboutStack.Screen
+        name="EmergencyResources"
+          component={EmergencyHotlinesScreen}
+        options={{
+          title: "Emergency Resources",
+          headerTitleAlign: "center",
+          headerTitleStyle: styles.headerTitleStyle,
+          headerStyle: styles.headerStyle,
+        }}
+      />
+    </AboutStack.Navigator>
+  );
+};
+
+
 const MyDrawer = () =>{
   return (
       <SettingsDrawer.Navigator
@@ -255,6 +277,7 @@ const MyDrawer = () =>{
           }}
         />
         <SettingsDrawer.Screen name="About Us" component={About} />
+        <SettingsDrawer.Screen name="Emergency Resources" component={Emergency} />
         {/*<SettingsDrawer.Screen name="FAQs" component={BottomTab} />*/}
         <SettingsDrawer.Screen name="Privacy Policy" component={BottomTab} />
         <SettingsDrawer.Screen name="Help" component={SiteMapNav} />
@@ -299,13 +322,17 @@ export default function MyApp(){
           options={{ headerShown: false,gestureEnabled:false}}
           
         />
+
+
+
+
+
         <RootStack.Screen
-          name="EmergencyResources"
-          component={EmergencyHotlinesScreen}
+          name="Emergency Resources"
+          component={Emergency}
           options={{
             title: "Emergency Resources",
-            headerTitleStyle: styles.headerTitleStyle,
-            headerStyle: styles.headerStyle,
+            headerShown: false
           }}
         />
       </RootStack.Navigator>
