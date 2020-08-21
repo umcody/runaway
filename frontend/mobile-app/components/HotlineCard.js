@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 22,
-    justifyContent: "flex-end",
+    //justifyContent: "flex-end",
   },
 
   modalView: {
@@ -190,9 +190,9 @@ const styles = StyleSheet.create({
     paddingLeft: padding.sm,
   },
   title: {
-    color: colors.tertiary,
-    fontSize: fonts.lg,
-    fontFamily: fonts.main,
+    color: colors.foreground,
+    fontSize: fonts.md,
+    fontFamily: fonts.text,
   },
   subheading: {
     fontSize: fonts.md,
