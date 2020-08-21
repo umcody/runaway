@@ -51,10 +51,15 @@ export default function YesNo({ yesValue, setYesValue, noValue, setNoValue }) {
       <View style={styles.overAll}>
         <TouchableOpacity
           style={styles.yesButton}
-          disabled={noValue}
           onPress={() => {
             setYesValue(!yesValue);
-            if (!yesValue) {
+            if (!yesValue && noValue) {
+              setBackColorYes("#2E5F85");
+              setTextColorYes("#FFFFFF");
+              setBackColorNo("#FFFFFF");
+              setTextColorNo("#2E5F85");
+              setNoValue(!noValue);
+            } else if (!yesValue && !noValue) {
               setBackColorYes("#2E5F85");
               setTextColorYes("#FFFFFF");
             } else {
@@ -69,10 +74,15 @@ export default function YesNo({ yesValue, setYesValue, noValue, setNoValue }) {
       <View style={styles.overAll}>
         <TouchableOpacity
           style={styles.noButton}
-          disabled={yesValue}
           onPress={() => {
             setNoValue(!noValue);
-            if (!noValue) {
+            if (!noValue && yesValue) {
+              setBackColorNo("#2E5F85");
+              setTextColorNo("#FFFFFF");
+              setBackColorYes("#FFFFFF");
+              setTextColorYes("#2E5F85");
+              setYesValue(!yesValue);
+            } else if (!noValue && !yesValue) {
               setBackColorNo("#2E5F85");
               setTextColorNo("#FFFFFF");
             } else {
