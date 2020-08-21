@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Dimensions,
   Modal,
+  ScrollView,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import axios from "axios";
@@ -16,6 +17,9 @@ import Feel from "./FeelQuestions";
 export default function Survey({ navigation }) {
   const [buttonColor, setButtonColor] = useState("#FF9EDA");
   const [discColor, setDiscColor] = useState("#2E5F85");
+
+  const height = Dimensions.get("window").height;
+
   //styles for disclaimer:
   const disc = StyleSheet.create({
     disclaimer: {
@@ -26,9 +30,9 @@ export default function Survey({ navigation }) {
     nextButtonCenter: {
       position: "absolute",
       borderWidth: 0,
-      top: windowH - 115,
       justifyContent: "center",
       borderRadius: 30,
+      top: height - 125,
       backgroundColor: buttonColor,
       alignContent: "center",
       alignSelf: "center",
@@ -40,6 +44,7 @@ export default function Survey({ navigation }) {
       flex: 1,
       width: "100%",
       backgroundColor: "#FFFFFF",
+      padding: 30,
     },
   });
 
@@ -68,9 +73,9 @@ export default function Survey({ navigation }) {
   const [angry, setAngry] = useState(false);
   const [content, setContent] = useState(false);
   const [thankful, setThankful] = useState(false);
-  const [embarrased, setEmbarrased] = useState(false);
+  const [embarrassed, setEmbarrassed] = useState(false);
   const [verySad, setVerySad] = useState(false);
-  const [shameful, setShameful] = useState(false);
+  const [ashamed, setAshamed] = useState(false);
   const [anxious, setAnxious] = useState(false);
   const [sad, setSad] = useState(false);
   const [meh, setMeh] = useState(false);
@@ -87,9 +92,9 @@ export default function Survey({ navigation }) {
     setAngry(false);
     setContent(false);
     setThankful(false);
-    setEmbarrased(false);
+    setEmbarrassed(false);
     setVerySad(false);
-    setShameful(false);
+    setAshamed(false);
     setAnxious(false);
     setSad(false);
     setMeh(false);
@@ -152,12 +157,12 @@ export default function Survey({ navigation }) {
           <View style={styles.feelView}>
             <Feel title="Thankful" value={thankful} setValue={setThankful} />
             <Feel
-              title="Embarrased"
-              value={embarrased}
-              setValue={setEmbarrased}
+              title="Embarrassed"
+              value={embarrassed}
+              setValue={setEmbarrassed}
             />
             <Feel title="Very Sad" value={verySad} setValue={setVerySad} />
-            <Feel title="Shameful" value={shameful} setValue={setShameful} />
+            <Feel title="Ashamed" value={ashamed} setValue={setAshamed} />
           </View>
           <View style={styles.feelView}>
             <Feel title="Anxious" value={anxious} setValue={setAnxious} />
@@ -178,9 +183,9 @@ export default function Survey({ navigation }) {
               // console.log("Angry is: " + angry);
               // console.log("Content is: " + content);
               // console.log("Thankful is: " + thankful);
-              // console.log("Embarrasedd is: " + embarrased);
+              // console.log("Embarrassed is: " + embarrassed);
               // console.log("Very Sad is: " + verySad);
-              // console.log("Shameful is: " + shameful);
+              // console.log("Ashamed is: " + ashamed);
               // console.log("Anxious is: " + anxious);
               // console.log("Sad is: " + sad);
               // console.log("Meh is: " + meh);
@@ -210,7 +215,7 @@ export default function Survey({ navigation }) {
             </Text>
             <Text>(You can choose multiple)</Text>
           </View>
-          <View style={styles.questions}>
+          <ScrollView style={styles.questions}>
             <WhatBringsYou
               question="Understanding Emotions/Feelings"
               value={understand}
@@ -247,7 +252,7 @@ export default function Survey({ navigation }) {
               setValue={setBehaviors}
             />
             <WhatBringsYou question="Other" value={other} setValue={setOther} />
-          </View>
+          </ScrollView>
           <TouchableOpacity
             style={styles.nextButton}
             onPress={() => {
@@ -325,13 +330,13 @@ export default function Survey({ navigation }) {
                     Thankful: thankful,
                     Anxious: anxious,
                     Worried: worried,
-                    Embarrased: embarrased,
+                    Embarrassed: embarrassed,
                     Sad: sad,
                     Angry: angry,
                     VerySad: verySad,
                     Meh: meh,
                     Content: content,
-                    Shameful: shameful,
+                    Ashamed: ashamed,
                     Confused: confused,
                   },
                   WhatBringsThem: {
@@ -438,8 +443,9 @@ const styles = StyleSheet.create({
     width: 250,
   },
   questions: {
-    padding: 40,
-    paddingBottom: 60,
+    position: "absolute",
+    padding: 10,
+    paddingBottom: 20,
   },
   feelView: {
     paddingTop: 100,

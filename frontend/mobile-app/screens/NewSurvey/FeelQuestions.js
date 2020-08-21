@@ -4,13 +4,13 @@ import Happy from "./Emojis/Happy";
 import Thankful from "./Emojis/Thankful";
 import Anxious from "./Emojis/Anxious";
 import Worried from "./Emojis/Worried";
-import Embarrased from "./Emojis/Embarrased";
+import Embarrassed from "./Emojis/Embarrassed";
 import Sad from "./Emojis/Sad";
 import Angry from "./Emojis/Angry";
 import VerySad from "./Emojis/VerySad";
 import Meh from "./Emojis/Meh";
 import Content from "./Emojis/Content";
-import Shameful from "./Emojis/Shameful";
+import Ashamed from "./Emojis/Ashamed";
 import Confused from "./Emojis/Confused";
 
 export default function Feel({ title, value, setValue }) {
@@ -29,8 +29,8 @@ export default function Feel({ title, value, setValue }) {
     if (a == "Worried") {
       return <Worried width={50} height={50} />;
     }
-    if (a == "Embarrased") {
-      return <Embarrased width={50} height={50} />;
+    if (a == "Embarrassed") {
+      return <Embarrassed width={50} height={50} />;
     }
     if (a == "Sad") {
       return <Sad width={50} height={50} />;
@@ -47,8 +47,8 @@ export default function Feel({ title, value, setValue }) {
     if (a == "Content") {
       return <Content width={50} height={50} />;
     }
-    if (a == "Shameful") {
-      return <Shameful width={50} height={50} />;
+    if (a == "Ashamed") {
+      return <Ashamed width={50} height={50} />;
     }
     if (a == "Confused") {
       return <Confused width={50} height={50} />;
