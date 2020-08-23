@@ -4,6 +4,7 @@ import {TouchableOpacity } from 'react-native-gesture-handler';
 import { Feather } from "@expo/vector-icons";
 import {colors, fonts, padding,margin, icon} from '../style/styleValues.js'
 import { useIsFocused } from '@react-navigation/native';
+import HTML from 'react-native-render-html';
 
 function FocusAwareStatusBar(props) {
     const isFocused = useIsFocused();
@@ -27,7 +28,7 @@ export default function Announcement({navigation,route}) {
                     </TouchableOpacity>
                     <View style={{justifyContent:'center'}}>
                         <Text style={styles.title}>{item.name}</Text>
-                        <Text style={styles.content}>{item.content}</Text>
+                        <HTML baseFontStyle= {{color: colors.background,fontFamily:fonts.text, fontSize:fonts.sm}} html={item.content} containerStyle={styles.content} />
                     </View>
             </ImageBackground>
         </ImageBackground>
@@ -54,7 +55,6 @@ const styles = StyleSheet.create({
     content: {
         fontSize:fonts.md,
         fontFamily:fonts.text,
-        paddingTop: 100,
         paddingLeft: padding.md,
         color:colors.background,
     },
