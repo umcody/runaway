@@ -7,6 +7,7 @@ import {
   Dimensions,
   View,
   Text,
+  Platform
 } from "react-native";
 import RunawaySvg from "../components/svgs/Runaway";
 import { HomeGradient, HomeGray } from "../components/svgs/Home";
@@ -142,9 +143,9 @@ const BottomTab = () => {
           backgroundColor: colors.background,
           height:
             dimensions.fullHeight > 800 ? dimensions.fullHeight * 0.09 : 50,
-          borderTopColor: colors.primary,
-          borderTopWidth: 0.5,
-          elevation: 1,
+            borderTopColor: Platform.OS ==="ios" ? colors.primary : colors.background ,
+            borderTopWidth: .5 ,
+            elevation: 4,
         },
       }}
     >
