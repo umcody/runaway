@@ -26,12 +26,12 @@ const notif = data[randIndex]
 Notifications.scheduleNotificationAsync({
   content: {
     title: "Runaway",
-    body: notif.body,
+    body: notif,
   },
   trigger: {
-    hour: 12,
-    minute: 0,
-    repeats:false
+    hour: 20,
+    minute: 36,
+    repeats: true,
   },
 });
 
@@ -71,6 +71,7 @@ export default function App() {
       return;
     }
     console.log(finalStatus)
+
   }
 // makes sure fonts are loaded
   if (fontLoaded){

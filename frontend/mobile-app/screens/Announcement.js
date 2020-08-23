@@ -1,9 +1,10 @@
 import React from 'react'
-import { SafeAreaView, Text, StyleSheet, ImageBackground,View,StatusBar,Platform} from "react-native";
+import { SafeAreaView, Text, StyleSheet, ImageBackground,Image,View,StatusBar,Platform} from "react-native";
 import {TouchableOpacity } from 'react-native-gesture-handler';
 import { Feather } from "@expo/vector-icons";
 import {colors, fonts, padding,margin, icon} from '../style/styleValues.js'
 import { useIsFocused } from '@react-navigation/native';
+import HTML from 'react-native-render-html';
 
 function FocusAwareStatusBar(props) {
     const isFocused = useIsFocused();
@@ -21,15 +22,17 @@ export default function Announcement({navigation,route}) {
         {(Platform.OS ==="android") ? <FocusAwareStatusBar barStyle="light-content" />
         : <FocusAwareStatusBar hidden/>}
         <ImageBackground source={{uri:item.image}} style={{flex:1}} resizeMode="cover" blurRadius={90}>
-            <ImageBackground source={{uri:item.image}} style={styles.image} resizeMode="contain">
-                    <TouchableOpacity onPress={()=>navigation.goBack()} style={styles.back}>
+        <TouchableOpacity onPress={()=>navigation.goBack()} style={styles.back}>
                             <Feather name="x" size={icon.lg} color={colors.background}/>
                     </TouchableOpacity>
                     <View style={{justifyContent:'center'}}>
                         <Text style={styles.title}>{item.name}</Text>
-                        <Text style={styles.content}>{item.content}</Text>
+                        <HTML baseFontStyle= {{color: colors.background,fontFamily:fonts.text, fontSize:fonts.sm}} html={item.content} containerStyle={styles.content} />
+                        
                     </View>
-            </ImageBackground>
+            <Image source={{uri:item.image}} style={styles.image} resizeMode="contain"/>
+                    
+            
         </ImageBackground>
     </View>
   );
@@ -54,7 +57,6 @@ const styles = StyleSheet.create({
     content: {
         fontSize:fonts.md,
         fontFamily:fonts.text,
-        paddingTop: 100,
         paddingLeft: padding.md,
         color:colors.background,
     },
