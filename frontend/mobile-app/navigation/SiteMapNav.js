@@ -7,13 +7,12 @@ import FAQ from '../screens/FAQ';
 import {Feather,Ionicons} from "@expo/vector-icons";
 import {colors, fonts, padding, dimensions,margin,borderRadius, icon} from '../style/styleValues.js'
 
-const {width,height}= Dimensions.get('window') 
 // stack nav for feature cards
 export default function SiteMapNav({navigation}){
     const Stack = createStackNavigator();
     return (
         <View style = {styles.container}>
-            <Stack.Navigator>
+            <Stack.Navigator mode="modal">
             <Stack.Screen
           name="SiteMap"
           component={SiteMap}
@@ -24,7 +23,7 @@ export default function SiteMapNav({navigation}){
         />
         <Stack.Screen name="Features" component={FeaturePage}
         options={{cardStyleInterpolator: CardStyleInterpolators.forModalPresentationIOS,gestureDirection:'vertical',
-        gestureResponseDistance:height/2,headerShown:false,cardOverlayEnabled:true,
+        gestureResponseDistance:dimensions.fullHeight/2,headerShown:false,cardOverlayEnabled:true,
         }} />
         <Stack.Screen
           name="FAQ"

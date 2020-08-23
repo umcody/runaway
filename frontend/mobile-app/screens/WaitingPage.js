@@ -4,56 +4,10 @@ import * as Progress from 'react-native-progress';
 import {colors, fonts, padding, dimensions,margin,borderRadius, icon} from '../style/styleValues.js'
 import LottieView from 'lottie-react-native';
 // animated waiting screen. This will show until a volunteer joins.
-// need to implement waiting time
+
 const WaitingPage = () => {
-  // fadeAnim will be used as the value for opacity. Initial Value: 0
-  //const fadeAnim1 = useRef(new Animated.Value(0)).current;
-  //const fadeAnim2 = useRef(new Animated.Value(0)).current;
-  //const fadeAnim3 = useRef(new Animated.Value(0)).current;
+  // x position will be changed
   const x = useRef(new Animated.Value(-220)).current
-  // animation for woman fading in n out
-  /*useEffect(() => {
-      Animated.loop(
-        Animated.sequence([
-          Animated.timing(fadeAnim1, {
-            toValue: 1,
-            duration: 1000,
-            useNativeDriver: true
-          }),
-          Animated.timing(fadeAnim1, {
-            toValue: 0,
-            duration: 1000,
-            useNativeDriver: true
-          }),
-          Animated.timing(fadeAnim2, {
-            toValue: 1,
-            duration: 1000,
-            useNativeDriver: true
-          }),
-          Animated.timing(fadeAnim2, {
-            toValue: 0,
-            duration: 1000,
-            useNativeDriver: true
-          }),
-          Animated.timing(fadeAnim3, {
-            toValue: 1,
-            duration: 1000,
-            useNativeDriver: true
-          }),
-          Animated.timing(fadeAnim3, {
-            toValue: 0,
-            duration: 900,
-            useNativeDriver: true
-          }),
-        ]),
-        {
-          //hopefully they wont have to wait for this long 
-          iterations: 100000000000
-        }
-      ).start()
-  
-      })
-*/
 
 useEffect(() => {
   Animated.loop(
@@ -87,40 +41,6 @@ useEffect(() => {
         <Animated.View style={{ transform: [{translateX: x}] }}>
         <LottieView source={require('../assets/walkdog.json')} autoPlay loop style={{width:130}} />
         </Animated.View>
-        {/* <View style={styles.walk}>
-          <Animated.Image
-          source={require('../assets/standing23.png')}
-            style={[
-              styles.fadingContainer,
-              {
-                opacity: fadeAnim1 // Bind opacity to animated value
-              }
-            ]}
-          >
-          </Animated.Image>
-          <Animated.Image
-          source={require('../assets/standing23.png')}
-            style={[
-              styles.fadingContainer,
-              {
-                opacity: fadeAnim2 // Bind opacity to animated value
-              }
-            ]}
-          >
-          </Animated.Image>
-          <Animated.Image
-          source={require('../assets/standing23.png')}
-            style={[
-              styles.fadingContainer,
-              {
-                opacity: fadeAnim3 // Bind opacity to animated value
-              }
-            ]}
-          >
-          </Animated.Image>
-          
-        </View> */}
-       
           <Progress.Bar progress={0} height={5} width={dimensions.fullWidth*.9} indeterminate={true} indeterminateAnimationDuration={8000} animationType='timing' 
           borderColor={colors.secondary} color={colors.primary} unfilledColor={colors.secondary}/>
       </ImageBackground>

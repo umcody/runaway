@@ -17,27 +17,24 @@ Each post shows the author and title*/
 export default function BlogPost({title,author,date,readTime,imageURL,HandlePress}){
 
     function ConvertDate(date){
-        var d = new Date(parseInt(date.substr(0,4)),parseInt(date.substr(6,7)),parseInt(date.substr(9,10)));
-        return d.toString().substr(4,7)
+        var d = new Date(parseInt(date.substr(0,5)),parseInt(date.substr(5,7))-1,parseInt(date.substr(8,10)));
+        return d.toDateString().substr(0,10)
     }
     return(
         <View style={{marginBottom:padding.sm}}>
-            <TouchableOpacity activeOpacity={.8} style ={styles.container} onPress={HandlePress}>
-            <View style = {styles.text}>
-                    <Text style = {styles.title}>{title}</Text>
-                    <View style = {styles.extras}>
-                        <View style={{flexDirection:'row'}}>
-                            <Text style = {styles.info}>{author}</Text>
-                            <MaterialCommunityIcons name="feather" size={14} color={colors.button} />
-                            <Text style ={styles.info}>· {readTime} min</Text>
-                        </View>
-                        <Text style={styles.info}>{ConvertDate(date)}</Text>
-                        <AntDesign name="ellipsis1" size={icon.md} color={colors.foreground} />
-                    </View>
-            </View>
-            <View style={styles.image}>
-                <Image source={{uri:imageURL}} style={{flex:1,height:undefined,width:undefined,borderRadius:borderRadius.sm}}/>
-            </View>             
+            <TouchableOpacity activeOpacity={.6} style ={styles.container} onPress={HandlePress}>
+                <View style = {styles.text}>
+                        <Text numberOfLines={2} style = {styles.title}>{title}</Text>
+                            <View style={{flexDirection:'row'}}>
+                                <Text style = {styles.info}>{author}</Text>
+                                <MaterialCommunityIcons name="feather" size={14} color={colors.button} />
+                                <Text style ={styles.info}>· {readTime} min</Text>
+                            </View>
+                            <Text style={styles.info}>{ConvertDate(date)}</Text>
+                </View>
+                <View style={styles.image}>
+                    <Image source={{uri:imageURL}} style={{flex:1,height:undefined,width:undefined,borderRadius:borderRadius.sm}}/>
+                </View>             
         </TouchableOpacity>
         </View>
     )
@@ -45,36 +42,37 @@ export default function BlogPost({title,author,date,readTime,imageURL,HandlePres
 
 const styles = StyleSheet.create({
     container:{
-        height:(dimensions.fullHeight >800) ? dimensions.fullHeight/7: dimensions.fullHeight/5,
+        height:(dimensions.fullHeight >800) ? dimensions.fullHeight/8.5: dimensions.fullHeight/6.7,
         width:dimensions.fullWidth*.9,
         borderWidth:0,
-        justifyContent:'space-between',
         overflow:'hidden',
         flexDirection:'row',
+        flex:1
     },
     text:{
         backgroundColor:colors.background,
+        flex:3,
+        paddingRight:padding.sm,
+        flexDirection:'column',
     },
     title:{
         color:colors.foreground,
-        fontSize:fonts.md,
+        fontSize:fonts.sm,
         fontFamily:fonts.subheader,
         lineHeight:fonts.mdLineHeight,
         paddingBottom:padding.sm,
-    },
-    extras:{
-       flex:1
+        flexWrap:'wrap',
+        flexShrink:1,
     },
     info:{
         color:colors.foreground,
-        paddingRight:padding.sm,
-        paddingBottom:padding.sm,
         fontFamily:fonts.text,
-        fontSize:fonts.sm
+        fontSize:fonts.sm-2
     },
     image: {
-        width:100,
-        height:100,
+        flex:1,
+        width:83,
+        height:83,
         borderRadius:borderRadius.sm
       },
   });
