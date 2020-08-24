@@ -40,11 +40,11 @@ export default function PrivacyPolicy({ navigation }) {
       PRIVACY POLICY
       </Text>
       <Text style={styles.mainText}>             
-      Updated: 2020-05-01
+      Updated: 2020-07-21
           </Text>
       <Text style={styles.mainText}>
       
-      This Privacy Policy explains how we (MediaLab.AI) collect,
+      This Privacy Policy explains how we (RunAway) collect,
       use and share your information when you use our website, mobile
       application and other online products and services (we call all these
       the "Services") or when you otherwise interact with us.
@@ -63,11 +63,11 @@ export default function PrivacyPolicy({ navigation }) {
       Account Information: When you use our mobile application, a username will be
       randomly assigned to you that you may change or delete at any time. Your username
       is publicly displayed when you interact with the Services, such as when you post a
-      whisper or send a chat message to another user. Please keep in mind that if your username
+      RunAway or send a chat message to another user. Please keep in mind that if your username
       contains your real name or is the same as how you identify yourself on other online services,
       people who see it may determine your identity. We may also ask you for, or you may choose to
       provide, additional information, such as age or gender, that will be associated with your
-      Whisper account. This information may identify, relate to, describe, reference, is reasonably
+      RunAway account. This information may identify, relate to, describe, reference, is reasonably
       capable of being associated with, or could reasonably be linked, directly or indirectly, with a
       particular consumer, household, or device (“personal information”). Personal information does not
       include: (a) Publicly available information from government records; (b) Deidentified or aggregated
