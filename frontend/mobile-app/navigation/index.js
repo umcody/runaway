@@ -281,15 +281,15 @@ export default function MyApp(){
   return(
     <NavigationContainer>
       <RootStack.Navigator>
-      {/* <RootStack.Screen
+      <RootStack.Screen
         name="Sign"
         component={SignInPage}
         options={{
           headerShown: false,
         }}
-      /> */}
+      />
       <RootStack.Screen
-=======
+
 const MyDrawer = () => {
   return (
     <SettingsDrawer.Navigator
