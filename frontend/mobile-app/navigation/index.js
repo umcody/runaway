@@ -98,7 +98,7 @@ function CustomDrawerContent(props) {
         style={{
           flexDirection: "row",
           justifyContent: "space-evenly",
-          marginTop: 150,
+          marginTop: 50,
         }}
       >
         <TouchableOpacity
