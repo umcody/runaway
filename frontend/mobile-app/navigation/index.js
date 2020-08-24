@@ -1,7 +1,19 @@
-import React,{useCallback} from "react";
+import React, { useCallback } from "react";
 import "react-native-gesture-handler";
-import { Linking, StyleSheet, StatusBar, Dimensions,View,Text } from "react-native";
-
+import {
+  Linking,
+  StyleSheet,
+  StatusBar,
+  Dimensions,
+  View,
+  Text,
+  Platform
+} from "react-native";
+import RunawaySvg from "../components/svgs/Runaway";
+import { HomeGradient, HomeGray } from "../components/svgs/Home";
+import { ChatGradient, ChatGray } from "../components/svgs/Chat";
+import { ResGradient, ResGray } from "../components/svgs/Resources";
+import { Ig, Fb, Twitter, Web } from "../components/svgs/Social";
 import {
   MaterialCommunityIcons,
   MaterialIcons,
@@ -14,6 +26,7 @@ import { NavigationContainer, StackActions } from "@react-navigation/native";
 import {
   createStackNavigator,
   HeaderBackButton,
+  CardStyleInterpolators,
 } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
@@ -22,13 +35,14 @@ import {
   DrawerItemList,
   DrawerItem,
 } from "@react-navigation/drawer";
-
+import Announcement from "../screens/Announcement";
 import EmergencyHotlinesScreen from "../screens/OfHotline";
 import ChatScreen from "../screens/ChatScreen";
-import Feels from "../screens/Feels";
+// import Feels from "../screens/Feels";
 import PostChatSurvey from "../screens/PostChatSurvey";
-import PreChatModal from "../screens/PreChatSurvey/ModalSurvey";
-import PreChatSurvey from "../screens/PreChatSurvey/Survey";
+import Survey from "../screens/NewSurvey/Survey";
+// import PreChatModal from "../screens/PreChatSurvey/ModalSurvey";
+// import PreChatSurvey from "../screens/PreChatSurvey/Survey";
 import AboutUs from "../screens/AboutUs";
 import BlogNav from "../navigation/BlogNav";
 import SiteMapNav from "./SiteMapNav";
@@ -36,8 +50,16 @@ import SignInPage from "../screens/SignInPage";
 import ResourceNav from "./ResourceNav";
 
 //styling
-import {stylesDefault, icon, colors, dimensions,padding,fonts, margin} from '../style/styleValues'
-import { Colors } from "react-native/Libraries/NewAppScreen";
+import {
+  stylesDefault,
+  icon,
+  colors,
+  dimensions,
+  padding,
+  fonts,
+  margin,
+} from "../style/styleValues";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const BottomTabNavigation = createBottomTabNavigator();
 const ChatStack = createStackNavigator();
@@ -45,13 +67,12 @@ const SettingsDrawer = createDrawerNavigator();
 const AboutStack = createStackNavigator();
 const RootStack = createStackNavigator();
 
-
 function CustomDrawerContent(props) {
   const supported = Linking.canOpenURL("fb://page/1789760617938894");
   const handlePress = useCallback(async () => {
     // Checking if the link is supported for links with custom URL scheme.
     const supported = await Linking.canOpenURL("fb://page/1789760617938894");
-  
+
     if (supported) {
       // Opening the link with some app, if the URL scheme is "http" the web link should be opened
       // by some browser in the mobile
@@ -62,57 +83,56 @@ function CustomDrawerContent(props) {
   });
   return (
     <DrawerContentScrollView {...props}>
-    <View
-      style={{
-        backgroundColor: colors.background,
-        justifyContent: 'center',
-        paddingLeft:15
-      }}
-    >
-      <Text style={{ fontSize:fonts.lg,
-        fontFamily:fonts.main,
-        paddingVertical:padding.md, color:colors.foreground}}>
-        Information Pane
-      </Text>
-    </View>
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: colors.background,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <RunawaySvg style={{ paddingVertical: 40 }} />
+      </View>
       <DrawerItemList {...props} />
-      <DrawerItem
-        onPress={() => {
-          Linking.openURL("https://www.instagram.com/runaway.app/");
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-evenly",
+          marginTop: 150,
         }}
-        label="Instagram"
-        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm-2}}
-        icon={() => <AntDesign name="instagram" size={icon.md} color={colors.button} />}
-      />
-      <DrawerItem
-        onPress={handlePress}
-        label="Facebook"
-        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm-2}}
-        icon={() => <Feather name="facebook" size={icon.md} color={colors.button} />}
-      />
-      <DrawerItem
-        onPress={() => {
-          Linking.openURL("https://twitter.com/runaway_app");
-        }}
-        label="Twitter"
-        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm-2}}
-        icon={() => <Feather name="twitter" size={icon.md} color={colors.button} />}
-      />
-      <DrawerItem
-        onPress={() => {
-          WebBrowser.openBrowserAsync("https://www.runawayapp.com/");
-        }}
-        labelStyle={{fontFamily:fonts.text,fontSize:fonts.sm-2}}
-        label="Website"
-        icon={() => (
-          <MaterialCommunityIcons name="web" size={icon.md} color={colors.button} />
-        )}
-      />
+      >
+        <TouchableOpacity
+          style={styles.icon}
+          onPress={() => {
+            Linking.openURL("https://www.instagram.com/runaway.app/");
+          }}
+        >
+          <Ig />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.icon} onPress={handlePress}>
+          <Fb />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.icon}
+          onPress={() => {
+            Linking.openURL("https://twitter.com/runaway_app");
+          }}
+        >
+          <Twitter />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            WebBrowser.openBrowserAsync("https://www.runawayapp.com/");
+          }}
+        >
+          <Web />
+        </TouchableOpacity>
+      </View>
     </DrawerContentScrollView>
   );
 }
 
-const BottomTab = ({ navigation }) => {
+const BottomTab = () => {
   return (
     <BottomTabNavigation.Navigator
       tabBarOptions={{
@@ -121,10 +141,11 @@ const BottomTab = ({ navigation }) => {
         activeTintColor: colors.tertiary,
         style: {
           backgroundColor: colors.background,
-          height: (dimensions.fullHeight >800) ? dimensions.fullHeight*.1: dimensions.fullHeight * 0.085,
-          borderTopColor: colors.secondary,
-          borderTopWidth: 1,
-          elevation:1
+          height:
+            dimensions.fullHeight > 800 ? dimensions.fullHeight * 0.09 : 50,
+            borderTopColor: Platform.OS ==="ios" ? colors.primary : colors.background ,
+            borderTopWidth: .5 ,
+            elevation: 4,
         },
       }}
     >
@@ -133,13 +154,8 @@ const BottomTab = ({ navigation }) => {
         component={BlogNav}
         options={{
           tabBarLabel: "Feed",
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              name="home-outline"
-              color={color}
-              size={icon.lg}
-            />
-          ),
+          tabBarIcon: ({ focused }) =>
+            focused ? <HomeGradient /> : <HomeGray />,
         }}
       />
       <BottomTabNavigation.Screen
@@ -147,19 +163,17 @@ const BottomTab = ({ navigation }) => {
         component={Chat}
         options={{
           tabBarLabel: "Chat",
-          tabBarIcon: ({ color }) => (
-            <MaterialIcons name="chat-bubble-outline" color={color} size={icon.md} />
-          ),
+          tabBarIcon: ({ focused }) =>
+            focused ? <ChatGradient /> : <ChatGray />,
         }}
-/>
+      />
       <BottomTabNavigation.Screen
         name="Resources"
         component={ResourceNav}
         options={{
           tabBarLabel: "Resources",
-          tabBarIcon: ({ color }) => (
-            <Feather name="book-open" color={color} size={icon.md} />
-          ),
+          tabBarIcon: ({ focused }) =>
+            focused ? <ResGradient /> : <ResGray />,
         }}
       />
     </BottomTabNavigation.Navigator>
@@ -170,67 +184,17 @@ const Chat = ({ navigation }) => {
   return (
     <>
       <StatusBar barStyle="dark-content" translucent={true} />
-      <ChatStack.Navigator initialRouteName="Feels">
+      <ChatStack.Navigator initialRouteName="Survey">
         <ChatStack.Screen
-          name="PreChatModal"
-          component={PreChatModal}
-          options={{ headerShown: false }}
-        />
-        <ChatStack.Screen
-          name="PreChatSurvey"
-          component={PreChatSurvey}
+          name="Survey"
+          component={Survey}
           options={{
-            headerTitle: "PreChat Survey",
-            headerTitleAlign: "center",
-<<<<<<< HEAD
+            headerShown: false,
             headerLeft: () => (
               <HeaderBackButton
                 labelVisible={false}
                 onPress={() => {
-                  navigation.dispatch(StackActions.replace("Feels"));
-                  navigation.navigate("Feed");
-                }}
-              />
-            ),
-          }}
-        />
-        <ChatStack.Screen
-          name="Feels"
-          component={Feels}
-          options={{
-            headerTitle: "How are you feeling?",
-            headerTitleAlign: "center",
-            headerStyle: stylesDefault.headerStyle,
-            headerTitleStyle: stylesDefault.headerTitleStyle,
-=======
->>>>>>> parent of 0d4181e... Merge branch 'master' into #190
-            headerLeft: () => (
-              <HeaderBackButton
-                labelVisible={false}
-                onPress={() => {
-                  navigation.dispatch(StackActions.replace("Feels"));
-<<<<<<< HEAD
-=======
-                  navigation.navigate("Feed");
-                }}
-              />
-            ),
-          }}
-        />
-        <ChatStack.Screen
-          name="Feels"
-          component={Feels}
-          options={{
-            headerTitle: "How are you feeling?",
-            headerTitleAlign: "center",
-            headerStyle: stylesDefault.headerStyle,
-            headerTitleStyle: stylesDefault.headerTitleStyle,
-            headerLeft: () => (
-              <HeaderBackButton
-                labelVisible={false}
-                onPress={() => {
-                  navigation.dispatch(StackActions.replace("Feels"));
->>>>>>> parent of 0d4181e... Merge branch 'master' into #190
+                  navigation.dispatch(StackActions.replace("Survey"));
                   navigation.navigate("Feed");
                 }}
               />
@@ -258,6 +222,7 @@ const About = () => {
     </AboutStack.Navigator>
   );
 };
+
 
 
 
@@ -316,18 +281,15 @@ export default function MyApp(){
   return(
     <NavigationContainer>
       <RootStack.Navigator>
-      <RootStack.Screen
+      {/* <RootStack.Screen
         name="Sign"
         component={SignInPage}
         options={{
           headerShown: false,
         }}
-      />
+      /> */}
       <RootStack.Screen
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
+=======
 const MyDrawer = () => {
   return (
     <SettingsDrawer.Navigator
@@ -348,19 +310,45 @@ const MyDrawer = () => {
     >
       <SettingsDrawer.Screen
 
-=======
->>>>>>> parent of 0d4181e... Merge branch 'master' into #190
-=======
->>>>>>> parent of 0d4181e... Merge branch 'master' into #190
-=======
->>>>>>> parent of 0d4181e... Merge branch 'master' into #190
         name="Home"
-        component={MyDrawer}
+        component={BottomTab}
         options={{
           headerShown: false,
         }}
       />
-      <RootStack.Screen
+      <SettingsDrawer.Screen name="About Us" component={About} />
+      {/*<SettingsDrawer.Screen name="FAQs" component={BottomTab} />*/}
+      <SettingsDrawer.Screen name="Privacy Policy" component={BottomTab} />
+      <SettingsDrawer.Screen name="Help" component={SiteMapNav} />
+      {/*<SettingsDrawer.Screen name="Sign In" component={SignInPage} /> */}
+    </SettingsDrawer.Navigator>
+  );
+};
+
+export default function MyApp() {
+  return (
+    <NavigationContainer>
+      <RootStack.Navigator>
+        <RootStack.Screen
+          name="App"
+          component={MyDrawer}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <RootStack.Screen
+          name="Announcement"
+          component={Announcement}
+          options={{
+            headerShown: false,
+            gestureResponseDistance: { horizontal: 500 },
+            cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
+            gestureDirection: "vertical",
+            gestureResponseDistance: dimensions.fullHeight,
+            cardOverlayEnabled: true,
+          }}
+        />
+        <RootStack.Screen
           name="Chat"
           component={ChatScreen}
           options={{
@@ -368,14 +356,13 @@ const MyDrawer = () => {
             headerTitleAlign: "center",
             headerTitleStyle: styles.headerTitleStyle,
             headerStyle: styles.headerStyle,
-            gestureEnabled:false
+            gestureEnabled: false,
           }}
         />
         <RootStack.Screen
           name="PostSurvey"
           component={PostChatSurvey}
-          options={{ headerShown: false,gestureEnabled:false}}
-          
+          options={{ headerShown: false, gestureEnabled: false }}
         />
 
 
@@ -392,10 +379,12 @@ const MyDrawer = () => {
         />
       </RootStack.Navigator>
     </NavigationContainer>
-  )
+  );
 }
 const styles = StyleSheet.create({
   headerTitleStyle: stylesDefault.headerTitleStyle,
-
   headerStyle: stylesDefault.headerStyle,
+  icons: {
+    marginTop: 100,
+  },
 });

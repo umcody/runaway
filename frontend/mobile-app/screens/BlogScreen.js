@@ -1,13 +1,10 @@
-import React, { useState } from 'react'
-import { SafeAreaView, Text, View, StyleSheet,Image,ActivityIndicator,ImageBackground,StatusBar,} from "react-native";
+import React from 'react'
+import { SafeAreaView, Text, View, StyleSheet,ActivityIndicator,Image} from "react-native";
 import {TouchableOpacity,ScrollView } from 'react-native-gesture-handler';
 import { Ionicons,MaterialCommunityIcons } from "@expo/vector-icons";
 import HTML from 'react-native-render-html';
 import useBlogUrl from "../components/useBlogUrl"
-import {colors, fonts, padding, dimensions,margin,borderRadius, icon} from '../style/styleValues.js'
-import { color } from 'react-native-reanimated';
-import { createIconSet } from 'react-native-vector-icons';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import {colors, fonts, padding, dimensions,margin, icon} from '../style/styleValues.js'
 
 // shows the blog page 
 export default function BlogScreen({navigation,route}) {
@@ -23,21 +20,22 @@ export default function BlogScreen({navigation,route}) {
 
   // creates time object and returns string format
   function ConvertDate(date){
-      var d = new Date(parseInt(date.substr(0,4)),parseInt(date.substr(6,7)),parseInt(date.substr(9,10)));
-      return d.toString().substr(4,7)
-  }
+    var d = new Date(parseInt(date.substr(0,5)),parseInt(date.substr(5,7))-1,parseInt(date.substr(8,10)));
+    return d.toDateString().substr(0,10)
+}
   
   return (
-    <SafeAreaView style={{ flex: 1,backgroundColor:colors.background}}>
-      <ScrollView style={{ flex: 1, }} contentContainerStyle={{flex:1,alignItems:'flex-start'}}>
+    <View style={{ flex: 1,backgroundColor:colors.background}}>
+      <TouchableOpacity onPress={()=>navigation.navigate('Feed')} style={styles.back}>
+              <Ionicons name="ios-arrow-back" size={icon.lg} color={colors.foreground} />
+          </TouchableOpacity>
+      <ScrollView  contentContainerStyle={{flexGrow:1}}>
         {/* loading indicator if the page is loading
         else show html content from database, uses HTML parser to convert into jsx*/}
         {loading ? <ActivityIndicator /> : <View>
-          <ImageBackground source={{uri:blog.imageURL}} style={styles.image}>
-          <TouchableOpacity onPress={()=>navigation.goBack()} style={styles.back}>
-              <Ionicons name="ios-arrow-back" size={icon.lg} color={colors.background} style={styles.shadow} />
-          </TouchableOpacity>
-          </ImageBackground>
+          
+          <Image source={{uri:blog.imageURL}} style={styles.image}/>
+         
           <Text style={styles.title}>{blog.title}</Text>
           <View style={{flexDirection:'row'}}>
             <Text style={styles.author}>{blog.author}</Text>
@@ -48,14 +46,14 @@ export default function BlogScreen({navigation,route}) {
           <HTML baseFontStyle= {{color: colors.foreground,fontFamily:fonts.text, fontSize:fonts.sm}} html={blog.content} containerStyle={styles.content} /> 
         </View>}
       </ScrollView>
-      <Text>{error && 'Server Connection Error'}</Text>
-    </SafeAreaView>
+      
+    </View>
   );
 }
 const styles = StyleSheet.create({
   title: {
     fontSize:fonts.lg,
-    fontFamily:fonts.main,
+    fontFamily:fonts.mainBold,
     paddingTop:padding.md,
     paddingLeft: padding.md,
     paddingBottom:padding.sm,
@@ -71,7 +69,7 @@ const styles = StyleSheet.create({
     paddingTop: padding.sm,
     paddingLeft: padding.md,
     fontSize:fonts.sm,
-    color:colors.foreground
+    color:colors.foreground,
   },
   content: {
     paddingTop: padding.md,
@@ -79,15 +77,7 @@ const styles = StyleSheet.create({
   },
   back:{
     width:icon.lg,height:icon.lg,
-    marginLeft:margin.md,marginTop:margin.lg, 
+    marginLeft:margin.md,marginTop:margin.lg,marginBottom:margin.sm 
   },
-  shadow:{
-    position: 'absolute', zIndex:1,
-    shadowOpacity: 0.2,
-    textShadowRadius: 1,
-    textShadowOffset: {
-        width: 1,
-        height: 0,  
-    },
-  }
+
 });
