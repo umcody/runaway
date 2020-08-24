@@ -2,7 +2,7 @@ import React from 'react'
 import { SafeAreaView, Text, StyleSheet, ImageBackground,View,StatusBar,Platform} from "react-native";
 import {TouchableOpacity } from 'react-native-gesture-handler';
 import { Feather } from "@expo/vector-icons";
-import {colors, fonts, padding,margin, icon} from '../style/styleValues.js'
+import {colors, fonts, padding,margin, icon, dimensions} from '../style/styleValues.js'
 import { useIsFocused } from '@react-navigation/native';
 import HTML from 'react-native-render-html';
 
@@ -26,9 +26,9 @@ export default function Announcement({navigation,route}) {
                     <TouchableOpacity onPress={()=>navigation.goBack()} style={styles.back}>
                             <Feather name="x" size={icon.lg} color={colors.background}/>
                     </TouchableOpacity>
-                    <View style={{justifyContent:'center'}}>
+                    <View style={{paddingTop:100,justifyContent:'center', alignItems:'center'}}>
                         <Text style={styles.title}>{item.name}</Text>
-                        <HTML baseFontStyle= {{color: colors.background,fontFamily:fonts.text, fontSize:fonts.sm}} html={item.content} containerStyle={styles.content} />
+                        <HTML baseFontStyle= {{color: colors.background,fontFamily:fonts.text, fontSize:30}} html={item.content} containerStyle={styles.content} />
                     </View>
             </ImageBackground>
         </ImageBackground>
@@ -41,12 +41,12 @@ const styles = StyleSheet.create({
         backgroundColor:colors.background,
     },
     title: {
-        fontSize:fonts.lg,
+        fontSize:50,
         fontFamily:fonts.mainBold,
         paddingTop:padding.md,
         paddingLeft: padding.md,
         paddingBottom:padding.sm,
-        color:colors.background
+        color:colors.background,
     },
     image:{
         flex:1,
@@ -54,6 +54,9 @@ const styles = StyleSheet.create({
     },
     content: {
         paddingLeft: padding.md,
+        width:dimensions.fullWidth,
+        justifyContent:'center',
+        alignItems:'center'
     },
     back:{
         width:icon.lg,height:icon.lg,
