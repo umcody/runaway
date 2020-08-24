@@ -32,7 +32,6 @@ import { LinearGradient } from "expo-linear-gradient";
 
 const HotlineCard = ({ item }) => {
   const [modalVisible, setModalVisible] = useState(false);
-
   return (
     <View>
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
@@ -56,33 +55,40 @@ const HotlineCard = ({ item }) => {
           </View>
         </View>
       </Modal>
-
-      <TouchableOpacity
-        style={{
-          elevation: 2,
-          shadowOffset: {
-            width: 0,
-            height: 1.5,
-          },
-          shadowOpacity: 0.2,
-          shadowRadius: 1,
-        }}
+      <TouchableWithoutFeedback
         onPress={() => {
-          setModalVisible(true);
+          if (setModalVisible(modalVisible)) {
+            setModalVisible(!modalVisible);
+          }
         }}
       >
-        <LinearGradient
-          start={[0, 0.5]}
-          end={[1, 0.5]}
-          colors={["#ACDAFF", "#FF9EDA", "#E3F1FC"]}
-          style={{ borderRadius: 10, marginVertical: margin.sm }}
+        <TouchableOpacity
+          style={{
+            elevation: 2,
+            shadowOffset: {
+              width: 0,
+              height: 1.5,
+            },
+            shadowOpacity: 0.2,
+            shadowRadius: 1,
+          }}
+          onPress={() => {
+            setModalVisible(true);
+          }}
         >
-          <View style={styles.cardView}>
-            <Text style={styles.title}>{item.title}</Text>
-            <Text style={styles.subheading}>{item.meantFor}</Text>
-          </View>
-        </LinearGradient>
-      </TouchableOpacity>
+          <LinearGradient
+            start={[0, 0.5]}
+            end={[1, 0.5]}
+            colors={["#ACDAFF", "#FF9EDA", "#E3F1FC"]}
+            style={{ borderRadius: 10, marginVertical: margin.sm }}
+          >
+            <View style={styles.cardView}>
+              <Text style={styles.title}>{item.title}</Text>
+              <Text style={styles.subheading}>{item.meantFor}</Text>
+            </View>
+          </LinearGradient>
+        </TouchableOpacity>
+      </TouchableWithoutFeedback>
     </View>
   );
 };
@@ -107,6 +113,8 @@ const CallButton = ({ item }) => {
   );
 };
 
+// text button
+
 const TextButton = ({ item }) => {
   if (String(item.textNumber) == "null") {
     return null;
@@ -126,6 +134,8 @@ const TextButton = ({ item }) => {
     </TouchableHighlight>
   );
 };
+
+// website
 
 const WebsiteButton = ({ item }) => {
   if (String(item.website) == "null") {
