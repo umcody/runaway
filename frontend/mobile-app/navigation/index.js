@@ -300,6 +300,7 @@ export default function MyApp(){
       />
       <RootStack.Screen
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 const MyDrawer = () => {
   return (
@@ -321,6 +322,8 @@ const MyDrawer = () => {
     >
       <SettingsDrawer.Screen
 
+=======
+>>>>>>> parent of 0d4181e... Merge branch 'master' into #190
 =======
 >>>>>>> parent of 0d4181e... Merge branch 'master' into #190
         name="Home"
