@@ -9,8 +9,7 @@ import {
   TextInput,
   ImageBackground,
 } from "react-native";
-import { Feather } from "@expo/vector-icons";
-import { colors, dimensions, padding, margin,borderRadius, fonts,icon } from "../style/styleValues";
+import { colors, dimensions, padding, margin,borderRadius, fonts } from "../style/styleValues";
 //import axios from "axios";
 
 export default function SignInPage({ navigation }) {
@@ -20,9 +19,6 @@ export default function SignInPage({ navigation }) {
         source={require("../images/flowerImage.png")}
         style={styles.background}
       >
-        <TouchableOpacity onPress={()=>navigation.goBack()} style={styles.back}>
-                <Feather name="x" size={icon.lg} color={colors.foreground} />
-        </TouchableOpacity>
         <Image
           style={styles.runawayLogo}
           source={require("../images/RunawayLogo.png")}
@@ -182,9 +178,4 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
-  back:{
-    position:'absolute',
-    top:padding.lg,
-    left:padding.md
-},
 });

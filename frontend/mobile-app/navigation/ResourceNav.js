@@ -13,7 +13,7 @@ function ResourceNav({navigation}) {
   //header logo
   function LogoTitle() {
     return (
-      <Image source={require('../assets/RunawayLogo.png')} resizeMode="contain" style={{ width: 55,height:55}}/>
+      <Image source={require('../assets/RunawayLogo.png')} resizeMode="contain" style={{ width: 55}}/>
     );
   }
   return (

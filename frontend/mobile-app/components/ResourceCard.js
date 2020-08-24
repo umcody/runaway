@@ -14,24 +14,16 @@ const NewsCard = ({item}) => {
             style={{elevation:2,
                 shadowOffset: {
                 width: 0,
-
                 height: 1.5,
                 },
                 shadowOpacity: 0.2,
                 shadowRadius: 1,}}
-
-                height: 2,
-                },
-                shadowOpacity: 0.2,
-                shadowRadius: 3,}}
-
                 onPress={() => {
                     WebBrowser.openBrowserAsync("https://www." +item.url)
                   }}>
                 <LinearGradient start={[0, 0.5]}
                   end={[1, 0.5]}
                   colors={['#ACDAFF', '#FF9EDA','#E3F1FC']}
-
                   style={{borderRadius: 10,marginVertical:margin.sm,
                 }}>
                       <View style={styles.cardView}>
@@ -42,13 +34,6 @@ const NewsCard = ({item}) => {
                 
                   </LinearGradient>
                 
-
-                  style={{borderRadius: 10,marginVertical:margin.sm}}>
-                      <View style={styles.cardView}>
-                        <Text style={styles.title}>{item.title}</Text>                
-                      </View>       
-                  </LinearGradient>      
-
             </TouchableOpacity>           
         </View>
     )
@@ -58,13 +43,9 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: colors.background,        
         alignItems: 'center',
-
         flex:1,
         
         
-
-        flex:1,     
-
     },
     cardView: {
         backgroundColor: colors.background,
@@ -76,19 +57,13 @@ const styles = StyleSheet.create({
         backgroundColor:colors.background,
         justifyContent:'center',
         paddingLeft:padding.sm,
-
-
-        paddingRight:padding.sm
-
     },
     title: {
-        width: dimensions.fullWidth* .85,
+        width: dimensions.fullWidth,
         color: colors.foreground,
         fontSize: fonts.md,
-        fontFamily: fonts.text,
-        flexWrap:'wrap',
-        flexShrink:1,   
-    },  
+        fontFamily: fonts.text
+    },
   });
-  
+
 export default NewsCard
