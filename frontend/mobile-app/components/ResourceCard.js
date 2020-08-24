@@ -20,7 +20,7 @@ const NewsCard = ({item}) => {
                 shadowRadius: 1,}}
 
                 onPress={() => {
-                    WebBrowser.openBrowserAsync("https://www." +item.url)
+                    WebBrowser.openBrowserAsync(item.url)
                   }}>
                 <LinearGradient start={[0, 0.5]}
                   end={[1, 0.5]}
