@@ -91,8 +91,8 @@ export default function PreChatSurvey({ route, navigation }) {
                 console.log(messages);
                 console.log("Chat rating: " + rating);
                 navigation.navigate("Feed");
-                navigation.dispatch(StackActions.replace("Feels"));
-              }}
+                //***********</View></View>navigation.dispatch(StackActions.replace("Feels"));
+              }} 
             >
               <Text style={{ color: "#FFFFFF", fontSize: fonts.lg,fontFamily:fonts.subheader}}>Submit</Text>
             </TouchableOpacity>

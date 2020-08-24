@@ -18,22 +18,18 @@ const NewsCard = ({item}) => {
                 },
                 shadowOpacity: 0.2,
                 shadowRadius: 1,}}
+
                 onPress={() => {
                     WebBrowser.openBrowserAsync("https://www." +item.url)
                   }}>
                 <LinearGradient start={[0, 0.5]}
                   end={[1, 0.5]}
                   colors={['#ACDAFF', '#FF9EDA','#E3F1FC']}
-                  style={{borderRadius: 10,marginVertical:margin.sm,
-                }}>
+                  style={{borderRadius: 10,marginVertical:margin.sm}}>
                       <View style={styles.cardView}>
-                      <Text style={styles.title}>{item.title}</Text>
-                <Text style={styles.title}>{item.url}</Text>
-                <Text style={styles.title}>{item.url}</Text>
-                      </View>
-                
-                  </LinearGradient>
-                
+                        <Text style={styles.title}>{item.title}</Text>                
+                      </View>       
+                  </LinearGradient>      
             </TouchableOpacity>           
         </View>
     )
@@ -44,8 +40,6 @@ const styles = StyleSheet.create({
         backgroundColor: colors.background,        
         alignItems: 'center',
         flex:1,
-        
-        
     },
     cardView: {
         backgroundColor: colors.background,
@@ -57,13 +51,16 @@ const styles = StyleSheet.create({
         backgroundColor:colors.background,
         justifyContent:'center',
         paddingLeft:padding.sm,
+        paddingRight:padding.sm
     },
     title: {
-        width: dimensions.fullWidth,
+        width: dimensions.fullWidth* .85,
         color: colors.foreground,
         fontSize: fonts.md,
-        fontFamily: fonts.text
-    },
+        fontFamily: fonts.text,
+        flexWrap:'wrap',
+        flexShrink:1,   
+    },  
   });
-
+  
 export default NewsCard
