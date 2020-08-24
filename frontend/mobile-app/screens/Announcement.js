@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         fontSize:50,
         fontFamily:fonts.mainBold,
         paddingTop:padding.md,
-        paddingLeft: padding.md,
+        //paddingLeft: padding.md,
         paddingBottom:padding.sm,
         color:colors.background,
     },
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         alignItems:'flex-start'
     },
     content: {
-        paddingLeft: padding.md,
+        //paddingLeft: padding.md,
         width:dimensions.fullWidth,
         justifyContent:'center',
         alignItems:'center'
