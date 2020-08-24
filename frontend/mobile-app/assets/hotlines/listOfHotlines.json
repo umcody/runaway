@@ -1,0 +1,84 @@
+[
+    {
+      "title": "National Warmline Directory",
+      "phoneNumber": "null",
+      "textNumber": "null",
+      "firstText": "null",
+      "website":
+        "https://www.nami.org/NAMI/media/NAMI-Media/BlogImageArchive/2020/NAMI-National-HelpLine-WarmLine-Directory-3-11-20.pdf",
+      "meantFor": "Someone to call when the matter isn't too urgent"
+    },
+    {
+      "title": "National Suicide Prevention Lifeline",
+      "phoneNumber": "8334564566",
+      "textNumber": "45645",
+      "firstText": "Hey, i need help",
+      "website": "https://suicidepreventionlifeline.org/",
+      "meantFor": "For anyone in suicidal crisis or emotional distress"
+    },
+    {
+      "title": "Crisis Text Line",
+      "phoneNumber": "null",
+      "textNumber": "741741",
+      "firstText": "HOME",
+      "website": "https://www.crisistextline.org/",
+      "meantFor": "Trained Crisis Counselors supporting people in crisis"
+    },
+    {
+      "title": "YouthLine",
+      "phoneNumber": "8779688491",
+      "textNumber": "839863",
+      "firstText": "teen2teen",
+      "website": "https://oregonyouthline.org/",
+      "meantFor": "Support from teens for other teens"
+    },
+    {
+      "title": "Childhelp National Child Abuse Hotline",
+      "phoneNumber": "18004224453",
+      "textNumber": "18004224453",
+      "firstText": "Hey, i need help",
+      "website": "https://www.childhelp.org/childhelp-hotline/",
+      "meantFor": "Prevention of child abuse"
+    },
+    {
+      "title": "National Domestic Violence Hotline",
+      "phoneNumber": "18007997233",
+      "textNumber": "22522",
+      "firstText": "LOVEIS",
+      "website": "https://www.thehotline.org/",
+      "meantFor": "People facing domestic violence"
+    },
+    {
+      "title": "RAINN",
+      "phoneNumber": "8006564673",
+      "textNumber": "null",
+      "firstText": "Hey, i need help",
+      "website": "https://www.rainn.org/",
+      "meantFor": "Anti-sexual assault organization"
+    },
+    {
+      "title": "The Trevor Project",
+      "phoneNumber": "18664887386",
+      "textNumber": "678678",
+      "firstText": "START",
+      "website": "https://www.thetrevorproject.org/",
+      "meantFor":
+        "Crisis intervention and suicide prevention services for members of LGBTQ under 25"
+    },
+    {
+      "title": "Trans Lifeline",
+      "phoneNumber": "8775658860",
+      "textNumber": "null",
+      "firstText": "Hey, i need help",
+      "website": "https://www.translifeline.org/",
+      "meantFor": "Trans people in need of help"
+    },
+    {
+      "title": "SAMHSA National Helpline",
+      "phoneNumber": "18006624357",
+      "textNumber": "null",
+      "firstText": "Hey, i need help",
+      "website": "https://www.samhsa.gov/",
+      "meantFor": "Substance abuse and mental health"
+    }
+  ]

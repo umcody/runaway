@@ -222,39 +222,56 @@ const About = () => {
     </AboutStack.Navigator>
   );
 };
-const MyDrawer = () => {
+
+const  Emergency = () => {
   return (
-    <SettingsDrawer.Navigator
-      drawerContent={(props) => <CustomDrawerContent {...props} />}
-      edgeWidth={0}
-      drawerContentOptions={{
-        activeTintColor: colors.foreground,
-        activeBackgroundColor: colors.secondary,
-        inactiveBackgroundColor: colors.background,
-        itemStyle: { marginBottom: margin.sm },
-        labelStyle: {
-          fontSize: fonts.sm,
-          fontFamily: fonts.subheader,
-          color: colors.foreground,
-          lineHeight: fonts.lgLineHeight,
-        },
-      }}
-    >
-      <SettingsDrawer.Screen
-        name="Home"
-        component={BottomTab}
+    <AboutStack.Navigator>
+      <AboutStack.Screen
+        name="EmergencyResources"
+          component={EmergencyHotlinesScreen}
         options={{
-          headerShown: false,
+          title: "Emergency Resources",
+          headerTitleAlign: "center",
+          headerTitleStyle: styles.headerTitleStyle,
+          headerStyle: styles.headerStyle,
         }}
       />
-      <SettingsDrawer.Screen name="About Us" component={About} />
-      {/*<SettingsDrawer.Screen name="FAQs" component={BottomTab} />*/}
-      <SettingsDrawer.Screen name="Privacy Policy" component={BottomTab} />
-      <SettingsDrawer.Screen name="Help" component={SiteMapNav} />
-      {/*<SettingsDrawer.Screen name="Sign In" component={SignInPage} /> */}
-    </SettingsDrawer.Navigator>
+    </AboutStack.Navigator>
   );
 };
+
+
+const MyDrawer = () =>{
+  return (
+      <SettingsDrawer.Navigator
+        drawerContent={(props) => <CustomDrawerContent {...props} />}
+        edgeWidth={0}
+        drawerContentOptions={{
+          backgroundColor:colors.background,
+          activeTintColor: colors.tertiary,
+          activeBackgroundColor:colors.secondary,
+          inactiveBackgroundColor: colors.background,
+          itemStyle: { marginBottom: margin.sm },
+          labelStyle:{fontSize:fonts.sm,fontFamily:fonts.text,}
+        }}
+      >
+        <SettingsDrawer.Screen
+          name="Home"
+          component={BottomTab}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <SettingsDrawer.Screen name="About Us" component={About} />
+        <SettingsDrawer.Screen name="Emergency Resources" component={Emergency} />
+        {/*<SettingsDrawer.Screen name="FAQs" component={BottomTab} />*/}
+        <SettingsDrawer.Screen name="Privacy Policy" component={BottomTab} />
+        <SettingsDrawer.Screen name="Help" component={SiteMapNav} />
+        <SettingsDrawer.Screen name="Sign In" component={SignInPage} />
+      </SettingsDrawer.Navigator>
+    
+  );
+}
 
 export default function MyApp() {
   return (
@@ -295,13 +312,17 @@ export default function MyApp() {
           component={PostChatSurvey}
           options={{ headerShown: false, gestureEnabled: false }}
         />
+
+
+
+
+
         <RootStack.Screen
-          name="EmergencyResources"
-          component={EmergencyHotlinesScreen}
+          name="Emergency Resources"
+          component={Emergency}
           options={{
             title: "Emergency Resources",
-            headerTitleStyle: styles.headerTitleStyle,
-            headerStyle: styles.headerStyle,
+            headerShown: false
           }}
         />
       </RootStack.Navigator>

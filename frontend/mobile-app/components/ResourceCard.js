@@ -14,10 +14,11 @@ const NewsCard = ({item}) => {
             style={{elevation:2,
                 shadowOffset: {
                 width: 0,
-                height: 2,
+                height: 1.5,
                 },
                 shadowOpacity: 0.2,
-                shadowRadius: 3,}}
+                shadowRadius: 1,}}
+
                 onPress={() => {
                     WebBrowser.openBrowserAsync("https://www." +item.url)
                   }}>
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: colors.background,        
         alignItems: 'center',
-        flex:1,     
+        flex:1,
     },
     cardView: {
         backgroundColor: colors.background,

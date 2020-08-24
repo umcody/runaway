@@ -32,7 +32,7 @@ export default function ChatScreen({ navigation }) {
       headerRight: () => (
         <TouchableOpacity
           style={{ paddingRight: padding.md }}
-          onPress={() => navigation.navigate("EmergencyResources")}
+          onPress={() => navigation.navigate("Emergency Resources")}
         >
           <AntDesign
             name="exclamationcircleo"

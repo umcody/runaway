@@ -1,0 +1,3 @@
+1) Follow the same convention for adding a new hotline as the others.
+2) All the info outlined has to be filled. If the new hotline being added doesn't support one of the methods, just leave it as null, so it isn't rendered.
+3) Make sure to add in the first text that a texting chat would need, so the user knows what to text first. If this is not required, leave it as "" (empty string, so the first text is blank).
