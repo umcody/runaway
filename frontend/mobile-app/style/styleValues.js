@@ -52,7 +52,6 @@ export const fonts = {
   main: 'Lato',
   subheader:'Raleway',
   text:'Avenir',
-  mainBold:'Lato-Black',
   subheaderBold:'Raleway-Bold',
   lgLineHeight: 25,
   mdLineHeight: 21

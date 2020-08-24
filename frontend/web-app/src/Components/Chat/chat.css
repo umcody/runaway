@@ -1,0 +1,13 @@
+.rcw-launcher{
+    display:none;
+}
+
+.rcw-conversation-container{
+    box-shadow:none;
+    border:solid 3px black;
+}
+
+.rcw-conversation-container > .rcw-header {
+    background-color: #B5D8FB;
+    color:black;
+  }

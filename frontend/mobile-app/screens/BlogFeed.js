@@ -1,4 +1,4 @@
-import React,{useState,useEffect,useCallback} from "react";
+import React,{useState,useCallback} from "react";
 import {
   StyleSheet,
   View,
@@ -7,19 +7,34 @@ import {
   Text,
   RefreshControl,
   ActivityIndicator,
-  StatusBar,
-  ImageBackground
+  StatusBar
 } from "react-native";
+import {SafeAreaView } from 'react-native-safe-area-context';
 import BlogPost from "../components/BlogPost"
 import useBlogPage from "../components/useBlogPage"
-import ResourceAPI from '../APIs/ResourceAPI'
 import {colors, fonts, padding, dimensions,margin,borderRadius} from '../style/styleValues.js'
-import { TouchableOpacity } from "react-native-gesture-handler";
+// Sample data for events/announcement
 
+const AN =[
+  {
+  key:'1',
+  title:"Event 1"
+  },
+  {
+    key:'2',
+    title:"Event 2"
+  },
+  {
+  key:'3',
+  title:"Event 3"
+  },
+  {
+    key:'4',
+    title:"Event 4"
+  }
+]
 //This file is the blog feed component that allows infinite scrolling
-export default function BlogFeed({navigation}) {
-  const [announcements, setAnnouncements] = useState([]);
-  const [EndPoint,setEndPoint] = useState('api/announcement/get')
+export default function BlogFeed({navigation,fromHelp}) {
   //default page number is 1 which is the first page of blogs
   const [pageNumber,setPageNumber] = useState(1)
   // returns the blogs data and other variables regarding the blogs from the custom hook, useBlogPage
@@ -42,66 +57,39 @@ export default function BlogFeed({navigation}) {
       });
     }  
     const [refreshing, setRefreshing] = useState(false);
-  // function onRefresh to change refreshing state to true, wait, then to false
+  // function onRefreah to change refreshing state to true, wait, then to false
     const onRefresh = useCallback(() => {
       setRefreshing(true);
-      // needs to be tested
-      setPageNumber(1);
+  
       wait(2000).then(() => setRefreshing(false));
     }, [refreshing]);
 
-    //get announcements
-    useEffect(() => {
-      getAnnouncements(EndPoint)
-  },[])
-  function getAnnouncements(endPoint) {
-    ResourceAPI.get((endPoint))
-        .then(async function (response) {
-            setAnnouncements(response.data);
-        })
-        .catch(function (error) {
-            console.log(error)
-        })
-}
-if (!announcements) {
-    return null
-}
     // render horizontal
-
   const renderAn = ({item}) => {
       return (
-        <TouchableOpacity activeOpacity={.8} style={styles.announcement} onPress={()=> navigation.navigate('Announcement',{
-          item:item})}>
-            <ImageBackground style={{flex:1,width:"100%",alignContent:'flex-end',justifyContent:'center'}} resizeMode="cover" source={{uri:item.image}}>
-            <View style={{flex:1,backgroundColor:"rgba(0, 0, 0, 0.2)",justifyContent:'center'}}>
-            <Text style={{textAlign:'center', color:"#fff",fontSize:fonts.sm-2,fontFamily:fonts.subheader,paddingBottom:5}}>{item.name}</Text>
-            </View>
-            </ImageBackground>
-        </TouchableOpacity>
+        <View style={styles.announcement}>
+          <Text>{/*item.title*/}</Text>
+        </View>
       );
     };
 
   return (
     <View style={styles.home}>
-      {!!error ? <Text style={{fontFamily:fonts.text}}>Server Connection Error</Text> :  loading ? <ActivityIndicator style={{paddingTop:padding.md}}/> :
+      {!!error ? <Text>Server Connection Error</Text> :  loading ? <ActivityIndicator style={{paddingTop:padding.md}}/> :
       <FlatList 
       ListHeaderComponent={
         <View>
           <FlatList 
-            data={announcements}
+            data={AN}
             renderItem={renderAn}
             horizontal={true}
             nestedScrollEnabled={true}
-            keyExtractor={(item,index) => 'key'+index}
-            showsHorizontalScrollIndicator={false}
-            style={{paddingBottom:padding.md}}
-            initialNumToRender={5}
-            windowSize={5}
-            />
-          <Text style={styles.recentPosts}>Blog Posts</Text>
+            keyExtractor={item => item.key}
+            showsHorizontalScrollIndicator={false}/>
+          <Text style={styles.recentPosts}>Recent Posts</Text>
           </View>
       }
-        style={{paddingLeft:padding.sm,paddingRight:padding.sm,paddingTop:padding.sm}}
+        style={{paddingLeft:padding.md,paddingTop:padding.sm}}
         nestedScrollEnabled={true}
         data={blogs}
         renderItem={({ item }) => {
@@ -114,14 +102,12 @@ if (!announcements) {
           />
         )
     }}
-    keyExtractor={(item,index) => 'key'+index}
+    keyExtractor={item => item._id}
     showsHorizontalScrollIndicator={false}
     showsVerticalScrollIndicator={false}
     initialNumToRender={5}
-    windowSize={9}
     onEndReached={handleLoadMore}
     onEndReachedThreshold={5}
-    nestedScrollEnabled={true}
     contentContainerStyle={{paddingBottom:20}}
     refreshControl={
       <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
@@ -139,21 +125,20 @@ const styles = StyleSheet.create({
     alignItems:'center',
   },
   announcement:{
-    height:dimensions.fullHeight/5,
-    width:dimensions.fullWidth*.3,
+    height:dimensions.fullHeight/7,
+    width:dimensions.fullWidth*.21,
     backgroundColor:colors.secondary,
-    borderRadius:borderRadius.md,
+    borderRadius:borderRadius.lg,
     marginTop:margin.sm,
     marginRight:margin.md,
     justifyContent:'center',
-    alignItems:'center',
-    overflow:'hidden'
+    alignItems:'center'
   },
   recentPosts:{
       fontSize: fonts.lg,
       lineHeight: fonts.lgLineHeight,
       paddingVertical:padding.md,
-      fontFamily:fonts.mainBold,
-      color:colors.tertiary
+      fontFamily:fonts.main,
+      color:colors.foreground
   }
 });
