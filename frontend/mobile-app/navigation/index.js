@@ -48,6 +48,7 @@ import BlogNav from "../navigation/BlogNav";
 import SiteMapNav from "./SiteMapNav";
 import SignInPage from "../screens/SignInPage";
 import ResourceNav from "./ResourceNav";
+import PrivacyPolicy from "../screens/PrivacyTerms";
 
 //styling
 import {
@@ -240,6 +241,23 @@ const  Emergency = () => {
   );
 };
 
+const  PrivacyTerms = () => {
+  return (
+    <AboutStack.Navigator>
+      <AboutStack.Screen
+        name="PrivacyTerms"
+          component={PrivacyPolicy}
+        options={{
+          title: "Privacy Policy and Terms",
+          headerTitleAlign: "center",
+          headerTitleStyle: styles.headerTitleStyle,
+          headerStyle: styles.headerStyle,
+        }}
+      />
+    </AboutStack.Navigator>
+  );
+};
+
 
 const MyDrawer = () =>{
   return (
@@ -265,7 +283,7 @@ const MyDrawer = () =>{
         <SettingsDrawer.Screen name="About Us" component={About} />
         <SettingsDrawer.Screen name="Emergency Resources" component={Emergency} />
         {/*<SettingsDrawer.Screen name="FAQs" component={BottomTab} />*/}
-        <SettingsDrawer.Screen name="Privacy Policy" component={BottomTab} />
+        <SettingsDrawer.Screen name="Privacy Policy" component={PrivacyTerms} />
         <SettingsDrawer.Screen name="Help" component={SiteMapNav} />
         <SettingsDrawer.Screen name="Sign In" component={SignInPage} />
       </SettingsDrawer.Navigator>
