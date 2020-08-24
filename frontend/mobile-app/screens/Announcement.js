@@ -53,10 +53,7 @@ const styles = StyleSheet.create({
         alignItems:'flex-start'
     },
     content: {
-        fontSize:fonts.md,
-        fontFamily:fonts.text,
         paddingLeft: padding.md,
-        color:colors.background,
     },
     back:{
         width:icon.lg,height:icon.lg,
