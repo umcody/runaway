@@ -182,6 +182,7 @@ const Chat = ({ navigation }) => {
           options={{
             headerTitle: "PreChat Survey",
             headerTitleAlign: "center",
+<<<<<<< HEAD
             headerLeft: () => (
               <HeaderBackButton
                 labelVisible={false}
@@ -201,11 +202,35 @@ const Chat = ({ navigation }) => {
             headerTitleAlign: "center",
             headerStyle: stylesDefault.headerStyle,
             headerTitleStyle: stylesDefault.headerTitleStyle,
+=======
+>>>>>>> parent of 0d4181e... Merge branch 'master' into #190
             headerLeft: () => (
               <HeaderBackButton
                 labelVisible={false}
                 onPress={() => {
                   navigation.dispatch(StackActions.replace("Feels"));
+<<<<<<< HEAD
+=======
+                  navigation.navigate("Feed");
+                }}
+              />
+            ),
+          }}
+        />
+        <ChatStack.Screen
+          name="Feels"
+          component={Feels}
+          options={{
+            headerTitle: "How are you feeling?",
+            headerTitleAlign: "center",
+            headerStyle: stylesDefault.headerStyle,
+            headerTitleStyle: stylesDefault.headerTitleStyle,
+            headerLeft: () => (
+              <HeaderBackButton
+                labelVisible={false}
+                onPress={() => {
+                  navigation.dispatch(StackActions.replace("Feels"));
+>>>>>>> parent of 0d4181e... Merge branch 'master' into #190
                   navigation.navigate("Feed");
                 }}
               />
@@ -301,6 +326,7 @@ export default function MyApp(){
       <RootStack.Screen
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 const MyDrawer = () => {
   return (
@@ -322,6 +348,8 @@ const MyDrawer = () => {
     >
       <SettingsDrawer.Screen
 
+=======
+>>>>>>> parent of 0d4181e... Merge branch 'master' into #190
 =======
 >>>>>>> parent of 0d4181e... Merge branch 'master' into #190
 =======
