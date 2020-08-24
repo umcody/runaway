@@ -5,6 +5,8 @@ import { StatusBar, Platform } from "react-native";
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
 import { colors } from "./style/styleValues";
+console.disableYellowBox = true;
+
 async function getFonts() {
   await Font.loadAsync({
     Lato: require("./assets/fonts/Lato-Regular.ttf"),
