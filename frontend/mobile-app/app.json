@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "mobile-app",
-    "slug": "mobile-app",
+    "name": "RunAway.app",
+    "slug": "runaway.app",
     "platforms": [
       "ios",
       "android",
@@ -24,6 +24,7 @@
     "ios": {
       "bundleIdentifier": "com.runaway.runaway",
       "supportsTablet": true
-    }
+    },
+    "description": ""
   }
 }

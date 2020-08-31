@@ -87,8 +87,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.background,
-        borderWidth: 12,
-        borderColor: 'white',
       },
       title: {
         fontFamily: fonts.main,
