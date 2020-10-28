@@ -1,6 +1,9 @@
 # RUNAWAY
 ![frontend-web](https://github.com/umcody/runaway/workflows/frontend-web/badge.svg) ![frontend-mobile](https://github.com/umcody/runaway/workflows/frontend-mobile/badge.svg)
-Runaway is a project to...
+Runaway is a mobile application where people can chat privately with trained volunteers for mental support/peer.
+Currently, the repo is divided into three parts: Mobile app/ Web app/ Backend.
+
+
 
 ## Set Up
 
