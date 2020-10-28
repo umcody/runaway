@@ -1,7 +1,7 @@
-<img src = "/frontend/mobile-app/assets/RunawayLogo.png" width = "300px">
+<img src = "/frontend/mobile-app/assets/RunawayLogo.png" width = "100px">
 
 # RUNAWAY
-![frontend-web](https://github.com/umcody/runaway/workflows/frontend-web/badge.svg) ![frontend-mobile](https://github.com/umcody/runaway/workflows/frontend-mobile/badge.svg)
+![frontend-mobile](https://github.com/umcody/runaway/workflows/frontend-mobile/badge.svg)
 Runaway is a mobile application where people can chat privately with trained volunteers for mental support/peer.
 Currently, the repo is divided into three parts: Mobile app/ Web app/ Backend.
 
