@@ -12,18 +12,18 @@ Back End: https://github.com/codinggosu/runaway-backend
 
 ### Currently Supported Features:
 #### Mobile APP
-User - Volunteer web socket chat
-Blog Feed
-Announcement Feed
-Resources
-Hotlines
+* User - Volunteer web socket chat
+* Blog Feed
+* Announcement Feed
+* Resources
+* Hotlines
 
 #### Web APP
-User administration
-Blog/Announcement Creation
-User - Volunteer web socket chat
-Chat termination
-Queue Administration
+* User administration
+* Blog/Announcement Creation
+* User - Volunteer web socket chat
+* Chat termination
+* Queue Administration
 
 
 ## Set Up
