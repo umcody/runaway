@@ -243,13 +243,13 @@ export default function ChatScreen({ navigation }) {
     socket.emit("sendMessage", message);
   }
 
-//  
-//   const onSend = useCallback((messages = []) => {
-//     setMessages((previousMessages) =>
-//       GiftedChat.append(previousMessages, messages)
-//     );
-//     sendMessage(messages[0].text);
-//   }, []);
+ 
+  const onSend = useCallback((messages = []) => {
+    setMessages((previousMessages) =>
+      GiftedChat.append(previousMessages, messages)
+    );
+    sendMessage(messages[0].text);
+  }, []);
 
   // Send reply to the server with the input reply.
   const onQuickReply = (replies) => {
