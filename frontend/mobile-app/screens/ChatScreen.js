@@ -14,7 +14,6 @@ import WaitingPage from "./WaitingPage";
 
 //This is the chat screen and messaging components
 export default function ChatScreen({ navigation }) {
-  //const [queue, setQueue] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [roomNum, setRoomNum] = useState(0);
   const [messages, setMessages] = useState([]);
@@ -26,7 +25,7 @@ export default function ChatScreen({ navigation }) {
 
   //const appState = useRef(AppState.currentState);
   // conditional header depending on if user is in waiting screen or chat room
-  if (volunteerJoined){
+  if (volunteerJoined){ // If volunteer joined, display prechat screen and emergency resource page.
     navigation.setOptions({
       headerStyle:stylesDefault.headerStyle,
       headerRight: () => (
@@ -54,7 +53,7 @@ export default function ChatScreen({ navigation }) {
         </TouchableOpacity>
       ),
     });
-  } else {
+  } else { //If volunteer exited, navigate to post chat screen.
     navigation.setOptions({
       headerLeft: () => (
         <TouchableOpacity
@@ -71,6 +70,13 @@ export default function ChatScreen({ navigation }) {
       headerStyle: styles.headerStyle,
     });
   }
+
+  //android back button should leave the room.
+  const backAction = () => {
+    disconnectSocket();
+    navigation.navigate("Feed")
+    return true;
+  };
 
   // message bubble rendering and styling
   function renderBubble(props) {
@@ -193,7 +199,6 @@ export default function ChatScreen({ navigation }) {
       setNewMessage(message);
     });
     // Default messages that show up at first
-    // This is all for testing purposes
     setMessages([
       {
         _id: 1,
@@ -224,13 +229,12 @@ export default function ChatScreen({ navigation }) {
     ]);
     //when exiting the component
     return () => {
-      console.log("LOG2");
       socket.disconnect();
     };
   }, []);
 
+  //Tell the server to close socket connection with the volunteer.
   function disconnectSocket(){
-    console.log("LOG");
     socket.emit("disconnectUser","user");
   }
 
@@ -239,15 +243,15 @@ export default function ChatScreen({ navigation }) {
     socket.emit("sendMessage", message);
   }
 
-  // ** GIFTEDCHAT.APPEND NOT WORKING!
-  const onSend = useCallback((messages = []) => {
-    setMessages((previousMessages) =>
-      GiftedChat.append(previousMessages, messages)
-    );
-    sendMessage(messages[0].text);
-  }, []);
+//  
+//   const onSend = useCallback((messages = []) => {
+//     setMessages((previousMessages) =>
+//       GiftedChat.append(previousMessages, messages)
+//     );
+//     sendMessage(messages[0].text);
+//   }, []);
 
-  // dont know how this works but when quickreplies are pressed it sends a messages
+  // Send reply to the server with the input reply.
   const onQuickReply = (replies) => {
     const createdAt = new Date();
     if (replies.length === 1) {
@@ -272,45 +276,24 @@ export default function ChatScreen({ navigation }) {
       console.warn("replies param is not set correctly");
     }
   };
+
   // this renders the quick reply buttons
   // it is set that when # of messages > 1, they dissapear
   const renderQuickReplies = (props) => {
     return <QuickReplies color={colors.tertiary} {...props} />;
   };
-  //android back button should leave the room.
-  const backAction = () => {
-    disconnectSocket();
-    navigation.navigate("Feed")
-    return true;
-  };
 
+
+  //Back Press functionality for android phones.
   useEffect(() => {
     BackHandler.addEventListener("hardwareBackPress", backAction);
-
     return () =>
       BackHandler.removeEventListener("hardwareBackPress", backAction);
   }, []);
-  // supposed to disconnect user if they exit the app
-  /*
-  useEffect(() => {
-    AppState.addEventListener('change', handleChange);  
-  
-    return () => {
-      AppState.removeEventListener('change', handleChange);  
-    }
-  }, []);
-  const handleChange = (appState) => {
-      
-    if (appState === "background") {
-      disconnectSocket();
-    }
-    if(appState ==="active"){
-      let random_room = Math.floor(Math.random() * 1000 + 1);
-      setVolunteerJoined(false)
-      socket_joinRoom(random_room);
-    }
-  }*/
-  // show wait page or chat page depending on if volunteer joined
+ 
+
+
+  // Display wait page or chat page depending on if volunteer joined
   return (
     <View style={{ flex:1, backgroundColor: colors.background}}>
     {volunteerJoined? 
@@ -366,6 +349,8 @@ export default function ChatScreen({ navigation }) {
     </View>
   );
 }
+
+
 const styles = StyleSheet.create({
   composer: {
     backgroundColor: colors.secondary,
